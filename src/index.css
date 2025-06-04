@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-gray-900 bg-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display leading-tight text-gray-900;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all duration-300 backdrop-blur-sm shadow-glow hover:shadow-glow-lg relative overflow-hidden;
+  }
+
+  .btn-primary {
+    @apply bg-glass text-white border border-white/30 hover:bg-glass-hover;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-500 text-white hover:bg-secondary-600;
+  }
+
+  .btn-outline {
+    @apply border-2 border-white text-white hover:bg-white/20;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-12 md:py-24;
+  }
+
+  .glass-card {
+    @apply bg-glass backdrop-blur-sm border border-white/20 shadow-glow hover:shadow-glow-lg transition-all duration-300;
+  }
+}
+
+/* Sparkle animation */
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0.5) translate(0, 0);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2) translate(10px, -10px);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* Firefly effect */
+.firefly {
+  @apply w-1 h-1 bg-white rounded-full opacity-0;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Text contrast enhancement */
+.text-contrast {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass effect backgrounds */
+.bg-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+}
+
+.bg-glass-hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* Floating particles */
+.floating-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
