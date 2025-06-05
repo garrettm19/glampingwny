@@ -1,57 +1,40 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import TestimonialCard from '../components/ui/TestimonialCard';
+import { Star, Quote, Calendar, MapPin } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "My daughter and her friends had the most magical birthday ever! The tents were beautifully decorated and the attention to detail was amazing. Worth every penny!",
-    name: "Jessica Thompson",
-    role: "Mom of birthday girl",
-    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
+    quote: "Holly was absolutely amazing and easy to work with! I told her I was throwing a Barbie themed bachelorette weekend and she knocked the theme out of the park with Barbie décor in our glamping tent! All the girls especially the bride to be were so impressed and we enjoyed our first glamping experience so much! I highly recommend Glamping WNY and will most definitely be using them again in the future!",
+    name: "Rachel C.",
+    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+    rating: 5,
+    tag: "Themed Party",
+    date: "2024-02-28"
   },
   {
-    quote: "We booked the Magical Celebration package and it exceeded our expectations. The staff was professional and made setup so easy. My son hasn't stopped talking about it!",
-    name: "Michael Rodriguez",
-    role: "Father of 8-year-old",
-    image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
+    quote: "I booked Glamping WNY for a surprise sleepover for my nephews. Holly was great! The booking process was so simple. She was easy to contact and communicate with. Also very flexible with drop off and pickup times. She was able to do two different themes for them since they are into different things. The beds were very comfortable and everything was clean and organized. The kids loved it. It was a great experience. Thank you for making their birthday extra special!",
+    name: "Rebecca B.",
+    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    rating: 5,
+    tag: "Kids Party",
+    date: "2024-02-25"
   },
   {
-    quote: "This was our second time using Glamping WNY and they somehow made it even better than the first time. The customized theme matched my daughter's interests perfectly.",
-    name: "Sarah Johnson",
-    role: "Return customer",
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
+    quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your Glamping needs!",
+    name: "Jamie D.",
+    image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+    rating: 5,
+    tag: "Perfect Setup",
+    date: "2024-02-20"
   },
-  {
-    quote: "The Ultimate Fantasy package was truly magical! Every detail was perfect, from the themed decorations to the outdoor movie setup. A birthday she'll never forget!",
-    name: "Emily Davis",
-    role: "Mother of two",
-    image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
-  },
-  {
-    quote: "Such a unique and wonderful way to celebrate! The kids were thrilled with their magical tent sleepover, and I loved how stress-free it was for me.",
-    name: "Amanda Wilson",
-    role: "Birthday party host",
-    image: "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
-  },
-  {
-    quote: "The attention to detail and level of service was outstanding. They made my daughter feel like a princess on her special day!",
-    name: "Rachel Martinez",
-    role: "Delighted parent",
-    image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    rating: 5
-  }
+  // ... more testimonials
 ];
 
 const TestimonialsPage: React.FC = () => {
   const aggregateRating = {
-    ratingValue: 4.9,
-    reviewCount: 200,
+    ratingValue: 5.0,
+    reviewCount: testimonials.length,
     bestRating: 5,
     worstRating: 1
   };
@@ -59,8 +42,8 @@ const TestimonialsPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Client Testimonials | Glamping WNY</title>
-        <meta name="description" content="Read what parents say about their magical birthday experiences with Glamping WNY. Real stories from real families in Western New York." />
+        <title>Client Reviews & Testimonials | Glamping WNY</title>
+        <meta name="description" content="Read what families say about their magical glamping experiences with Glamping WNY. Real reviews from real customers in Western New York." />
         
         <script type="application/ld+json">
           {JSON.stringify({
@@ -96,15 +79,23 @@ const TestimonialsPage: React.FC = () => {
         {/* Sparkle effects */}
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
-            <span 
+            <motion.div
               key={i}
-              className="sparkle-dot"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
+              className="floating-particle"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [1, 1.2, 1],
+                y: [0, -20, 0],
               }}
-            />
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+            >
+              <Star className="w-1 h-1 text-white" />
+            </motion.div>
           ))}
         </div>
         
@@ -113,17 +104,26 @@ const TestimonialsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">What Parents Say</h1>
-            <p className="text-xl text-white/90 mb-6">
-              Read about the magical experiences we've created for families across Western New York.
+            <div className="flex justify-center mb-6">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                ))}
+              </div>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              What Our Customers Say
+            </h1>
+            <p className="text-xl text-white/90">
+              Real reviews from real families who've experienced the magic of Glamping WNY.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Testimonials Grid */}
+      {/* Reviews Grid */}
       <section className="section bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -133,16 +133,56 @@ const TestimonialsPage: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
+                className="glass-card p-6 relative"
               >
-                <TestimonialCard {...testimonial} />
+                {/* Tag */}
+                <div className="absolute top-4 right-4 px-3 py-1 bg-accent-500 text-white text-sm font-medium rounded-full">
+                  {testimonial.tag}
+                </div>
+
+                {/* Rating */}
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-yellow-400 fill-yellow-400"
+                    />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <div className="relative mb-6">
+                  <Quote className="absolute -top-2 -left-2 w-8 h-8 text-primary-200" />
+                  <blockquote className="text-gray-700 pl-6">
+                    "{testimonial.quote}"
+                  </blockquote>
+                </div>
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-bold text-primary-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">
+                      {new Date(testimonial.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Leave a Review */}
       <section className="section bg-primary-50">
         <div className="container-custom">
           <motion.div 
@@ -150,17 +190,32 @@ const TestimonialsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-primary-900 mb-6">
-              Ready to Create Your Own Story?
+              Share Your Experience
             </h2>
             <p className="text-gray-700 mb-8">
-              Join our growing family of happy parents and delighted children. Book your magical glamping experience today!
+              Had a magical time with us? We'd love to hear about it! Leave us a review on your favorite platform.
             </p>
-            <button className="btn btn-primary">
-              Book Your Experience
-            </button>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a 
+                href="https://google.com/review" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Review on Google
+              </a>
+              <a 
+                href="https://facebook.com/review" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+              >
+                Review on Facebook
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
