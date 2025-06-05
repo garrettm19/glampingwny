@@ -71,7 +71,7 @@ const AboutPage: React.FC = () => {
               className="relative"
             >
               <img 
-                src="https://glampingwny.com/wp-content/uploads/2024/03/holly-founder.jpg" 
+                src="/src/assets/image.png"
                 alt="Holly - Glamping WNY Founder" 
                 className="rounded-xl shadow-lg w-full h-auto"
               />
