@@ -70,11 +70,14 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <img 
-                src="/src/assets/image.png"
-                alt="Holly - Glamping WNY Founder" 
-                className="rounded-xl shadow-lg w-full h-auto"
-              />
+              <div className="relative rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
+                <img 
+                  src="/src/assets/image.png"
+                  alt="Holly - Glamping WNY Founder" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
               <motion.div
                 className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4"
                 initial={{ opacity: 0, scale: 0.8 }}
