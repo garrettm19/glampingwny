@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Users, MapPin, Sparkles, Heart, Star } from 'lucide-react';
 import { trackEvent } from '../../utils/analytics';
+import ThemeBackground from './ThemeBackground';
 
 interface BookingFormProps {
   onSubmit?: (formData: any) => void;
@@ -337,6 +338,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <ThemeBackground theme={formData.theme} />
+
       {/* Form Header */}
       <div className="text-center mb-8">
         <div className="inline-block p-3 bg-primary-100 rounded-full mb-4">
