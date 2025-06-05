@@ -3,106 +3,99 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
-  
-  body {
-    @apply font-sans text-gray-900 bg-white;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display leading-tight text-gray-900;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
+  /* Existing base styles */
 }
 
 @layer components {
-  .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-medium transition-all duration-300 backdrop-blur-sm shadow-glow hover:shadow-glow-lg relative overflow-hidden;
+  /* Existing component styles */
+
+  /* Theme Background Patterns */
+  .theme-bg {
+    @apply absolute inset-0 opacity-10 pointer-events-none transition-opacity duration-500;
+    background-size: 200px 200px;
+    background-repeat: repeat;
   }
 
-  .btn-primary {
-    @apply bg-glass text-white border border-white/30 hover:bg-glass-hover;
+  .theme-bg-bills {
+    background: linear-gradient(45deg, #c60c30 25%, transparent 25%),
+                linear-gradient(-45deg, #c60c30 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #c60c30 75%),
+                linear-gradient(-45deg, transparent 75%, #c60c30 75%);
+    background-size: 20px 20px;
+    background-color: #00338d;
   }
 
-  .btn-secondary {
-    @apply bg-secondary-500 text-white hover:bg-secondary-600;
+  .theme-bg-barbie {
+    background: linear-gradient(135deg, #ff69b4 25%, transparent 25%) -10px 0,
+                linear-gradient(225deg, #ff69b4 25%, transparent 25%) -10px 0,
+                linear-gradient(315deg, #ff69b4 25%, transparent 25%),
+                linear-gradient(45deg, #ff69b4 25%, transparent 25%);
+    background-size: 20px 20px;
+    background-color: #ffb6c1;
   }
 
-  .btn-outline {
-    @apply border-2 border-white text-white hover:bg-white/20;
+  .theme-bg-pokemon {
+    background-image: radial-gradient(circle at 2px 2px, #e4000f 2px, transparent 0);
+    background-size: 16px 16px;
+    background-color: #ffffff;
   }
 
-  .container-custom {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  .theme-bg-galaxy {
+    background: radial-gradient(circle at center, #4a148c 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, #311b92 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #1a237e 0%, transparent 50%);
+    background-color: #000051;
   }
 
-  .section {
-    @apply py-12 md:py-24;
+  .theme-bg-unicorn {
+    background: linear-gradient(135deg, #f8bbd0 25%, transparent 25%) -10px 0,
+                linear-gradient(225deg, #e1bee7 25%, transparent 25%) -10px 0,
+                linear-gradient(315deg, #bbdefb 25%, transparent 25%),
+                linear-gradient(45deg, #b2ebf2 25%, transparent 25%);
+    background-size: 20px 20px;
+    background-color: #f3e5f5;
   }
 
-  .glass-card {
-    @apply bg-glass backdrop-blur-sm border border-white/20 shadow-glow hover:shadow-glow-lg transition-all duration-300;
+  .theme-bg-superhero {
+    background: linear-gradient(45deg, #e53935 25%, transparent 25%),
+                linear-gradient(-45deg, #e53935 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e53935 75%),
+                linear-gradient(-45deg, transparent 75%, #e53935 75%);
+    background-size: 20px 20px;
+    background-color: #1565c0;
   }
-}
 
-/* Sparkle animation */
-@keyframes sparkle {
-  0%, 100% { 
-    opacity: 0;
-    transform: scale(0.5) translate(0, 0);
+  .theme-bg-jungle {
+    background: linear-gradient(45deg, #2e7d32 25%, transparent 25%),
+                linear-gradient(-45deg, #388e3c 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #2e7d32 75%),
+                linear-gradient(-45deg, transparent 75%, #388e3c 75%);
+    background-size: 20px 20px;
+    background-color: #1b5e20;
   }
-  50% { 
-    opacity: 1;
-    transform: scale(1.2) translate(10px, -10px);
+
+  .theme-bg-winter {
+    background-image: radial-gradient(#ffffff 2px, transparent 2px);
+    background-size: 16px 16px;
+    background-color: #e3f2fd;
   }
-}
 
-.animate-sparkle {
-  animation: sparkle 2s ease-in-out infinite;
-}
-
-/* Firefly effect */
-.firefly {
-  @apply w-1 h-1 bg-white rounded-full opacity-0;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Text contrast enhancement */
-.text-contrast {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Glass effect backgrounds */
-.bg-glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-}
-
-.bg-glass-hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-}
-
-/* Floating particles */
-.floating-particle {
-  position: absolute;
-  pointer-events: none;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
+  .theme-bg-retro {
+    background: repeating-linear-gradient(
+      45deg,
+      #ff6b6b,
+      #ff6b6b 10px,
+      #4ecdc4 10px,
+      #4ecdc4 20px
+    );
   }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
+
+  .theme-bg-taylor {
+    background: linear-gradient(135deg, #ff8a80 25%, transparent 25%) -10px 0,
+                linear-gradient(225deg, #ff80ab 25%, transparent 25%) -10px 0,
+                linear-gradient(315deg, #ea80fc 25%, transparent 25%),
+                linear-gradient(45deg, #b388ff 25%, transparent 25%);
+    background-size: 20px 20px;
+    background-color: #f8bbd0;
   }
 }
