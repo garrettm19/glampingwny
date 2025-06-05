@@ -62,21 +62,23 @@ const AboutPage: React.FC = () => {
       {/* Founder's Story */}
       <section className="section bg-white relative overflow-hidden">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative lg:col-span-5"
             >
-              <div className="relative rounded-xl overflow-hidden shadow-lg aspect-[3/4]">
-                <img 
-                  src="/src/assets/image.png"
-                  alt="Holly - Glamping WNY Founder" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
+                <div className="aspect-[3/4]">
+                  <img 
+                    src="/src/assets/image.png"
+                    alt="Holly - Glamping WNY Founder" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
               </div>
               <motion.div
                 className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4"
@@ -99,7 +101,7 @@ const AboutPage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-6 lg:col-span-7"
             >
               <h2 className="text-3xl font-bold text-primary-900">Meet Holly</h2>
               <div className="space-y-4 text-gray-700">
@@ -147,7 +149,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Rest of the existing sections... */}
+      {/* Rest of the sections remain unchanged */}
       
     </>
   );
