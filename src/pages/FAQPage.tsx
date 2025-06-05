@@ -2,75 +2,83 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import FAQAccordion from '../components/ui/FAQAccordion';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Clock, MapPin, Bed, Sun, CreditCard, CloudLightning, Shield, Dog } from 'lucide-react';
 
 const FAQPage: React.FC = () => {
   const faqSections = [
     {
-      title: "General Info",
+      title: "Booking & Scheduling",
       questions: [
         {
-          question: "What exactly is glamping?",
-          answer: "Think of glamping as camping's luxurious cousin! We combine the fun of sleeping in tents with all the comforts of home. Our setups include cozy beds, beautiful decorations, and real bathrooms nearby. It's perfect for kids who want adventure without roughing it."
+          question: "When do you set up and pick up?",
+          answer: "Your set up + clean up times may vary due to your location & various factors, but you can expect us to arrive for set up no later than 4pm & return to clean up sometime after 10am. We will outreach one week prior to your reservation with an estimated time of arrival."
         },
         {
-          question: "What ages do you cater to?",
-          answer: "We create magical experiences for children ages 4-12, with specially designed setups for different age groups. Our tents and activities are customized to ensure age-appropriate fun and safety for everyone!"
+          question: "How long can we keep the tents?",
+          answer: "Our standard package is for a one night rental with the option to add additional nights, if available."
         },
         {
-          question: "Where do you set up?",
-          answer: "We bring the magic to you! We set up in backyards, parks (with permits), and other outdoor spaces within Western New York. We just need a flat area of about 15×15 feet per tent and easy access for our equipment."
+          question: "Do you stay and host the party?",
+          answer: "We don't stay and host the party, but we ensure everything is set up just as you need it."
+        },
+        {
+          question: "Is there an age requirement?",
+          answer: "We ask that all guests be 5 and over."
         }
       ]
     },
     {
-      title: "Booking & Payment",
+      title: "Services & Amenities",
       questions: [
         {
-          question: "How far in advance should I book?",
-          answer: "We recommend booking 4-6 weeks ahead, especially for weekend dates and summer months (May-September). Some dates book up to 3 months in advance! But don't worry if you're planning last minute – we sometimes have availability for spontaneous celebrations."
+          question: "Is delivery included?",
+          answer: "We offer delivery, setup, and cleanup at no extra charge if you are within a 20-mile radius of Hamburg, New York (14075). Anything outside of 20 miles will have an additional travel fee. See Areas We Service for detailed information."
         },
         {
-          question: "What's your cancellation policy?",
-          answer: "We understand plans can change! You'll get a full refund if you cancel 14+ days before your event. Cancellations within 7-14 days receive a 50% refund or the option to reschedule. For last-minute cancellations (less than 7 days), we offer rescheduling options based on availability."
+          question: "How does bedding work?",
+          answer: "For both our outdoor glamping and indoor glamping experience, we provide a standard bed sheet, pillows, and light décor blanket for each bed."
         },
         {
-          question: "Do you require a deposit?",
-          answer: "Yes, we ask for a 50% deposit to secure your date, with the remaining balance due 7 days before your event. This helps us ensure we have all the perfect decorations and supplies ready for your special day!"
+          question: "Can I reserve multiple tents and/or multiple nights?",
+          answer: "Yes, depending on availability."
+        },
+        {
+          question: "How does the theater experience work?",
+          answer: "Our theater comes with a screen and wireless projector that connects to your home wi-fi to stream Netflix, Hulu, etc. You can also connect to a computer with the included HDMI to show content from your own device."
         }
       ]
     },
     {
-      title: "What's Included",
+      title: "Preparation & Safety",
       questions: [
         {
-          question: "What comes with the basic package?",
-          answer: "Our basic package includes the tent setup, cozy sleeping arrangements, ambient lighting (including our signature fairy lights!), basic decorations, and morning continental breakfast. We also provide a picnic table setup and access to our party planning guide."
+          question: "How are the tents and bedding cleaned?",
+          answer: "All décor linens are washed with a fragrance free hypoallergenic detergent after each use. Trays and other accessories are cleaned and disinfected."
         },
         {
-          question: "Can we customize the theme?",
-          answer: "Absolutely! We love bringing your vision to life. From princess parties to dinosaur adventures, we have tons of themes to choose from. We can even create custom themes to match your child's specific interests!"
+          question: "How to prepare the space?",
+          answer: "Please review our setup checklists based on your package: Indoor Teepee Checklist, Standard 16ft Bell Tent Checklist, or 23ft Bell Tent Checklist."
         },
         {
-          question: "Do you provide food or activities?",
-          answer: "While our basic package doesn't include food (except breakfast), we offer various add-ons like s'mores kits, movie night setups, and craft stations. We're also happy to recommend local caterers who specialize in kid-friendly party food!"
+          question: "What if severe weather is expected?",
+          answer: "The Outdoor Bell Tent canvas is 100% rainproof. If light rain is expected, we will set up your outdoor glamping experience as normal; we will not accept cancellations for rain. In the event that severe wind or lightning is predicted, we reserve the right to cancel your reservation with a full refund. We don't want to risk putting any of our guests in danger or damage our tents."
         }
       ]
     },
     {
-      title: "Safety & Weather",
+      title: "Policies & Payments",
       questions: [
         {
-          question: "What happens if it rains?",
-          answer: "Don't worry – we've got you covered! Our tents are weather-resistant and we monitor forecasts closely. In case of severe weather, we offer flexible rescheduling or can move the setup indoors if space allows. We'll communicate with you well in advance if weather might be an issue."
+          question: "Can I cancel my reservation?",
+          answer: "Life happens, plans change. We totally get it! We want you to have the best time as possible, so we don't like charging fees. If your plans change and you wish to cancel for any reason at all, contact us no later than 14 days of your booking date to receive a full refund. There are no refunds for any cancellation less than 14 days before the booking date, however the full amount paid can be applied to a different date."
         },
         {
-          question: "Are the tents safe and clean?",
-          answer: "Safety and cleanliness are our top priorities! All our equipment is thoroughly sanitized between uses, and we follow strict safety protocols. Our tents are fire-retardant, properly secured, and we use child-safe materials throughout the setup."
+          question: "Do you accept tips?",
+          answer: "We sincerely appreciate your recognition of the hard work and love that goes into our setups! While tipping is not expected, any gratuities received will be shared with our amazing glamping team who assisted with the setup and cleanup. Thank you for your kind appreciation and generosity!"
         },
         {
-          question: "Do you provide supervision?",
-          answer: "While we handle all setup and teardown, parents/guardians need to provide supervision during the party. We're happy to recommend local qualified babysitters if you need extra help during the celebration!"
+          question: "Can we bring our pets?",
+          answer: "We are pet friendly, however your pets must be very well behaved. If your pets like to chase wildlife, the bell tent will NOT contain them in the tents. Pets should never be left unattended in the tent. Any damages due to pet or human alike, are subject to damage charges. Please notify us if you will be having your furry friends join you. The pet fee is $20 for the first pet and $30 for the second. Maximum is 2 pets."
         }
       ]
     }
@@ -110,7 +118,7 @@ const FAQPage: React.FC = () => {
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-white/90">
-              Hear from parents like you — before they booked!
+              Everything you need to know about our magical glamping experiences.
             </p>
           </motion.div>
         </div>
@@ -137,7 +145,7 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Still Have Questions */}
+      {/* Contact Section */}
       <section className="section bg-primary-50">
         <div className="container-custom">
           <motion.div 
@@ -155,23 +163,25 @@ const FAQPage: React.FC = () => {
                 Still Have Questions?
               </h2>
               <p className="text-gray-700 mb-8">
-                We're here to help! Our team is always ready to answer any questions you might have about creating the perfect glamping experience.
+                Can't find what you're looking for? We're here to help create your perfect glamping experience!
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <motion.button
+                <motion.a
+                  href="/contact"
                   className="btn btn-primary"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Contact Us
-                </motion.button>
-                <motion.button
+                </motion.a>
+                <motion.a
+                  href="/book-now"
                   className="btn btn-outline border-primary-200 text-primary-900 hover:bg-primary-50"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Book a Consultation
-                </motion.button>
+                  Book Now
+                </motion.a>
               </div>
             </div>
           </motion.div>
