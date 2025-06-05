@@ -1,99 +1,147 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Check, Star, Calendar, Users, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { trackEvent } from '../../utils/analytics';
 
-interface PricingTier {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  isPopular?: boolean;
-}
-
-const tiers: PricingTier[] = [
+const packages = [
   {
-    name: "Basic",
-    price: "$29",
-    description: "Perfect for individuals getting started",
+    name: "Indoor Base Package",
+    price: "$225",
+    description: "Perfect for intimate celebrations",
     features: [
-      "1 user",
-      "Basic features",
-      "24/7 support",
-      "1GB storage"
-    ]
+      "1 Glamping Tent",
+      "Memory Foam Mattress",
+      "Cozy Blanket and Linens",
+      "Custom Letter Board",
+      "Décor Pillows",
+      "Breakfast Tray with Lantern",
+      "Fairy Lights",
+      "Setup and Cleanup",
+      "Your Choice of Theme"
+    ],
+    maxGuests: 2,
+    isPopular: false
   },
   {
-    name: "Pro",
-    price: "$79",
-    description: "Best for growing businesses",
+    name: "Indoor Group Package",
+    price: "$375-$475",
+    description: "4-6 Tents Setup",
     features: [
-      "5 users",
-      "Advanced features",
-      "Priority support",
-      "10GB storage",
-      "Custom integrations"
+      "4-6 Glamping Tents",
+      "All Base Package Features",
+      "Coordinated Theme",
+      "Group Activity Space",
+      "Extended Setup Area",
+      "Perfect for Sleepovers"
     ],
+    maxGuests: 6,
     isPopular: true
   },
   {
-    name: "Enterprise",
-    price: "$199",
-    description: "For large scale organizations",
+    name: "Indoor Ultimate Package",
+    price: "$525-$675",
+    description: "7-10 Tents Setup",
     features: [
-      "Unlimited users",
-      "All features",
-      "Dedicated support",
-      "Unlimited storage",
-      "Custom solutions",
-      "API access"
-    ]
+      "7-10 Glamping Tents",
+      "All Group Package Features",
+      "Premium Party Space",
+      "Enhanced Decorations",
+      "Special Group Activities",
+      "Perfect for Large Parties"
+    ],
+    maxGuests: 10,
+    isPopular: false
   }
 ];
 
 const PricingTable: React.FC = () => {
+  const handlePackageClick = (packageName: string) => {
+    trackEvent({
+      category: 'Pricing',
+      action: 'package_click',
+      label: packageName
+    });
+  };
+
   return (
-    <div className="py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
-          {tiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={`rounded-lg shadow-lg overflow-hidden ${
-                tier.isPopular ? 'ring-2 ring-indigo-500' : ''
-              }`}
-            >
-              <div className="p-6 bg-white">
-                {tier.isPopular && (
-                  <span className="inline-block px-3 py-1 text-sm font-semibold text-indigo-600 bg-indigo-100 rounded-full mb-4">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className="text-2xl font-bold text-gray-900">{tier.name}</h3>
-                <p className="mt-4 text-sm text-gray-500">{tier.description}</p>
-                <p className="mt-8">
-                  <span className="text-4xl font-bold text-gray-900">{tier.price}</span>
-                  <span className="text-base font-medium text-gray-500">/month</span>
-                </p>
-                <ul className="mt-6 space-y-4">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-center">
-                      <Check className="h-5 w-5 text-indigo-500" />
-                      <span className="ml-3 text-base text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  className={`mt-8 w-full px-6 py-3 rounded-md text-center font-medium ${
-                    tier.isPopular
-                      ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                      : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
-                  }`}
-                >
-                  Get started
-                </button>
+    <div className="space-y-8">
+      {/* Package Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {packages.map((pkg, index) => (
+          <motion.div
+            key={index}
+            className={`glass-card relative overflow-hidden ${
+              pkg.isPopular ? 'border-2 border-accent-500' : ''
+            }`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+          >
+            {pkg.isPopular && (
+              <div className="absolute top-4 right-4 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Most Popular
               </div>
+            )}
+
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-primary-900 mb-2">
+                {pkg.name}
+              </h3>
+              <p className="text-gray-600 mb-4">{pkg.description}</p>
+              
+              <div className="flex items-baseline mb-6">
+                <span className="text-3xl font-bold text-primary-900">{pkg.price}</span>
+                <span className="text-gray-500 ml-2">per night</span>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Users className="w-4 h-4" />
+                  <span>Up to {pkg.maxGuests} guests</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Calendar className="w-4 h-4" />
+                  <span>One night rental</span>
+                </div>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {pkg.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                to="/book-now"
+                onClick={() => handlePackageClick(pkg.name)}
+                className="btn btn-primary w-full flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-5 h-5" />
+                Book This Package
+              </Link>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Additional Information */}
+      <div className="glass-card p-6">
+        <h3 className="text-lg font-bold text-primary-900 mb-4 flex items-center gap-2">
+          <Star className="w-5 h-5 text-accent-500" />
+          Important Information
+        </h3>
+        <ul className="space-y-2 text-gray-700">
+          <li>• All prices include setup, cleanup, and basic amenities</li>
+          <li>• Free delivery within 20 miles of Hamburg, NY (14075)</li>
+          <li>• Additional night rentals available at discounted rates</li>
+          <li>• Custom themes and add-ons available for all packages</li>
+          <li>• Minimum age requirement: 5 years old</li>
+        </ul>
       </div>
     </div>
   );
