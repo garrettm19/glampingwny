@@ -74,13 +74,13 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{
               textShadow: `
-                0 0 10px rgba(255, 255, 255, 0.8),
-                0 0 20px rgba(255, 255, 255, 0.6),
-                0 0 30px rgba(255, 255, 255, 0.4),
-                0 4px 8px rgba(0, 0, 0, 0.8),
-                0 8px 16px rgba(0, 0, 0, 0.6)
+                0 0 5px rgba(255, 255, 255, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 15px rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 4px 8px rgba(0, 0, 0, 0.6)
               `,
-              filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7))'
+              filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7))'
             }}
           >
             It's Not Just Camping.
@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             style={{
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.3)'
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(255, 255, 255, 0.1)'
             }}
           >
             Glamorous tents. No stress. Just show up and celebrate.
