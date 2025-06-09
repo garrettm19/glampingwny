@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Users, MapPin, Clock, Phone, Mail, FileText, Download, Edit, Trash2, Check, X } from 'lucide-react';
-import { format, parseISO } from 'date-fns';
 
 interface AdminBooking {
   id: string;
@@ -22,6 +21,28 @@ interface AdminBooking {
   setupAddress?: string;
   notes?: string;
 }
+
+// Utility function to format dates
+const formatDate = (dateStr: string, format: string = 'MMM d, yyyy'): string => {
+  const date = new Date(dateStr);
+  
+  if (format === 'MMM d, yyyy') {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  } else if (format === 'EEEE, MMMM d, yyyy') {
+    return date.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+  
+  return date.toLocaleDateString('en-US');
+};
 
 const AdminDashboard: React.FC = () => {
   const [bookings, setBookings] = useState<AdminBooking[]>([]);
@@ -107,7 +128,7 @@ const AdminDashboard: React.FC = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `bookings-${format(new Date(), 'yyyy-MM-dd')}.csv`;
+    a.download = `bookings-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -244,7 +265,7 @@ const AdminDashboard: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
                       <div className="text-sm font-medium text-gray-900">
-                        {format(parseISO(booking.date), 'MMM d, yyyy')}
+                        {formatDate(booking.date)}
                       </div>
                       <div className="text-sm text-gray-500 flex items-center gap-1">
                         <span>{getThemeEmoji(booking.theme)}</span>
@@ -375,7 +396,7 @@ const AdminDashboard: React.FC = () => {
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-gray-400" />
-                        <span>{format(parseISO(editingBooking.date), 'EEEE, MMMM d, yyyy')}</span>
+                        <span>{formatDate(editingBooking.date, 'EEEE, MMMM d, yyyy')}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span>{getThemeEmoji(editingBooking.theme)}</span>

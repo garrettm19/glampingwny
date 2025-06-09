@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ChevronLeft, ChevronRight, Tent, Users, Clock, Check, X, Sparkles, Mail, Download } from 'lucide-react';
-import { format, addDays, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, isBefore, isAfter, addMonths, subMonths } from 'date-fns';
 
 interface AvailabilityData {
   date: string;
@@ -36,6 +35,74 @@ const themes = [
   { id: 'fairy', name: 'Fairy Garden', color: 'bg-emerald-100 text-emerald-800', icon: '🧚‍♀️' }
 ];
 
+// Utility functions to replace date-fns
+const formatDate = (date: Date, formatStr: string): string => {
+  const options: Intl.DateTimeFormatOptions = {};
+  
+  if (formatStr === 'yyyy-MM-dd') {
+    return date.toISOString().split('T')[0];
+  } else if (formatStr === 'MMMM yyyy') {
+    options.month = 'long';
+    options.year = 'numeric';
+  } else if (formatStr === 'd') {
+    options.day = 'numeric';
+  } else if (formatStr === 'EEEE, MMMM d, yyyy') {
+    options.weekday = 'long';
+    options.month = 'long';
+    options.day = 'numeric';
+    options.year = 'numeric';
+  } else if (formatStr === 'MMM d, yyyy') {
+    options.month = 'short';
+    options.day = 'numeric';
+    options.year = 'numeric';
+  }
+  
+  return date.toLocaleDateString('en-US', options);
+};
+
+const startOfMonth = (date: Date): Date => {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+};
+
+const endOfMonth = (date: Date): Date => {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+};
+
+const addMonths = (date: Date, months: number): Date => {
+  const newDate = new Date(date);
+  newDate.setMonth(newDate.getMonth() + months);
+  return newDate;
+};
+
+const subMonths = (date: Date, months: number): Date => {
+  return addMonths(date, -months);
+};
+
+const eachDayOfInterval = (interval: { start: Date; end: Date }): Date[] => {
+  const days: Date[] = [];
+  const current = new Date(interval.start);
+  
+  while (current <= interval.end) {
+    days.push(new Date(current));
+    current.setDate(current.getDate() + 1);
+  }
+  
+  return days;
+};
+
+const isSameMonth = (date1: Date, date2: Date): boolean => {
+  return date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
+};
+
+const isToday = (date: Date): boolean => {
+  const today = new Date();
+  return date.toDateString() === today.toDateString();
+};
+
+const isBefore = (date1: Date, date2: Date): boolean => {
+  return date1.getTime() < date2.getTime();
+};
+
 const CalendarBooking: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -53,7 +120,7 @@ const CalendarBooking: React.FC = () => {
       const days = eachDayOfInterval({ start, end });
       
       return days.map(day => ({
-        date: format(day, 'yyyy-MM-dd'),
+        date: formatDate(day, 'yyyy-MM-dd'),
         available: Math.floor(Math.random() * 4) + 1, // 1-4 tents available
         booked: Math.floor(Math.random() * 2), // 0-1 tents booked
         themes: themes.slice(0, Math.floor(Math.random() * 4) + 2).map(t => t.id)
@@ -64,7 +131,7 @@ const CalendarBooking: React.FC = () => {
   }, [currentMonth]);
 
   const getDayAvailability = (date: Date) => {
-    const dateStr = format(date, 'yyyy-MM-dd');
+    const dateStr = formatDate(date, 'yyyy-MM-dd');
     return availability.find(a => a.date === dateStr);
   };
 
@@ -121,7 +188,7 @@ const CalendarBooking: React.FC = () => {
           </button>
           
           <h2 className="text-xl font-bold text-primary-900">
-            {format(currentMonth, 'MMMM yyyy')}
+            {formatDate(currentMonth, 'MMMM yyyy')}
           </h2>
           
           <button
@@ -165,7 +232,7 @@ const CalendarBooking: React.FC = () => {
                 whileHover={available ? { scale: 1.05 } : {}}
                 whileTap={available ? { scale: 0.95 } : {}}
               >
-                <div className="font-medium">{format(day, 'd')}</div>
+                <div className="font-medium">{formatDate(day, 'd')}</div>
                 
                 {/* Availability Indicator */}
                 {dayAvailability && !isPast && (
@@ -239,7 +306,7 @@ const CalendarBooking: React.FC = () => {
             Choose Your Theme
           </h3>
           <p className="text-gray-600">
-            Selected Date: {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
+            Selected Date: {selectedDate && formatDate(selectedDate, 'EEEE, MMMM d, yyyy')}
           </p>
         </div>
 
@@ -313,7 +380,7 @@ const CalendarBooking: React.FC = () => {
             Complete Your Booking
           </h3>
           <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
-            <span>{selectedDate && format(selectedDate, 'MMM d, yyyy')}</span>
+            <span>{selectedDate && formatDate(selectedDate, 'MMM d, yyyy')}</span>
             <span>•</span>
             <span className={selectedTheme?.color}>
               {selectedTheme?.icon} {selectedTheme?.name}
@@ -498,7 +565,7 @@ const CalendarBooking: React.FC = () => {
             <div className="flex justify-between">
               <span>Date:</span>
               <span className="font-medium">
-                {selectedDate && format(selectedDate, 'EEEE, MMMM d, yyyy')}
+                {selectedDate && formatDate(selectedDate, 'EEEE, MMMM d, yyyy')}
               </span>
             </div>
             <div className="flex justify-between">
