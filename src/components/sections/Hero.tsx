@@ -68,14 +68,43 @@ const Hero: React.FC = () => {
           className="max-w-3xl"
         >
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl text-contrast font-bold mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            style={{
+              color: 'white',
+              textShadow: '0 0 20px rgba(196, 181, 253, 0.8), 0 0 40px rgba(196, 181, 253, 0.6), 0 0 60px rgba(196, 181, 253, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3)',
+              filter: 'drop-shadow(0 0 10px rgba(196, 181, 253, 0.5))'
+            }}
           >
-            It's Not Just Camping.
-            <br />
-            It's a Birthday Wonderland.
+            {/* Main text with shimmer overlay */}
+            <span className="relative inline-block">
+              It's Not Just Camping.
+              <br />
+              It's a Birthday Wonderland.
+              
+              {/* Shimmer effect overlay */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+                  transform: 'translateX(-100%)',
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none'
+                }}
+                animate={{
+                  transform: ['translateX(-100%)', 'translateX(100%)']
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 8,
+                  ease: "easeInOut"
+                }}
+              />
+            </span>
           </motion.h1>
           
           <motion.p 
@@ -83,6 +112,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            style={{
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
+            }}
           >
             Glamorous tents. No stress. Just show up and celebrate.
           </motion.p>
@@ -95,11 +127,14 @@ const Hero: React.FC = () => {
           >
             <Link
               to="/book-now"
-              className="btn btn-primary group"
+              className="btn btn-primary group relative overflow-hidden"
               onClick={() => trackBookNowClick()}
+              style={{
+                boxShadow: '0 0 20px rgba(196, 181, 253, 0.3)'
+              }}
             >
               Let's Create Magic! 🎪
-              <span className="absolute inset-0 rounded-full bg-white/20 group-hover:animate-sparkle" />
+              <span className="absolute inset-0 rounded-full bg-white/20 group-hover:animate-pulse" />
             </Link>
             
             <motion.button
@@ -107,6 +142,10 @@ const Hero: React.FC = () => {
               className="btn btn-outline border-white text-white hover:bg-white/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              style={{
+                textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+                boxShadow: '0 0 15px rgba(255, 255, 255, 0.2)'
+              }}
             >
               Peek Inside Our Tents ✨
             </motion.button>
@@ -121,6 +160,9 @@ const Hero: React.FC = () => {
         transition={{ repeat: Infinity, duration: 2 }}
         onClick={scrollToBooking}
         aria-label="Scroll down"
+        style={{
+          filter: 'drop-shadow(0 0 10px rgba(196, 181, 253, 0.6))'
+        }}
       >
         <ChevronDown className="h-8 w-8" />
       </motion.button>
