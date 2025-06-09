@@ -482,5 +482,8 @@ const Hero: React.FC = () => {
           <ChevronDown className="h-6 w-6 group-hover:scale-110 transition-transform" />
         </div>
       </motion.button>
+    </section>
+  );
+};
 
-      
+export default Hero;
