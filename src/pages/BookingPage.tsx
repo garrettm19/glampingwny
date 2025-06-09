@@ -1,37 +1,40 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import BookingForm from '../components/ui/BookingForm';
-import PricingTable from '../components/ui/PricingTable';
-import { Star, Calendar, Shield, MapPin, Info } from 'lucide-react';
+import CalendarBooking from '../components/booking/CalendarBooking';
+import { Star, Calendar, Shield, MapPin, Info, Clock, Users, Sparkles } from 'lucide-react';
 
 const BookingPage: React.FC = () => {
-  const handleBookingSubmit = (formData: any) => {
-    console.log('Booking submitted:', formData);
-    // Handle form submission
-  };
-
   return (
     <>
       <Helmet>
-        <title>Book Your Glamping Experience | Indoor & Outdoor Options</title>
+        <title>Book Your Glamping Experience | Real-Time Calendar Booking</title>
         <meta 
           name="description" 
-          content="Book your magical glamping experience with Glamping WNY. Choose from indoor or outdoor options, customize with add-ons, and create unforgettable memories." 
+          content="Book your magical glamping experience with real-time availability. Choose your date, select your theme, and secure your magical celebration instantly." 
         />
       </Helmet>
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-primary-900 text-white relative overflow-hidden">
         <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
-            <span 
+          {[...Array(20)].map((_, i) => (
+            <motion.div
               key={i}
-              className="sparkle-dot"
+              className="absolute w-1 h-1 bg-white rounded-full"
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [1, 1.2, 1],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
               style={{
-                top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
+                top: `${Math.random() * 100}%`,
               }}
             />
           ))}
@@ -42,114 +45,184 @@ const BookingPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Experience</h1>
-            <p className="text-xl text-white/90">
-              Choose from our indoor or outdoor glamping options and create magical memories.
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Book Your Magical Experience
+            </h1>
+            <p className="text-xl text-white/90 mb-8">
+              Real-time availability • Instant confirmation • Secure booking
             </p>
+            
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {[
+                { icon: Calendar, label: 'Real-Time Availability', desc: 'See exactly what\'s available' },
+                { icon: Sparkles, label: 'Instant Confirmation', desc: 'Book and confirm immediately' },
+                { icon: Shield, label: 'Secure Payment', desc: 'Safe and encrypted checkout' }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                  className="glass-card p-4 text-center"
+                >
+                  <feature.icon className="w-8 h-8 mx-auto mb-2 text-accent-400" />
+                  <h3 className="font-bold text-white mb-1">{feature.label}</h3>
+                  <p className="text-sm text-white/80">{feature.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Booking Calendar Section */}
       <section className="section bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left Column - Information */}
-            <div className="space-y-8">
-              {/* Service Types */}
-              <div className="glass-card p-6">
-                <h2 className="text-2xl font-bold text-primary-900 mb-6">
-                  Choose Your Experience
-                </h2>
-                
-                {/* Indoor Option */}
-                <div className="mb-8">
-                  <h3 className="text-xl font-bold text-primary-900 mb-4">
-                    Indoor Glamping
-                  </h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-accent-500 mt-1" />
-                      <span>Available year-round</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-accent-500 mt-1" />
-                      <span>Each tent is approximately 4ft wide x 7ft long</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-accent-500 mt-1" />
-                      <span>Perfect for sleepovers and parties</span>
-                    </li>
-                  </ul>
+          <CalendarBooking />
+        </div>
+      </section>
+
+      {/* Information Cards */}
+      <section className="section bg-primary-50">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Clock,
+                title: "Setup & Pickup",
+                description: "Setup by 4 PM, pickup after 10 AM next day",
+                color: "bg-blue-50 text-blue-600"
+              },
+              {
+                icon: MapPin,
+                title: "Service Area",
+                description: "Free delivery within 20 miles of Hamburg, NY",
+                color: "bg-green-50 text-green-600"
+              },
+              {
+                icon: Users,
+                title: "Age Requirement",
+                description: "All guests must be 5 years or older",
+                color: "bg-purple-50 text-purple-600"
+              },
+              {
+                icon: Shield,
+                title: "Safety First",
+                description: "All equipment sanitized between uses",
+                color: "bg-orange-50 text-orange-600"
+              }
+            ].map((info, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="glass-card p-6 text-center"
+              >
+                <div className={`w-12 h-12 ${info.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                  <info.icon className="w-6 h-6" />
                 </div>
-
-                {/* Outdoor Option */}
-                <div>
-                  <h3 className="text-xl font-bold text-primary-900 mb-4">
-                    Outdoor Glamping
-                  </h3>
-                  <div className="bg-primary-50 p-4 rounded-lg mb-4">
-                    <p className="text-primary-900 font-medium">
-                      Coming Spring/Summer 2025! 🌟
-                    </p>
-                  </div>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-accent-500 mt-1" />
-                      <span>16ft Bell Tent (2-6 glampers)</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Star className="w-5 h-5 text-accent-500 mt-1" />
-                      <span>23ft Bell Tent (7-12 glampers)</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Pricing Table */}
-              <PricingTable />
-
-              {/* Important Notes */}
-              <div className="glass-card p-6">
-                <h3 className="text-xl font-bold text-primary-900 mb-4">
-                  Important Information
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Calendar className="w-5 h-5 text-primary-600 mt-1" />
-                    <p className="text-gray-700">
-                      Setup is no later than 4pm & cleanup is after 10am the next day
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-primary-600 mt-1" />
-                    <p className="text-gray-700">
-                      All equipment is thoroughly sanitized between uses
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-primary-600 mt-1" />
-                    <p className="text-gray-700">
-                      Free delivery within 20 miles of Hamburg, NY (14075)
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Info className="w-5 h-5 text-primary-600 mt-1" />
-                    <p className="text-gray-700">
-                      Minimum age requirement: 5 years old
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Booking Form */}
-            <div>
-              <BookingForm onSubmit={handleBookingSubmit} />
-            </div>
+                <h3 className="font-bold text-primary-900 mb-2">{info.title}</h3>
+                <p className="text-gray-700 text-sm">{info.description}</p>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* Pricing Summary */}
+      <section className="section bg-white">
+        <div className="container-custom max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-primary-900 mb-4">
+              Transparent Pricing
+            </h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              No hidden fees. What you see is what you pay.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Indoor Base Package",
+                price: "$225",
+                features: ["1 Tent", "Basic Setup", "Theme Decorations", "Cleanup Included"]
+              },
+              {
+                name: "Indoor Group Package", 
+                price: "$375-$475",
+                features: ["4-6 Tents", "Extended Setup", "Group Activities", "Enhanced Themes"],
+                popular: true
+              },
+              {
+                name: "Indoor Ultimate Package",
+                price: "$525-$675", 
+                features: ["7-10 Tents", "Premium Setup", "Special Activities", "Custom Themes"]
+              }
+            ].map((pkg, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`glass-card p-6 relative ${pkg.popular ? 'ring-2 ring-accent-400' : ''}`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-accent-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                
+                <h3 className="text-xl font-bold text-primary-900 mb-2">{pkg.name}</h3>
+                <div className="text-3xl font-bold text-primary-700 mb-4">{pkg.price}</div>
+                
+                <ul className="space-y-2 mb-6">
+                  {pkg.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2 text-gray-700">
+                      <Star className="w-4 h-4 text-accent-500" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-12 glass-card p-6 text-center"
+          >
+            <h3 className="text-xl font-bold text-primary-900 mb-4">
+              What's Included in Every Package
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700">
+              <div>✓ Professional Setup</div>
+              <div>✓ Complete Cleanup</div>
+              <div>✓ Themed Decorations</div>
+              <div>✓ Safety Equipment</div>
+              <div>✓ Fairy Lights</div>
+              <div>✓ Comfortable Bedding</div>
+              <div>✓ Custom Letter Board</div>
+              <div>✓ Breakfast Tray</div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>
