@@ -63,6 +63,177 @@
   }
 }
 
+@layer utilities {
+  /* Shadow utilities */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(113, 228, 212, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 30px rgba(113, 228, 212, 0.4);
+  }
+
+  .shadow-glow-pink {
+    box-shadow: 0 0 20px rgba(255, 200, 221, 0.3);
+  }
+
+  .shadow-glow-purple {
+    box-shadow: 0 0 20px rgba(205, 180, 219, 0.3);
+  }
+
+  /* Glass background utilities */
+  .bg-glass {
+    background: linear-gradient(to right bottom, rgba(255, 253, 249, 0.95), rgba(255, 253, 249, 0.8));
+  }
+
+  .bg-glass-hover {
+    background: linear-gradient(to right bottom, rgba(255, 253, 249, 0.98), rgba(255, 253, 249, 0.85));
+  }
+
+  /* Cream background utilities */
+  .bg-cream-50 {
+    background-color: #FFFDF9;
+  }
+
+  .bg-cream-100 {
+    background-color: #fefcf3;
+  }
+
+  .bg-cream-200 {
+    background-color: #fef7e0;
+  }
+
+  /* Primary color utilities */
+  .text-primary-300 {
+    color: #5eead4;
+  }
+
+  .text-primary-400 {
+    color: #2dd4bf;
+  }
+
+  .text-primary-500 {
+    color: #71E4D4;
+  }
+
+  .text-primary-600 {
+    color: #0d9488;
+  }
+
+  /* Secondary color utilities */
+  .text-secondary-800 {
+    color: #624674;
+  }
+
+  .text-secondary-900 {
+    color: #581c87;
+  }
+
+  /* Accent color utilities */
+  .text-accent-300 {
+    color: #FFC8DD;
+  }
+
+  .text-accent-400 {
+    color: #f472b6;
+  }
+
+  .text-accent-500 {
+    color: #ec4899;
+  }
+
+  /* Cream text utilities */
+  .text-cream-50 {
+    color: #FFFDF9;
+  }
+
+  .text-cream-100 {
+    color: #fefcf3;
+  }
+
+  .text-cream-200 {
+    color: #fef7e0;
+  }
+
+  .text-cream-300 {
+    color: #feecb3;
+  }
+
+  /* Border utilities with opacity */
+  .border-primary-200\/30 {
+    border-color: rgba(153, 246, 228, 0.3);
+  }
+
+  .border-primary-400\/30 {
+    border-color: rgba(45, 212, 191, 0.3);
+  }
+
+  .border-cream-200\/20 {
+    border-color: rgba(254, 247, 224, 0.2);
+  }
+
+  /* Background utilities with opacity */
+  .bg-primary-50\/30 {
+    background-color: rgba(240, 253, 252, 0.3);
+  }
+
+  .bg-primary-100\/20 {
+    background-color: rgba(204, 251, 241, 0.2);
+  }
+
+  .bg-secondary-500 {
+    background-color: #a855f7;
+  }
+
+  .bg-secondary-600 {
+    background-color: #9333ea;
+  }
+
+  .bg-secondary-800 {
+    background-color: #624674;
+  }
+
+  .bg-secondary-900 {
+    background-color: #581c87;
+  }
+
+  /* White utilities with opacity */
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-white\/20 {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .bg-white\/40 {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .border-white\/30 {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .border-white\/40 {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Animation delay utilities */
+  .animation-delay-700 {
+    animation-delay: 0.7s;
+  }
+
+  /* Text contrast utility */
+  .text-contrast {
+    @apply text-cream-50;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* Enhanced sparkle animation */
 @keyframes sparkle {
   0%, 100% { 
