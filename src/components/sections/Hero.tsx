@@ -5,17 +5,28 @@ import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
 const Hero: React.FC = () => {
-  const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, delay: number, size: number, type: 'sparkle' | 'firefly'}>>([]);
+  const [particles, setParticles] = useState<Array<{
+    id: number, 
+    x: number, 
+    y: number, 
+    delay: number, 
+    size: number, 
+    type: 'sparkle' | 'firefly' | 'star' | 'magic',
+    duration: number,
+    drift: number
+  }>>([]);
 
   useEffect(() => {
-    // Generate particles on mount
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+    // Generate more diverse particles with better movement
+    const newParticles = Array.from({ length: 40 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      delay: Math.random() * 5,
-      size: Math.random() * 0.5 + 0.5,
-      type: Math.random() > 0.6 ? 'firefly' : 'sparkle' as 'sparkle' | 'firefly'
+      delay: Math.random() * 8,
+      size: Math.random() * 0.8 + 0.4,
+      type: ['sparkle', 'firefly', 'star', 'magic'][Math.floor(Math.random() * 4)] as 'sparkle' | 'firefly' | 'star' | 'magic',
+      duration: 6 + Math.random() * 8, // 6-14 seconds
+      drift: (Math.random() - 0.5) * 60 // -30 to +30 horizontal drift
     }));
     setParticles(newParticles);
   }, []);
@@ -48,60 +59,163 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 to-primary-900/80" />
       </div>
 
-      {/* Magical Particle Effects */}
+      {/* Enhanced Magical Particle Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {particles.map((particle) => (
-          <div
+          <motion.div
             key={particle.id}
-            className={`absolute ${particle.type === 'firefly' ? 'magical-firefly' : 'magical-sparkle'}`}
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              transform: `scale(${particle.size})`,
+            className="absolute"
+            initial={{ 
+              x: `${particle.x}%`, 
+              y: `${particle.y + 20}%`,
+              opacity: 0,
+              scale: 0
+            }}
+            animate={{
+              x: [`${particle.x}%`, `${particle.x + particle.drift}%`, `${particle.x + particle.drift * 1.5}%`],
+              y: [`${particle.y + 20}%`, `${particle.y - 30}%`, `${particle.y - 120}%`],
+              opacity: [0, 1, 1, 0.7, 0],
+              scale: [0, particle.size, particle.size * 1.2, particle.size * 0.8, 0],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: particle.duration,
+              delay: particle.delay,
+              repeat: Infinity,
+              ease: "easeOut",
+              times: [0, 0.1, 0.7, 0.9, 1]
             }}
           >
-            {particle.type === 'firefly' ? (
-              <div className="firefly-glow">
-                <div className="firefly-core"></div>
+            {particle.type === 'firefly' && (
+              <div className="relative">
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse shadow-lg" 
+                     style={{ 
+                       boxShadow: '0 0 8px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.4), 0 0 24px rgba(255,255,255,0.2)' 
+                     }} 
+                />
               </div>
-            ) : (
-              <div className="sparkle-star">✨</div>
             )}
-          </div>
+            {particle.type === 'sparkle' && (
+              <div className="text-white text-lg animate-pulse" 
+                   style={{ 
+                     filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.8)) drop-shadow(0 0 8px rgba(255,255,255,0.4))',
+                     fontSize: `${0.8 + particle.size * 0.4}rem`
+                   }}>
+                ✨
+              </div>
+            )}
+            {particle.type === 'star' && (
+              <div className="text-yellow-200 animate-pulse" 
+                   style={{ 
+                     filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.6))',
+                     fontSize: `${0.6 + particle.size * 0.3}rem`
+                   }}>
+                ⭐
+              </div>
+            )}
+            {particle.type === 'magic' && (
+              <div className="text-purple-200 animate-pulse" 
+                   style={{ 
+                     filter: 'drop-shadow(0 0 4px rgba(147,51,234,0.6))',
+                     fontSize: `${0.7 + particle.size * 0.3}rem`
+                   }}>
+                💫
+              </div>
+            )}
+          </motion.div>
         ))}
       </div>
 
-      {/* Floating Light Orbs */}
+      {/* Enhanced Floating Light Orbs */}
       <div className="absolute inset-0 pointer-events-none z-10">
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
             key={`orb-${i}`}
-            className="absolute w-2 h-2 bg-white/20 rounded-full blur-sm"
+            className="absolute rounded-full"
+            style={{
+              width: `${4 + Math.random() * 6}px`,
+              height: `${4 + Math.random() * 6}px`,
+              background: `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`,
+              boxShadow: '0 0 10px rgba(255,255,255,0.6)',
+              left: `${5 + i * 8}%`,
+              top: '110%'
+            }}
             animate={{
-              y: [-20, -100],
-              x: [0, Math.sin(i) * 50],
-              opacity: [0, 0.8, 0],
-              scale: [0.5, 1.2, 0.5],
+              y: [-20, -150 - Math.random() * 100],
+              x: [0, Math.sin(i * 0.5) * 80 + (Math.random() - 0.5) * 40],
+              opacity: [0, 0.8, 0.6, 0],
+              scale: [0.5, 1.2, 1, 0.3],
             }}
             transition={{
-              duration: 8 + Math.random() * 4,
+              duration: 8 + Math.random() * 6,
               repeat: Infinity,
-              delay: i * 1.5,
-              ease: "easeInOut",
-            }}
-            style={{
-              left: `${10 + i * 12}%`,
-              top: '100%',
+              delay: i * 0.8 + Math.random() * 2,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
           />
         ))}
       </div>
 
-      {/* Dreamy Mist Effect */}
+      {/* Magical Dust Trails */}
       <div className="absolute inset-0 pointer-events-none z-10">
-        <div className="dreamy-mist"></div>
-        <div className="dreamy-mist dreamy-mist-2"></div>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <motion.div
+            key={`trail-${i}`}
+            className="absolute"
+            style={{
+              left: `${10 + i * 15}%`,
+              top: '100%',
+              width: '2px',
+              height: '40px',
+              background: 'linear-gradient(to top, transparent, rgba(255,255,255,0.6), transparent)',
+              borderRadius: '1px'
+            }}
+            animate={{
+              y: [-20, -200],
+              opacity: [0, 1, 0],
+              scaleY: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 3,
+              repeat: Infinity,
+              delay: i * 1.2,
+              ease: "easeOut",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Dreamy Mist Layers */}
+      <div className="absolute inset-0 pointer-events-none z-10">
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%, transparent 100%)',
+          }}
+          animate={{
+            x: ['-100%', '100%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.02) 90%, transparent 100%)',
+          }}
+          animate={{
+            x: ['-100%', '100%'],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+            delay: -10,
+          }}
+        />
       </div>
       
       <div className="container-custom relative z-20 h-full flex items-center">
