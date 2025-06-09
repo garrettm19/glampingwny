@@ -12,8 +12,11 @@ interface Firefly {
   speed: number;
   delay: number;
   flickerDelay: number;
+  flickerDuration: number;
   direction: number;
   opacity: number;
+  driftX: number;
+  driftY: number;
 }
 
 const Hero: React.FC = () => {
@@ -32,18 +35,21 @@ const Hero: React.FC = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    // Generate fireflies
+    // Generate fireflies with enhanced properties
     if (!isMobile) {
       const newFireflies: Firefly[] = Array.from({ length: 25 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: 3 + Math.random() * 2, // 3-5px
-        speed: 0.5 + Math.random() * 1, // Gentle movement
-        delay: Math.random() * 10,
-        flickerDelay: 2 + Math.random() * 4, // Flicker every 2-6 seconds
+        size: 3 + Math.random() * 3, // 3-6px
+        speed: 0.3 + Math.random() * 0.7, // Slower, more gentle movement
+        delay: Math.random() * 15, // Stagger initial animations
+        flickerDelay: Math.random() * 3, // Random start for flicker
+        flickerDuration: 4 + Math.random() * 2, // 4-6 second flicker cycles
         direction: Math.random() * Math.PI * 2,
-        opacity: 0.6 + Math.random() * 0.4
+        opacity: 0.6 + Math.random() * 0.4,
+        driftX: (Math.random() - 0.5) * 60, // Random drift distance
+        driftY: (Math.random() - 0.5) * 40
       }));
       setFireflies(newFireflies);
     }
@@ -96,19 +102,19 @@ const Hero: React.FC = () => {
                 top: `${firefly.y}%`,
                 width: `${firefly.size}px`,
                 height: `${firefly.size}px`,
-                backgroundColor: '#fff8dc', // Soft warm white
+                backgroundColor: '#fce570', // Warm yellow
                 borderRadius: '50%',
-                opacity: firefly.opacity,
-                boxShadow: `
-                  0 0 ${firefly.size * 2}px rgba(255, 248, 220, 0.8),
-                  0 0 ${firefly.size * 4}px rgba(255, 248, 220, 0.4),
-                  0 0 ${firefly.size * 6}px rgba(255, 248, 220, 0.2)
-                `,
-                filter: 'blur(0.5px)',
+                willChange: 'opacity, transform',
                 animation: `
-                  fireflyFloat${firefly.id} ${15 + firefly.speed * 10}s linear infinite ${firefly.delay}s,
-                  fireflyFlicker ${firefly.flickerDelay}s ease-in-out infinite ${firefly.delay + 2}s
-                `
+                  fireflyDrift${firefly.id} ${20 + firefly.speed * 15}s ease-in-out infinite ${firefly.delay}s,
+                  fireflyFlicker${firefly.id} ${firefly.flickerDuration}s ease-in-out infinite ${firefly.flickerDelay}s
+                `,
+                boxShadow: `
+                  0 0 ${firefly.size * 2}px rgba(252, 229, 112, 0.8),
+                  0 0 ${firefly.size * 4}px rgba(252, 229, 112, 0.4),
+                  0 0 ${firefly.size * 8}px rgba(252, 229, 112, 0.2)
+                `,
+                filter: 'blur(0.5px)'
               }}
             />
           ))}
@@ -119,7 +125,7 @@ const Hero: React.FC = () => {
       {!isMobile && (
         <motion.button
           onClick={() => setFirefliesEnabled(!firefliesEnabled)}
-          className="fixed top-24 right-8 z-50 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/20 transition-all duration-300"
+          className="fixed top-24 right-8 z-50 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/20 transition-all duration-300 border border-white/20"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 2 }}
@@ -209,40 +215,73 @@ const Hero: React.FC = () => {
       {/* Dynamic CSS for firefly animations */}
       <style jsx>{`
         ${fireflies.map(firefly => `
-          @keyframes fireflyFloat${firefly.id} {
-            0% {
+          @keyframes fireflyDrift${firefly.id} {
+            0%, 100% {
               transform: translate(0, 0);
             }
             25% {
-              transform: translate(${Math.cos(firefly.direction) * 50}px, ${Math.sin(firefly.direction) * 30}px);
+              transform: translate(${firefly.driftX * 0.3}px, ${firefly.driftY * 0.5}px);
             }
             50% {
-              transform: translate(${Math.cos(firefly.direction + Math.PI/2) * 40}px, ${Math.sin(firefly.direction + Math.PI/2) * 50}px);
+              transform: translate(${firefly.driftX * 0.8}px, ${firefly.driftY * 0.2}px);
             }
             75% {
-              transform: translate(${Math.cos(firefly.direction + Math.PI) * 30}px, ${Math.sin(firefly.direction + Math.PI) * 40}px);
+              transform: translate(${firefly.driftX * 0.1}px, ${firefly.driftY * 0.9}px);
+            }
+          }
+          
+          @keyframes fireflyFlicker${firefly.id} {
+            0% {
+              opacity: 0;
+              box-shadow: 
+                0 0 ${firefly.size}px rgba(252, 229, 112, 0),
+                0 0 ${firefly.size * 2}px rgba(252, 229, 112, 0),
+                0 0 ${firefly.size * 4}px rgba(252, 229, 112, 0);
+            }
+            15% {
+              opacity: ${firefly.opacity * 0.8};
+              box-shadow: 
+                0 0 ${firefly.size * 2}px rgba(252, 229, 112, 0.6),
+                0 0 ${firefly.size * 4}px rgba(252, 229, 112, 0.3),
+                0 0 ${firefly.size * 6}px rgba(252, 229, 112, 0.1);
+            }
+            30% {
+              opacity: ${firefly.opacity};
+              box-shadow: 
+                0 0 ${firefly.size * 3}px rgba(252, 229, 112, 0.9),
+                0 0 ${firefly.size * 6}px rgba(252, 229, 112, 0.5),
+                0 0 ${firefly.size * 10}px rgba(252, 229, 112, 0.2);
+            }
+            45% {
+              opacity: ${firefly.opacity * 0.4};
+              box-shadow: 
+                0 0 ${firefly.size}px rgba(252, 229, 112, 0.4),
+                0 0 ${firefly.size * 3}px rgba(252, 229, 112, 0.2),
+                0 0 ${firefly.size * 5}px rgba(252, 229, 112, 0.1);
+            }
+            65% {
+              opacity: ${firefly.opacity * 0.9};
+              box-shadow: 
+                0 0 ${firefly.size * 2.5}px rgba(252, 229, 112, 0.8),
+                0 0 ${firefly.size * 5}px rgba(252, 229, 112, 0.4),
+                0 0 ${firefly.size * 8}px rgba(252, 229, 112, 0.2);
+            }
+            80% {
+              opacity: ${firefly.opacity * 0.2};
+              box-shadow: 
+                0 0 ${firefly.size * 0.5}px rgba(252, 229, 112, 0.3),
+                0 0 ${firefly.size * 2}px rgba(252, 229, 112, 0.1),
+                0 0 ${firefly.size * 3}px rgba(252, 229, 112, 0.05);
             }
             100% {
-              transform: translate(0, 0);
+              opacity: 0;
+              box-shadow: 
+                0 0 ${firefly.size}px rgba(252, 229, 112, 0),
+                0 0 ${firefly.size * 2}px rgba(252, 229, 112, 0),
+                0 0 ${firefly.size * 4}px rgba(252, 229, 112, 0);
             }
           }
         `).join('')}
-        
-        @keyframes fireflyFlicker {
-          0%, 90% {
-            opacity: var(--firefly-opacity);
-          }
-          95% {
-            opacity: 0.2;
-          }
-          100% {
-            opacity: var(--firefly-opacity);
-          }
-        }
-        
-        .firefly-dot {
-          --firefly-opacity: ${fireflies[0]?.opacity || 0.8};
-        }
       `}</style>
     </section>
   );
