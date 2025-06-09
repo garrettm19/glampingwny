@@ -4,32 +4,52 @@ import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
+interface Firefly {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  speed: number;
+  delay: number;
+  flickerDelay: number;
+  direction: number;
+  opacity: number;
+}
+
 const Hero: React.FC = () => {
-  const [particles, setParticles] = useState<Array<{
-    id: number, 
-    x: number, 
-    y: number, 
-    delay: number, 
-    size: number, 
-    type: 'sparkle' | 'firefly' | 'star' | 'magic',
-    duration: number,
-    drift: number
-  }>>([]);
+  const [fireflies, setFireflies] = useState<Firefly[]>([]);
+  const [firefliesEnabled, setFirefliesEnabled] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Generate more diverse particles with better movement
-    const newParticles = Array.from({ length: 40 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 8,
-      size: Math.random() * 0.8 + 0.4,
-      type: ['sparkle', 'firefly', 'star', 'magic'][Math.floor(Math.random() * 4)] as 'sparkle' | 'firefly' | 'star' | 'magic',
-      duration: 6 + Math.random() * 8, // 6-14 seconds
-      drift: (Math.random() - 0.5) * 60 // -30 to +30 horizontal drift
-    }));
-    setParticles(newParticles);
-  }, []);
+    // Check if mobile
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setFirefliesEnabled(!mobile); // Disable on mobile for performance
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Generate fireflies
+    if (!isMobile) {
+      const newFireflies: Firefly[] = Array.from({ length: 25 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: 3 + Math.random() * 2, // 3-5px
+        speed: 0.5 + Math.random() * 1, // Gentle movement
+        delay: Math.random() * 10,
+        flickerDelay: 2 + Math.random() * 4, // Flicker every 2-6 seconds
+        direction: Math.random() * Math.PI * 2,
+        opacity: 0.6 + Math.random() * 0.4
+      }));
+      setFireflies(newFireflies);
+    }
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [isMobile]);
 
   const scrollToBooking = useCallback(() => {
     const bookingSection = document.getElementById('booking');
@@ -59,164 +79,56 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 to-primary-900/80" />
       </div>
 
-      {/* Enhanced Magical Particle Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute"
-            initial={{ 
-              x: `${particle.x}%`, 
-              y: `${particle.y + 20}%`,
-              opacity: 0,
-              scale: 0
-            }}
-            animate={{
-              x: [`${particle.x}%`, `${particle.x + particle.drift}%`, `${particle.x + particle.drift * 1.5}%`],
-              y: [`${particle.y + 20}%`, `${particle.y - 30}%`, `${particle.y - 120}%`],
-              opacity: [0, 1, 1, 0.7, 0],
-              scale: [0, particle.size, particle.size * 1.2, particle.size * 0.8, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: particle.duration,
-              delay: particle.delay,
-              repeat: Infinity,
-              ease: "easeOut",
-              times: [0, 0.1, 0.7, 0.9, 1]
-            }}
-          >
-            {particle.type === 'firefly' && (
-              <div className="relative">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse shadow-lg" 
-                     style={{ 
-                       boxShadow: '0 0 8px rgba(255,255,255,0.8), 0 0 16px rgba(255,255,255,0.4), 0 0 24px rgba(255,255,255,0.2)' 
-                     }} 
-                />
-              </div>
-            )}
-            {particle.type === 'sparkle' && (
-              <div className="text-white text-lg animate-pulse" 
-                   style={{ 
-                     filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.8)) drop-shadow(0 0 8px rgba(255,255,255,0.4))',
-                     fontSize: `${0.8 + particle.size * 0.4}rem`
-                   }}>
-                ✨
-              </div>
-            )}
-            {particle.type === 'star' && (
-              <div className="text-yellow-200 animate-pulse" 
-                   style={{ 
-                     filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.6))',
-                     fontSize: `${0.6 + particle.size * 0.3}rem`
-                   }}>
-                ⭐
-              </div>
-            )}
-            {particle.type === 'magic' && (
-              <div className="text-purple-200 animate-pulse" 
-                   style={{ 
-                     filter: 'drop-shadow(0 0 4px rgba(147,51,234,0.6))',
-                     fontSize: `${0.7 + particle.size * 0.3}rem`
-                   }}>
-                💫
-              </div>
-            )}
-          </motion.div>
-        ))}
-      </div>
+      {/* Firefly Container */}
+      {firefliesEnabled && !isMobile && (
+        <div 
+          id="firefly-container" 
+          className="absolute inset-0 pointer-events-none z-10"
+          style={{ overflow: 'hidden' }}
+        >
+          {fireflies.map((firefly) => (
+            <div
+              key={firefly.id}
+              className="firefly-dot"
+              style={{
+                position: 'absolute',
+                left: `${firefly.x}%`,
+                top: `${firefly.y}%`,
+                width: `${firefly.size}px`,
+                height: `${firefly.size}px`,
+                backgroundColor: '#fff8dc', // Soft warm white
+                borderRadius: '50%',
+                opacity: firefly.opacity,
+                boxShadow: `
+                  0 0 ${firefly.size * 2}px rgba(255, 248, 220, 0.8),
+                  0 0 ${firefly.size * 4}px rgba(255, 248, 220, 0.4),
+                  0 0 ${firefly.size * 6}px rgba(255, 248, 220, 0.2)
+                `,
+                filter: 'blur(0.5px)',
+                animation: `
+                  fireflyFloat${firefly.id} ${15 + firefly.speed * 10}s linear infinite ${firefly.delay}s,
+                  fireflyFlicker ${firefly.flickerDelay}s ease-in-out infinite ${firefly.delay + 2}s
+                `
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* Enhanced Floating Light Orbs */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <motion.div
-            key={`orb-${i}`}
-            className="absolute rounded-full"
-            style={{
-              width: `${4 + Math.random() * 6}px`,
-              height: `${4 + Math.random() * 6}px`,
-              background: `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`,
-              boxShadow: '0 0 10px rgba(255,255,255,0.6)',
-              left: `${5 + i * 8}%`,
-              top: '110%'
-            }}
-            animate={{
-              y: [-20, -150 - Math.random() * 100],
-              x: [0, Math.sin(i * 0.5) * 80 + (Math.random() - 0.5) * 40],
-              opacity: [0, 0.8, 0.6, 0],
-              scale: [0.5, 1.2, 1, 0.3],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 6,
-              repeat: Infinity,
-              delay: i * 0.8 + Math.random() * 2,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Magical Dust Trails */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <motion.div
-            key={`trail-${i}`}
-            className="absolute"
-            style={{
-              left: `${10 + i * 15}%`,
-              top: '100%',
-              width: '2px',
-              height: '40px',
-              background: 'linear-gradient(to top, transparent, rgba(255,255,255,0.6), transparent)',
-              borderRadius: '1px'
-            }}
-            animate={{
-              y: [-20, -200],
-              opacity: [0, 1, 0],
-              scaleY: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              delay: i * 1.2,
-              ease: "easeOut",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Dreamy Mist Layers */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        <motion.div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 75%, transparent 100%)',
-          }}
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-        <motion.div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0.02) 90%, transparent 100%)',
-          }}
-          animate={{
-            x: ['-100%', '100%'],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-            delay: -10,
-          }}
-        />
-      </div>
+      {/* Magic Toggle Button (Desktop only) */}
+      {!isMobile && (
+        <motion.button
+          onClick={() => setFirefliesEnabled(!firefliesEnabled)}
+          className="fixed top-24 right-8 z-50 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/20 transition-all duration-300"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 2 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ✨ {firefliesEnabled ? 'Hide' : 'Show'} Magic
+        </motion.button>
+      )}
       
       <div className="container-custom relative z-20 h-full flex items-center">
         <motion.div
@@ -293,6 +205,45 @@ const Hero: React.FC = () => {
       >
         <ChevronDown className="h-8 w-8" />
       </motion.button>
+
+      {/* Dynamic CSS for firefly animations */}
+      <style jsx>{`
+        ${fireflies.map(firefly => `
+          @keyframes fireflyFloat${firefly.id} {
+            0% {
+              transform: translate(0, 0);
+            }
+            25% {
+              transform: translate(${Math.cos(firefly.direction) * 50}px, ${Math.sin(firefly.direction) * 30}px);
+            }
+            50% {
+              transform: translate(${Math.cos(firefly.direction + Math.PI/2) * 40}px, ${Math.sin(firefly.direction + Math.PI/2) * 50}px);
+            }
+            75% {
+              transform: translate(${Math.cos(firefly.direction + Math.PI) * 30}px, ${Math.sin(firefly.direction + Math.PI) * 40}px);
+            }
+            100% {
+              transform: translate(0, 0);
+            }
+          }
+        `).join('')}
+        
+        @keyframes fireflyFlicker {
+          0%, 90% {
+            opacity: var(--firefly-opacity);
+          }
+          95% {
+            opacity: 0.2;
+          }
+          100% {
+            opacity: var(--firefly-opacity);
+          }
+        }
+        
+        .firefly-dot {
+          --firefly-opacity: ${fireflies[0]?.opacity || 0.8};
+        }
+      `}</style>
     </section>
   );
 };
