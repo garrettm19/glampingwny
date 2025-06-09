@@ -9,21 +9,21 @@ const blogPosts = [
     excerpt: "Discover creative and enchanting themes that will make your child's glamping party unforgettable...",
     date: "March 1, 2024",
     author: "Sarah Johnson",
-    image: "https://images.pexels.com/photos/7180788/pexels-photo-7180788.jpeg"
+    image: "https://picsum.photos/400/300?random=40"
   },
   {
     title: "How to Plan the Perfect Outdoor Birthday Celebration",
     excerpt: "Tips and tricks for organizing an amazing outdoor birthday party that your kids will love...",
     date: "February 25, 2024",
     author: "Michael Rodriguez",
-    image: "https://images.pexels.com/photos/7487350/pexels-photo-7487350.jpeg"
+    image: "https://picsum.photos/400/300?random=41"
   },
   {
     title: "Creating Lasting Memories: The Magic of Glamping Parties",
     excerpt: "Learn why glamping parties are becoming the hottest trend in children's birthday celebrations...",
     date: "February 20, 2024",
     author: "Jessica Thompson",
-    image: "https://images.pexels.com/photos/7061671/pexels-photo-7061671.jpeg"
+    image: "https://picsum.photos/400/300?random=42"
   }
 ];
 

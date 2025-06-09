@@ -22,18 +22,13 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src="https://picsum.photos/1920/1080?random=1"
+          alt="Magical glamping tent setup"
           className="object-cover w-full h-full"
-          poster="https://glampingwny.com/wp-content/uploads/2024/03/hero-tent.jpg"
-        >
-          <source src="https://glampingwny.com/wp-content/uploads/2024/03/hero-video.mp4" type="video/mp4" />
-        </video>
+        />
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 to-primary-900/80" />
       </div>

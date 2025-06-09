@@ -11,40 +11,40 @@ interface GalleryImage {
 
 const images: GalleryImage[] = [
   {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/tent-setup-1.jpg",
+    src: "https://picsum.photos/800/600?random=20",
     alt: "Glamping tent for birthday party with fairy lights",
-    width: 1200,
-    height: 800
+    width: 800,
+    height: 600
   },
   {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/tent-interior-1.jpg",
+    src: "https://picsum.photos/600/800?random=21",
     alt: "Cozy interior of glamping tent with decorative pillows",
-    width: 800,
-    height: 1200
+    width: 600,
+    height: 800
   },
   {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/party-setup-1.jpg",
+    src: "https://picsum.photos/800/600?random=22",
     alt: "Birthday party setup with themed decorations",
-    width: 1200,
-    height: 900
-  },
-  {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/night-view-1.jpg",
-    alt: "Magical nighttime view of illuminated glamping tent",
-    width: 1200,
-    height: 800
-  },
-  {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/activity-area-1.jpg",
-    alt: "Kids activity area with crafting supplies",
     width: 800,
-    height: 1200
+    height: 600
   },
   {
-    src: "https://glampingwny.com/wp-content/uploads/2024/03/breakfast-setup-1.jpg",
-    alt: "Morning breakfast setup in glamping tent",
-    width: 1200,
+    src: "https://picsum.photos/800/600?random=23",
+    alt: "Magical nighttime view of illuminated glamping tent",
+    width: 800,
+    height: 600
+  },
+  {
+    src: "https://picsum.photos/600/800?random=24",
+    alt: "Kids activity area with crafting supplies",
+    width: 600,
     height: 800
+  },
+  {
+    src: "https://picsum.photos/800/600?random=25",
+    alt: "Morning breakfast setup in glamping tent",
+    width: 800,
+    height: 600
   }
 ];
 

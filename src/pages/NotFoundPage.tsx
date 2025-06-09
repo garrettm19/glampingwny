@@ -62,9 +62,9 @@ const NotFoundPage: React.FC = () => {
             {/* Raccoon Illustration */}
             <div className="mb-8 relative">
               <motion.img
-                src="https://glampingwny.com/wp-content/uploads/2024/03/raccoon.png"
+                src="https://picsum.photos/200/200?random=404"
                 alt="Cute raccoon next to a collapsed tent"
-                className="w-48 h-48 mx-auto object-contain"
+                className="w-48 h-48 mx-auto object-contain rounded-full"
                 animate={{
                   rotate: isHovering ? [-5, 5, -5] : 0,
                 }}
@@ -148,15 +148,6 @@ const NotFoundPage: React.FC = () => {
                 </AnimatePresence>
               </Link>
             </motion.div>
-
-            {/* Fire crackle sound effect */}
-            {isSoundEnabled && (
-              <audio
-                src="https://glampingwny.com/wp-content/uploads/2024/03/fire-crackle.mp3"
-                autoPlay
-                loop
-              />
-            )}
           </motion.div>
         </div>
       </div>

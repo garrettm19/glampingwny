@@ -73,7 +73,7 @@ const AboutPage: React.FC = () => {
               <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                 <div className="aspect-[3/4]">
                   <img 
-                    src="/src/assets/image.png"
+                    src="https://picsum.photos/400/500?random=30"
                     alt="Holly - Glamping WNY Founder" 
                     className="w-full h-full object-cover"
                   />
@@ -149,8 +149,97 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Rest of the sections remain unchanged */}
-      
+      {/* Values Section */}
+      <section className="section bg-primary-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-primary-900 mb-4">Our Values</h2>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                These core values guide everything we do at Glamping WNY.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Heart,
+                title: "Family First",
+                description: "We believe in creating experiences that bring families closer together and create lasting memories."
+              },
+              {
+                icon: Shield,
+                title: "Safety & Quality",
+                description: "Every piece of equipment is thoroughly cleaned and safety-checked before each event."
+              },
+              {
+                icon: Sparkles,
+                title: "Magical Experiences",
+                description: "We go above and beyond to ensure every detail contributes to a truly magical celebration."
+              }
+            ].map((value, index) => (
+              <motion.div
+                key={index}
+                className="glass-card p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <value.icon className="w-8 h-8 text-primary-600" />
+                </div>
+                <h3 className="text-xl font-bold text-primary-900 mb-4">{value.title}</h3>
+                <p className="text-gray-700">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="section bg-primary-900 text-white">
+        <div className="container-custom">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-6">
+              Ready to Create Magic Together?
+            </h2>
+            <p className="text-xl text-white/90 mb-8">
+              Let's start planning your child's most memorable birthday celebration yet.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.a
+                href="/book-now"
+                className="btn btn-secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Book Your Experience
+              </motion.a>
+              <motion.a
+                href="/contact"
+                className="btn btn-outline border-white text-white hover:bg-white/20"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get in Touch
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </>
   );
 };

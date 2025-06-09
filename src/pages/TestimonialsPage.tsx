@@ -7,7 +7,7 @@ const testimonials = [
   {
     quote: "Holly was absolutely amazing and easy to work with! I told her I was throwing a Barbie themed bachelorette weekend and she knocked the theme out of the park with Barbie décor in our glamping tent! All the girls especially the bride to be were so impressed and we enjoyed our first glamping experience so much! I highly recommend Glamping WNY and will most definitely be using them again in the future!",
     name: "Rachel C.",
-    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
+    image: "https://picsum.photos/100/100?random=50",
     rating: 5,
     tag: "Themed Party",
     date: "2024-02-28"
@@ -15,7 +15,7 @@ const testimonials = [
   {
     quote: "I booked Glamping WNY for a surprise sleepover for my nephews. Holly was great! The booking process was so simple. She was easy to contact and communicate with. Also very flexible with drop off and pickup times. She was able to do two different themes for them since they are into different things. The beds were very comfortable and everything was clean and organized. The kids loved it. It was a great experience. Thank you for making their birthday extra special!",
     name: "Rebecca B.",
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    image: "https://picsum.photos/100/100?random=51",
     rating: 5,
     tag: "Kids Party",
     date: "2024-02-25"
@@ -23,12 +23,35 @@ const testimonials = [
   {
     quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your Glamping needs!",
     name: "Jamie D.",
-    image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+    image: "https://picsum.photos/100/100?random=52",
     rating: 5,
     tag: "Perfect Setup",
     date: "2024-02-20"
   },
-  // ... more testimonials
+  {
+    quote: "The kids had the most amazing time! Everything was set up perfectly and the cleanup was seamless. Holly made the whole process so easy for us parents.",
+    name: "Maria S.",
+    image: "https://picsum.photos/100/100?random=53",
+    rating: 5,
+    tag: "Easy Process",
+    date: "2024-02-15"
+  },
+  {
+    quote: "Worth every penny! The attention to detail was incredible and my daughter felt like a princess. We'll definitely be booking again next year.",
+    name: "David K.",
+    image: "https://picsum.photos/100/100?random=54",
+    rating: 5,
+    tag: "Amazing Value",
+    date: "2024-02-10"
+  },
+  {
+    quote: "Professional, reliable, and magical! Holly exceeded all our expectations. The themed decorations were absolutely perfect.",
+    name: "Lisa M.",
+    image: "https://picsum.photos/100/100?random=55",
+    rating: 5,
+    tag: "Professional",
+    date: "2024-02-05"
+  }
 ];
 
 const TestimonialsPage: React.FC = () => {

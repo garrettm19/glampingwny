@@ -9,7 +9,7 @@ const indoorPackages = [
     title: 'Indoor Base Package',
     description: 'Perfect for intimate celebrations',
     price: '$225',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/indoor-base.jpg',
+    image: 'https://picsum.photos/400/300?random=2',
     features: [
       '1 Glamping Tent',
       'Memory Foam Mattress',
@@ -26,7 +26,7 @@ const indoorPackages = [
     title: 'Indoor Group Package',
     description: '4-6 Tents Setup',
     price: '$375-$475',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/indoor-group.jpg',
+    image: 'https://picsum.photos/400/300?random=3',
     features: [
       '4-6 Glamping Tents',
       'All Base Package Features',
@@ -40,7 +40,7 @@ const indoorPackages = [
     title: 'Indoor Ultimate Package',
     description: '7-10 Tents Setup',
     price: '$525-$675',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/indoor-ultimate.jpg',
+    image: 'https://picsum.photos/400/300?random=4',
     features: [
       '7-10 Glamping Tents',
       'All Group Package Features',
@@ -57,7 +57,7 @@ const outdoorPackages = [
     title: 'Fully Furnished Tent',
     description: '16ft Bell Tent (2-6 Glampers)',
     price: '$500-$600',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/outdoor-basic.jpg',
+    image: 'https://picsum.photos/400/300?random=5',
     features: [
       'Spacious Bell Tent',
       'Memory Foam Beds',
@@ -72,7 +72,7 @@ const outdoorPackages = [
     title: 'Luxury Bell Tent',
     description: '23ft Bell Tent (7-12 Glampers)',
     price: '$825-$950',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/outdoor-luxury.jpg',
+    image: 'https://picsum.photos/400/300?random=6',
     features: [
       'Extra Large Bell Tent',
       'Premium Furnishings',
@@ -87,7 +87,7 @@ const outdoorPackages = [
     title: 'Day Dreamer Lounge',
     description: 'Perfect for Daytime Events',
     price: '$500',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/day-dreamer.jpg',
+    image: 'https://picsum.photos/400/300?random=7',
     features: [
       '16ft Bell Tent',
       'Chairs & Floor Seating',

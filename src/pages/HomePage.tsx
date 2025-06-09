@@ -22,14 +22,14 @@ const HomePage: React.FC = () => {
         <meta property="og:url" content="https://glampingwny.com" />
         <meta property="og:title" content="Glamping WNY | Magical Outdoor Birthday Parties Near Buffalo" />
         <meta property="og:description" content="Create magical memories with our glamping birthday parties in Western New York. Cozy tents, real bathrooms, and zero stress — perfect for kids ages 4-12." />
-        <meta property="og:image" content="https://glampingwny.com/wp-content/uploads/2024/03/og-image.jpg" />
+        <meta property="og:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://glampingwny.com" />
         <meta name="twitter:title" content="Glamping WNY | Magical Outdoor Birthday Parties Near Buffalo" />
         <meta name="twitter:description" content="Create magical memories with our glamping birthday parties in Western New York. Cozy tents, real bathrooms, and zero stress — perfect for kids ages 4-12." />
-        <meta name="twitter:image" content="https://glampingwny.com/wp-content/uploads/2024/03/og-image.jpg" />
+        <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Schema.org markup */}
         <script type="application/ld+json">
@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Glamping WNY",
-            "image": "https://glampingwny.com/wp-content/uploads/2024/03/og-image.jpg",
+            "image": "https://picsum.photos/1200/630?random=100",
             "description": "Magical outdoor birthday experiences and glamping parties in Western New York.",
             "address": {
               "@type": "PostalAddress",
@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
       <section 
         className="relative py-24 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(76, 29, 149, 0.9), rgba(76, 29, 149, 0.8)), url('https://images.pexels.com/photos/7061671/pexels-photo-7061671.jpeg')`,
+          backgroundImage: `linear-gradient(to right, rgba(76, 29, 149, 0.9), rgba(76, 29, 149, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}

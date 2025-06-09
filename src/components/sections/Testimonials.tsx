@@ -7,7 +7,7 @@ const testimonials = [
     quote: "Just show up and glamp! Everything was perfect - from the cozy tents to the magical decorations. My daughter felt like a princess!",
     name: "Jessica Thompson",
     role: "Mom of birthday girl",
-    image: "https://glampingwny.com/wp-content/uploads/2024/03/parent-1.jpg",
+    image: "https://picsum.photos/100/100?random=10",
     tag: "So Easy!",
     rating: 5
   },
@@ -15,7 +15,7 @@ const testimonials = [
     quote: "We do the setup. You make the memories. And what memories they were! The kids haven't stopped talking about their magical night.",
     name: "Michael Rodriguez",
     role: "Father of 8-year-old",
-    image: "https://glampingwny.com/wp-content/uploads/2024/03/parent-2.jpg",
+    image: "https://picsum.photos/100/100?random=11",
     tag: "No Stress",
     rating: 5
   },
@@ -23,7 +23,7 @@ const testimonials = [
     quote: "The attention to detail was amazing! From the fairy lights to the themed decorations - everything was perfect. Worth every penny!",
     name: "Sarah Johnson",
     role: "Return customer",
-    image: "https://glampingwny.com/wp-content/uploads/2024/03/parent-3.jpg",
+    image: "https://picsum.photos/100/100?random=12",
     tag: "Kids Loved It!",
     rating: 5
   }
