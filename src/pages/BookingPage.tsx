@@ -14,10 +14,7 @@ const BookingPage: React.FC = () => {
     <>
       <Helmet>
         <title>Book Your Glamping Experience | Magical Birthday Parties</title>
-        <meta 
-          name="description" 
-          content="Book your magical glamping experience with Glamping WNY. Choose your package, select your theme, and create unforgettable memories." 
-        />
+        <meta name="description" content="Book your magical glamping experience with Glamping WNY. Choose your package, select your theme, and create unforgettable memories." />
       </Helmet>
 
       {/* Hero Section */}
@@ -52,12 +49,8 @@ const BookingPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Book Your Magical Experience
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Simple booking • Instant confirmation • Magical memories
-            </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Magical Experience</h1>
+            <p className="text-xl text-white/90 mb-8">Simple booking • Instant confirmation • Magical memories</p>
             
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -94,40 +87,16 @@ const BookingPage: React.FC = () => {
       <section className="section bg-primary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary-900 mb-4">
-              Important Information
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Everything you need to know about your glamping experience.
-            </p>
+            <h2 className="text-3xl font-bold text-primary-900 mb-4">Important Information</h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">Everything you need to know about your glamping experience.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              {
-                icon: Clock,
-                title: "Setup & Pickup",
-                description: "Setup by 4 PM, pickup after 10 AM next day",
-                color: "bg-blue-50 text-blue-600"
-              },
-              {
-                icon: MapPin,
-                title: "Service Area",
-                description: "Free delivery within 20 miles of Hamburg, NY",
-                color: "bg-green-50 text-green-600"
-              },
-              {
-                icon: Users,
-                title: "Age Requirement",
-                description: "All guests must be 5 years or older",
-                color: "bg-purple-50 text-purple-600"
-              },
-              {
-                icon: Shield,
-                title: "Safety First",
-                description: "All equipment sanitized between uses",
-                color: "bg-orange-50 text-orange-600"
-              }
+              { icon: Clock, title: "Setup & Pickup", description: "Setup by 4 PM, pickup after 10 AM next day", color: "bg-blue-50 text-blue-600" },
+              { icon: MapPin, title: "Service Area", description: "Free delivery within 20 miles of Hamburg, NY", color: "bg-green-50 text-green-600" },
+              { icon: Users, title: "Age Requirement", description: "All guests must be 5 years or older", color: "bg-purple-50 text-purple-600" },
+              { icon: Shield, title: "Safety First", description: "All equipment sanitized between uses", color: "bg-orange-50 text-orange-600" }
             ].map((info, index) => (
               <motion.div
                 key={index}
@@ -158,12 +127,8 @@ const BookingPage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-primary-900 mb-4">
-              What's Included in Every Package
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              No hidden fees. Everything you need for a magical experience.
-            </p>
+            <h2 className="text-3xl font-bold text-primary-900 mb-4">What's Included in Every Package</h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">No hidden fees. Everything you need for a magical experience.</p>
           </motion.div>
 
           <motion.div
