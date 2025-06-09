@@ -34,8 +34,8 @@ const Hero: React.FC = () => {
         >
           <source src="https://glampingwny.com/wp-content/uploads/2024/03/hero-video.mp4" type="video/mp4" />
         </video>
-        {/* Magical gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary-800/60 to-secondary-900/80" />
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 to-primary-900/80" />
       </div>
 
       {/* Sparkle effects */}
@@ -73,20 +73,18 @@ const Hero: React.FC = () => {
           className="max-w-3xl"
         >
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl text-contrast font-bold mb-6 text-cream-50"
+            className="text-4xl md:text-5xl lg:text-6xl text-contrast font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             It's Not Just Camping.
             <br />
-            <span className="bg-gradient-to-r from-primary-400 to-accent-300 bg-clip-text text-transparent">
-              It's a Birthday Wonderland.
-            </span>
+            It's a Birthday Wonderland.
           </motion.h1>
           
           <motion.p 
-            className="text-xl text-cream-100 mb-8 max-w-2xl"
+            className="text-xl text-white mb-8 max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -102,20 +100,16 @@ const Hero: React.FC = () => {
           >
             <Link
               to="/book-now"
-              className="btn btn-primary group relative overflow-hidden"
+              className="btn btn-primary group"
               onClick={() => trackBookNowClick()}
             >
-              <span className="relative z-10">Let's Create Magic! 🎪</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary-300 to-accent-300 opacity-0 group-hover:opacity-20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
+              Let's Create Magic! 🎪
+              <span className="absolute inset-0 rounded-full bg-white/20 group-hover:animate-sparkle" />
             </Link>
             
             <motion.button
               onClick={scrollToTour}
-              className="btn btn-outline border-cream-100 text-cream-100 hover:bg-cream-100/20"
+              className="btn btn-outline border-white text-white hover:bg-white/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -127,7 +121,7 @@ const Hero: React.FC = () => {
       
       {/* Scroll indicator */}
       <motion.button
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-cream-100 cursor-pointer z-10"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white cursor-pointer z-10"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
         onClick={scrollToBooking}

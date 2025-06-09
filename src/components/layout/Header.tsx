@@ -73,9 +73,9 @@ const Header: React.FC = () => {
               onClick={() => handleNavClick(link.name.toLowerCase())}
               className={`font-medium ${
                 isScrolled 
-                  ? 'text-secondary-800 hover:text-primary-600 focus-visible:text-primary-600' 
-                  : 'text-cream-50 hover:text-primary-300 focus-visible:text-primary-300'
-              } transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md px-2 py-1`}
+                  ? 'text-gray-800 hover:text-primary-600 focus-visible:text-primary-600' 
+                  : 'text-white hover:text-accent-300 focus-visible:text-accent-300'
+              } transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded-md px-2 py-1`}
             >
               {link.name}
             </Link>
@@ -97,15 +97,15 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden z-10 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md"
+          className="lg:hidden z-10 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded-md"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
-            <X className={`h-6 w-6 ${isScrolled ? 'text-secondary-800' : 'text-cream-50'}`} />
+            <X className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
           ) : (
-            <Menu className={`h-6 w-6 ${isScrolled ? 'text-secondary-800' : 'text-cream-50'}`} />
+            <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
           )}
         </button>
 
@@ -132,7 +132,7 @@ const Header: React.FC = () => {
                 >
                   <Link
                     to={link.path}
-                    className="text-secondary-800 text-2xl font-medium hover:text-primary-600 focus-visible:text-primary-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md px-2 py-1"
+                    className="text-gray-800 text-2xl font-medium hover:text-primary-600 focus-visible:text-primary-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded-md px-2 py-1"
                     onClick={() => handleNavClick(link.name.toLowerCase())}
                   >
                     {link.name}

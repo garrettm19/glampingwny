@@ -65,31 +65,11 @@
   }
 
   .bg-glass {
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   }
 
   .bg-glass-hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .text-primary-600 {
-    color: #9333ea;
-  }
-
-  .border-primary-200\/30 {
-    border-color: rgba(233, 213, 255, 0.3);
-  }
-
-  .bg-primary-50\/30 {
-    background-color: rgba(250, 245, 255, 0.3);
-  }
-
-  .bg-secondary-500 {
-    background-color: #f79815;
-  }
-
-  .bg-secondary-600 {
-    background-color: #e17b0c;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
   }
 
   .text-contrast {
@@ -122,20 +102,6 @@
 .firefly {
   @apply w-1 h-1 bg-white rounded-full opacity-0;
   box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-}
-
-/* Text contrast enhancement */
-.text-contrast {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Glass effect backgrounds */
-.bg-glass {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-}
-
-.bg-glass-hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
 }
 
 /* Floating particles */
