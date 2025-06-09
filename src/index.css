@@ -90,6 +90,37 @@
     background: linear-gradient(to right bottom, rgba(255, 253, 249, 0.98), rgba(255, 253, 249, 0.85));
   }
 
+  /* Gradient background utilities */
+  .bg-gradient-teal {
+    background: linear-gradient(135deg, #71E4D4, #5eead4);
+  }
+
+  .bg-gradient-purple {
+    background: linear-gradient(135deg, #CDB4DB, #e9d5ff);
+  }
+
+  .bg-gradient-pink {
+    background: linear-gradient(135deg, #FFC8DD, #fbcfe8);
+  }
+
+  .bg-gradient-magical {
+    background: linear-gradient(135deg, #71E4D4, #CDB4DB, #FFC8DD);
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  .bg-gradient-sunset {
+    background: linear-gradient(135deg, #FFC8DD, #71E4D4);
+  }
+
+  .bg-gradient-ocean {
+    background: linear-gradient(135deg, #5eead4, #2dd4bf, #0d9488);
+  }
+
+  .bg-gradient-lavender {
+    background: linear-gradient(135deg, #CDB4DB, #c084fc, #a855f7);
+  }
+
   /* Cream background utilities */
   .bg-cream-50 {
     background-color: #FFFDF9;
