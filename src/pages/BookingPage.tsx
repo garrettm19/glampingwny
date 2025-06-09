@@ -1,17 +1,22 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import CalendarBooking from '../components/booking/CalendarBooking';
+import BookingForm from '../components/ui/BookingForm';
 import { Star, Calendar, Shield, MapPin, Info, Clock, Users, Sparkles } from 'lucide-react';
 
 const BookingPage: React.FC = () => {
+  const handleBookingSubmit = (formData: any) => {
+    console.log('Booking submitted:', formData);
+    // Handle form submission - send to backend, etc.
+  };
+
   return (
     <>
       <Helmet>
-        <title>Book Your Glamping Experience | Real-Time Calendar Booking</title>
+        <title>Book Your Glamping Experience | Magical Birthday Parties</title>
         <meta 
           name="description" 
-          content="Book your magical glamping experience with real-time availability. Choose your date, select your theme, and secure your magical celebration instantly." 
+          content="Book your magical glamping experience with Glamping WNY. Choose your package, select your theme, and create unforgettable memories." 
         />
       </Helmet>
 
@@ -51,15 +56,15 @@ const BookingPage: React.FC = () => {
               Book Your Magical Experience
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Real-time availability • Instant confirmation • Secure booking
+              Simple booking • Instant confirmation • Magical memories
             </p>
             
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
-                { icon: Calendar, label: 'Real-Time Availability', desc: 'See exactly what\'s available' },
-                { icon: Sparkles, label: 'Instant Confirmation', desc: 'Book and confirm immediately' },
-                { icon: Shield, label: 'Secure Payment', desc: 'Safe and encrypted checkout' }
+                { icon: Calendar, label: 'Easy Booking', desc: 'Book in just 3 simple steps' },
+                { icon: Sparkles, label: 'Instant Confirmation', desc: 'Get confirmed immediately' },
+                { icon: Shield, label: 'Secure & Safe', desc: 'Trusted by 200+ families' }
               ].map((feature, index) => (
                 <motion.div
                   key={index}
@@ -78,16 +83,25 @@ const BookingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Booking Calendar Section */}
+      {/* Booking Form Section */}
       <section className="section bg-white">
         <div className="container-custom">
-          <CalendarBooking />
+          <BookingForm onSubmit={handleBookingSubmit} />
         </div>
       </section>
 
       {/* Information Cards */}
       <section className="section bg-primary-50">
         <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary-900 mb-4">
+              Important Information
+            </h2>
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              Everything you need to know about your glamping experience.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -134,7 +148,7 @@ const BookingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing Summary */}
+      {/* What's Included */}
       <section className="section bg-white">
         <div className="container-custom max-w-4xl">
           <motion.div
@@ -145,82 +159,43 @@ const BookingPage: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-primary-900 mb-4">
-              Transparent Pricing
+              What's Included in Every Package
             </h2>
             <p className="text-gray-700 max-w-2xl mx-auto">
-              No hidden fees. What you see is what you pay.
+              No hidden fees. Everything you need for a magical experience.
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Indoor Base Package",
-                price: "$225",
-                features: ["1 Tent", "Basic Setup", "Theme Decorations", "Cleanup Included"]
-              },
-              {
-                name: "Indoor Group Package", 
-                price: "$375-$475",
-                features: ["4-6 Tents", "Extended Setup", "Group Activities", "Enhanced Themes"],
-                popular: true
-              },
-              {
-                name: "Indoor Ultimate Package",
-                price: "$525-$675", 
-                features: ["7-10 Tents", "Premium Setup", "Special Activities", "Custom Themes"]
-              }
-            ].map((pkg, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`glass-card p-6 relative ${pkg.popular ? 'ring-2 ring-accent-400' : ''}`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-accent-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                
-                <h3 className="text-xl font-bold text-primary-900 mb-2">{pkg.name}</h3>
-                <div className="text-3xl font-bold text-primary-700 mb-4">{pkg.price}</div>
-                
-                <ul className="space-y-2 mb-6">
-                  {pkg.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-2 text-gray-700">
-                      <Star className="w-4 h-4 text-accent-500" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mt-12 glass-card p-6 text-center"
+            className="glass-card p-8"
           >
-            <h3 className="text-xl font-bold text-primary-900 mb-4">
-              What's Included in Every Package
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-700">
-              <div>✓ Professional Setup</div>
-              <div>✓ Complete Cleanup</div>
-              <div>✓ Themed Decorations</div>
-              <div>✓ Safety Equipment</div>
-              <div>✓ Fairy Lights</div>
-              <div>✓ Comfortable Bedding</div>
-              <div>✓ Custom Letter Board</div>
-              <div>✓ Breakfast Tray</div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                { icon: '🏕️', label: 'Professional Setup' },
+                { icon: '🧹', label: 'Complete Cleanup' },
+                { icon: '🎨', label: 'Themed Decorations' },
+                { icon: '🛡️', label: 'Safety Equipment' },
+                { icon: '✨', label: 'Fairy Lights' },
+                { icon: '🛏️', label: 'Comfortable Bedding' },
+                { icon: '📝', label: 'Custom Letter Board' },
+                { icon: '🥞', label: 'Breakfast Tray' }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center"
+                >
+                  <span className="text-3xl mb-2">{item.icon}</span>
+                  <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

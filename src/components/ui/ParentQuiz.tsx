@@ -1,1 +1,0 @@
-// Parent quiz component code here

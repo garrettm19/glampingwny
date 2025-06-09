@@ -11,7 +11,7 @@ const packages = [
     description: "Perfect for intimate celebrations",
     features: [
       "1 Glamping Tent",
-      "Memory Foam Mattress",
+      "Memory Foam Mattress", 
       "Cozy Blanket and Linens",
       "Custom Letter Board",
       "Décor Pillows",
@@ -31,7 +31,7 @@ const packages = [
       "4-6 Glamping Tents",
       "All Base Package Features",
       "Coordinated Theme",
-      "Group Activity Space",
+      "Group Activity Space", 
       "Extended Setup Area",
       "Perfect for Sleepovers"
     ],
@@ -39,7 +39,7 @@ const packages = [
     isPopular: true
   },
   {
-    name: "Indoor Ultimate Package",
+    name: "Indoor Ultimate Package", 
     price: "$525-$675",
     description: "7-10 Tents Setup",
     features: [
@@ -47,7 +47,7 @@ const packages = [
       "All Group Package Features",
       "Premium Party Space",
       "Enhanced Decorations",
-      "Special Group Activities",
+      "Special Group Activities", 
       "Perfect for Large Parties"
     ],
     maxGuests: 10,
@@ -59,7 +59,7 @@ const PricingTable: React.FC = () => {
   const handlePackageClick = (packageName: string) => {
     trackEvent({
       category: 'Pricing',
-      action: 'package_click',
+      action: 'package_click', 
       label: packageName
     });
   };
@@ -72,12 +72,13 @@ const PricingTable: React.FC = () => {
           <motion.div
             key={index}
             className={`glass-card relative overflow-hidden ${
-              pkg.isPopular ? 'border-2 border-accent-500' : ''
+              pkg.isPopular ? 'ring-2 ring-accent-500' : ''
             }`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
+            whileHover={{ y: -5 }}
           >
             {pkg.isPopular && (
               <div className="absolute top-4 right-4 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-medium">
