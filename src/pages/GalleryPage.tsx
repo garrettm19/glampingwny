@@ -21,35 +21,35 @@ const GalleryPage: React.FC = () => {
 
   const images = [
     {
-      url: "https://glampingwny.com/wp-content/uploads/2024/03/tent-setup-1.jpg",
+      url: "https://picsum.photos/800/600?random=20",
       name: "Glamping tent for birthday party with fairy lights",
-      contentUrl: "https://glampingwny.com/wp-content/uploads/2024/03/tent-setup-1.jpg",
+      contentUrl: "https://picsum.photos/800/600?random=20",
       description: "Magical glamping tent setup with twinkling fairy lights perfect for children's birthday parties",
-      width: 1200,
-      height: 800
+      width: 800,
+      height: 600
     },
     {
-      url: "https://glampingwny.com/wp-content/uploads/2024/03/tent-interior-1.jpg",
+      url: "https://picsum.photos/600/800?random=21",
       name: "Cozy interior of glamping tent with decorative pillows",
-      contentUrl: "https://glampingwny.com/wp-content/uploads/2024/03/tent-interior-1.jpg",
+      contentUrl: "https://picsum.photos/600/800?random=21",
       description: "Interior view of our luxury glamping tent featuring comfortable bedding and decorative elements",
-      width: 800,
-      height: 1200
+      width: 600,
+      height: 800
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Gallery | Glamping Birthday Party Photos | Glamping WNY</title>
-        <meta name="description" content="Browse our gallery of magical glamping birthday parties. See our luxury tents, decorations, and happy celebrations from real events in Western New York." />
+        <title>Gallery | Luxury Glamping Photos | Glamping WNY</title>
+        <meta name="description" content="Browse our gallery of luxury glamping experiences. See our premium tents, decorations, and happy celebrations from real events in Western New York." />
         
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ImageGallery",
-            "name": "Glamping WNY Birthday Party Gallery",
-            "description": "Photo gallery of magical glamping birthday parties in Western New York",
+            "name": "Glamping WNY Luxury Experience Gallery",
+            "description": "Photo gallery of luxury glamping experiences in Western New York",
             "image": images.map(img => ({
               "@type": "ImageObject",
               "contentUrl": img.contentUrl,
@@ -63,7 +63,7 @@ const GalleryPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-primary-900 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
         {/* Sparkle effects */}
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
@@ -84,11 +84,11 @@ const GalleryPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Gallery</h1>
             <p className="text-xl text-white/90 mb-6">
-              Browse through our magical birthday glamping experiences and get inspired.
+              Browse through our luxury glamping experiences and get inspired for your celebration.
             </p>
           </motion.div>
         </div>
@@ -115,7 +115,7 @@ const GalleryPage: React.FC = () => {
                 Take a Virtual Tour
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto mb-8">
-                Experience our magical glamping setup in immersive 3D.
+                Experience our luxury glamping setup in immersive 3D.
               </p>
             </motion.div>
           </div>
@@ -138,7 +138,7 @@ const GalleryPage: React.FC = () => {
               Ready to Create Your Own Magical Moments?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Book your child's unforgettable glamping experience today.
+              Book your luxury glamping experience today.
             </p>
             <button className="btn btn-secondary">
               Book Now
@@ -158,13 +158,13 @@ const GalleryPage: React.FC = () => {
           >
             <div className="bg-glass backdrop-blur-md rounded-full px-6 py-3 shadow-glow flex items-center gap-4">
               <p className="text-primary-900 font-medium">
-                Want this for your child's next birthday?
+                Want this for your next celebration?
               </p>
               <Link 
                 to="/book-now"
                 className="btn btn-primary py-2 px-4 text-sm whitespace-nowrap group"
               >
-                Book Your Tent
+                Book Your Experience
                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

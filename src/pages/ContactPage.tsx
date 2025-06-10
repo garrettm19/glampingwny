@@ -11,7 +11,7 @@ const ContactPage: React.FC = () => {
         <title>Contact Us | Glamping WNY</title>
         <meta 
           name="description" 
-          content="Get in touch with Glamping WNY for magical birthday experiences. Questions about our services? Ready to book? We're here to help create unforgettable memories." 
+          content="Get in touch with Glamping WNY for luxury glamping experiences. Questions about our services? Ready to book? We're here to help create unforgettable memories." 
         />
         
         <script type="application/ld+json">
@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "ContactPage",
             "name": "Contact Glamping WNY",
-            "description": "Contact us for magical birthday experiences in Western New York",
+            "description": "Contact us for luxury glamping experiences in Western New York",
             "url": "https://glampingwny.com/contact",
             "contactPoint": {
               "@type": "ContactPoint",
@@ -33,7 +33,7 @@ const ContactPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-primary-900 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
         {/* Sparkle effects */}
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
@@ -54,11 +54,11 @@ const ContactPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
             <p className="text-xl text-white/90">
-              Questions about our magical experiences? We'd love to hear from you!
+              Questions about our luxury experiences? We'd love to hear from you!
             </p>
           </motion.div>
         </div>
@@ -81,7 +81,7 @@ const ContactPage: React.FC = () => {
                   Let's Create Magic Together! ✨
                 </h2>
                 <p className="text-gray-700 mb-8">
-                  Ready to start planning an unforgettable celebration? Have questions about our services? We're here to help make your child's special day truly magical.
+                  Ready to start planning an unforgettable celebration? Have questions about our services? We're here to help make your special day truly magical.
                 </p>
               </div>
 
@@ -143,7 +143,7 @@ const ContactPage: React.FC = () => {
                   </span>
                 </div>
                 <p className="text-gray-700 text-sm">
-                  Join our growing family of happy parents and delighted children. We're committed to creating magical memories that last a lifetime.
+                  Join our growing family of happy customers. We're committed to creating magical memories that last a lifetime.
                 </p>
               </div>
             </motion.div>

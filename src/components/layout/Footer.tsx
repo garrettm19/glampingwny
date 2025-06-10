@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <Logo footer />
             </div>
             <p className="text-gray-300 mb-6">
-              Creating magical outdoor birthday experiences for kids in Western New York.
+              Creating unforgettable glamping experiences for families and couples in Western New York.
             </p>
             <div className="flex space-x-4 mb-6">
               <a 

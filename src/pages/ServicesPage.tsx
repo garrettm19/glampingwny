@@ -9,79 +9,102 @@ import { trackEvent } from '../utils/analytics';
 
 const services = [
   {
-    title: 'Enchanted Dreams',
+    title: 'Indoor Base Package',
     description: 'Perfect for intimate celebrations',
-    price: '$299',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/basic-setup.jpg',
+    price: '$225',
+    image: 'https://picsum.photos/400/300?random=2',
     features: [
-      'Cozy tent setup for up to 6 kids',
-      'Twinkling fairy lights',
-      'Comfy sleeping arrangements',
-      'Fresh breakfast delivery',
-      'Hassle-free setup & cleanup'
+      '1 Glamping Tent',
+      'Memory Foam Mattress',
+      'Cozy Blanket and Linens',
+      'Custom Letter Board',
+      'Décor Pillows',
+      'Breakfast Tray with Lantern',
+      'Fairy Lights',
+      'Setup and Cleanup',
+      'Your Choice of Theme'
     ]
   },
   {
-    title: 'Magical Moments',
-    description: 'Our most-loved package',
-    price: '$499',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/premium-setup.jpg',
+    title: 'Indoor Group Package',
+    description: '4-6 Tents Setup',
+    price: '$375-$475',
+    image: 'https://picsum.photos/400/300?random=3',
     features: [
-      'Spacious setup for up to 8 kids',
-      'Custom theme & decorations',
-      'Fun party activities',
-      'Special treats & snacks',
-      'Breakfast included',
-      'Photo memories package'
+      '4-6 Glamping Tents',
+      'All Base Package Features',
+      'Coordinated Theme',
+      'Group Activity Space',
+      'Extended Setup Area',
+      'Perfect for Sleepovers'
     ]
   },
   {
-    title: 'Ultimate Adventure',
-    description: 'The complete experience',
-    price: '$699',
-    image: 'https://glampingwny.com/wp-content/uploads/2024/03/ultimate-setup.jpg',
+    title: 'Indoor Ultimate Package',
+    description: '7-10 Tents Setup',
+    price: '$525-$675',
+    image: 'https://picsum.photos/400/300?random=4',
     features: [
-      'Luxury setup for up to 10 kids',
-      'Full theme customization',
-      'Outdoor movie night',
-      'Guided activities',
-      'Full catering available',
-      'Custom party favors',
-      'Professional photo & video'
+      '7-10 Glamping Tents',
+      'All Group Package Features',
+      'Premium Party Space',
+      'Enhanced Decorations',
+      'Special Group Activities',
+      'Perfect for Large Parties'
     ]
   }
 ];
 
 const addons = [
   {
-    title: 'Custom Themed Decor',
-    price: '$99',
-    description: 'Additional themed decorations to match your child\'s interests'
+    title: 'Balloon Garland',
+    price: '$25',
+    description: 'Custom balloon garland for indoor teepee'
   },
   {
-    title: 'Outdoor Movie Night',
-    price: '$149',
-    description: 'Projector, screen, and themed movie selection'
+    title: 'Luxe Lace Teepee',
+    price: '$65',
+    description: 'Premium lace teepee with balloon decoration'
   },
   {
-    title: 'S\'mores & Treats Bar',
-    price: '$79',
-    description: 'Complete s\'mores station with additional sweet treats'
+    title: 'Picnic Party Add-On',
+    price: '$200',
+    description: 'Complete picnic setup with decorations'
   },
   {
-    title: 'Craft Activity Station',
-    price: '$99',
-    description: 'Themed craft activities for all party guests'
+    title: 'Movie Experience',
+    price: '$35',
+    description: 'Indoor/outdoor movie setup with screen'
   },
   {
-    title: 'Professional Photography',
-    price: '$199',
-    description: '1-hour professional photo session with digital delivery'
+    title: "S'mores Bar",
+    price: '$65',
+    description: 'Complete s\'mores station with treats'
   },
   {
-    title: 'Extended Party Time',
-    price: '$149',
-    description: 'Add 2 extra hours to your glamping experience'
+    title: 'Spa Party Add-On',
+    price: '$250',
+    description: 'Spa-themed activities and supplies'
+  },
+  {
+    title: 'Yard Games',
+    price: '$10',
+    description: 'Choice of giant Jenga or Connect 4'
+  },
+  {
+    title: 'Air Conditioner',
+    price: '$50',
+    description: 'Portable AC unit for outdoor tents'
+  },
+  {
+    title: 'Instant Camera',
+    price: '$20',
+    description: 'Camera rental with film included'
+  },
+  {
+    title: 'Pet Package',
+    price: '$20',
+    description: 'Pet-friendly accommodations'
   }
 ];
 
@@ -93,15 +116,15 @@ const ServicesPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Birthday Party Packages & Pricing | Glamping WNY</title>
+        <title>Glamping Packages & Pricing | Indoor & Outdoor Options</title>
         <meta 
           name="description" 
-          content="Choose from our magical glamping birthday packages. All-inclusive pricing with setup, decorations, and cleanup included. Perfect for kids ages 4-12." 
+          content="Choose from our luxury glamping packages. All-inclusive pricing with setup, decorations, and cleanup included. Perfect for birthdays, bachelorettes, and special occasions." 
         />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-primary-900 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
             <span 
@@ -121,7 +144,7 @@ const ServicesPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Packages</h1>
             <p className="text-xl text-white/90 mb-6">
@@ -142,10 +165,10 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Why Choose Glamping?
+                Why Choose Glamping WNY?
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto">
-                Compare your birthday party options and see why families love our magical glamping experience.
+                Compare your celebration options and see why families love our luxury glamping experience.
               </p>
             </motion.div>
           </div>
@@ -163,7 +186,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Packages */}
-      <section className="section bg-white">
+      <section className="section bg-primary-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.div
@@ -173,10 +196,10 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Birthday Packages
+                Indoor Glamping Packages
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto">
-                Select from our popular birthday packages, each designed to create unforgettable memories.
+                Select from our popular packages, each designed to create unforgettable memories.
               </p>
             </motion.div>
           </div>
@@ -198,7 +221,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Add-ons */}
-      <section className="section bg-primary-50">
+      <section className="section bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.div
@@ -220,7 +243,7 @@ const ServicesPage: React.FC = () => {
             {addons.map((addon, index) => (
               <motion.div
                 key={index}
-                className="glass-card p-6 flex flex-col h-full"
+                className="glass-card p-6 flex flex-col h-full hover-lift"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -259,7 +282,7 @@ const ServicesPage: React.FC = () => {
               Ready to Start Planning?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Contact us today to check availability and start creating the perfect birthday experience.
+              Contact us today to check availability and start creating the perfect celebration experience.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 

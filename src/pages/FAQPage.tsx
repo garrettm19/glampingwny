@@ -88,11 +88,11 @@ const FAQPage: React.FC = () => {
     <>
       <Helmet>
         <title>Frequently Asked Questions | Glamping WNY</title>
-        <meta name="description" content="Find answers to common questions about our magical glamping experiences. Learn about booking, setup, weather policies, and more." />
+        <meta name="description" content="Find answers to common questions about our luxury glamping experiences. Learn about booking, setup, weather policies, and more." />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-primary-900 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
             <span 
@@ -118,7 +118,7 @@ const FAQPage: React.FC = () => {
               Frequently Asked Questions
             </h1>
             <p className="text-xl text-white/90">
-              Everything you need to know about our magical glamping experiences.
+              Everything you need to know about our luxury glamping experiences.
             </p>
           </motion.div>
         </div>
