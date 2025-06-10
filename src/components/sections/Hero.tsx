@@ -40,10 +40,10 @@ const Hero: React.FC = () => {
     }
   }, []);
 
-  const scrollToFeatures = useCallback(() => {
-    const featuresSection = document.getElementById('features');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToVirtualTour = useCallback(() => {
+    const virtualTourSection = document.getElementById('virtual-tour');
+    if (virtualTourSection) {
+      virtualTourSection.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
 
@@ -199,13 +199,13 @@ const Hero: React.FC = () => {
             </motion.div>
             
             <motion.button
-              onClick={scrollToFeatures}
+              onClick={scrollToVirtualTour}
               className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-lg border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:shadow-xl"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-              View Packages
+              <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              View the Experience
             </motion.button>
           </motion.div>
 
@@ -250,13 +250,13 @@ const Hero: React.FC = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-        onClick={scrollToFeatures}
-        aria-label="Scroll down to explore packages"
+        onClick={scrollToVirtualTour}
+        aria-label="Scroll down to view virtual tour"
         whileHover={{ scale: 1.1 }}
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity">
-            Explore Packages
+            View Virtual Tour
           </span>
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
             <motion.div
