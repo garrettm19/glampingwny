@@ -135,31 +135,18 @@ const Hero: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Professional Main Headline with enhanced animation */}
+          {/* Clean, Professional Main Headline */}
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.9]"
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.9] text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            style={{
+              textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6), 0 1px 5px rgba(0,0,0,0.4)',
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
+            }}
           >
-            <motion.span 
-              className="block text-white relative"
-              style={{
-                textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6), 0 1px 5px rgba(0,0,0,0.4)',
-                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
-              }}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              Glamping WNY
-              {/* Subtle glow effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 3, repeat: Infinity, repeatDelay: 5 }}
-                style={{ clipPath: 'inset(0)' }}
-              />
-            </motion.span>
+            Glamping WNY
           </motion.h1>
 
           {/* Professional Subheadline */}
@@ -175,7 +162,7 @@ const Hero: React.FC = () => {
             Premium Birthday Party Glamping Experiences
           </motion.h2>
           
-          {/* Value Proposition with typing effect */}
+          {/* Value Proposition */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -208,13 +195,6 @@ const Hero: React.FC = () => {
                   Book Your Experience
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
-                {/* Animated background effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                />
               </Link>
             </motion.div>
             
