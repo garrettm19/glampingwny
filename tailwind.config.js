@@ -5,17 +5,17 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-          950: '#042f2e',
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+          950: '#052e16',
         },
         secondary: {
           50: '#fff9ed',
@@ -31,17 +31,17 @@ export default {
           950: '#461e05',
         },
         accent: {
-          50: '#fef7ff',
-          100: '#fdeeff',
-          200: '#fcdcff',
-          300: '#fbb9ff',
-          400: '#f786ff',
-          500: '#ed53ff',
-          600: '#d631e8',
-          700: '#b421c4',
-          800: '#931ca0',
-          900: '#791a82',
-          950: '#500754',
+          50: '#fdf2f8',
+          100: '#fce7f3',
+          200: '#fbcfe8',
+          300: '#f9a8d4',
+          400: '#f472b6',
+          500: '#ec4899',
+          600: '#db2777',
+          700: '#be185d',
+          800: '#9d174d',
+          900: '#831843',
+          950: '#500724',
         },
       },
       fontFamily: {
@@ -52,69 +52,31 @@ export default {
         xs: '2px',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(20, 184, 166, 0.3)',
-        'glow-lg': '0 0 30px rgba(20, 184, 166, 0.4)',
-        'glow-xl': '0 0 40px rgba(20, 184, 166, 0.5)',
+        'glow': '0 0 20px rgba(255, 255, 255, 0.2)',
+        'glow-lg': '0 0 30px rgba(255, 255, 255, 0.3)',
       },
       keyframes: {
         sparkle: {
-          '0%, 100%': { opacity: 0.8, transform: 'scale(1) rotate(0deg)' },
-          '50%': { opacity: 1, transform: 'scale(1.2) rotate(180deg)' },
+          '0%, 100%': { opacity: 0.8, transform: 'scale(1)' },
+          '50%': { opacity: 1, transform: 'scale(1.1)' },
         },
         float: {
-          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-          '33%': { transform: 'translateY(-10px) rotate(120deg)' },
-          '66%': { transform: 'translateY(5px) rotate(240deg)' },
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
         firefly: {
           '0%, 100%': { opacity: 0, transform: 'translate(0, 0)' },
           '50%': { opacity: 1, transform: 'translate(10px, -10px)' },
-        },
-        'pulse-glow': {
-          '0%, 100%': {
-            boxShadow: '0 0 5px rgba(20, 184, 166, 0.5)',
-          },
-          '50%': {
-            boxShadow: '0 0 20px rgba(20, 184, 166, 0.8), 0 0 30px rgba(20, 184, 166, 0.4)',
-          },
-        },
-        'slide-in': {
-          from: {
-            opacity: 0,
-            transform: 'translateY(20px)',
-          },
-          to: {
-            opacity: 1,
-            transform: 'translateY(0)',
-          },
-        },
-        'gradient-shift': {
-          '0%, 100%': {
-            backgroundPosition: '0% 50%',
-          },
-          '50%': {
-            backgroundPosition: '100% 50%',
-          },
-        },
+        }
       },
       animation: {
-        sparkle: 'sparkle 3s ease-in-out infinite',
+        sparkle: 'sparkle 2s ease-in-out infinite',
         float: 'float 6s ease-in-out infinite',
         firefly: 'firefly 3s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-        'slide-in': 'slide-in 0.6s ease-out forwards',
-        'gradient-shift': 'gradient-shift 3s ease-in-out infinite',
       },
       backgroundImage: {
         'glass': 'linear-gradient(to right bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8))',
         'glass-hover': 'linear-gradient(to right bottom, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.85))',
-        'gradient-primary': 'linear-gradient(135deg, #14b8a6, #0d9488)',
-        'gradient-secondary': 'linear-gradient(135deg, #f79815, #e17b0c)',
-        'gradient-accent': 'linear-gradient(135deg, #ed53ff, #d631e8)',
-        'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))',
-      },
-      backgroundSize: {
-        '300%': '300%',
       },
     },
   },

@@ -64,14 +64,14 @@ const Hero: React.FC = () => {
           />
         </AnimatePresence>
         
-        {/* Enhanced Professional overlay with teal gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/85 to-primary-900/90" />
+        {/* Professional overlay with gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90" />
         
         {/* Additional backdrop for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
       </div>
 
-      {/* Enhanced animated floating elements */}
+      {/* Animated floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(isMobile ? 8 : 15)].map((_, i) => (
           <motion.div
@@ -93,8 +93,8 @@ const Hero: React.FC = () => {
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
               ],
-              opacity: [0, 0.8, 0.4, 0.9, 0],
-              scale: [1, 1.3, 0.8, 1.2, 1]
+              opacity: [0, 0.6, 0.3, 0.7, 0],
+              scale: [1, 1.2, 0.8, 1.1, 1]
             }}
             transition={{
               duration: 20 + Math.random() * 10,
@@ -104,10 +104,10 @@ const Hero: React.FC = () => {
             }}
           >
             <div 
-              className="w-2 h-2 bg-primary-300 rounded-full animate-pulse-glow"
+              className="w-1.5 h-1.5 bg-white rounded-full"
               style={{
-                boxShadow: '0 0 8px 3px rgba(20, 184, 166, 0.6)',
-                background: 'radial-gradient(circle, rgba(20, 184, 166, 0.9) 0%, rgba(20, 184, 166, 0.4) 70%, transparent 100%)'
+                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.5)',
+                background: 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 70%, transparent 100%)'
               }}
             />
           </motion.div>
@@ -117,25 +117,25 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl text-center">
-          {/* Enhanced Location Badge with teal theme */}
+          {/* Location Badge with animation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500/20 backdrop-blur-md rounded-full border border-primary-300/30 mb-8 group hover:bg-primary-500/25 transition-all duration-300 hover:shadow-glow"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-8 group hover:bg-white/25 transition-all duration-300"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <MapPin className="w-4 h-4 text-primary-300" />
+              <MapPin className="w-4 h-4 text-white" />
             </motion.div>
-            <span className="text-primary-100 text-sm font-medium tracking-wide">
+            <span className="text-white text-sm font-medium tracking-wide">
               Serving Buffalo & Western New York
             </span>
           </motion.div>
 
-          {/* Enhanced Main Headline with better typography */}
+          {/* Clean, Professional Main Headline */}
           <motion.h1 
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.9] text-white"
             initial={{ opacity: 0, y: 30 }}
@@ -146,14 +146,12 @@ const Hero: React.FC = () => {
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
             }}
           >
-            <span className="bg-gradient-to-r from-white via-primary-100 to-white bg-clip-text text-transparent animate-gradient-shift bg-300%">
-              Glamping WNY
-            </span>
+            Glamping WNY
           </motion.h1>
 
-          {/* Enhanced Professional Subheadline */}
+          {/* Professional Subheadline */}
           <motion.h2 
-            className="text-xl md:text-2xl lg:text-3xl text-primary-100 font-medium mb-6 leading-relaxed"
+            className="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-6 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -164,7 +162,7 @@ const Hero: React.FC = () => {
             Premium Birthday Party Glamping Experiences
           </motion.h2>
           
-          {/* Enhanced Value Proposition */}
+          {/* Value Proposition */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -177,7 +175,7 @@ const Hero: React.FC = () => {
             Complete setup, themed decorations, and stress-free cleanup included.
           </motion.p>
           
-          {/* Enhanced CTA Buttons with teal theme */}
+          {/* Enhanced CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -190,7 +188,7 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-glow-xl interactive-element"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -202,16 +200,16 @@ const Hero: React.FC = () => {
             
             <motion.button
               onClick={scrollToFeatures}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-lg border border-white/30 hover:bg-white/25 hover:border-primary-300/50 transition-all duration-300 hover:shadow-xl interactive-element"
+              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-lg border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:shadow-xl"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform text-primary-300" />
+              <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
               View Packages
             </motion.button>
           </motion.div>
 
-          {/* Enhanced Trust Indicators with teal accents */}
+          {/* Enhanced Trust Indicators */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
             initial={{ opacity: 0, y: 20 }}
@@ -220,8 +218,8 @@ const Hero: React.FC = () => {
             style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}
           >
             <motion.div 
-              className="flex items-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full backdrop-blur-sm border border-primary-300/30"
-              whileHover={{ scale: 1.05, backgroundColor: 'rgba(20, 184, 166, 0.3)' }}
+              className="flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
             >
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
@@ -238,22 +236,16 @@ const Hero: React.FC = () => {
               <span className="font-medium">200+ Happy Families</span>
             </motion.div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium flex items-center gap-1">
-              <span className="text-primary-300">✓</span> Ages 5-12
-            </div>
+            <div className="font-medium">✓ Ages 5-12</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium flex items-center gap-1">
-              <span className="text-primary-300">✓</span> Year-Round
-            </div>
+            <div className="font-medium">✓ Year-Round</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium flex items-center gap-1">
-              <span className="text-primary-300">✓</span> Setup Included
-            </div>
+            <div className="font-medium">✓ Setup Included</div>
           </motion.div>
         </div>
       </div>
       
-      {/* Enhanced Scroll Indicator with teal theme */}
+      {/* Enhanced Scroll Indicator */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}
@@ -263,12 +255,12 @@ const Hero: React.FC = () => {
         whileHover={{ scale: 1.1 }}
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity text-primary-200">
+          <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity">
             Explore Packages
           </span>
-          <div className="w-6 h-10 border-2 border-primary-300/50 rounded-full flex justify-center group-hover:border-primary-300/70 transition-colors relative overflow-hidden">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
             <motion.div
-              className="w-1 h-3 bg-primary-300/60 rounded-full mt-2"
+              className="w-1 h-3 bg-white/60 rounded-full mt-2"
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             />
@@ -276,13 +268,13 @@ const Hero: React.FC = () => {
         </div>
       </motion.button>
 
-      {/* Enhanced Image indicators with teal theme */}
+      {/* Image indicators */}
       <div className="absolute bottom-20 right-8 z-20 flex flex-col gap-2">
         {heroImages.map((_, index) => (
           <motion.button
             key={index}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentImageIndex ? 'bg-primary-400 shadow-glow' : 'bg-white/40'
+              index === currentImageIndex ? 'bg-white' : 'bg-white/40'
             }`}
             onClick={() => setCurrentImageIndex(index)}
             whileHover={{ scale: 1.2 }}
