@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, X, Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
 import Logo from '../ui/Logo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '../../utils/analytics';
@@ -8,18 +8,17 @@ import { trackEvent } from '../../utils/analytics';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showTopBar, setShowTopBar] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+      setShowTopBar(scrollY < 100);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -43,64 +42,76 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Top Contact Bar - Only visible on desktop when not scrolled */}
+      {/* Elegant Top Contact Bar */}
       <AnimatePresence>
-        {!isScrolled && (
+        {showTopBar && (
           <motion.div
             initial={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.3 }}
-            className="hidden lg:block bg-primary-900/95 backdrop-blur-sm text-white py-2 relative z-50"
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="hidden lg:block bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white py-3 relative z-50 border-b border-white/10"
           >
             <div className="container-custom">
               <div className="flex justify-between items-center text-sm">
-                <div className="flex items-center space-x-6">
-                  <a 
+                <div className="flex items-center space-x-8">
+                  <motion.a 
                     href="tel:+17165551234"
-                    className="flex items-center gap-2 hover:text-primary-300 transition-colors"
+                    className="flex items-center gap-2 hover:text-emerald-300 transition-all duration-300 group"
                     onClick={() => trackEvent('Contact', 'phone_click', 'top_bar')}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <Phone className="w-4 h-4" />
-                    (716) 555-1234
-                  </a>
-                  <a 
+                    <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors duration-300">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">(716) 555-1234</span>
+                  </motion.a>
+                  
+                  <motion.a 
                     href="mailto:info@glampingwny.com"
-                    className="flex items-center gap-2 hover:text-primary-300 transition-colors"
+                    className="flex items-center gap-2 hover:text-emerald-300 transition-all duration-300 group"
                     onClick={() => trackEvent('Contact', 'email_click', 'top_bar')}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <Mail className="w-4 h-4" />
-                    info@glampingwny.com
-                  </a>
-                  <div className="flex items-center gap-2 text-primary-300">
-                    <MapPin className="w-4 h-4" />
-                    Serving Buffalo & WNY
+                    <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors duration-300">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">info@glampingwny.com</span>
+                  </motion.a>
+                  
+                  <div className="flex items-center gap-2 text-emerald-300">
+                    <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <span className="font-medium">Serving Buffalo & WNY</span>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-4">
-                  <span className="text-primary-300">Follow us:</span>
-                  <a 
-                    href="https://instagram.com/glampingwny" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-primary-300 transition-colors"
-                    aria-label="Follow us on Instagram"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                  </a>
-                  <a 
-                    href="https://facebook.com/glampingwny" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:text-primary-300 transition-colors"
-                    aria-label="Follow us on Facebook"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                  </a>
+                <div className="flex items-center space-x-6">
+                  <span className="text-white/70 font-medium">Follow us:</span>
+                  <div className="flex space-x-3">
+                    <motion.a 
+                      href="https://instagram.com/glampingwny" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink-500/20 hover:text-pink-300 transition-all duration-300"
+                      aria-label="Follow us on Instagram"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Instagram className="w-4 h-4" />
+                    </motion.a>
+                    <motion.a 
+                      href="https://facebook.com/glampingwny" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-300 transition-all duration-300"
+                      aria-label="Follow us on Facebook"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Facebook className="w-4 h-4" />
+                    </motion.a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,211 +119,293 @@ const Header: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Main Header */}
-      <header 
-        className={`fixed w-full z-40 transition-all duration-300 ${
+      {/* Main Header with Glass Morphism */}
+      <motion.header 
+        className={`fixed w-full z-40 transition-all duration-500 ease-out ${
           isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' 
+            ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-white/20 py-3' 
             : 'bg-transparent py-4'
         }`}
-        style={{ top: !isScrolled ? '40px' : '0' }}
+        style={{ 
+          top: showTopBar && !isScrolled ? '52px' : '0',
+          backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none'
+        }}
+        initial={false}
+        animate={{
+          top: showTopBar && !isScrolled ? '52px' : '0'
+        }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
         role="banner"
       >
         <div className="container-custom flex justify-between items-center">
-          <Link 
-            to="/" 
-            className="z-10"
-            aria-label="Glamping WNY Home"
-            onClick={() => handleNavClick('logo')}
+          {/* Logo with enhanced animation */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Logo isScrolled={isScrolled} />
-          </Link>
+            <Link 
+              to="/" 
+              className="z-10 block"
+              aria-label="Glamping WNY Home"
+              onClick={() => handleNavClick('logo')}
+            >
+              <Logo isScrolled={isScrolled} />
+            </Link>
+          </motion.div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with enhanced styling */}
           <nav 
-            className="hidden lg:flex items-center space-x-8"
+            className="hidden lg:flex items-center space-x-2"
             role="navigation"
             aria-label="Main navigation"
           >
-            {navLinks.map((link) => (
-              <Link
+            {navLinks.map((link, index) => (
+              <motion.div
                 key={link.name}
-                to={link.path}
-                onClick={() => handleNavClick(link.name.toLowerCase())}
-                className={`font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md px-3 py-2 ${
-                  isScrolled 
-                    ? 'text-gray-800 hover:text-primary-600 focus-visible:text-primary-600' 
-                    : 'text-white hover:text-primary-300 focus-visible:text-primary-300'
-                }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
               >
-                {link.name}
-              </Link>
+                <Link
+                  to={link.path}
+                  onClick={() => handleNavClick(link.name.toLowerCase())}
+                  className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
+                    isScrolled 
+                      ? 'text-gray-700 hover:text-emerald-600' 
+                      : 'text-white hover:text-emerald-300'
+                  }`}
+                >
+                  <span className="relative z-10">{link.name}</span>
+                  
+                  {/* Hover background effect */}
+                  <motion.div
+                    className={`absolute inset-0 rounded-lg ${
+                      isScrolled 
+                        ? 'bg-emerald-50' 
+                        : 'bg-white/10'
+                    }`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  
+                  {/* Active indicator */}
+                  {location.pathname === link.path && (
+                    <motion.div
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-emerald-500 rounded-full"
+                      layoutId="activeIndicator"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      style={{ x: '-50%' }}
+                    />
+                  )}
+                </Link>
+              </motion.div>
             ))}
             
+            {/* Enhanced CTA Button */}
             <motion.div
+              className="ml-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link 
                 to="/book-now" 
-                className="btn btn-primary"
+                className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
                 onClick={() => handleNavClick('book_now')}
                 aria-label="Book Now"
               >
-                Book Your Experience
+                <span className="relative z-10">Book Your Experience</span>
+                
+                {/* Shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6 }}
+                />
               </Link>
             </motion.div>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden z-10 p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md"
+          {/* Mobile Menu Button with enhanced animation */}
+          <motion.button
+            className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            {isMenuOpen ? (
-              <X className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
-            ) : (
-              <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
-            )}
-          </button>
+            <AnimatePresence mode="wait">
+              {isMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
 
-          {/* Mobile Navigation */}
+          {/* Enhanced Mobile Navigation */}
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div 
-                initial={{ opacity: 0, x: '100%' }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: '100%' }}
-                transition={{ type: "tween", duration: 0.3 }}
-                className="fixed inset-0 bg-white flex flex-col lg:hidden z-50"
-                role="dialog"
-                aria-modal="true"
-                aria-label="Mobile menu"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden z-50"
+                onClick={() => setIsMenuOpen(false)}
               >
-                {/* Mobile Header */}
-                <div className="flex justify-between items-center p-6 border-b border-gray-100">
-                  <Logo isScrolled={true} />
-                  <button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="p-2 text-gray-800 hover:bg-gray-100 rounded-md transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
+                <motion.div
+                  initial={{ x: '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '100%' }}
+                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="absolute right-0 top-0 h-full w-80 bg-white shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label="Mobile menu"
+                >
+                  {/* Mobile Header */}
+                  <div className="flex justify-between items-center p-6 border-b border-gray-100">
+                    <Logo isScrolled={true} />
+                    <motion.button
+                      onClick={() => setIsMenuOpen(false)}
+                      className="p-2 text-gray-800 hover:bg-gray-100 rounded-xl transition-colors"
+                      aria-label="Close menu"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <X className="h-6 w-6" />
+                    </motion.button>
+                  </div>
 
-                {/* Mobile Contact Info */}
-                <div className="p-6 bg-primary-50 border-b border-gray-100">
-                  <div className="space-y-4">
-                    <a 
-                      href="tel:+17165551234"
-                      className="flex items-center gap-3 text-primary-900 font-medium hover:text-primary-700 transition-colors"
-                      onClick={() => trackEvent('Contact', 'phone_click', 'mobile_menu')}
-                    >
-                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-primary-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">Call Us</div>
-                        <div className="text-sm text-gray-600">(716) 555-1234</div>
-                      </div>
-                    </a>
-                    <a 
-                      href="mailto:info@glampingwny.com"
-                      className="flex items-center gap-3 text-primary-900 font-medium hover:text-primary-700 transition-colors"
-                      onClick={() => trackEvent('Contact', 'email_click', 'mobile_menu')}
-                    >
-                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                        <Mail className="w-5 h-5 text-primary-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">Email Us</div>
-                        <div className="text-sm text-gray-600">info@glampingwny.com</div>
-                      </div>
-                    </a>
-                    <div className="flex items-center gap-3 text-primary-900">
-                      <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-primary-600" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">Service Area</div>
-                        <div className="text-sm text-gray-600">Buffalo & WNY</div>
-                      </div>
+                  {/* Mobile Contact Info */}
+                  <div className="p-6 bg-gradient-to-br from-emerald-50 to-blue-50 border-b border-gray-100">
+                    <div className="space-y-4">
+                      <motion.a 
+                        href="tel:+17165551234"
+                        className="flex items-center gap-3 text-gray-800 font-medium hover:text-emerald-600 transition-colors group"
+                        onClick={() => trackEvent('Contact', 'phone_click', 'mobile_menu')}
+                        whileHover={{ x: 5 }}
+                      >
+                        <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                          <Phone className="w-5 h-5 text-emerald-600" />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Call Us</div>
+                          <div className="text-sm text-gray-600">(716) 555-1234</div>
+                        </div>
+                      </motion.a>
+                      
+                      <motion.a 
+                        href="mailto:info@glampingwny.com"
+                        className="flex items-center gap-3 text-gray-800 font-medium hover:text-emerald-600 transition-colors group"
+                        onClick={() => trackEvent('Contact', 'email_click', 'mobile_menu')}
+                        whileHover={{ x: 5 }}
+                      >
+                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                          <Mail className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Email Us</div>
+                          <div className="text-sm text-gray-600">info@glampingwny.com</div>
+                        </div>
+                      </motion.a>
                     </div>
                   </div>
-                </div>
 
-                {/* Mobile Navigation Links */}
-                <div className="flex-1 flex flex-col justify-center space-y-6 px-6">
-                  {navLinks.map((link, index) => (
+                  {/* Mobile Navigation Links */}
+                  <div className="flex-1 p-6">
+                    <div className="space-y-2">
+                      {navLinks.map((link, index) => (
+                        <motion.div
+                          key={link.name}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                        >
+                          <Link
+                            to={link.path}
+                            className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-emerald-50 hover:text-emerald-600 rounded-xl transition-all duration-200"
+                            onClick={() => handleNavClick(link.name.toLowerCase())}
+                          >
+                            {link.name}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                    
                     <motion.div
-                      key={link.name}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      transition={{ duration: 0.3, delay: 0.5 }}
+                      className="mt-8"
                     >
-                      <Link
-                        to={link.path}
-                        className="text-gray-800 text-2xl font-semibold hover:text-primary-600 focus-visible:text-primary-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded-md px-2 py-1 block"
-                        onClick={() => handleNavClick(link.name.toLowerCase())}
+                      <Link 
+                        to="/book-now" 
+                        className="block w-full text-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                        onClick={() => handleNavClick('book_now_mobile')}
                       >
-                        {link.name}
+                        Book Your Experience
                       </Link>
                     </motion.div>
-                  ))}
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3, delay: 0.5 }}
-                    className="pt-6"
-                  >
-                    <Link 
-                      to="/book-now" 
-                      className="btn btn-primary w-full justify-center text-lg py-4"
-                      onClick={() => handleNavClick('book_now_mobile')}
-                    >
-                      Book Your Experience
-                    </Link>
-                  </motion.div>
-                </div>
-
-                {/* Mobile Social Links */}
-                <div className="p-6 border-t border-gray-100">
-                  <div className="flex justify-center space-x-6">
-                    <a 
-                      href="https://instagram.com/glampingwny" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors"
-                      aria-label="Follow us on Instagram"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                      </svg>
-                    </a>
-                    <a 
-                      href="https://facebook.com/glampingwny" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 hover:bg-primary-200 transition-colors"
-                      aria-label="Follow us on Facebook"
-                    >
-                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                      </svg>
-                    </a>
                   </div>
-                </div>
+
+                  {/* Mobile Social Links */}
+                  <div className="p-6 border-t border-gray-100">
+                    <div className="flex justify-center space-x-4">
+                      <motion.a 
+                        href="https://instagram.com/glampingwny" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors"
+                        aria-label="Follow us on Instagram"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Instagram className="w-6 h-6" />
+                      </motion.a>
+                      <motion.a 
+                        href="https://facebook.com/glampingwny" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors"
+                        aria-label="Follow us on Facebook"
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Facebook className="w-6 h-6" />
+                      </motion.a>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-      </header>
+      </motion.header>
     </>
   );
 };
