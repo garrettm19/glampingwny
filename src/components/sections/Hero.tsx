@@ -1,11 +1,10 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Volume2, VolumeX, Sparkles, Calendar, Star } from 'lucide-react';
+import { ChevronDown, Sparkles, Calendar, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
 const Hero: React.FC = () => {
-  const [ambientMode, setAmbientMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -31,10 +30,6 @@ const Hero: React.FC = () => {
       featuresSection.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
-
-  const toggleAmbientMode = () => {
-    setAmbientMode(!ambientMode);
-  };
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -105,124 +100,6 @@ const Hero: React.FC = () => {
           </motion.div>
         ))}
       </div>
-
-      {/* Magical Campfire */}
-      <div className="absolute bottom-8 right-8 z-20 pointer-events-none">
-        <motion.div
-          className="relative"
-          animate={{
-            scale: [1, 1.05, 0.98, 1.02, 1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Campfire Base */}
-          <div className="w-16 h-16 relative">
-            {/* Fire Glow */}
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: 'radial-gradient(circle, rgba(255,140,0,0.8) 0%, rgba(255,69,0,0.6) 40%, rgba(255,0,0,0.3) 70%, transparent 100%)',
-                filter: 'blur(8px)'
-              }}
-              animate={{
-                scale: [1, 1.2, 0.9, 1.1, 1],
-                opacity: [0.6, 0.9, 0.7, 0.8, 0.6]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Fire Flames */}
-            <div className="absolute inset-0 flex items-end justify-center">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="w-2 h-8 mx-0.5"
-                  style={{
-                    background: `linear-gradient(to top, 
-                      rgba(255,140,0,1) 0%, 
-                      rgba(255,69,0,0.9) 30%, 
-                      rgba(255,0,0,0.7) 60%, 
-                      rgba(255,255,0,0.5) 100%)`,
-                    borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-                    transformOrigin: 'bottom center'
-                  }}
-                  animate={{
-                    scaleY: [1, 1.3, 0.8, 1.2, 1],
-                    scaleX: [1, 0.8, 1.1, 0.9, 1],
-                    skewX: [0, 2, -1, 1, 0]
-                  }}
-                  transition={{
-                    duration: 1.5 + Math.random() * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.1
-                  }}
-                />
-              ))}
-            </div>
-            
-            {/* Sparks */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-0.5 h-0.5 bg-yellow-400 rounded-full"
-                style={{
-                  left: `${40 + Math.random() * 20}%`,
-                  bottom: `${60 + Math.random() * 20}%`
-                }}
-                animate={{
-                  y: [-10, -30, -20],
-                  x: [0, Math.random() * 10 - 5, Math.random() * 8 - 4],
-                  opacity: [1, 0.5, 0],
-                  scale: [1, 0.5, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.7,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Ambient Sound Toggle */}
-      <motion.button
-        onClick={toggleAmbientMode}
-        className="absolute top-24 right-8 z-30 p-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        title={ambientMode ? "Disable ambient sounds" : "Enable ambient sounds"}
-      >
-        {ambientMode ? (
-          <Volume2 className="w-5 h-5 text-white" />
-        ) : (
-          <VolumeX className="w-5 h-5 text-white" />
-        )}
-        
-        {/* Sound waves animation when active */}
-        <AnimatePresence>
-          {ambientMode && (
-            <motion.div
-              className="absolute -inset-2 border-2 border-white/30 rounded-full"
-              initial={{ scale: 1, opacity: 0.5 }}
-              animate={{ scale: 1.5, opacity: 0 }}
-              exit={{ scale: 1, opacity: 0.5 }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          )}
-        </AnimatePresence>
-      </motion.button>
 
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center">
