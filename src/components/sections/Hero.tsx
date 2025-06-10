@@ -33,26 +33,19 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Sophisticated Background */}
+      {/* Glamping Background Image */}
       <div className="absolute inset-0 z-0">
-        {/* Deep gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900" />
-        
-        {/* Elegant overlay pattern */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 40%),
-                             radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 40%),
-                             radial-gradient(circle at 40% 80%, rgba(255,255,255,0.08) 0%, transparent 40%)`
-          }}
+        <img 
+          src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+          alt="Luxury glamping tents at sunset"
+          className="w-full h-full object-cover"
         />
         
-        {/* Subtle atmospheric lighting */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-indigo-400/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
-        </div>
+        {/* Elegant overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-emerald-900/60 to-amber-900/70" />
+        
+        {/* Additional atmospheric overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
       </div>
 
       {/* Refined floating particles */}
@@ -88,10 +81,10 @@ const Hero: React.FC = () => {
             }}
           >
             <div 
-              className="w-1 h-1 bg-white rounded-full"
+              className="w-1 h-1 bg-amber-300 rounded-full"
               style={{
-                boxShadow: '0 0 6px 1px rgba(255, 255, 255, 0.4)',
-                background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 70%, transparent 100%)'
+                boxShadow: '0 0 6px 1px rgba(251, 191, 36, 0.6)',
+                background: 'radial-gradient(circle, rgba(251, 191, 36, 0.9) 0%, rgba(251, 191, 36, 0.4) 70%, transparent 100%)'
               }}
             />
           </motion.div>
@@ -106,11 +99,11 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 backdrop-blur-md rounded-full border border-white/10 mb-8"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
           >
             <Star className="w-4 h-4 text-amber-300" />
             <span className="text-white/90 text-sm font-medium tracking-wide">
-              Premium Outdoor Experiences
+              Luxury Outdoor Experiences
             </span>
           </motion.div>
 
@@ -121,18 +114,18 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 100%)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #fbbf24 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+              textShadow: '0 4px 12px rgba(0,0,0,0.5)',
+              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
             }}
           >
-            Luxury Glamping
+            Magical Glamping
             <br />
             <span className="relative">
-              Redefined
+              Adventures
               {/* Subtle accent */}
               <motion.div
                 className="absolute -top-6 -right-6 text-amber-300 opacity-80"
@@ -153,14 +146,14 @@ const Hero: React.FC = () => {
           
           {/* Refined Subheadline */}
           <motion.p 
-            className="text-xl md:text-2xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}
+            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
           >
-            Curated outdoor experiences for discerning celebrations. 
-            <span className="text-amber-200 font-medium"> Where sophistication meets adventure.</span>
+            Create unforgettable memories under the stars. 
+            <span className="text-amber-200 font-medium"> Where nature meets luxury.</span>
           </motion.p>
           
           {/* Elegant CTA Buttons */}
@@ -176,11 +169,11 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-white/20"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  Reserve Your Experience
+                  Book Your Adventure
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 
@@ -196,7 +189,7 @@ const Hero: React.FC = () => {
             
             <motion.button
               onClick={scrollToFeatures}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/5 backdrop-blur-md text-white font-medium rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300"
+              className="group inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-md text-white font-medium rounded-full border border-white/30 hover:bg-white/20 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -207,7 +200,7 @@ const Hero: React.FC = () => {
 
           {/* Sophisticated Trust Indicators */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-8 text-white/70"
+            className="flex flex-wrap items-center justify-center gap-8 text-white/80"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -218,7 +211,7 @@ const Hero: React.FC = () => {
                   <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                 ))}
               </div>
-              <span className="text-sm font-medium">200+ Celebrations</span>
+              <span className="text-sm font-medium">200+ Happy Families</span>
             </div>
             <div className="w-px h-4 bg-white/30" />
             <div className="text-sm font-medium">✓ Fully Licensed & Insured</div>
