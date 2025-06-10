@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
           >
             <Star className="w-4 h-4 text-amber-300" />
             <span className="text-white/90 text-sm font-medium tracking-wide">
-              Luxury Outdoor Experiences
+              Western New York's Premier Glamping Experience
             </span>
           </motion.div>
 
@@ -113,47 +113,39 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #fbbf24 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 4px 12px rgba(0,0,0,0.5)',
-              filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))'
-            }}
           >
-            Magical Glamping
-            <br />
-            <span className="relative">
-              Adventures
-              {/* Subtle accent */}
-              <motion.div
-                className="absolute -top-6 -right-6 text-amber-300 opacity-80"
-                animate={{
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                ✦
-              </motion.div>
+            <span 
+              className="block"
+              style={{
+                color: '#ffffff',
+                textShadow: '0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
+              }}
+            >
+              Glamping WNY
+            </span>
+            <span 
+              className="block text-4xl md:text-5xl lg:text-6xl mt-4"
+              style={{
+                color: '#f8fafc',
+                textShadow: '0 2px 8px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.5)',
+                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))'
+              }}
+            >
+              Magical Memories Made Easy
             </span>
           </motion.h1>
           
           {/* Refined Subheadline */}
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-white/95 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
+            style={{ textShadow: '0 2px 4px rgba(0,0,0,0.6)' }}
           >
-            Create unforgettable memories under the stars. 
-            <span className="text-amber-200 font-medium"> Where nature meets luxury.</span>
+            Indoor & outdoor glamping experiences for birthdays, celebrations, and special moments.
+            <span className="text-amber-200 font-medium"> We handle everything, you make the memories.</span>
           </motion.p>
           
           {/* Elegant CTA Buttons */}
@@ -173,7 +165,7 @@ const Hero: React.FC = () => {
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  Book Your Adventure
+                  Book Your Experience
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 
@@ -194,16 +186,17 @@ const Hero: React.FC = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Sparkles className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />
-              Explore Experiences
+              See Our Packages
             </motion.button>
           </motion.div>
 
           {/* Sophisticated Trust Indicators */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-8 text-white/80"
+            className="flex flex-wrap items-center justify-center gap-8 text-white/90"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
+            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
           >
             <div className="flex items-center gap-2">
               <div className="flex">
@@ -214,9 +207,9 @@ const Hero: React.FC = () => {
               <span className="text-sm font-medium">200+ Happy Families</span>
             </div>
             <div className="w-px h-4 bg-white/30" />
-            <div className="text-sm font-medium">✓ Fully Licensed & Insured</div>
+            <div className="text-sm font-medium">✓ Indoor & Outdoor Options</div>
             <div className="w-px h-4 bg-white/30" />
-            <div className="text-sm font-medium">✓ Premium Service Guarantee</div>
+            <div className="text-sm font-medium">✓ Complete Setup & Cleanup</div>
           </motion.div>
         </div>
       </div>

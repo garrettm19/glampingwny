@@ -23,10 +23,10 @@ const Logo: React.FC<LogoProps> = ({ isScrolled = false, footer = false }) => {
       </div>
       <div className="flex flex-col">
         <span className={`font-display text-xl font-bold leading-none ${textColor}`}>
-          Glamping
+          Glamping WNY
         </span>
-        <span className={`text-xs font-medium tracking-wider ${textColor}`}>
-          WESTERN NEW YORK
+        <span className={`text-xs font-medium tracking-wider ${textColor} opacity-80`}>
+          MAGICAL EXPERIENCES
         </span>
       </div>
     </div>

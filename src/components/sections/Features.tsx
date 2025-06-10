@@ -5,8 +5,8 @@ import { Tent, Sparkles, Bath, Clock, PartyPopper, Shield, Heart, Star, Calendar
 const features = [
   {
     icon: Tent,
-    title: "Multiple Event Types 🎪",
-    description: "From birthdays to bachelorette parties, we do it all",
+    title: "Indoor & Outdoor Options 🏠",
+    description: "Year-round indoor glamping plus seasonal outdoor experiences",
     color: "bg-emerald-50 text-emerald-600",
     shadowColor: "shadow-emerald-200/50",
     image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80"
@@ -14,7 +14,7 @@ const features = [
   {
     icon: Sparkles,
     title: "Magical Decorations ✨",
-    description: "Themed setups with twinkling lights and decor",
+    description: "Themed setups with twinkling lights and custom decor",
     color: "bg-amber-50 text-amber-600",
     shadowColor: "shadow-amber-200/50",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80"
@@ -56,15 +56,15 @@ const features = [
 const services = [
   "Indoor Sleepover Packages",
   "Outdoor Bell Tent Glamping",
-  "Outdoor Movie Nights",
   "Birthday Parties",
-  "Bachelorette Parties",
+  "Bachelorette Parties", 
   "Sweet Sixteens",
-  "Romantic Proposals",
-  "Anniversaries",
-  "Weddings",
-  "Showers",
-  "Graduations"
+  "Slumber Parties",
+  "Special Celebrations",
+  "Custom Themed Events",
+  "Movie Night Experiences",
+  "Spa Party Add-ons",
+  "Holiday Celebrations"
 ];
 
 const container = {
