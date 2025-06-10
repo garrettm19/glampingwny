@@ -59,7 +59,7 @@ const ComparisonTable: React.FC = () => {
         <thead>
           <tr className="border-b-2 border-primary-200">
             <th className="text-left py-4 px-4 font-bold text-primary-900">Features</th>
-            <th className="text-center py-4 px-4 font-bold text-accent-600">
+            <th className="text-center py-4 px-4 font-bold text-primary-600">
               Glamping WNY
             </th>
             <th className="text-center py-4 px-4 font-bold text-gray-600">
@@ -81,7 +81,7 @@ const ComparisonTable: React.FC = () => {
               </td>
               <td className="py-4 px-4 text-center">
                 {row.glamping ? (
-                  <Check className="w-6 h-6 text-accent-600 mx-auto" />
+                  <Check className="w-6 h-6 text-primary-600 mx-auto" />
                 ) : (
                   <X className="w-6 h-6 text-gray-400 mx-auto" />
                 )}
@@ -109,9 +109,9 @@ const ComparisonTable: React.FC = () => {
         <p className="text-sm text-gray-600 mb-4">
           See why families choose our hassle-free glamping experience over traditional party planning.
         </p>
-        <div className="inline-flex items-center gap-2 bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium">
+        <div className="inline-flex items-center gap-2 bg-primary-50 text-primary-700 px-4 py-2 rounded-full text-sm font-medium">
           <Check className="w-4 h-4" />
-          All-inclusive packages starting at $299
+          All-inclusive packages starting at $225
         </div>
       </div>
     </div>

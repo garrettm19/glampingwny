@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
                 href="https://instagram.com/glampingwny" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -39,20 +39,20 @@ const Footer: React.FC = () => {
                 href="https://facebook.com/glampingwny" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a 
                 href="mailto:info@glampingwny.com" 
-                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+                className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400"
                 aria-label="Email us"
               >
                 <Mail className="h-5 w-5" />
               </a>
             </div>
-            <div className="flex items-center text-accent-400">
+            <div className="flex items-center text-secondary-400">
               <Award className="h-5 w-5 mr-2" />
               <span className="text-sm">Family-Owned Near Buffalo</span>
             </div>
@@ -63,11 +63,11 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <nav aria-label="Footer navigation">
               <ul className="space-y-3">
-                <li><Link to="/" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded">Home</Link></li>
-                <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded">About Us</Link></li>
-                <li><Link to="/services" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded">Our Services</Link></li>
-                <li><Link to="/gallery" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded">Gallery</Link></li>
-                <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded">Contact</Link></li>
+                <li><Link to="/" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded">Home</Link></li>
+                <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded">About Us</Link></li>
+                <li><Link to="/services" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded">Our Services</Link></li>
+                <li><Link to="/gallery" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded">Gallery</Link></li>
+                <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded">Contact</Link></li>
               </ul>
             </nav>
           </div>
@@ -77,25 +77,25 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <Phone className="h-5 w-5 mr-3 text-accent-400 flex-shrink-0 mt-0.5" />
+                <Phone className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
                 <a 
                   href="tel:+17165551234"
-                  className="hover:text-accent-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                  className="hover:text-secondary-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded"
                 >
                   (716) 555-1234
                 </a>
               </li>
               <li className="flex items-start">
-                <Mail className="h-5 w-5 mr-3 text-accent-400 flex-shrink-0 mt-0.5" />
+                <Mail className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
                 <a 
                   href="mailto:info@glampingwny.com"
-                  className="hover:text-accent-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                  className="hover:text-secondary-300 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded"
                 >
                   info@glampingwny.com
                 </a>
               </li>
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 text-accent-400 flex-shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
                 <address className="not-italic">
                   Western New York<br />
                   Buffalo, NY 14221
@@ -112,13 +112,13 @@ const Footer: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-l-full bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-400"
+                  className="flex-1 px-4 py-2 rounded-l-full bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-secondary-400"
                   required
                   aria-label="Email for newsletter"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-accent-400 rounded-r-full hover:bg-accent-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400"
+                  className="px-4 py-2 bg-secondary-400 rounded-r-full hover:bg-secondary-500 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400"
                   aria-label="Subscribe to newsletter"
                 >
                   <Send className="h-5 w-5" />
@@ -155,7 +155,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/privacy-policy" 
-                  className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                  className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded"
                 >
                   Privacy Policy
                 </Link>
@@ -163,7 +163,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/terms" 
-                  className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 rounded"
+                  className="hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary-400 rounded"
                 >
                   Terms of Service
                 </Link>

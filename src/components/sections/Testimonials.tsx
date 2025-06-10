@@ -4,28 +4,52 @@ import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "Just show up and glamp! Everything was perfect - from the cozy tents to the magical decorations. My daughter felt like a princess!",
-    name: "Jessica Thompson",
-    role: "Mom of birthday girl",
-    image: "https://picsum.photos/100/100?random=10",
-    tag: "So Easy!",
-    rating: 5
+    quote: "Holly was absolutely amazing and easy to work with! I told her I was throwing a Barbie themed bachelorette weekend and she knocked the theme out of the park with Barbie décor in our glamping tent! All the girls especially the bride to be were so impressed and we enjoyed our first glamping experience so much! I highly recommend Glamping WNY and will most definitely be using them again in the future!",
+    name: "Rachel C.",
+    image: "https://picsum.photos/100/100?random=50",
+    rating: 5,
+    tag: "Themed Party",
+    date: "2024-02-28"
   },
   {
-    quote: "We do the setup. You make the memories. And what memories they were! The kids haven't stopped talking about their magical night.",
-    name: "Michael Rodriguez",
-    role: "Father of 8-year-old",
-    image: "https://picsum.photos/100/100?random=11",
-    tag: "No Stress",
-    rating: 5
+    quote: "I booked Glamping WNY for a surprise sleepover for my nephews. Holly was great! The booking process was so simple. She was easy to contact and communicate with. Also very flexible with drop off and pickup times. She was able to do two different themes for them since they are into different things. The beds were very comfortable and everything was clean and organized. The kids loved it. It was a great experience. Thank you for making their birthday extra special!",
+    name: "Rebecca B.",
+    image: "https://picsum.photos/100/100?random=51",
+    rating: 5,
+    tag: "Kids Party",
+    date: "2024-02-25"
   },
   {
-    quote: "The attention to detail was amazing! From the fairy lights to the themed decorations - everything was perfect. Worth every penny!",
-    name: "Sarah Johnson",
-    role: "Return customer",
-    image: "https://picsum.photos/100/100?random=12",
-    tag: "Kids Loved It!",
-    rating: 5
+    quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your Glamping needs!",
+    name: "Jamie D.",
+    image: "https://picsum.photos/100/100?random=52",
+    rating: 5,
+    tag: "Perfect Setup",
+    date: "2024-02-20"
+  },
+  {
+    quote: "The kids had the most amazing time! Everything was set up perfectly and the cleanup was seamless. Holly made the whole process so easy for us parents.",
+    name: "Maria S.",
+    image: "https://picsum.photos/100/100?random=53",
+    rating: 5,
+    tag: "Easy Process",
+    date: "2024-02-15"
+  },
+  {
+    quote: "Worth every penny! The attention to detail was incredible and my daughter felt like a princess. We'll definitely be booking again next year.",
+    name: "David K.",
+    image: "https://picsum.photos/100/100?random=54",
+    rating: 5,
+    tag: "Amazing Value",
+    date: "2024-02-10"
+  },
+  {
+    quote: "Professional, reliable, and magical! Holly exceeded all our expectations. The themed decorations were absolutely perfect.",
+    name: "Lisa M.",
+    image: "https://picsum.photos/100/100?random=55",
+    rating: 5,
+    tag: "Professional",
+    date: "2024-02-05"
   }
 ];
 
@@ -56,7 +80,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section bg-primary-900 relative overflow-hidden">
+    <section className="section bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
@@ -91,10 +115,10 @@ const Testimonials: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Parents Say
+              What Our Customers Say
             </h2>
             <p className="text-white/80 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what other parents have to say about their Glamping WNY experience.
+              Don't just take our word for it. Here's what families have to say about their Glamping WNY experience.
             </p>
           </motion.div>
         </div>
@@ -158,7 +182,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Tag */}
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-accent-500 text-white rounded-full text-sm font-medium">
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-secondary-500 text-white rounded-full text-sm font-medium">
                     {testimonials[currentIndex].tag}
                   </span>
 
@@ -167,13 +191,13 @@ const Testimonials: React.FC = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-6 h-6 text-accent-400 fill-accent-400"
+                        className="w-6 h-6 text-yellow-400 fill-yellow-400"
                       />
                     ))}
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-xl text-white mb-8 max-w-2xl">
+                  <blockquote className="text-xl text-primary-900 mb-8 max-w-2xl">
                     "{testimonials[currentIndex].quote}"
                   </blockquote>
 
@@ -182,14 +206,14 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-white/20"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-primary-200"
                     />
                     <div className="ml-4 text-left">
-                      <div className="font-bold text-white">
+                      <div className="font-bold text-primary-900">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-white/80">
-                        {testimonials[currentIndex].role}
+                      <div className="text-gray-600">
+                        {testimonials[currentIndex].date}
                       </div>
                     </div>
                   </div>
