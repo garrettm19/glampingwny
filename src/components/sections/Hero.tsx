@@ -159,7 +159,7 @@ const Hero: React.FC = () => {
               textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.5)'
             }}
           >
-            Premium Birthday Party Glamping Experiences
+            Premium Glamping Experiences for Every Celebration
           </motion.h2>
           
           {/* Value Proposition */}
@@ -170,7 +170,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
           >
-            Indoor & outdoor luxury tent rentals for unforgettable celebrations.
+            Indoor & outdoor luxury tent rentals for birthdays, bachelorettes, anniversaries, and special occasions.
             <br className="hidden md:block" />
             Complete setup, themed decorations, and stress-free cleanup included.
           </motion.p>
@@ -233,10 +233,10 @@ const Hero: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-              <span className="font-medium">200+ Happy Families</span>
+              <span className="font-medium">200+ Happy Customers</span>
             </motion.div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ Ages 5-12</div>
+            <div className="font-medium">✓ All Ages Welcome</div>
             <div className="w-px h-4 bg-white/40" />
             <div className="font-medium">✓ Year-Round</div>
             <div className="w-px h-4 bg-white/40" />

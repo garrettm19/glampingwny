@@ -11,9 +11,9 @@ const themes = [
   { id: 'princess', name: 'Princess Party', icon: '👑' },
   { id: 'superhero', name: 'Superhero Adventure', icon: '🦸' },
   { id: 'unicorn', name: 'Unicorn Dreams', icon: '🦄' },
-  { id: 'dinosaur', name: 'Dinosaur Discovery', icon: '🦕' },
-  { id: 'space', name: 'Space Explorer', icon: '🚀' },
-  { id: 'mermaid', name: 'Mermaid Magic', icon: '🧜‍♀️' }
+  { id: 'romantic', name: 'Romantic Evening', icon: '💕' },
+  { id: 'boho', name: 'Boho Chic', icon: '🌸' },
+  { id: 'elegant', name: 'Elegant Celebration', icon: '✨' }
 ];
 
 const packages = [
@@ -22,11 +22,20 @@ const packages = [
   { id: 'ultimate', name: 'Indoor Ultimate Package', price: 525, description: 'The complete experience' }
 ];
 
+const occasions = [
+  { id: 'birthday', name: 'Birthday Party', icon: '🎂' },
+  { id: 'bachelorette', name: 'Bachelorette Party', icon: '👰' },
+  { id: 'anniversary', name: 'Anniversary', icon: '💍' },
+  { id: 'date-night', name: 'Date Night', icon: '💕' },
+  { id: 'girls-night', name: 'Girls Night', icon: '👯‍♀️' },
+  { id: 'other', name: 'Other Celebration', icon: '🎉' }
+];
+
 const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     package: '', date: '', time: 'afternoon', theme: '', guests: '6',
-    childName: '', childAge: '7', name: '', email: '', phone: '', location: '', notes: ''
+    occasion: '', guestOfHonor: '', guestAge: '', name: '', email: '', phone: '', location: '', notes: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -54,7 +63,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
           <Check className="w-10 h-10 text-green-600" />
         </div>
         <h3 className="text-3xl font-bold text-primary-900 mb-4">🎉 Booking Confirmed!</h3>
-        <p className="text-gray-600 mb-8">Your magical glamping experience is all set!</p>
+        <p className="text-gray-600 mb-8">Your luxury glamping experience is all set!</p>
         
         <div className="bg-primary-50 rounded-lg p-6 mb-8">
           <h4 className="font-bold text-primary-900 mb-4">Booking Summary</h4>
@@ -64,6 +73,9 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
             </div>
             <div className="flex justify-between">
               <span>Package:</span><span className="font-medium">{packages.find(p => p.id === formData.package)?.name}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Occasion:</span><span className="font-medium">{occasions.find(o => o.id === formData.occasion)?.icon} {occasions.find(o => o.id === formData.occasion)?.name}</span>
             </div>
             <div className="flex justify-between">
               <span>Theme:</span><span className="font-medium">{themes.find(t => t.id === formData.theme)?.icon} {themes.find(t => t.id === formData.theme)?.name}</span>
@@ -95,7 +107,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
           <Sparkles className="w-6 h-6 text-primary-600" />
         </div>
         <h2 className="text-2xl font-bold text-primary-900 mb-2">Let's Create Magic! ✨</h2>
-        <p className="text-gray-600">Fill out the form below to start planning your magical experience.</p>
+        <p className="text-gray-600">Fill out the form below to start planning your perfect celebration.</p>
       </div>
 
       <div className="space-y-6">
@@ -114,6 +126,23 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
                   <p className="text-gray-600 text-sm">{pkg.description}</p>
                 </div>
                 {formData.package === pkg.id && <Check className="w-5 h-5 text-primary-600 ml-3" />}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Occasion Selection */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-3">What's the Occasion?*</label>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {occasions.map((occasion) => (
+              <label key={occasion.id} className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.occasion === occasion.id ? 'border-primary-500 bg-primary-50' : 'border-gray-200 hover:border-primary-300'}`}>
+                <input type="radio" name="occasion" value={occasion.id} checked={formData.occasion === occasion.id} onChange={handleChange} className="sr-only" />
+                <span className="text-2xl mr-3">{occasion.icon}</span>
+                <div className="flex-1">
+                  <div className="font-medium text-primary-900">{occasion.name}</div>
+                </div>
+                {formData.occasion === occasion.id && <Check className="w-5 h-5 text-primary-600" />}
               </label>
             ))}
           </div>
@@ -165,12 +194,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit }) => {
             <input type="number" name="guests" value={formData.guests} onChange={handleChange} min="1" max="12" required className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Child's Name*</label>
-            <input type="text" name="childName" value={formData.childName} onChange={handleChange} required className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Guest of Honor</label>
+            <input type="text" name="guestOfHonor" value={formData.guestOfHonor} onChange={handleChange} className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Birthday person, couple, etc." />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Child's Age*</label>
-            <input type="number" name="childAge" value={formData.childAge} onChange={handleChange} min="5" max="12" required className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Age (if applicable)</label>
+            <input type="number" name="guestAge" value={formData.guestAge} onChange={handleChange} min="1" max="100" className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" />
           </div>
         </div>
 

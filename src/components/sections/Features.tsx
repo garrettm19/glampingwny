@@ -47,12 +47,12 @@ const features = [
     color: "bg-rose-50 text-rose-600",
     shadowColor: "shadow-rose-200/50",
     image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Zero stress for parents"
+    stats: "Zero stress for hosts"
   },
   {
     icon: Shield,
     title: "Safety First",
-    description: "Professional setup with sanitized, kid-safe equipment",
+    description: "Professional setup with sanitized, safe equipment",
     color: "bg-indigo-50 text-indigo-600",
     shadowColor: "shadow-indigo-200/50",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
@@ -61,17 +61,17 @@ const features = [
 ];
 
 const services = [
-  "Indoor Sleepover Packages",
-  "Outdoor Bell Tent Glamping",
   "Birthday Parties",
   "Bachelorette Parties", 
+  "Anniversary Celebrations",
   "Sweet Sixteens",
   "Slumber Parties",
-  "Special Celebrations",
-  "Custom Themed Events",
-  "Movie Night Experiences",
-  "Spa Party Add-ons",
-  "Holiday Celebrations"
+  "Date Night Experiences",
+  "Proposal Setups",
+  "Graduation Parties",
+  "Holiday Celebrations",
+  "Girls' Night Out",
+  "Couples Retreats"
 ];
 
 const container = {
@@ -133,7 +133,7 @@ const Features: React.FC = () => {
             Your Go-to Glamping Experts in Western New York!
           </h2>
           <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
-            At Glamping WNY, we're here to take the stress out of party planning and turn your special occasion into a celebration to remember! Whether it's a cozy indoor sleepover or an unforgettable outdoor glamping experience, we've got everything you need to make your event shine.
+            At Glamping WNY, we're here to take the stress out of event planning and turn your special occasion into a celebration to remember! Whether it's a cozy indoor sleepover or an unforgettable outdoor glamping experience, we've got everything you need to make your event shine.
           </p>
           
           {/* Enhanced Services Grid */}
@@ -224,7 +224,7 @@ const Features: React.FC = () => {
               See Our Magic in Action
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Real photos from real celebrations. Every setup is unique and tailored to your child's dreams.
+              Real photos from real celebrations. Every setup is unique and tailored to your special occasion.
             </p>
           </div>
           

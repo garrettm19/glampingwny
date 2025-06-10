@@ -13,8 +13,8 @@ const BookingPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Book Your Glamping Experience | Magical Birthday Parties</title>
-        <meta name="description" content="Book your magical glamping experience with Glamping WNY. Choose your package, select your theme, and create unforgettable memories." />
+        <title>Book Your Glamping Experience | Luxury Celebrations</title>
+        <meta name="description" content="Book your luxury glamping experience with Glamping WNY. Choose your package, select your theme, and create unforgettable memories for any special occasion." />
       </Helmet>
 
       {/* Hero Section */}
@@ -49,15 +49,15 @@ const BookingPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Magical Experience</h1>
-            <p className="text-xl text-white/90 mb-8">Simple booking • Instant confirmation • Magical memories</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Luxury Experience</h1>
+            <p className="text-xl text-white/90 mb-8">Simple booking • Instant confirmation • Unforgettable memories</p>
             
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
                 { icon: Calendar, label: 'Easy Booking', desc: 'Book in just 3 simple steps' },
                 { icon: Sparkles, label: 'Instant Confirmation', desc: 'Get confirmed immediately' },
-                { icon: Shield, label: 'Secure & Safe', desc: 'Trusted by 200+ families' }
+                { icon: Shield, label: 'Secure & Safe', desc: 'Trusted by 200+ customers' }
               ].map((feature, index) => (
                 <motion.div
                   key={index}
@@ -95,7 +95,7 @@ const BookingPage: React.FC = () => {
             {[
               { icon: Clock, title: "Setup & Pickup", description: "Setup by 4 PM, pickup after 10 AM next day", color: "bg-blue-50 text-blue-600" },
               { icon: MapPin, title: "Service Area", description: "Free delivery within 20 miles of Hamburg, NY", color: "bg-green-50 text-green-600" },
-              { icon: Users, title: "Age Requirement", description: "All guests must be 5 years or older", color: "bg-purple-50 text-purple-600" },
+              { icon: Users, title: "All Ages Welcome", description: "Perfect for kids, teens, and adults", color: "bg-purple-50 text-purple-600" },
               { icon: Shield, title: "Safety First", description: "All equipment sanitized between uses", color: "bg-orange-50 text-orange-600" }
             ].map((info, index) => (
               <motion.div
@@ -128,7 +128,7 @@ const BookingPage: React.FC = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-primary-900 mb-4">What's Included in Every Package</h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">No hidden fees. Everything you need for a magical experience.</p>
+            <p className="text-gray-700 max-w-2xl mx-auto">No hidden fees. Everything you need for an unforgettable experience.</p>
           </motion.div>
 
           <motion.div
@@ -144,10 +144,10 @@ const BookingPage: React.FC = () => {
                 { icon: '🧹', label: 'Complete Cleanup' },
                 { icon: '🎨', label: 'Themed Decorations' },
                 { icon: '🛡️', label: 'Safety Equipment' },
-                { icon: '✨', label: 'Fairy Lights' },
-                { icon: '🛏️', label: 'Comfortable Bedding' },
-                { icon: '📝', label: 'Custom Letter Board' },
-                { icon: '🥞', label: 'Breakfast Tray' }
+                { icon: '✨', label: 'Ambient Lighting' },
+                { icon: '🛏️', label: 'Comfortable Furnishing' },
+                { icon: '📝', label: 'Custom Touches' },
+                { icon: '🎁', label: 'Special Surprises' }
               ].map((item, index) => (
                 <motion.div
                   key={index}

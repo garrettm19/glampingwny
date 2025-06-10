@@ -10,7 +10,7 @@ const AboutPage: React.FC = () => {
         <title>About Us | Meet the Glamping WNY Team</title>
         <meta 
           name="description" 
-          content="Meet Holly, the founder of Glamping WNY, and learn how we're creating magical outdoor experiences for families in Western New York." 
+          content="Meet Holly, the founder of Glamping WNY, and learn how we're creating unforgettable glamping experiences for families and couples in Western New York." 
         />
       </Helmet>
 
@@ -53,7 +53,7 @@ const AboutPage: React.FC = () => {
               Our Story
             </h1>
             <p className="text-xl text-white/90">
-              From backyard dreams to magical memories across Western New York.
+              From backyard dreams to unforgettable celebrations across Western New York.
             </p>
           </motion.div>
         </div>
@@ -106,7 +106,7 @@ const AboutPage: React.FC = () => {
               <h2 className="text-3xl font-bold text-primary-900">Meet Holly</h2>
               <div className="space-y-4 text-gray-700">
                 <p>
-                  Hey there! I'm Holly, the founder of Glamping WNY and a proud small-town business owner with big dreams. When I'm not creating magical experiences for families, you can find me working as a Product Manager at Independent Health, cuddling with my dogs, or planning the next exciting glamping adventure.
+                  Hey there! I'm Holly, the founder of Glamping WNY and a proud small-town business owner with big dreams. When I'm not creating unforgettable experiences for families and couples, you can find me working as a Product Manager at Independent Health, cuddling with my dogs, or planning the next exciting glamping adventure.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4 my-8">
@@ -124,11 +124,11 @@ const AboutPage: React.FC = () => {
                 </div>
 
                 <p>
-                  I founded Glamping WNY in 2021 with a simple vision: to create unforgettable experiences that bring families together. As a fitness enthusiast and recycling advocate, I believe in living life to the fullest while being mindful of our impact on the world.
+                  I founded Glamping WNY in 2021 with a simple vision: to create unforgettable experiences that bring people together. Whether it's a child's birthday party, a romantic anniversary celebration, or a fun bachelorette weekend, I believe every special occasion deserves to be extraordinary.
                 </p>
 
                 <p>
-                  When I'm not setting up magical glamping experiences, you might find me trying new foods, hiking with my hunky husband Joe, or showing off my (admittedly terrible) singing abilities. And of course, like any true Buffalonian - GO BILLS! 🦬
+                  When I'm not setting up glamping experiences, you might find me trying new foods, hiking with my hunky husband Joe, or showing off my (admittedly terrible) singing abilities. And of course, like any true Buffalonian - GO BILLS! 🦬
                 </p>
               </div>
 
@@ -141,7 +141,7 @@ const AboutPage: React.FC = () => {
               >
                 <Quote className="absolute -top-3 -left-3 w-8 h-8 text-primary-500 bg-white rounded-full p-1" />
                 <p className="text-lg italic text-primary-900">
-                  "I believe in creating magical moments that families will remember forever. Every tent we set up is a new opportunity to bring joy and wonder to someone's special day."
+                  "I believe in creating memorable moments that people will treasure forever. Every tent we set up is a new opportunity to bring joy and wonder to someone's special day."
                 </p>
               </motion.blockquote>
             </motion.div>
@@ -170,8 +170,8 @@ const AboutPage: React.FC = () => {
             {[
               {
                 icon: Heart,
-                title: "Family First",
-                description: "We believe in creating experiences that bring families closer together and create lasting memories."
+                title: "People First",
+                description: "We believe in creating experiences that bring people closer together and create lasting memories."
               },
               {
                 icon: Shield,
@@ -180,8 +180,8 @@ const AboutPage: React.FC = () => {
               },
               {
                 icon: Sparkles,
-                title: "Magical Experiences",
-                description: "We go above and beyond to ensure every detail contributes to a truly magical celebration."
+                title: "Unforgettable Experiences",
+                description: "We go above and beyond to ensure every detail contributes to a truly special celebration."
               }
             ].map((value, index) => (
               <motion.div
@@ -217,7 +217,7 @@ const AboutPage: React.FC = () => {
               Ready to Create Magic Together?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Let's start planning your child's most memorable birthday celebration yet.
+              Let's start planning your most memorable celebration yet.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a

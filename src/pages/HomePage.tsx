@@ -14,21 +14,21 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Glamping WNY | Magical Outdoor Birthday Parties Near Buffalo</title>
-        <meta name="description" content="Create magical memories with our glamping birthday parties in Western New York. Cozy tents, real bathrooms, and zero stress — perfect for kids ages 4-12." />
+        <title>Glamping WNY | Premium Glamping Experiences for Every Celebration</title>
+        <meta name="description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://glampingwny.com" />
-        <meta property="og:title" content="Glamping WNY | Magical Outdoor Birthday Parties Near Buffalo" />
-        <meta property="og:description" content="Create magical memories with our glamping birthday parties in Western New York. Cozy tents, real bathrooms, and zero stress — perfect for kids ages 4-12." />
+        <meta property="og:title" content="Glamping WNY | Premium Glamping Experiences for Every Celebration" />
+        <meta property="og:description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
         <meta property="og:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://glampingwny.com" />
-        <meta name="twitter:title" content="Glamping WNY | Magical Outdoor Birthday Parties Near Buffalo" />
-        <meta name="twitter:description" content="Create magical memories with our glamping birthday parties in Western New York. Cozy tents, real bathrooms, and zero stress — perfect for kids ages 4-12." />
+        <meta name="twitter:title" content="Glamping WNY | Premium Glamping Experiences for Every Celebration" />
+        <meta name="twitter:description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
         <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Schema.org markup */}
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
             "@type": "LocalBusiness",
             "name": "Glamping WNY",
             "image": "https://picsum.photos/1200/630?random=100",
-            "description": "Magical outdoor birthday experiences and glamping parties in Western New York.",
+            "description": "Premium glamping experiences and luxury tent rentals for special occasions in Western New York.",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "123 Main Street",
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
                 Experience the Magic
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto mb-8">
-                Take a virtual tour of our magical glamping setup and imagine your child's perfect birthday celebration.
+                Take a virtual tour of our luxury glamping setup and imagine your perfect celebration.
               </p>
             </motion.div>
           </div>
@@ -153,8 +153,11 @@ const HomePage: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Spots fill up fast — Book your glamp tent today!
+              Ready to Create Your Perfect Celebration?
             </h2>
+            <p className="text-xl text-white/90 mb-8">
+              Book your luxury glamping experience today and make memories that will last a lifetime.
+            </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

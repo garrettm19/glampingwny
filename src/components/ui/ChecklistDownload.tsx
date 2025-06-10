@@ -6,52 +6,58 @@ const ChecklistDownload: React.FC = () => {
   const handleDownload = () => {
     const checklistContent = `Glamping Party Planning Checklist
 
-BEFORE THE PARTY:
+BEFORE THE CELEBRATION:
 □ Confirm final guest count with Glamping WNY
-□ Plan party activities and games
-□ Prepare party favors and goodie bags
+□ Plan activities and entertainment
+□ Prepare party favors and gifts
 □ Check weather forecast for outdoor events
-□ Prepare birthday cake and candles
+□ Prepare food, cake, and refreshments
 □ Set up playlist for background music
+□ Coordinate with guests on arrival times
 
 WHAT TO BRING:
-□ Comfortable clothes for sleeping
-□ Sleeping bags or extra blankets
-□ Pillows for each guest
-□ Personal toiletries and medications
-□ Flashlights or lanterns
-□ Camera for memories
-□ Party snacks and drinks
+□ Comfortable clothes for the occasion
+□ Extra blankets or pillows if desired
+□ Personal items and toiletries
+□ Camera or phone for memories
+□ Party snacks and beverages
 □ Any special dietary items needed
+□ Games or activities for entertainment
 
 WHAT WE PROVIDE:
 ✓ Complete tent setup and decorations
 ✓ Themed lighting and ambiance
-✓ Tables and comfortable seating
+✓ Tables and comfortable seating/bedding
 ✓ Basic party supplies
 ✓ Safety equipment and first aid
 ✓ Professional setup and cleanup
 
 SAFETY REMINDERS:
-□ Adult supervision required at all times
+□ Adult supervision recommended for all events
 □ Keep pathways clear and well-lit
 □ Have emergency contact numbers ready
-□ Review any allergies with all parents
-□ Ensure all guests know safety rules
+□ Review any allergies with all guests
+□ Ensure all participants know safety guidelines
+
+SPECIAL OCCASION TIPS:
+□ For birthdays: Don't forget the birthday cake!
+□ For anniversaries: Consider romantic touches
+□ For bachelorettes: Plan fun group activities
+□ For date nights: Create intimate atmosphere
 
 CONTACT INFORMATION:
 Phone: (716) 555-1234
 Email: info@glampingwny.com
 Emergency: Call 911 for any serious emergencies
 
-Have an amazing glamping party!
+Have an amazing glamping celebration!
 - The Glamping WNY Team`;
 
     const blob = new Blob([checklistContent], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'glamping-party-checklist.txt';
+    a.download = 'glamping-celebration-checklist.txt';
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -96,18 +102,18 @@ Have an amazing glamping party!
         </div>
         
         <h3 className="text-2xl font-bold text-primary-900 mb-4">
-          Free Party Planning Checklist
+          Free Celebration Planning Checklist
         </h3>
         
         <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-          Download our comprehensive checklist to ensure your glamping party goes off without a hitch. 
-          Everything you need to know for a magical celebration!
+          Download our comprehensive checklist to ensure your glamping celebration goes off without a hitch. 
+          Everything you need to know for an unforgettable experience!
         </p>
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {[
-            'Pre-party preparation',
+            'Pre-event preparation',
             'What to bring guide',
             'Safety reminders'
           ].map((feature, index) => (
