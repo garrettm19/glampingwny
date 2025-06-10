@@ -1,55 +1,62 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Tent, Sparkles, Bath, Clock, PartyPopper, Shield, Heart, Star, Calendar, Users, Camera, Utensils } from 'lucide-react';
+import { Tent, Sparkles, Bath, Clock, PartyPopper, Shield, Heart, Star, Calendar, Users, Camera, Utensils, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const features = [
   {
     icon: Tent,
-    title: "Indoor & Outdoor Options 🏠",
+    title: "Indoor & Outdoor Options",
     description: "Year-round indoor glamping plus seasonal outdoor experiences",
     color: "bg-emerald-50 text-emerald-600",
     shadowColor: "shadow-emerald-200/50",
-    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "Available 365 days"
   },
   {
     icon: Sparkles,
-    title: "Magical Decorations ✨",
-    description: "Themed setups with twinkling lights and custom decor",
+    title: "Themed Decorations",
+    description: "Custom setups with twinkling lights and personalized decor",
     color: "bg-amber-50 text-amber-600",
     shadowColor: "shadow-amber-200/50",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "25+ themes available"
   },
   {
     icon: Bath,
-    title: "Real Bathrooms 🚽",
+    title: "Real Bathrooms",
     description: "No roughing it - full bathroom access included",
     color: "bg-blue-50 text-blue-600",
     shadowColor: "shadow-blue-200/50",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "100% comfort guaranteed"
   },
   {
     icon: Clock,
-    title: "Book in Minutes ✅",
-    description: "Simple online booking, instant confirmation",
+    title: "Quick Booking",
+    description: "Simple online booking with instant confirmation",
     color: "bg-green-50 text-green-600",
     shadowColor: "shadow-green-200/50",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "Book in under 5 minutes"
   },
   {
     icon: PartyPopper,
-    title: "No Setup Needed 🎉",
+    title: "Complete Setup",
     description: "We handle everything - just show up and celebrate",
     color: "bg-rose-50 text-rose-600",
     shadowColor: "shadow-rose-200/50",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "Zero stress for parents"
   },
   {
     icon: Shield,
-    title: "Kid-Safe & Clean 🧸",
-    description: "Safety-first approach with sanitized equipment",
+    title: "Safety First",
+    description: "Professional setup with sanitized, kid-safe equipment",
     color: "bg-indigo-50 text-indigo-600",
     shadowColor: "shadow-indigo-200/50",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
+    stats: "Fully insured & certified"
   }
 ];
 
@@ -90,17 +97,21 @@ const item = {
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="section bg-white relative overflow-hidden">
-      {/* Background decorative elements */}
+    <section id="features" className="section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Enhanced background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] w-2 h-2 bg-emerald-400 rounded-full animate-sparkle" />
+        <div className="absolute top-10 left-[10%] w-3 h-3 bg-emerald-400 rounded-full animate-pulse-glow" />
         <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-amber-400 rounded-full animate-sparkle animation-delay-700" />
-        <div className="absolute bottom-[20%] left-[20%] w-1.5 h-1.5 bg-blue-400 rounded-full animate-sparkle" />
-        <div className="absolute bottom-[10%] right-[25%] w-1.5 h-1.5 bg-green-400 rounded-full animate-sparkle animation-delay-700" />
+        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-blue-400 rounded-full animate-float" />
+        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-green-400 rounded-full animate-pulse-glow animation-delay-700" />
+        
+        {/* Gradient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-emerald-200/20 to-blue-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-amber-200/20 to-rose-200/20 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Introduction */}
+        {/* Enhanced Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -108,33 +119,46 @@ const Features: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="inline-block p-3 bg-gradient-primary rounded-full mb-6"
+          >
+            <Sparkles className="w-8 h-8 text-white" />
+          </motion.div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4 gradient-text">
             Your Go-to Glamping Experts in Western New York!
           </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto mb-8">
+          <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
             At Glamping WNY, we're here to take the stress out of party planning and turn your special occasion into a celebration to remember! Whether it's a cozy indoor sleepover or an unforgettable outdoor glamping experience, we've got everything you need to make your event shine.
           </p>
           
-          {/* Services Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+          {/* Enhanced Services Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="glass-card px-4 py-2 text-sm font-medium text-primary-900"
+                className="glass-card px-4 py-3 text-sm font-medium text-primary-900 hover-lift group cursor-pointer"
+                whileHover={{ scale: 1.02 }}
               >
-                {service}
+                <span className="group-hover:gradient-text transition-all duration-300">
+                  {service}
+                </span>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Features Grid with Images */}
+        {/* Enhanced Features Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -145,29 +169,41 @@ const Features: React.FC = () => {
               key={index}
               variants={item}
               whileHover={{ 
-                y: -5,
-                transition: { duration: 0.2 }
+                y: -8,
+                transition: { duration: 0.3 }
               }}
-              className={`glass-card rounded-xl overflow-hidden ${feature.shadowColor} hover:shadow-lg transition-all duration-300`}
+              className={`glass-card rounded-xl overflow-hidden ${feature.shadowColor} hover:shadow-2xl transition-all duration-500 group`}
             >
-              {/* Feature Image */}
-              <div className="h-48 overflow-hidden">
+              {/* Enhanced Feature Image */}
+              <div className="h-48 overflow-hidden relative">
                 <img 
                   src={feature.image} 
                   alt={feature.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Stats overlay */}
+                <motion.div
+                  className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary-900"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  {feature.stats}
+                </motion.div>
               </div>
               
-              {/* Feature Content */}
+              {/* Enhanced Feature Content */}
               <div className="p-6">
-                <div className={`${feature.color} w-12 h-12 rounded-full flex items-center justify-center mb-4`}>
-                  {<feature.icon className="h-6 w-6" />}
+                <div className={`${feature.color} w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <feature.icon className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold text-primary-900 mb-2">
+                <h3 className="text-xl font-bold text-primary-900 mb-3 group-hover:gradient-text transition-all duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-700 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -175,17 +211,22 @@ const Features: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Image Gallery Section */}
+        {/* Enhanced Image Gallery Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mt-20"
+          className="mb-20"
         >
-          <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">
-            See Our Magic in Action
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary-900 mb-4">
+              See Our Magic in Action
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Real photos from real celebrations. Every setup is unique and tailored to your child's dreams.
+            </p>
+          </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -202,27 +243,45 @@ const Features: React.FC = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="aspect-square overflow-hidden rounded-lg"
+                className="aspect-square overflow-hidden rounded-xl hover-lift group cursor-pointer"
+                whileHover={{ scale: 1.02 }}
               >
                 <img 
                   src={image} 
                   alt={`Glamping experience ${index + 1}`}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </motion.div>
             ))}
           </div>
+          
+          {/* View Gallery CTA */}
+          <motion.div
+            className="text-center mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group"
+            >
+              View Full Gallery
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
         </motion.div>
 
-        {/* Policies Section */}
+        {/* Enhanced Policies Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="glass-card p-8 rounded-2xl"
         >
           <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">
             Important Policies & Guidelines
@@ -261,17 +320,19 @@ const Features: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="glass-card p-6"
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50/50 transition-colors duration-300"
               >
-                <div className={`w-12 h-12 ${policy.color} rounded-full flex items-center justify-center mb-4`}>
+                <div className={`w-12 h-12 ${policy.color} rounded-full flex items-center justify-center flex-shrink-0`}>
                   <policy.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-primary-900 mb-2">
-                  {policy.title}
-                </h3>
-                <p className="text-gray-700">
-                  {policy.description}
-                </p>
+                <div>
+                  <h3 className="text-lg font-bold text-primary-900 mb-2">
+                    {policy.title}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    {policy.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
