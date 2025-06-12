@@ -72,7 +72,7 @@ const PricingTable: React.FC = () => {
           <motion.div
             key={index}
             className={`glass-card relative overflow-hidden ${
-              pkg.isPopular ? 'ring-2 ring-secondary-500' : ''
+              pkg.isPopular ? 'ring-2 ring-primary-500' : ''
             }`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +81,7 @@ const PricingTable: React.FC = () => {
             whileHover={{ y: -5 }}
           >
             {pkg.isPopular && (
-              <div className="absolute top-4 right-4 bg-secondary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 Most Popular
               </div>
             )}
@@ -133,7 +133,7 @@ const PricingTable: React.FC = () => {
       {/* Additional Information */}
       <div className="glass-card p-6">
         <h3 className="text-lg font-bold text-primary-900 mb-4 flex items-center gap-2">
-          <Star className="w-5 h-5 text-secondary-500" />
+          <Star className="w-5 h-5 text-primary-500" />
           Important Information
         </h3>
         <ul className="space-y-2 text-gray-700">

@@ -80,7 +80,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 relative overflow-hidden">
+    <section className="section bg-gradient-to-br from-primary-900 via-primary-800 to-purple-900 relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (

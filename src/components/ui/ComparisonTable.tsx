@@ -88,14 +88,14 @@ const ComparisonTable: React.FC = () => {
               </td>
               <td className="py-4 px-4 text-center">
                 {row.traditional ? (
-                  <Check className="w-6 h-6 text-green-600 mx-auto" />
+                  <Check className="w-6 h-6 text-purple-600 mx-auto" />
                 ) : (
                   <X className="w-6 h-6 text-gray-400 mx-auto" />
                 )}
               </td>
               <td className="py-4 px-4 text-center">
                 {row.venue ? (
-                  <Check className="w-6 h-6 text-green-600 mx-auto" />
+                  <Check className="w-6 h-6 text-purple-600 mx-auto" />
                 ) : (
                   <X className="w-6 h-6 text-gray-400 mx-auto" />
                 )}

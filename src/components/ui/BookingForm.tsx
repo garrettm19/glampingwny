@@ -351,15 +351,15 @@ const BookingForm: React.FC<BookingFormProps> = ({ onSubmit, preselectedData }) 
         {/* Trust Indicators */}
         <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600 pt-4 border-t border-gray-200">
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
+            <Check className="w-4 h-4 text-purple-500" />
             <span>Secure booking</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
+            <Check className="w-4 h-4 text-purple-500" />
             <span>Instant confirmation</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-green-500" />
+            <Check className="w-4 h-4 text-purple-500" />
             <span>Free cancellation</span>
           </div>
         </div>

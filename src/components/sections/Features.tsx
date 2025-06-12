@@ -8,8 +8,8 @@ const features = [
     icon: Tent,
     title: "Indoor & Outdoor Options",
     description: "Year-round indoor glamping plus seasonal outdoor experiences",
-    color: "bg-emerald-50 text-emerald-600",
-    shadowColor: "shadow-emerald-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Available 365 days"
   },
@@ -17,8 +17,8 @@ const features = [
     icon: Sparkles,
     title: "Themed Decorations",
     description: "Custom setups with twinkling lights and personalized decor",
-    color: "bg-amber-50 text-amber-600",
-    shadowColor: "shadow-amber-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
     stats: "25+ themes available"
   },
@@ -26,8 +26,8 @@ const features = [
     icon: Bath,
     title: "Real Bathrooms",
     description: "No roughing it - full bathroom access included",
-    color: "bg-blue-50 text-blue-600",
-    shadowColor: "shadow-blue-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80",
     stats: "100% comfort guaranteed"
   },
@@ -35,8 +35,8 @@ const features = [
     icon: Clock,
     title: "Quick Booking",
     description: "Simple online booking with instant confirmation",
-    color: "bg-green-50 text-green-600",
-    shadowColor: "shadow-green-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Book in under 5 minutes"
   },
@@ -44,8 +44,8 @@ const features = [
     icon: PartyPopper,
     title: "Complete Setup",
     description: "We handle everything - just show up and celebrate",
-    color: "bg-rose-50 text-rose-600",
-    shadowColor: "shadow-rose-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Zero stress for hosts"
   },
@@ -53,8 +53,8 @@ const features = [
     icon: Shield,
     title: "Safety First",
     description: "Professional setup with sanitized, safe equipment",
-    color: "bg-indigo-50 text-indigo-600",
-    shadowColor: "shadow-indigo-200/50",
+    color: "bg-purple-50 text-purple-600",
+    shadowColor: "shadow-purple-200/50",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Fully insured & certified"
   }
@@ -100,14 +100,14 @@ const Features: React.FC = () => {
     <section id="features" className="section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Enhanced background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] w-3 h-3 bg-emerald-400 rounded-full animate-pulse-glow" />
-        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-amber-400 rounded-full animate-sparkle animation-delay-700" />
-        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-blue-400 rounded-full animate-float" />
-        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-green-400 rounded-full animate-pulse-glow animation-delay-700" />
+        <div className="absolute top-10 left-[10%] w-3 h-3 bg-purple-400 rounded-full animate-pulse-glow" />
+        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-purple-400 rounded-full animate-sparkle animation-delay-700" />
+        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-purple-400 rounded-full animate-float" />
+        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-purple-400 rounded-full animate-pulse-glow animation-delay-700" />
         
         {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-emerald-200/20 to-blue-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-amber-200/20 to-rose-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-purple-200/20 to-blue-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-200/20 to-pink-200/20 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
@@ -293,25 +293,25 @@ const Features: React.FC = () => {
                 icon: Shield,
                 title: "Rental Care",
                 description: "Items will be examined after return. Any damage will incur replacement or repair costs.",
-                color: "bg-blue-50 text-blue-600"
+                color: "bg-purple-50 text-purple-600"
               },
               {
                 icon: Heart,
                 title: "Food & Beverage",
                 description: "Light snacks only in tent areas. Clear/light-colored beverages only to prevent stains.",
-                color: "bg-emerald-50 text-emerald-600"
+                color: "bg-purple-50 text-purple-600"
               },
               {
                 icon: Star,
                 title: "Smoke Free Environment",
                 description: "NO smoking allowed. Additional cleaning fees apply if supplies smell of smoke.",
-                color: "bg-amber-50 text-amber-600"
+                color: "bg-purple-50 text-purple-600"
               },
               {
                 icon: Users,
                 title: "Pet Policy",
                 description: "Pets discouraged in party areas. Customers responsible for any pet-related damages.",
-                color: "bg-rose-50 text-rose-600"
+                color: "bg-purple-50 text-purple-600"
               }
             ].map((policy, index) => (
               <motion.div

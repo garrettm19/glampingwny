@@ -175,7 +175,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               />
               <div className="glass-card p-6 text-center relative overflow-hidden">
                 {pkg.popular && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-accent-500 to-accent-600 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 py-1 text-xs font-bold rounded-bl-lg">
                     Most Popular
                   </div>
                 )}
@@ -278,7 +278,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                     {/* Availability indicator */}
                     {booking && !isPast && (
                       <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
-                        booking.available ? 'bg-green-400' : 'bg-red-400'
+                        booking.available ? 'bg-purple-400' : 'bg-red-400'
                       }`} />
                     )}
                     
@@ -296,7 +296,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             {/* Legend */}
             <div className="flex items-center justify-center gap-6 mt-6 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full" />
+                <div className="w-3 h-3 bg-purple-400 rounded-full" />
                 <span className="text-gray-600">Available</span>
               </div>
               <div className="flex items-center gap-2">
@@ -390,7 +390,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-primary-50 to-blue-50 rounded-lg p-4"
+                    className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-lg p-4"
                   >
                     <h4 className="font-bold text-primary-900 mb-3">Booking Summary</h4>
                     <div className="space-y-2 text-sm">
@@ -456,15 +456,15 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="space-y-3 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-500" />
+                  <Check className="w-4 h-4 text-purple-500" />
                   <span>Instant confirmation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-500" />
+                  <Check className="w-4 h-4 text-purple-500" />
                   <span>Free cancellation up to 14 days</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-500" />
+                  <Check className="w-4 h-4 text-purple-500" />
                   <span>Setup & cleanup included</span>
                 </div>
               </div>
