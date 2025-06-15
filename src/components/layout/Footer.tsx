@@ -67,15 +67,28 @@ const Footer: React.FC = () => {
                 <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">About Us</Link></li>
                 <li><Link to="/services" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Our Services</Link></li>
                 <li><Link to="/gallery" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Gallery</Link></li>
-                <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Contact</Link></li>
+                <li><Link to="/testimonials" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Testimonials</Link></li>
               </ul>
             </nav>
           </div>
 
-          {/* Contact */}
+          {/* Support Links */}
+          <div className="col-span-1">
+            <h3 className="text-lg font-bold mb-4">Support</h3>
+            <nav aria-label="Support navigation">
+              <ul className="space-y-3">
+                <li><Link to="/faq" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">FAQ</Link></li>
+                <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Contact Us</Link></li>
+                <li><Link to="/book-now" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Book Now</Link></li>
+                <li><Link to="/blog" className="text-gray-300 hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 rounded">Blog</Link></li>
+              </ul>
+            </nav>
+          </div>
+
+          {/* Contact & Newsletter */}
           <div className="col-span-1">
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 mb-6">
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
                 <a 
@@ -104,7 +117,7 @@ const Footer: React.FC = () => {
             </ul>
 
             {/* Newsletter Signup */}
-            <div className="mt-6">
+            <div>
               <h3 className="text-lg font-bold mb-4">Newsletter</h3>
               <form onSubmit={handleSubmit} className="flex">
                 <input
@@ -124,23 +137,6 @@ const Footer: React.FC = () => {
                   <Send className="h-5 w-5" />
                 </button>
               </form>
-            </div>
-          </div>
-
-          {/* Map */}
-          <div className="col-span-1">
-            <h3 className="text-lg font-bold mb-4">Find Us</h3>
-            <div className="w-full h-48 bg-white/10 rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d187179.45006577424!2d-78.87433459754272!3d42.88644610607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3126152dfe5a1%3A0x982304a5181f8171!2sBuffalo%2C%20NY!5e0!3m2!1sen!2sus!4v1709347721813!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Glamping WNY Location"
-              ></iframe>
             </div>
           </div>
         </div>
