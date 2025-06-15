@@ -20,8 +20,8 @@ interface ServiceOption {
   description: string;
   maxQuantity?: number;
   requiresBase?: boolean;
-  totalInventory: number; // Total items we have
-  shortName?: string; // For inventory display
+  totalInventory: number;
+  shortName?: string;
 }
 
 interface CalendarBookingProps {
@@ -35,6 +35,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   const [selectedServices, setSelectedServices] = useState<{[key: string]: number}>({});
   const [bookingData, setBookingData] = useState<BookingSlot[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedPackageType, setSelectedPackageType] = useState<'indoor' | 'outdoor'>('indoor');
 
   // All available services with realistic inventory
   const serviceOptions: ServiceOption[] = [
@@ -47,7 +48,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: '1 tent with complete setup, bedding, and decorations',
       maxQuantity: 1,
-      totalInventory: 12 // We have 12 base setups available
+      totalInventory: 12
     },
     {
       id: 'bell-tent-16ft',
@@ -57,7 +58,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Outdoor bell tent for small groups',
       maxQuantity: 1,
-      totalInventory: 3 // Limited outdoor tents
+      totalInventory: 3
     },
     {
       id: 'bell-tent-23ft',
@@ -67,7 +68,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Large outdoor bell tent for bigger groups',
       maxQuantity: 1,
-      totalInventory: 2 // Very limited large tents
+      totalInventory: 2
     },
     {
       id: 'day-dreamer-lounge',
@@ -90,7 +91,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       totalInventory: 5
     },
     
-    // Additional Tents - More available but still limited
+    // Additional Tents
     {
       id: 'additional-indoor-tent',
       name: 'Additional Indoor Glamping Tent',
@@ -100,7 +101,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Extra tent to accommodate more guests',
       maxQuantity: 10,
       requiresBase: true,
-      totalInventory: 20 // We have 20 extra tents
+      totalInventory: 20
     },
     {
       id: 'additional-twin-bed',
@@ -114,7 +115,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       totalInventory: 15
     },
     
-    // Add-ons - Good availability but still tracked
+    // Add-ons
     {
       id: 'spa-party-addon',
       name: 'Spa Party Add-On',
@@ -124,7 +125,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Complete spa experience (Save $75 vs standalone!)',
       maxQuantity: 1,
       requiresBase: true,
-      totalInventory: 8 // Limited spa setups
+      totalInventory: 8
     },
     {
       id: 'balloon-garland',
@@ -244,7 +245,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Pet-friendly accommodations',
       maxQuantity: 2,
-      totalInventory: 999 // No real limit on pet fees
+      totalInventory: 999
     }
   ];
 
@@ -254,7 +255,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       const data: BookingSlot[] = [];
       const today = new Date();
       
-      for (let i = 0; i < 90; i++) { // 3 months of data
+      for (let i = 0; i < 180; i++) { // 6 months of data
         const date = new Date(today);
         date.setDate(today.getDate() + i);
         
@@ -320,6 +321,16 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
     setTimeout(generateRealisticData, 1000);
   }, []);
 
+  const getMonthsToShow = () => {
+    const months = [];
+    for (let i = 0; i < 3; i++) {
+      const date = new Date(currentDate);
+      date.setMonth(currentDate.getMonth() + i);
+      months.push(date);
+    }
+    return months;
+  };
+
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -349,10 +360,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
     return bookingData.find(booking => booking.date === formatDate(date));
   };
 
-  const navigateMonth = (direction: 'prev' | 'next') => {
+  const navigateMonths = (direction: 'prev' | 'next') => {
     setCurrentDate(prev => {
       const newDate = new Date(prev);
-      newDate.setMonth(prev.getMonth() + (direction === 'next' ? 1 : -1));
+      newDate.setMonth(prev.getMonth() + (direction === 'next' ? 3 : -3));
       return newDate;
     });
   };
@@ -468,6 +479,24 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  const getFilteredServices = () => {
+    if (selectedPackageType === 'indoor') {
+      return serviceOptions.filter(s => 
+        s.id === 'indoor-base' || 
+        s.id === 'additional-indoor-tent' || 
+        s.id === 'additional-twin-bed' ||
+        (s.category === 'addon' && !s.id.includes('outdoor') && !s.id.includes('bell-tent'))
+      );
+    } else {
+      return serviceOptions.filter(s => 
+        s.id.includes('bell-tent') || 
+        s.id.includes('canvas-tent') || 
+        s.id.includes('day-dreamer') ||
+        (s.category === 'addon')
+      );
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="glass-card p-8 text-center">
@@ -483,11 +512,259 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-        {/* Service Selection */}
-        <div className="xl:col-span-1 order-2 xl:order-1">
+      {/* Package Type Selection */}
+      <div className="mb-8">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Choose Your Package Type</h2>
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={() => setSelectedPackageType('indoor')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                selectedPackageType === 'indoor'
+                  ? 'bg-orange-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-orange-50'
+              }`}
+            >
+              Indoor Glamping
+            </button>
+            <button
+              onClick={() => setSelectedPackageType('outdoor')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                selectedPackageType === 'outdoor'
+                  ? 'bg-green-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-green-50'
+              }`}
+            >
+              Outdoor Glamping
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        {/* Calendar Section */}
+        <div className="xl:col-span-3 order-1">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card p-6"
+          >
+            {/* Calendar Header */}
+            <div className="flex items-center justify-between mb-6">
+              <motion.button
+                onClick={() => navigateMonths('prev')}
+                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronLeft className="w-5 h-5 text-primary-600" />
+              </motion.button>
+              
+              <h2 className="text-xl font-bold text-primary-900">
+                Select Your Date
+              </h2>
+              
+              <motion.button
+                onClick={() => navigateMonths('next')}
+                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-5 h-5 text-primary-600" />
+              </motion.button>
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center justify-center gap-6 mb-6 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-blue-600 rounded"></div>
+                <span className="text-gray-600">Available</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gray-300 rounded"></div>
+                <span className="text-gray-600">Unavailable</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-blue-600 rounded relative">
+                  <div className="absolute inset-0 bg-blue-800 transform rotate-45 origin-bottom-left"></div>
+                </div>
+                <span className="text-gray-600">Check-In</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-blue-600 rounded relative">
+                  <div className="absolute inset-0 bg-blue-800 transform -rotate-45 origin-bottom-right"></div>
+                </div>
+                <span className="text-gray-600">Check-Out</span>
+              </div>
+            </div>
+
+            {/* Multi-Month Calendar Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {getMonthsToShow().map((monthDate, monthIndex) => (
+                <div key={monthIndex} className="bg-white rounded-lg border border-gray-200">
+                  {/* Month Header */}
+                  <div className="bg-blue-900 text-white text-center py-3 rounded-t-lg">
+                    <h3 className="font-bold text-sm">
+                      {monthNames[monthDate.getMonth()].toUpperCase()} {monthDate.getFullYear()}
+                    </h3>
+                  </div>
+
+                  {/* Day Headers */}
+                  <div className="grid grid-cols-7 border-b border-gray-200">
+                    {dayNames.map((day) => (
+                      <div key={day} className="p-2 text-center text-xs font-medium text-gray-600 bg-gray-50">
+                        {day}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Calendar Grid */}
+                  <div className="grid grid-cols-7">
+                    {getDaysInMonth(monthDate).map((date, index) => {
+                      if (!date) {
+                        return <div key={index} className="h-10 border-r border-b border-gray-100" />;
+                      }
+
+                      const booking = getBookingForDate(date);
+                      const isToday = formatDate(date) === formatDate(new Date());
+                      const isSelected = selectedDate === formatDate(date);
+                      const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
+
+                      let cellClass = "h-10 border-r border-b border-gray-100 flex items-center justify-center text-xs cursor-pointer transition-all duration-200 relative ";
+                      
+                      if (isPast) {
+                        cellClass += "text-gray-300 cursor-not-allowed ";
+                      } else if (booking?.available) {
+                        if (isSelected) {
+                          cellClass += "bg-blue-600 text-white font-bold ";
+                        } else {
+                          cellClass += "bg-blue-600 text-white hover:bg-blue-700 ";
+                        }
+                      } else {
+                        cellClass += "bg-gray-300 text-gray-500 cursor-not-allowed ";
+                      }
+
+                      if (isToday && !isSelected) {
+                        cellClass += "ring-2 ring-blue-400 ";
+                      }
+
+                      return (
+                        <motion.button
+                          key={index}
+                          onClick={() => !isPast && handleDateSelect(date)}
+                          disabled={isPast || !booking?.available}
+                          className={cellClass}
+                          whileHover={booking?.available && !isPast ? { scale: 1.1 } : {}}
+                          whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
+                        >
+                          {date.getDate()}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation */}
+            <div className="flex justify-center mt-6 gap-4">
+              <button
+                onClick={() => navigateMonths('prev')}
+                className="px-6 py-2 bg-blue-900 text-white rounded font-medium hover:bg-blue-800 transition-colors"
+              >
+                PREV
+              </button>
+              <button
+                onClick={() => navigateMonths('next')}
+                className="px-6 py-2 bg-blue-900 text-white rounded font-medium hover:bg-blue-800 transition-colors"
+              >
+                NEXT
+              </button>
+            </div>
+
+            {/* Drag for Availability Note */}
+            <div className="text-center mt-4 text-gray-500 text-sm">
+              ← Drag for Availability
+            </div>
+          </motion.div>
+
+          {/* Time Selection */}
+          {selectedDate && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-card p-6 mt-6"
+            >
+              <h3 className="text-xl font-bold text-primary-900 mb-6">Select Setup Time</h3>
+              
+              {/* Selected Date Display */}
+              <div className="bg-primary-50 rounded-lg p-4 mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4 text-primary-600" />
+                  <span className="font-medium text-primary-900">Selected Date</span>
+                </div>
+                <p className="text-primary-700 font-bold">
+                  {new Date(selectedDate).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+              </div>
+
+              {/* Time Selection */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Clock className="w-4 h-4 text-primary-600" />
+                  <span className="font-medium text-primary-900">Setup Time</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {bookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => (
+                    <motion.label
+                      key={timeSlot.time}
+                      className={`block cursor-pointer ${
+                        selectedTime === timeSlot.time 
+                          ? 'ring-2 ring-primary-500' 
+                          : timeSlot.available
+                            ? 'hover:ring-2 hover:ring-primary-300'
+                            : 'opacity-50 cursor-not-allowed'
+                      }`}
+                      whileHover={timeSlot.available ? { scale: 1.02 } : {}}
+                      whileTap={timeSlot.available ? { scale: 0.98 } : {}}
+                    >
+                      <input
+                        type="radio"
+                        name="time"
+                        value={timeSlot.time}
+                        checked={selectedTime === timeSlot.time}
+                        onChange={(e) => timeSlot.available && handleTimeSelect(e.target.value)}
+                        disabled={!timeSlot.available}
+                        className="sr-only"
+                      />
+                      <div className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
+                        <div>
+                          <span className="font-medium text-gray-900">{timeSlot.time}</span>
+                          {!timeSlot.available && (
+                            <div className="text-xs text-red-600 mt-1">Fully Booked</div>
+                          )}
+                        </div>
+                        {selectedTime === timeSlot.time && (
+                          <Check className="w-5 h-5 text-primary-600" />
+                        )}
+                      </div>
+                    </motion.label>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Service Selection Sidebar */}
+        <div className="xl:col-span-1 order-2">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="glass-card p-6 sticky top-8"
           >
@@ -496,7 +773,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 <Sparkles className="w-8 h-8 text-primary-600" />
               </div>
               <h3 className="text-xl font-bold text-primary-900 mb-2">Build Your Package</h3>
-              <p className="text-gray-600 text-sm">Select services for your celebration</p>
+              <p className="text-gray-600 text-sm">Select services for your {selectedPackageType} celebration</p>
               {selectedDate && selectedTime && (
                 <div className="mt-3 p-2 bg-blue-50 rounded-lg">
                   <p className="text-xs text-blue-700 font-medium">
@@ -513,7 +790,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 Base Package (Choose One)
               </h4>
               <div className="space-y-2">
-                {serviceOptions.filter(s => s.category === 'base').map((service) => {
+                {getFilteredServices().filter(s => s.category === 'base').map((service) => {
                   const inventory = getInventoryStatus(service.id);
                   const isSelected = selectedServices[service.id];
                   
@@ -599,7 +876,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 </div>
               )}
               <div className="space-y-2">
-                {serviceOptions.filter(s => s.category === 'tent').map((service) => {
+                {getFilteredServices().filter(s => s.category === 'tent').map((service) => {
                   const inventory = getInventoryStatus(service.id);
                   const currentQuantity = selectedServices[service.id] || 0;
                   const canAdd = canAddService(service);
@@ -667,7 +944,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 Add-ons & Enhancements
               </h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
-                {serviceOptions.filter(s => s.category === 'addon').map((service) => {
+                {getFilteredServices().filter(s => s.category === 'addon').map((service) => {
                   const inventory = getInventoryStatus(service.id);
                   const currentQuantity = selectedServices[service.id] || 0;
                   const canAdd = canAddService(service);
@@ -764,273 +1041,39 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               </div>
             )}
 
+            {/* Book Now Button */}
+            {selectedTime && hasBasePackage() && (
+              <motion.button
+                onClick={handleBookingConfirm}
+                className="w-full btn btn-primary group relative overflow-hidden py-4 text-lg mt-6"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <Sparkles className="w-5 h-5" />
+                  Confirm Booking - ${calculateTotal()}
+                </span>
+                
+                {/* Shimmer effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6 }}
+                />
+              </motion.button>
+            )}
+
             {!hasBasePackage() && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center mt-6">
                 <p className="text-yellow-800 text-sm font-medium">
                   Please select a base package to continue
                 </p>
               </div>
             )}
           </motion.div>
-        </div>
-
-        {/* Calendar and Booking */}
-        <div className="xl:col-span-2 order-1 xl:order-2">
-          {/* Calendar */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="glass-card p-6 mb-8"
-          >
-            {/* Calendar Header */}
-            <div className="flex items-center justify-between mb-6">
-              <motion.button
-                onClick={() => navigateMonth('prev')}
-                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="w-5 h-5 text-primary-600" />
-              </motion.button>
-              
-              <h2 className="text-xl font-bold text-primary-900">
-                {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
-              </h2>
-              
-              <motion.button
-                onClick={() => navigateMonth('next')}
-                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-5 h-5 text-primary-600" />
-              </motion.button>
-            </div>
-
-            {/* Day Headers */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {dayNames.map((day) => (
-                <div key={day} className="p-2 text-center text-sm font-medium text-gray-600">
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1">
-              {getDaysInMonth(currentDate).map((date, index) => {
-                if (!date) {
-                  return <div key={index} className="p-2" />;
-                }
-
-                const booking = getBookingForDate(date);
-                const isToday = formatDate(date) === formatDate(new Date());
-                const isSelected = selectedDate === formatDate(date);
-                const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
-
-                return (
-                  <motion.button
-                    key={index}
-                    onClick={() => !isPast && handleDateSelect(date)}
-                    disabled={isPast || !booking?.available}
-                    className={`
-                      relative p-2 h-12 text-sm font-medium rounded-lg transition-all duration-200
-                      ${isPast 
-                        ? 'text-gray-300 cursor-not-allowed' 
-                        : booking?.available
-                          ? isSelected
-                            ? 'bg-primary-600 text-white shadow-lg'
-                            : 'hover:bg-primary-50 text-primary-900 cursor-pointer'
-                          : 'text-gray-400 cursor-not-allowed bg-gray-50'
-                      }
-                      ${isToday && !isSelected ? 'ring-2 ring-primary-300' : ''}
-                    `}
-                    whileHover={booking?.available && !isPast ? { scale: 1.05 } : {}}
-                    whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
-                  >
-                    {date.getDate()}
-                    
-                    {/* Availability indicator */}
-                    {booking && !isPast && (
-                      <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
-                        booking.available ? 'bg-green-400' : 'bg-red-400'
-                      }`} />
-                    )}
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* Legend */}
-            <div className="flex items-center justify-center gap-6 mt-6 text-xs">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full" />
-                <span className="text-gray-600">Available</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-red-400 rounded-full" />
-                <span className="text-gray-600">Fully Booked</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-gray-300 rounded-full" />
-                <span className="text-gray-600">Past Date</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Time Selection and Booking */}
-          {selectedDate && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="glass-card p-6"
-            >
-              <h3 className="text-xl font-bold text-primary-900 mb-6">Select Setup Time</h3>
-              
-              {/* Selected Date Display */}
-              <div className="bg-primary-50 rounded-lg p-4 mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-primary-600" />
-                  <span className="font-medium text-primary-900">Selected Date</span>
-                </div>
-                <p className="text-primary-700 font-bold">
-                  {new Date(selectedDate).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-              </div>
-
-              {/* Time Selection */}
-              <div className="mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Clock className="w-4 h-4 text-primary-600" />
-                  <span className="font-medium text-primary-900">Setup Time</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {bookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => (
-                    <motion.label
-                      key={timeSlot.time}
-                      className={`block cursor-pointer ${
-                        selectedTime === timeSlot.time 
-                          ? 'ring-2 ring-primary-500' 
-                          : timeSlot.available
-                            ? 'hover:ring-2 hover:ring-primary-300'
-                            : 'opacity-50 cursor-not-allowed'
-                      }`}
-                      whileHover={timeSlot.available ? { scale: 1.02 } : {}}
-                      whileTap={timeSlot.available ? { scale: 0.98 } : {}}
-                    >
-                      <input
-                        type="radio"
-                        name="time"
-                        value={timeSlot.time}
-                        checked={selectedTime === timeSlot.time}
-                        onChange={(e) => timeSlot.available && handleTimeSelect(e.target.value)}
-                        disabled={!timeSlot.available}
-                        className="sr-only"
-                      />
-                      <div className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
-                        <div>
-                          <span className="font-medium text-gray-900">{timeSlot.time}</span>
-                          {!timeSlot.available && (
-                            <div className="text-xs text-red-600 mt-1">Fully Booked</div>
-                          )}
-                        </div>
-                        {selectedTime === timeSlot.time && (
-                          <Check className="w-5 h-5 text-primary-600" />
-                        )}
-                      </div>
-                    </motion.label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Final Booking Summary */}
-              {selectedTime && hasBasePackage() && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-lg p-6 mb-6"
-                >
-                  <h4 className="font-bold text-primary-900 mb-4">Final Booking Summary</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span>Date:</span>
-                      <span className="font-medium">{new Date(selectedDate).toLocaleDateString()}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Setup Time:</span>
-                      <span className="font-medium">{selectedTime}</span>
-                    </div>
-                    <div className="border-t border-primary-200 pt-3">
-                      <div className="space-y-2">
-                        {getSelectedServicesList().map((service) => (
-                          <div key={service.id} className="flex justify-between text-sm">
-                            <span className="flex items-center gap-2">
-                              {service.shortName || service.name} {service.quantity > 1 && `(×${service.quantity})`}
-                              {service.id === 'spa-party-addon' && (
-                                <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                                  Save $75!
-                                </span>
-                              )}
-                            </span>
-                            <span>${service.price * service.quantity}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="border-t border-primary-200 pt-3">
-                      <div className="flex justify-between font-bold text-xl">
-                        <span>Total:</span>
-                        <span className="text-primary-700">${calculateTotal()}</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Book Now Button */}
-              {selectedTime && hasBasePackage() && (
-                <motion.button
-                  onClick={handleBookingConfirm}
-                  className="w-full btn btn-primary group relative overflow-hidden py-4 text-lg"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    <Sparkles className="w-5 h-5" />
-                    Confirm Booking - ${calculateTotal()}
-                  </span>
-                  
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </motion.button>
-              )}
-
-              {/* Inventory Notice */}
-              {selectedTime && (
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <div className="flex items-start gap-2">
-                    <Package className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                    <div className="text-sm text-blue-800">
-                      <p className="font-medium mb-1">Real-Time Availability</p>
-                      <p>Inventory shown is live and updated in real-time. Popular items may sell out quickly, especially on weekends.</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          )}
         </div>
       </div>
     </div>
