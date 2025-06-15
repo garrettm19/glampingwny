@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus, AlertCircle } from 'lucide-react';
 
 interface BookingSlot {
   date: string;
@@ -17,6 +17,7 @@ interface ServiceOption {
   category: 'base' | 'tent' | 'addon';
   description: string;
   maxQuantity?: number;
+  requiresBase?: boolean;
 }
 
 interface CalendarBookingProps {
@@ -33,29 +34,13 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
   // All available services organized by category
   const serviceOptions: ServiceOption[] = [
-    // Base Packages
+    // Base Packages - Only one can be selected
     {
       id: 'indoor-base',
       name: 'Indoor Glamping Base Package',
       price: 225,
       category: 'base',
       description: '1 tent with complete setup, bedding, and decorations',
-      maxQuantity: 1
-    },
-    {
-      id: 'spa-party-only',
-      name: 'Spa Party Only',
-      price: 325,
-      category: 'base',
-      description: 'Complete spa experience for kids',
-      maxQuantity: 1
-    },
-    {
-      id: 'spa-party-addon',
-      name: 'Spa Party Add-On',
-      price: 250,
-      category: 'base',
-      description: 'Add spa activities to existing package',
       maxQuantity: 1
     },
     {
@@ -91,14 +76,15 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       maxQuantity: 1
     },
     
-    // Additional Tents
+    // Additional Tents - Require base package
     {
       id: 'additional-indoor-tent',
       name: 'Additional Indoor Glamping Tent',
       price: 50,
       category: 'tent',
       description: 'Extra tent to accommodate more guests',
-      maxQuantity: 10
+      maxQuantity: 10,
+      requiresBase: true
     },
     {
       id: 'additional-twin-bed',
@@ -106,10 +92,20 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       price: 25,
       category: 'tent',
       description: 'Extra comfortable sleeping space',
-      maxQuantity: 5
+      maxQuantity: 5,
+      requiresBase: true
     },
     
-    // Add-ons
+    // Add-ons - Can be added to any package
+    {
+      id: 'spa-party-addon',
+      name: 'Spa Party Add-On',
+      price: 250,
+      category: 'addon',
+      description: 'Complete spa experience added to your package (Save $75 vs standalone!)',
+      maxQuantity: 1,
+      requiresBase: true
+    },
     {
       id: 'balloon-garland',
       name: 'Balloon Garland Topper',
@@ -300,6 +296,17 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
         return rest;
       }
       
+      // If this is a base package, clear other base packages
+      if (service?.category === 'base' && newQuantity > 0) {
+        const newServices = Object.fromEntries(
+          Object.entries(prev).filter(([id]) => {
+            const s = serviceOptions.find(opt => opt.id === id);
+            return s?.category !== 'base';
+          })
+        );
+        return { ...newServices, [serviceId]: newQuantity };
+      }
+      
       return { ...prev, [serviceId]: newQuantity };
     });
   };
@@ -323,6 +330,13 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       const service = serviceOptions.find(s => s.id === serviceId);
       return service?.category === 'base';
     });
+  };
+
+  const canAddService = (service: ServiceOption) => {
+    if (service.requiresBase && !hasBasePackage()) {
+      return false;
+    }
+    return true;
   };
 
   const handleBookingConfirm = () => {
@@ -428,11 +442,23 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 <Plus className="w-4 h-4 text-blue-600" />
                 Additional Tents
               </h4>
+              {!hasBasePackage() && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <p className="text-yellow-800 text-xs">
+                      Select a base package first to add extra tents
+                    </p>
+                  </div>
+                </div>
+              )}
               <div className="space-y-2">
                 {serviceOptions.filter(s => s.category === 'tent').map((service) => (
                   <div
                     key={service.id}
-                    className="p-3 border-2 border-gray-200 rounded-lg hover:border-blue-300 transition-all duration-200"
+                    className={`p-3 border-2 rounded-lg transition-all duration-200 ${
+                      !canAddService(service) ? 'opacity-50' : 'hover:border-blue-300'
+                    } border-gray-200`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
@@ -443,7 +469,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleServiceQuantityChange(service.id, -1)}
-                          disabled={!selectedServices[service.id]}
+                          disabled={!selectedServices[service.id] || !canAddService(service)}
                           className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
                         >
                           <Minus className="w-3 h-3" />
@@ -453,7 +479,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                         </span>
                         <button
                           onClick={() => handleServiceQuantityChange(service.id, 1)}
-                          disabled={(selectedServices[service.id] || 0) >= (service.maxQuantity || 1)}
+                          disabled={(selectedServices[service.id] || 0) >= (service.maxQuantity || 1) || !canAddService(service)}
                           className="w-6 h-6 rounded-full bg-blue-200 hover:bg-blue-300 disabled:opacity-50 flex items-center justify-center"
                         >
                           <Plus className="w-3 h-3" />
@@ -475,18 +501,34 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 {serviceOptions.filter(s => s.category === 'addon').map((service) => (
                   <div
                     key={service.id}
-                    className="p-3 border-2 border-gray-200 rounded-lg hover:border-pink-300 transition-all duration-200"
+                    className={`p-3 border-2 rounded-lg transition-all duration-200 ${
+                      service.requiresBase && !hasBasePackage() ? 'opacity-50' : 'hover:border-pink-300'
+                    } border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <div className="font-medium text-gray-800 text-sm">{service.name}</div>
+                        <div className="font-medium text-gray-800 text-sm flex items-center gap-2">
+                          {service.name}
+                          {service.id === 'spa-party-addon' && (
+                            <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                              Save $75!
+                            </span>
+                          )}
+                        </div>
                         <div className="text-xs text-gray-600">{service.description}</div>
-                        <div className="text-pink-600 font-bold">${service.price}</div>
+                        <div className={`font-bold ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
+                          ${service.price}
+                        </div>
+                        {service.requiresBase && !hasBasePackage() && (
+                          <div className="text-xs text-yellow-600 mt-1">
+                            Requires base package
+                          </div>
+                        )}
                       </div>
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleServiceQuantityChange(service.id, -1)}
-                          disabled={!selectedServices[service.id]}
+                          disabled={!selectedServices[service.id] || (service.requiresBase && !hasBasePackage())}
                           className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
                         >
                           <Minus className="w-3 h-3" />
@@ -496,7 +538,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                         </span>
                         <button
                           onClick={() => handleServiceQuantityChange(service.id, 1)}
-                          disabled={(selectedServices[service.id] || 0) >= (service.maxQuantity || 1)}
+                          disabled={(selectedServices[service.id] || 0) >= (service.maxQuantity || 1) || (service.requiresBase && !hasBasePackage())}
                           className="w-6 h-6 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
                         >
                           <Plus className="w-3 h-3" />
@@ -727,7 +769,14 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       <div className="space-y-2">
                         {getSelectedServicesList().map((service) => (
                           <div key={service.id} className="flex justify-between text-sm">
-                            <span>{service.name} {service.quantity > 1 && `(×${service.quantity})`}</span>
+                            <span className="flex items-center gap-2">
+                              {service.name} {service.quantity > 1 && `(×${service.quantity})`}
+                              {service.id === 'spa-party-addon' && (
+                                <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                                  Save $75!
+                                </span>
+                              )}
+                            </span>
                             <span>${service.price * service.quantity}</span>
                           </div>
                         ))}

@@ -15,50 +15,19 @@ import {
   ArrowRight,
   Gift,
   Crown,
-  Palette
+  Palette,
+  DollarSign,
+  TrendingDown
 } from 'lucide-react';
 
 const KidsSpaPartyPage: React.FC = () => {
-  const basePackages = [
-    {
-      id: 'spa-party-only',
-      title: 'Spa Party Only',
-      price: '$325.00',
-      description: 'Complete spa experience for your little ones',
-      icon: Crown,
-      popular: false,
-      features: [
-        'Professional spa setup and decorations',
-        'Kid-safe spa treatments and activities',
-        'Relaxing ambiance with soft lighting',
-        'Spa-themed party supplies',
-        'Complete setup and cleanup',
-        'Age-appropriate spa activities',
-        'Themed decorations and accessories',
-        'Professional guidance materials'
-      ],
-      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&w=400&q=80'
-    },
-    {
-      id: 'spa-party-addon',
-      title: 'Spa Party Add-On',
-      price: '$250.00',
-      description: 'Perfect addition to your existing glamping package',
-      icon: Sparkles,
-      popular: true,
-      features: [
-        'Spa activities added to glamping setup',
-        'Coordinated spa and glamping themes',
-        'Enhanced relaxation experience',
-        'Spa supplies and materials',
-        'Seamless integration with tents',
-        'Extended party entertainment',
-        'Professional spa guidance',
-        'Complete spa cleanup included'
-      ],
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80'
-    }
-  ];
+  const spaPackageInfo = {
+    standalonePrice: 325,
+    addonPrice: 250,
+    baseGlampingPrice: 225,
+    bundleTotal: 475, // 225 + 250
+    savings: 75 // 325 + 225 - 475
+  };
 
   const addOns = [
     {
@@ -111,10 +80,10 @@ const KidsSpaPartyPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Kids Spa Party Packages | Relaxing Fun for Little Ones | Glamping WNY</title>
+        <title>Kids Spa Party Add-On | Save $75 with Glamping Bundle | Glamping WNY</title>
         <meta 
           name="description" 
-          content="Create a magical spa experience for kids with our professional spa party packages. Complete setup, kid-safe treatments, and relaxing fun in the Buffalo Metro Area." 
+          content="Add magical spa experiences to your glamping package and save $75! Professional spa activities, kid-safe treatments, and relaxing fun in the Buffalo Metro Area." 
         />
       </Helmet>
 
@@ -155,12 +124,23 @@ const KidsSpaPartyPage: React.FC = () => {
               <Crown className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Kids Spa Party Experiences 👑✨
+              Kids Spa Party Add-On 👑✨
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Pamper your little ones with a magical spa experience they'll never forget. 
-              Professional setup, kid-safe treatments, and pure relaxation fun!
+              Transform your glamping experience into the ultimate spa adventure! 
+              Add magical spa activities to any glamping package and save money.
             </p>
+            
+            {/* Savings Highlight */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="inline-block bg-green-500 text-white px-6 py-3 rounded-full font-bold text-lg mb-8"
+            >
+              <TrendingDown className="w-5 h-5 inline mr-2" />
+              Save $75 when you bundle with glamping!
+            </motion.div>
             
             {/* Trust Indicators */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
@@ -181,8 +161,152 @@ const KidsSpaPartyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Base Packages Section */}
+      {/* Pricing Comparison Section */}
       <section className="section bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-block p-3 bg-green-100 rounded-full mb-6">
+                <DollarSign className="w-6 h-6 text-green-600" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Smart Savings with Our Spa Bundle! 💰
+              </h2>
+              <p className="text-gray-700 max-w-3xl mx-auto text-lg">
+                Why pay more when you can get the best of both worlds? Our spa add-on gives you incredible value when combined with any glamping package.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Pricing Comparison Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            {/* Separate Packages */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-gray-50 border-2 border-gray-200 rounded-2xl p-8 relative"
+            >
+              <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                More Expensive
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Booking Separately</h3>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border">
+                  <span className="font-medium">Indoor Glamping Base</span>
+                  <span className="font-bold text-gray-800">${spaPackageInfo.baseGlampingPrice}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border">
+                  <span className="font-medium">Spa Party (Standalone)</span>
+                  <span className="font-bold text-gray-800">${spaPackageInfo.standalonePrice}</span>
+                </div>
+              </div>
+              
+              <div className="border-t-2 border-gray-300 pt-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-gray-800">Total Cost:</span>
+                  <span className="text-3xl font-bold text-red-600">
+                    ${spaPackageInfo.baseGlampingPrice + spaPackageInfo.standalonePrice}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Bundle Package */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl p-8 relative ring-4 ring-green-100"
+            >
+              <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                Best Value!
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Smart Bundle Package</h3>
+              
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-green-200">
+                  <span className="font-medium">Indoor Glamping Base</span>
+                  <span className="font-bold text-gray-800">${spaPackageInfo.baseGlampingPrice}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-green-200">
+                  <span className="font-medium">Spa Party Add-On</span>
+                  <span className="font-bold text-green-600">${spaPackageInfo.addonPrice}</span>
+                </div>
+              </div>
+              
+              <div className="border-t-2 border-green-300 pt-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-xl font-bold text-gray-800">Bundle Total:</span>
+                  <span className="text-3xl font-bold text-green-600">
+                    ${spaPackageInfo.bundleTotal}
+                  </span>
+                </div>
+                <div className="text-center">
+                  <span className="inline-block bg-green-500 text-white px-4 py-2 rounded-full font-bold">
+                    You Save ${spaPackageInfo.savings}!
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Why Bundle Benefits */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="bg-blue-50 border border-blue-200 rounded-xl p-8 max-w-4xl mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Why Our Bundle Makes Perfect Sense 🧠
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <DollarSign className="w-8 h-8 text-blue-600" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-2">Save Money</h4>
+                <p className="text-gray-700 text-sm">
+                  Get both experiences for $75 less than booking separately
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Sparkles className="w-8 h-8 text-purple-600" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-2">More Fun</h4>
+                <p className="text-gray-700 text-sm">
+                  Adventure AND relaxation in one amazing experience
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Check className="w-8 h-8 text-green-600" />
+                </div>
+                <h4 className="font-bold text-gray-800 mb-2">One Setup</h4>
+                <p className="text-gray-700 text-sm">
+                  Everything coordinated perfectly in one visit
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* What's Included Section */}
+      <section className="section bg-gradient-to-br from-pink-50 to-purple-50">
         <div className="container-custom">
           <div className="text-center mb-16">
             <motion.div
@@ -195,132 +319,100 @@ const KidsSpaPartyPage: React.FC = () => {
                 <Heart className="w-6 h-6 text-pink-600" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Choose Your Spa Experience 🧖‍♀️
+                What's Included in Your Spa Add-On 🧖‍♀️
               </h2>
               <p className="text-gray-700 max-w-3xl mx-auto text-lg">
-                Select the perfect spa package for your little princess or prince. Each package includes everything needed for a magical, relaxing celebration.
+                Our spa add-on transforms your glamping experience into a complete relaxation adventure with professional-grade, kid-safe spa activities.
               </p>
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {basePackages.map((pkg, index) => (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 ${
-                  pkg.popular ? 'border-pink-300 ring-4 ring-pink-100' : 'border-gray-200'
-                }`}
-                whileHover={{ y: -8 }}
-              >
-                {/* Popular Badge */}
-                {pkg.popular && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                      <Star className="w-4 h-4 inline mr-1" />
-                      Most Popular
-                    </div>
-                  </div>
-                )}
+          {/* Spa Package Details */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto mb-12"
+          >
+            <div className="text-center mb-8">
+              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Crown className="w-10 h-10 text-pink-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Spa Party Add-On</h3>
+              <p className="text-gray-600">Add to any glamping package for just $250</p>
+            </div>
 
-                {/* Package Image */}
-                <div className="h-48 relative overflow-hidden">
-                  <img 
-                    src={pkg.image} 
-                    alt={pkg.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  
-                  {/* Price Overlay */}
-                  <div className="absolute bottom-4 left-4">
-                    <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <span className="text-2xl font-bold text-gray-800">{pkg.price}</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-pink-500" />
+                  Spa Activities Included
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    'Professional spa setup and decorations',
+                    'Kid-safe spa treatments and activities',
+                    'Relaxing ambiance with soft lighting',
+                    'Spa-themed party supplies',
+                    'Age-appropriate spa activities',
+                    'Themed decorations and accessories'
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{feature}</span>
                     </div>
-                  </div>
+                  ))}
                 </div>
-
-                {/* Package Content */}
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
-                      <pkg.icon className="w-6 h-6 text-pink-600" />
+              </div>
+              
+              <div>
+                <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-purple-500" />
+                  Service Benefits
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    'Coordinated with glamping theme',
+                    'Enhanced relaxation experience',
+                    'Extended party entertainment',
+                    'Professional spa guidance materials',
+                    'Complete spa cleanup included',
+                    'Seamless integration with tents'
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{feature}</span>
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-800">{pkg.title}</h3>
-                      <p className="text-gray-600">{pkg.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-3 mb-8">
-                    {pkg.features.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* CTA Button */}
-                  <Link
-                    to="/book-now"
-                    className={`block w-full text-center py-4 px-6 rounded-xl font-bold transition-all duration-300 group ${
-                      pkg.popular
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl'
-                        : 'bg-gray-100 hover:bg-pink-50 text-gray-800 hover:text-pink-600 border-2 border-gray-200 hover:border-pink-300'
-                    }`}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Book This Spa Experience
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
+          </motion.div>
 
-          {/* Package Comparison */}
+          {/* Perfect Combination */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="mt-12 bg-pink-50 border border-pink-200 rounded-xl p-6"
+            className="text-center"
           >
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
-              Which Package is Right for You? 🤔
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Crown className="w-8 h-8 text-pink-600" />
-                </div>
-                <h4 className="font-bold text-gray-800 mb-2">Spa Party Only</h4>
-                <p className="text-gray-700 text-sm">
-                  Perfect for dedicated spa experiences. Includes everything needed for a complete spa party without glamping tents.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Sparkles className="w-8 h-8 text-purple-600" />
-                </div>
-                <h4 className="font-bold text-gray-800 mb-2">Spa Party Add-On</h4>
-                <p className="text-gray-700 text-sm">
-                  Enhance your existing glamping package with spa activities. Perfect combination of adventure and relaxation!
-                </p>
-              </div>
+            <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-8 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                The Perfect Combination! 🎯
+              </h3>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Start with exciting glamping adventures, then wind down with relaxing spa activities. 
+                It's the perfect balance of fun and relaxation that kids absolutely love!
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Add-Ons Section */}
-      <section className="section bg-gradient-to-br from-pink-50 to-purple-50">
+      <section className="section bg-white">
         <div className="container-custom">
           <div className="text-center mb-16">
             <motion.div
@@ -333,10 +425,10 @@ const KidsSpaPartyPage: React.FC = () => {
                 <Gift className="w-6 h-6 text-purple-600" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Enhance Your Spa Experience ✨
+                Make It Even More Special ✨
               </h2>
               <p className="text-gray-700 max-w-3xl mx-auto text-lg">
-                Make your spa party even more special with these magical add-ons. Each enhancement adds extra fun and memories to your celebration.
+                Add these magical enhancements to create the ultimate spa and glamping experience.
               </p>
             </motion.div>
           </div>
@@ -357,7 +449,7 @@ const KidsSpaPartyPage: React.FC = () => {
                     <addon.icon className={`w-6 h-6 ${addon.iconColor}`} />
                   </div>
                   <div className="text-right">
-                    <span className={`text-2xl font-bold ${addon.iconColor}`}>
+                    <span className={`text-xl font-bold ${addon.iconColor}`}>
                       {addon.price}
                     </span>
                   </div>
@@ -378,57 +470,13 @@ const KidsSpaPartyPage: React.FC = () => {
                   } ${addon.iconColor.replace('text-', 'hover:bg-').replace('600', '50')} hover:border-opacity-100`}
                 >
                   <span className="flex items-center justify-center gap-2">
-                    Add to Package
+                    Add Enhancement
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
               </motion.div>
             ))}
           </div>
-
-          {/* Add-On Benefits */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-purple-200 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                Why Add These Enhancements? 🌟
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Palette className="w-8 h-8 text-pink-600" />
-                  </div>
-                  <h4 className="font-bold text-gray-800 mb-2">More Activities</h4>
-                  <p className="text-gray-700 text-sm">
-                    Keep the fun going longer with additional entertainment options
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Camera className="w-8 h-8 text-purple-600" />
-                  </div>
-                  <h4 className="font-bold text-gray-800 mb-2">Better Memories</h4>
-                  <p className="text-gray-700 text-sm">
-                    Capture and enhance special moments with photo opportunities
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Star className="w-8 h-8 text-indigo-600" />
-                  </div>
-                  <h4 className="font-bold text-gray-800 mb-2">Extra Special</h4>
-                  <p className="text-gray-700 text-sm">
-                    Make your celebration truly unique and unforgettable
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -468,10 +516,10 @@ const KidsSpaPartyPage: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Create a Magical Spa Experience? 👑✨
+              Ready to Book Your Glamping + Spa Bundle? 👑✨
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Book your kids spa party today and give your little ones the royal treatment they deserve!
+              Save $75 and give your kids the ultimate adventure and relaxation experience!
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -484,7 +532,7 @@ const KidsSpaPartyPage: React.FC = () => {
                   className="inline-flex items-center gap-2 bg-white text-purple-600 hover:bg-purple-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <Crown className="w-5 h-5" />
-                  Book Your Spa Experience
+                  Book Bundle & Save $75
                 </Link>
               </motion.div>
               
@@ -500,6 +548,25 @@ const KidsSpaPartyPage: React.FC = () => {
                   Ask Questions
                 </Link>
               </motion.div>
+            </div>
+
+            {/* Value Proposition */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto mb-8">
+              <h3 className="text-xl font-bold mb-4">Bundle Value Breakdown:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div className="font-bold text-lg">${spaPackageInfo.bundleTotal}</div>
+                  <div className="text-white/80">Bundle Price</div>
+                </div>
+                <div>
+                  <div className="font-bold text-lg text-green-300">${spaPackageInfo.savings}</div>
+                  <div className="text-white/80">You Save</div>
+                </div>
+                <div>
+                  <div className="font-bold text-lg">2-in-1</div>
+                  <div className="text-white/80">Experiences</div>
+                </div>
+              </div>
             </div>
 
             {/* Trust Indicators */}
