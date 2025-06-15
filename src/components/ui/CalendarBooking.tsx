@@ -497,13 +497,43 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
     }
   };
 
+  // Helper function to determine if a date should show check-in/check-out styling
+  const getDateStyle = (date: Date, booking: any, isSelected: boolean, isPast: boolean) => {
+    const dateStr = formatDate(date);
+    const day = date.getDate();
+    
+    // Example check-in/check-out dates for demonstration
+    const isCheckIn = (day === 15 || day === 22) && booking?.available;
+    const isCheckOut = (day === 18 || day === 25) && booking?.available;
+    
+    let cellClass = "h-10 border-r border-b border-gray-100 flex items-center justify-center text-xs cursor-pointer transition-all duration-200 relative ";
+    
+    if (isPast) {
+      cellClass += "text-gray-300 cursor-not-allowed ";
+    } else if (booking?.available) {
+      if (isSelected) {
+        cellClass += "bg-purple-600 text-white font-bold ";
+      } else if (isCheckIn) {
+        cellClass += "bg-purple-600 text-white relative ";
+      } else if (isCheckOut) {
+        cellClass += "bg-purple-600 text-white relative ";
+      } else {
+        cellClass += "bg-purple-600 text-white hover:bg-purple-700 ";
+      }
+    } else {
+      cellClass += "bg-gray-300 text-gray-500 cursor-not-allowed ";
+    }
+
+    return { cellClass, isCheckIn, isCheckOut };
+  };
+
   if (isLoading) {
     return (
       <div className="glass-card p-8 text-center">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full mx-auto mb-4"
+          className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto mb-4"
         />
         <p className="text-gray-600">Loading real-time availability...</p>
       </div>
@@ -521,8 +551,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               onClick={() => setSelectedPackageType('indoor')}
               className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                 selectedPackageType === 'indoor'
-                  ? 'bg-orange-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-orange-50'
+                  ? 'bg-purple-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-purple-50'
               }`}
             >
               Indoor Glamping
@@ -553,31 +583,31 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             <div className="flex items-center justify-between mb-6">
               <motion.button
                 onClick={() => navigateMonths('prev')}
-                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronLeft className="w-5 h-5 text-primary-600" />
+                <ChevronLeft className="w-5 h-5 text-purple-600" />
               </motion.button>
               
-              <h2 className="text-xl font-bold text-primary-900">
+              <h2 className="text-xl font-bold text-purple-900">
                 Select Your Date
               </h2>
               
               <motion.button
                 onClick={() => navigateMonths('next')}
-                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <ChevronRight className="w-5 h-5 text-primary-600" />
+                <ChevronRight className="w-5 h-5 text-purple-600" />
               </motion.button>
             </div>
 
             {/* Legend */}
             <div className="flex items-center justify-center gap-6 mb-6 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded"></div>
+                <div className="w-4 h-4 bg-purple-600 rounded"></div>
                 <span className="text-gray-600">Available</span>
               </div>
               <div className="flex items-center gap-2">
@@ -585,14 +615,14 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 <span className="text-gray-600">Unavailable</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded relative">
-                  <div className="absolute inset-0 bg-blue-800 transform rotate-45 origin-bottom-left"></div>
+                <div className="w-4 h-4 bg-purple-600 rounded relative">
+                  <div className="absolute inset-0 bg-purple-800 transform rotate-45 origin-bottom-left"></div>
                 </div>
                 <span className="text-gray-600">Check-In</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-blue-600 rounded relative">
-                  <div className="absolute inset-0 bg-blue-800 transform -rotate-45 origin-bottom-right"></div>
+                <div className="w-4 h-4 bg-purple-600 rounded relative">
+                  <div className="absolute inset-0 bg-purple-800 transform -rotate-45 origin-bottom-right"></div>
                 </div>
                 <span className="text-gray-600">Check-Out</span>
               </div>
@@ -603,7 +633,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               {getMonthsToShow().map((monthDate, monthIndex) => (
                 <div key={monthIndex} className="bg-white rounded-lg border border-gray-200">
                   {/* Month Header */}
-                  <div className="bg-blue-900 text-white text-center py-3 rounded-t-lg">
+                  <div className="bg-purple-900 text-white text-center py-3 rounded-t-lg">
                     <h3 className="font-bold text-sm">
                       {monthNames[monthDate.getMonth()].toUpperCase()} {monthDate.getFullYear()}
                     </h3>
@@ -630,22 +660,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       const isSelected = selectedDate === formatDate(date);
                       const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
 
-                      let cellClass = "h-10 border-r border-b border-gray-100 flex items-center justify-center text-xs cursor-pointer transition-all duration-200 relative ";
-                      
-                      if (isPast) {
-                        cellClass += "text-gray-300 cursor-not-allowed ";
-                      } else if (booking?.available) {
-                        if (isSelected) {
-                          cellClass += "bg-blue-600 text-white font-bold ";
-                        } else {
-                          cellClass += "bg-blue-600 text-white hover:bg-blue-700 ";
-                        }
-                      } else {
-                        cellClass += "bg-gray-300 text-gray-500 cursor-not-allowed ";
-                      }
+                      const { cellClass, isCheckIn, isCheckOut } = getDateStyle(date, booking, isSelected, isPast);
 
                       if (isToday && !isSelected) {
-                        cellClass += "ring-2 ring-blue-400 ";
+                        cellClass += "ring-2 ring-purple-400 ";
                       }
 
                       return (
@@ -658,6 +676,16 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
                         >
                           {date.getDate()}
+                          
+                          {/* Check-in diagonal stripe */}
+                          {isCheckIn && (
+                            <div className="absolute inset-0 bg-purple-800 transform rotate-45 origin-bottom-left opacity-50"></div>
+                          )}
+                          
+                          {/* Check-out diagonal stripe */}
+                          {isCheckOut && (
+                            <div className="absolute inset-0 bg-purple-800 transform -rotate-45 origin-bottom-right opacity-50"></div>
+                          )}
                         </motion.button>
                       );
                     })}
@@ -670,13 +698,13 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             <div className="flex justify-center mt-6 gap-4">
               <button
                 onClick={() => navigateMonths('prev')}
-                className="px-6 py-2 bg-blue-900 text-white rounded font-medium hover:bg-blue-800 transition-colors"
+                className="px-6 py-2 bg-purple-900 text-white rounded font-medium hover:bg-purple-800 transition-colors"
               >
                 PREV
               </button>
               <button
                 onClick={() => navigateMonths('next')}
-                className="px-6 py-2 bg-blue-900 text-white rounded font-medium hover:bg-blue-800 transition-colors"
+                className="px-6 py-2 bg-purple-900 text-white rounded font-medium hover:bg-purple-800 transition-colors"
               >
                 NEXT
               </button>
@@ -695,15 +723,15 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               animate={{ opacity: 1, y: 0 }}
               className="glass-card p-6 mt-6"
             >
-              <h3 className="text-xl font-bold text-primary-900 mb-6">Select Setup Time</h3>
+              <h3 className="text-xl font-bold text-purple-900 mb-6">Select Setup Time</h3>
               
               {/* Selected Date Display */}
-              <div className="bg-primary-50 rounded-lg p-4 mb-6">
+              <div className="bg-purple-50 rounded-lg p-4 mb-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-primary-600" />
-                  <span className="font-medium text-primary-900">Selected Date</span>
+                  <Calendar className="w-4 h-4 text-purple-600" />
+                  <span className="font-medium text-purple-900">Selected Date</span>
                 </div>
-                <p className="text-primary-700 font-bold">
+                <p className="text-purple-700 font-bold">
                   {new Date(selectedDate).toLocaleDateString('en-US', {
                     weekday: 'long',
                     year: 'numeric',
@@ -716,8 +744,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               {/* Time Selection */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <Clock className="w-4 h-4 text-primary-600" />
-                  <span className="font-medium text-primary-900">Setup Time</span>
+                  <Clock className="w-4 h-4 text-purple-600" />
+                  <span className="font-medium text-purple-900">Setup Time</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   {bookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => (
@@ -725,9 +753,9 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       key={timeSlot.time}
                       className={`block cursor-pointer ${
                         selectedTime === timeSlot.time 
-                          ? 'ring-2 ring-primary-500' 
+                          ? 'ring-2 ring-purple-500' 
                           : timeSlot.available
-                            ? 'hover:ring-2 hover:ring-primary-300'
+                            ? 'hover:ring-2 hover:ring-purple-300'
                             : 'opacity-50 cursor-not-allowed'
                       }`}
                       whileHover={timeSlot.available ? { scale: 1.02 } : {}}
@@ -750,7 +778,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           )}
                         </div>
                         {selectedTime === timeSlot.time && (
-                          <Check className="w-5 h-5 text-primary-600" />
+                          <Check className="w-5 h-5 text-purple-600" />
                         )}
                       </div>
                     </motion.label>
@@ -769,10 +797,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             className="glass-card p-6 sticky top-8"
           >
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-primary-600" />
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-bold text-primary-900 mb-2">Build Your Package</h3>
+              <h3 className="text-xl font-bold text-purple-900 mb-2">Build Your Package</h3>
               <p className="text-gray-600 text-sm">Select services for your {selectedPackageType} celebration</p>
               {selectedDate && selectedTime && (
                 <div className="mt-3 p-2 bg-blue-50 rounded-lg">
@@ -786,7 +814,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             {/* Base Packages */}
             <div className="mb-6">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Star className="w-4 h-4 text-primary-600" />
+                <Star className="w-4 h-4 text-purple-600" />
                 Base Package (Choose One)
               </h4>
               <div className="space-y-2">
@@ -799,17 +827,17 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       key={service.id}
                       className={`p-3 border-2 rounded-lg transition-all duration-200 ${
                         isSelected 
-                          ? 'border-primary-500 bg-primary-50' 
+                          ? 'border-purple-500 bg-purple-50' 
                           : inventory.status === 'none'
                             ? 'border-gray-200 bg-gray-50 opacity-60'
-                            : 'border-gray-200 hover:border-primary-300'
+                            : 'border-gray-200 hover:border-purple-300'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="font-medium text-gray-800 text-sm">{service.name}</div>
                           <div className="text-xs text-gray-600">{service.description}</div>
-                          <div className="text-primary-600 font-bold">${service.price}</div>
+                          <div className="text-purple-600 font-bold">${service.price}</div>
                           
                           {/* Inventory Status */}
                           {selectedDate && selectedTime && (
@@ -844,10 +872,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           disabled={inventory.status === 'none' || (!selectedDate || !selectedTime)}
                           className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
                             isSelected
-                              ? 'border-primary-500 bg-primary-500 text-white'
+                              ? 'border-purple-500 bg-purple-500 text-white'
                               : inventory.status === 'none' || (!selectedDate || !selectedTime)
                                 ? 'border-gray-300 bg-gray-100 cursor-not-allowed'
-                                : 'border-gray-300 hover:border-primary-400'
+                                : 'border-gray-300 hover:border-purple-400'
                           }`}
                         >
                           {isSelected && <Check className="w-3 h-3" />}
@@ -1035,7 +1063,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 <div className="border-t border-gray-200 pt-2">
                   <div className="flex justify-between font-bold text-lg">
                     <span>Total:</span>
-                    <span className="text-primary-700">${calculateTotal()}</span>
+                    <span className="text-purple-700">${calculateTotal()}</span>
                   </div>
                 </div>
               </div>
