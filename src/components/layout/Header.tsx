@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { Menu, X, Phone, Mail, Instagram, Facebook, ChevronDown } from 'lucide-react';
 import Logo from '../ui/Logo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '../../utils/analytics';
@@ -8,6 +8,7 @@ import { trackEvent } from '../../utils/analytics';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsServicesOpen(false);
     window.scrollTo(0, 0);
   }, [location]);
 
@@ -32,7 +34,17 @@ const Header: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
+    { 
+      name: 'Services', 
+      path: '/services',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'All Services', path: '/services' },
+        { name: 'Kids Spa Party', path: '/kids-spa-party' },
+        { name: 'Indoor Glamping', path: '/services#indoor' },
+        { name: 'Outdoor Glamping', path: '/services#outdoor' }
+      ]
+    },
     { name: 'Gallery', path: '/gallery' },
     { name: 'FAQ', path: '/faq' },
     { name: 'Contact', path: '/contact' },
@@ -75,41 +87,97 @@ const Header: React.FC = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="relative"
             >
-              <Link
-                to={link.path}
-                onClick={() => handleNavClick(link.name.toLowerCase())}
-                className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
-                  isScrolled 
-                    ? 'text-gray-700 hover:text-primary-600' 
-                    : 'text-white hover:text-primary-300'
-                }`}
-              >
-                <span className="relative z-10">{link.name}</span>
-                
-                {/* Hover background effect */}
-                <motion.div
-                  className={`absolute inset-0 rounded-lg ${
+              {link.hasDropdown ? (
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                >
+                  <button
+                    className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group flex items-center gap-1 ${
+                      isScrolled 
+                        ? 'text-gray-700 hover:text-primary-600' 
+                        : 'text-white hover:text-primary-300'
+                    }`}
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                    
+                    {/* Hover background effect */}
+                    <motion.div
+                      className={`absolute inset-0 rounded-lg ${
+                        isScrolled 
+                          ? 'bg-primary-50' 
+                          : 'bg-white/10'
+                      }`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileHover={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isServicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50"
+                      >
+                        {link.dropdownItems?.map((item, i) => (
+                          <Link
+                            key={i}
+                            to={item.path}
+                            onClick={() => handleNavClick(item.name.toLowerCase())}
+                            className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  to={link.path}
+                  onClick={() => handleNavClick(link.name.toLowerCase())}
+                  className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
                     isScrolled 
-                      ? 'bg-primary-50' 
-                      : 'bg-white/10'
+                      ? 'text-gray-700 hover:text-primary-600' 
+                      : 'text-white hover:text-primary-300'
                   }`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.2 }}
-                />
-                
-                {/* Active indicator */}
-                {location.pathname === link.path && (
+                >
+                  <span className="relative z-10">{link.name}</span>
+                  
+                  {/* Hover background effect */}
                   <motion.div
-                    className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary-500 rounded-full"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    style={{ x: '-50%' }}
+                    className={`absolute inset-0 rounded-lg ${
+                      isScrolled 
+                        ? 'bg-primary-50' 
+                        : 'bg-white/10'
+                    }`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
                   />
-                )}
-              </Link>
+                  
+                  {/* Active indicator */}
+                  {location.pathname === link.path && (
+                    <motion.div
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary-500 rounded-full"
+                      layoutId="activeIndicator"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      style={{ x: '-50%' }}
+                    />
+                  )}
+                </Link>
+              )}
             </motion.div>
           ))}
           
@@ -306,13 +374,37 @@ const Header: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                       >
-                        <Link
-                          to={link.path}
-                          className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
-                          onClick={() => handleNavClick(link.name.toLowerCase())}
-                        >
-                          {link.name}
-                        </Link>
+                        {link.hasDropdown ? (
+                          <div>
+                            <Link
+                              to={link.path}
+                              className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
+                              onClick={() => handleNavClick(link.name.toLowerCase())}
+                            >
+                              {link.name}
+                            </Link>
+                            <div className="ml-4 mt-2 space-y-1">
+                              {link.dropdownItems?.map((item, i) => (
+                                <Link
+                                  key={i}
+                                  to={item.path}
+                                  className="block px-4 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-all duration-200"
+                                  onClick={() => handleNavClick(item.name.toLowerCase())}
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <Link
+                            to={link.path}
+                            className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
+                            onClick={() => handleNavClick(link.name.toLowerCase())}
+                          >
+                            {link.name}
+                          </Link>
+                        )}
                       </motion.div>
                     ))}
                   </div>

@@ -14,6 +14,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import BlogPage from './pages/BlogPage';
 import BookingPage from './pages/BookingPage';
+import KidsSpaPartyPage from './pages/KidsSpaPartyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { initGA, trackPageView } from './utils/analytics';
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/kids-spa-party" element={<KidsSpaPartyPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
