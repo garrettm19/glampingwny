@@ -662,8 +662,9 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
                       const { cellClass, isCheckIn, isCheckOut } = getDateStyle(date, booking, isSelected, isPast);
 
+                      let finalCellClass = cellClass;
                       if (isToday && !isSelected) {
-                        cellClass += "ring-2 ring-purple-400 ";
+                        finalCellClass += "ring-2 ring-purple-400 ";
                       }
 
                       return (
@@ -671,7 +672,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           key={index}
                           onClick={() => !isPast && handleDateSelect(date)}
                           disabled={isPast || !booking?.available}
-                          className={cellClass}
+                          className={finalCellClass}
                           whileHover={booking?.available && !isPast ? { scale: 1.1 } : {}}
                           whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
                         >
