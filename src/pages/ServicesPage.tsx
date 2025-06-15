@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ServiceCard from '../components/ui/ServiceCard';
 import ComparisonTable from '../components/ui/ComparisonTable';
-import { Check, Award } from 'lucide-react';
+import ServiceAreaMap from '../components/ui/ServiceAreaMap';
+import { Check, Award, MapPin } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
 
 const services = [
@@ -116,24 +117,34 @@ const ServicesPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Glamping Packages & Pricing | Indoor & Outdoor Options</title>
+        <title>Family Glamping Packages & Pricing | Buffalo Metro Area | Glamping WNY</title>
         <meta 
           name="description" 
-          content="Choose from our luxury glamping packages. All-inclusive pricing with setup, decorations, and cleanup included. Perfect for birthdays, bachelorettes, and special occasions." 
+          content="Choose from our luxury family glamping packages in the Buffalo Metro Area. All-inclusive pricing with setup, decorations, and cleanup included. FREE delivery within 20 miles of Hamburg, NY." 
         />
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
-            <span 
+            <motion.div
               key={i}
-              className="sparkle-dot"
+              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [1, 1.2, 1],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
               style={{
-                top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
+                top: `${Math.random() * 100}%`,
               }}
             />
           ))}
@@ -144,11 +155,40 @@ const ServicesPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Packages</h1>
-            <p className="text-xl text-white/90 mb-6">
-              Choose from our carefully designed packages or customize your own magical experience.
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Family Packages 🏕️</h1>
+            <p className="text-xl text-white/90 mb-8">
+              Choose from our carefully designed packages or customize your own magical family experience.
+            </p>
+            
+            {/* Service Area Highlight */}
+            <div className="inline-block bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-yellow-300" />
+                <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Service Area Banner */}
+      <section className="py-6 bg-green-50 border-b border-green-200">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <MapPin className="w-5 h-5 text-green-600" />
+              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+            </div>
+            <p className="text-green-700">
+              <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
+              Extended delivery: 21-31 miles ($50) • 32-42 miles ($100)
             </p>
           </motion.div>
         </div>
@@ -164,7 +204,7 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Why Choose Glamping WNY?
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto">
@@ -186,7 +226,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Packages */}
-      <section className="section bg-primary-50">
+      <section className="section bg-orange-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.div
@@ -195,11 +235,11 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Indoor Glamping Packages
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Indoor Family Glamping Packages
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto">
-                Select from our popular packages, each designed to create unforgettable memories.
+                Select from our popular packages, each designed to create unforgettable family memories.
               </p>
             </motion.div>
           </div>
@@ -230,8 +270,8 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
-                Enhance Your Experience
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Enhance Your Family Experience
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto">
                 Customize your package with these magical add-ons.
@@ -251,8 +291,8 @@ const ServicesPage: React.FC = () => {
                 whileHover={{ y: -5 }}
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-bold text-primary-900">{addon.title}</h3>
-                  <span className="text-accent-600 font-bold">{addon.price}</span>
+                  <h3 className="text-lg font-bold text-gray-800">{addon.title}</h3>
+                  <span className="text-orange-600 font-bold">{addon.price}</span>
                 </div>
                 <p className="text-gray-700 mb-4 flex-grow">{addon.description}</p>
                 <Link 
@@ -268,8 +308,38 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Service Area Map */}
+      <section className="section bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Our Service Area
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                We proudly serve families throughout the Buffalo Metro Area with convenient delivery options.
+              </p>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <ServiceAreaMap />
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="section bg-primary-900 text-white relative overflow-hidden">
+      <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -279,22 +349,22 @@ const ServicesPage: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Start Planning?
+              Ready to Start Planning Your Family Adventure? 🎉
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Contact us today to check availability and start creating the perfect celebration experience.
+              Contact us today to check availability and start creating the perfect family celebration experience.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
                 to="/book-now"
-                className="btn btn-secondary"
+                className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => trackEvent('CTA', 'book_now_click', 'services_page')}
               >
-                Book Your Experience
+                Book Your Family Experience
               </Link>
               <Link 
                 to="/contact"
-                className="btn btn-outline border-white text-white hover:bg-white/20"
+                className="border-2 border-white text-white hover:bg-white/20 font-semibold py-4 px-8 rounded-xl transition-all duration-300"
                 onClick={() => trackEvent('CTA', 'contact_click', 'services_page')}
               >
                 Ask a Question

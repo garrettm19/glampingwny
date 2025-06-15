@@ -6,29 +6,30 @@ import Services from '../components/sections/Services';
 import Testimonials from '../components/sections/Testimonials';
 import VirtualTour from '../components/ui/VirtualTour';
 import ChecklistDownload from '../components/ui/ChecklistDownload';
+import ServiceAreaMap from '../components/ui/ServiceAreaMap';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Heart } from 'lucide-react';
+import { ArrowRight, Sparkles, Heart, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Glamping WNY | Family Glamping Experiences for Every Celebration</title>
-        <meta name="description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
+        <title>Glamping WNY | Family Glamping Experiences in Buffalo Metro Area</title>
+        <meta name="description" content="Create unforgettable family memories with our safe, fun glamping experiences in the Buffalo Metro Area. FREE delivery within 20 miles of Hamburg, NY. Perfect for birthdays, family celebrations, and special occasions." />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://glampingwny.com" />
-        <meta property="og:title" content="Glamping WNY | Family Glamping Experiences for Every Celebration" />
-        <meta property="og:description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
+        <meta property="og:title" content="Glamping WNY | Family Glamping Experiences in Buffalo Metro Area" />
+        <meta property="og:description" content="Create unforgettable family memories with our safe, fun glamping experiences in the Buffalo Metro Area. FREE delivery within 20 miles of Hamburg, NY." />
         <meta property="og:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://glampingwny.com" />
-        <meta name="twitter:title" content="Glamping WNY | Family Glamping Experiences for Every Celebration" />
-        <meta name="twitter:description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
+        <meta name="twitter:title" content="Glamping WNY | Family Glamping Experiences in Buffalo Metro Area" />
+        <meta name="twitter:description" content="Create unforgettable family memories with our safe, fun glamping experiences in the Buffalo Metro Area. FREE delivery within 20 miles of Hamburg, NY." />
         <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Schema.org markup */}
@@ -38,23 +39,32 @@ const HomePage: React.FC = () => {
             "@type": "LocalBusiness",
             "name": "Glamping WNY",
             "image": "https://picsum.photos/1200/630?random=100",
-            "description": "Family-friendly glamping experiences and luxury tent rentals for special occasions in Western New York.",
+            "description": "Family-friendly glamping experiences and luxury tent rentals for special occasions in the Buffalo Metro Area.",
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "123 Main Street",
-              "addressLocality": "Buffalo",
+              "streetAddress": "Hamburg",
+              "addressLocality": "Hamburg",
               "addressRegion": "NY",
-              "postalCode": "14221",
+              "postalCode": "14075",
               "addressCountry": "US"
             },
             "geo": {
               "@type": "GeoCoordinates",
-              "latitude": 42.8864,
-              "longitude": -78.8784
+              "latitude": 42.7161,
+              "longitude": -78.8297
             },
             "url": "https://glampingwny.com",
             "telephone": "+17165551234",
             "priceRange": "$$",
+            "areaServed": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 42.7161,
+                "longitude": -78.8297
+              },
+              "geoRadius": "42 miles"
+            },
             "openingHoursSpecification": {
               "@type": "OpeningHoursSpecification",
               "dayOfWeek": [
@@ -74,6 +84,29 @@ const HomePage: React.FC = () => {
       </Helmet>
 
       <Hero />
+      
+      {/* Service Area Banner */}
+      <section className="py-6 bg-green-50 border-b border-green-200">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <MapPin className="w-5 h-5 text-green-600" />
+              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+            </div>
+            <p className="text-green-700">
+              <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
+              Extended delivery available with fees
+            </p>
+          </motion.div>
+        </div>
+      </section>
+      
       <Features />
       
       {/* Virtual Tour Section */}
@@ -100,6 +133,36 @@ const HomePage: React.FC = () => {
       </section>
       
       <Services />
+
+      {/* Service Area Map Section */}
+      <section className="section bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                We Serve the Buffalo Metro Area! 🗺️
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto mb-8">
+                See our complete service area and delivery options for your family celebration.
+              </p>
+            </motion.div>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <ServiceAreaMap />
+          </motion.div>
+        </div>
+      </section>
 
       {/* Family Checklist Download Section */}
       <section className="section bg-orange-50">

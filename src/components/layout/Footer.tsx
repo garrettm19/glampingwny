@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
               <Logo footer />
             </div>
             <p className="text-gray-300 mb-6">
-              Creating unforgettable glamping experiences for families and couples in Western New York.
+              Creating unforgettable family glamping experiences throughout the Buffalo Metro Area.
             </p>
             <div className="flex space-x-4 mb-6">
               <a 
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center text-secondary-400">
               <Award className="h-5 w-5 mr-2" />
-              <span className="text-sm">Family-Owned Near Buffalo</span>
+              <span className="text-sm">Family-Owned • Buffalo Metro</span>
             </div>
           </div>
 
@@ -85,9 +85,9 @@ const Footer: React.FC = () => {
             </nav>
           </div>
 
-          {/* Contact & Newsletter */}
+          {/* Contact & Service Area */}
           <div className="col-span-1">
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-bold mb-4">Contact & Service Area</h3>
             <ul className="space-y-4 mb-6">
               <li className="flex items-start">
                 <Phone className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
@@ -109,10 +109,15 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-secondary-400 flex-shrink-0 mt-0.5" />
-                <address className="not-italic">
-                  Western New York<br />
-                  Buffalo, NY 14221
-                </address>
+                <div>
+                  <address className="not-italic">
+                    Buffalo Metro Area<br />
+                    Hamburg, NY 14075
+                  </address>
+                  <p className="text-sm text-secondary-400 mt-1">
+                    FREE delivery within 20 miles
+                  </p>
+                </div>
               </li>
             </ul>
 

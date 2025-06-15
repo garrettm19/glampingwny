@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import FAQAccordion from '../components/ui/FAQAccordion';
-import { MessageCircle, Clock, MapPin, Bed, Sun, CreditCard, CloudLightning, Shield, Dog, Calendar, Users, Monitor, HelpCircle } from 'lucide-react';
+import { MessageCircle, Clock, MapPin, Bed, Sun, CreditCard, CloudLightning, Shield, Dog, Calendar, Users, Monitor, HelpCircle, DollarSign } from 'lucide-react';
 
 const FAQPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('booking');
@@ -38,13 +38,17 @@ const FAQPage: React.FC = () => {
     },
     {
       id: 'delivery',
-      title: "Delivery & Setup",
+      title: "Delivery & Service Area",
       icon: MapPin,
       color: "bg-green-50 text-green-600",
       questions: [
         {
-          question: "Is delivery included?",
-          answer: "We offer delivery, setup, and cleanup at no extra charge if you are within a 20-mile radius of Hamburg, New York (14075). Anything outside of 20 miles will have an additional travel fee."
+          question: "What areas do you serve?",
+          answer: "We proudly service the Buffalo Metro Area! We offer delivery, setup, and cleanup at no extra charge if you are within a 20-mile radius of Hamburg, NY (Zip Code 14075). This includes Buffalo, Cheektowaga, West Seneca, Orchard Park, East Aurora, and surrounding communities."
+        },
+        {
+          question: "Is delivery included in my area?",
+          answer: "We offer FREE delivery, setup, and cleanup if you are within a 20-mile radius of Hamburg, NY (14075). If you are more than 20 miles outside the Hamburg, NY area, delivery fees will apply: 21-31 miles $50.00, 32-42 miles $100.00."
         },
         {
           question: "How to prepare the space?",
@@ -223,6 +227,27 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Service Area Banner */}
+      <section className="py-8 bg-green-50 border-b border-green-200">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <MapPin className="w-5 h-5 text-green-600" />
+              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+            </div>
+            <p className="text-green-700">
+              <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
+              Extended delivery available with fees
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Category Navigation */}
       <section className="py-8 bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="container-custom">
@@ -267,13 +292,85 @@ const FAQPage: React.FC = () => {
                 </h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
                   {category.id === 'booking' && "Everything about reserving your magical family experience"}
-                  {category.id === 'delivery' && "Setup, delivery, and space preparation details"}
+                  {category.id === 'delivery' && "Service area, delivery details, and setup requirements"}
                   {category.id === 'amenities' && "What's included in your glamping experience"}
                   {category.id === 'safety' && "Our commitment to family safety and cleanliness"}
                   {category.id === 'policies' && "Payment terms, cancellations, and policies"}
                   {category.id === 'pets' && "Bringing your furry family members along"}
                 </p>
               </div>
+
+              {/* Special Service Area Map for Delivery Category */}
+              {category.id === 'delivery' && (
+                <div className="mb-12">
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-8 mb-8">
+                    <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">
+                      Our Service Area Map 🗺️
+                    </h3>
+                    
+                    {/* Interactive Map */}
+                    <div className="aspect-video bg-white rounded-lg shadow-md p-2 mb-6">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93589.72503288712!2d-78.87433459754272!3d42.88644610607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3126152dfe5a1%3A0x982304a5181f8171!2sHamburg%2C%20NY%2014075!5e0!3m2!1sen!2sus!4v1709347721813!5m2!1sen!2sus"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Glamping WNY Service Area - Hamburg, NY"
+                      ></iframe>
+                    </div>
+
+                    {/* Delivery Pricing */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="text-center p-4 bg-white rounded-lg border border-green-200">
+                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <MapPin className="w-6 h-6 text-green-600" />
+                        </div>
+                        <h4 className="font-bold text-green-800 mb-2">FREE Zone</h4>
+                        <p className="text-sm text-green-700 mb-2">Within 20 miles of Hamburg, NY</p>
+                        <p className="text-lg font-bold text-green-600">$0 Delivery</p>
+                      </div>
+                      <div className="text-center p-4 bg-white rounded-lg border border-yellow-200">
+                        <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <DollarSign className="w-6 h-6 text-yellow-600" />
+                        </div>
+                        <h4 className="font-bold text-yellow-800 mb-2">Extended Zone 1</h4>
+                        <p className="text-sm text-yellow-700 mb-2">21-31 miles from Hamburg</p>
+                        <p className="text-lg font-bold text-yellow-600">$50 Delivery</p>
+                      </div>
+                      <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
+                        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <DollarSign className="w-6 h-6 text-orange-600" />
+                        </div>
+                        <h4 className="font-bold text-orange-800 mb-2">Extended Zone 2</h4>
+                        <p className="text-sm text-orange-700 mb-2">32-42 miles from Hamburg</p>
+                        <p className="text-lg font-bold text-orange-600">$100 Delivery</p>
+                      </div>
+                    </div>
+
+                    {/* Popular Areas */}
+                    <div className="mt-6 text-center">
+                      <h4 className="font-bold text-green-800 mb-3">Popular Service Areas Include:</h4>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {[
+                          'Buffalo', 'Cheektowaga', 'West Seneca', 'Orchard Park', 
+                          'East Aurora', 'Lancaster', 'Depew', 'Williamsville',
+                          'Amherst', 'Tonawanda', 'Kenmore', 'Grand Island'
+                        ].map((city, index) => (
+                          <span 
+                            key={index}
+                            className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium"
+                          >
+                            {city}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* FAQ Items */}
               <FAQAccordion questions={category.questions} />
