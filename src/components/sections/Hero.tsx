@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Sparkles, Calendar, Star, ArrowRight, MapPin, Play } from 'lucide-react';
+import { ChevronDown, Sparkles, Calendar, Star, ArrowRight, MapPin, Play, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
@@ -55,7 +55,7 @@ const Hero: React.FC = () => {
           <motion.img
             key={currentImageIndex}
             src={heroImages[currentImageIndex]}
-            alt="Luxury glamping experience"
+            alt="Family glamping experience"
             className="w-full h-full object-cover"
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -64,16 +64,16 @@ const Hero: React.FC = () => {
           />
         </AnimatePresence>
         
-        {/* Professional overlay with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90" />
+        {/* Warm, family-friendly overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/70 via-amber-800/60 to-orange-900/70" />
         
         {/* Additional backdrop for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
 
-      {/* Animated floating elements */}
+      {/* Animated floating elements - more playful */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+        {[...Array(isMobile ? 6 : 12)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
@@ -93,21 +93,21 @@ const Hero: React.FC = () => {
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
               ],
-              opacity: [0, 0.6, 0.3, 0.7, 0],
-              scale: [1, 1.2, 0.8, 1.1, 1]
+              opacity: [0, 0.8, 0.4, 0.9, 0],
+              scale: [1, 1.3, 0.7, 1.2, 1]
             }}
             transition={{
-              duration: 20 + Math.random() * 10,
+              duration: 15 + Math.random() * 10,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 15
+              delay: Math.random() * 10
             }}
           >
             <div 
-              className="w-1.5 h-1.5 bg-white rounded-full"
+              className="w-2 h-2 bg-yellow-300 rounded-full"
               style={{
-                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.5)',
-                background: 'radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 70%, transparent 100%)'
+                boxShadow: '0 0 8px 3px rgba(253, 224, 71, 0.6)',
+                background: 'radial-gradient(circle, rgba(253, 224, 71, 0.9) 0%, rgba(251, 191, 36, 0.5) 70%, transparent 100%)'
               }}
             />
           </motion.div>
@@ -117,7 +117,7 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl text-center">
-          {/* Location Badge with animation */}
+          {/* Location Badge with family-friendly styling */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,14 +128,14 @@ const Hero: React.FC = () => {
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <MapPin className="w-4 h-4 text-white" />
+              <Heart className="w-4 h-4 text-yellow-300" />
             </motion.div>
             <span className="text-white text-sm font-medium tracking-wide">
-              Serving Buffalo & Western New York
+              Creating Family Memories in Buffalo & WNY
             </span>
           </motion.div>
 
-          {/* Clean, Professional Main Headline */}
+          {/* Warm, Family-Friendly Main Headline */}
           <motion.h1 
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.9] text-white"
             initial={{ opacity: 0, y: 30 }}
@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
             Glamping WNY
           </motion.h1>
 
-          {/* Professional Subheadline */}
+          {/* Family-Focused Subheadline */}
           <motion.h2 
             className="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-6 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -159,10 +159,10 @@ const Hero: React.FC = () => {
               textShadow: '0 2px 12px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.5)'
             }}
           >
-            Premium Glamping Experiences for Every Celebration
+            Where Families Create Magical Memories Together
           </motion.h2>
           
-          {/* Value Proposition */}
+          {/* Family-Friendly Value Proposition */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -170,12 +170,12 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             style={{ textShadow: '0 2px 8px rgba(0,0,0,0.6)' }}
           >
-            Indoor & outdoor luxury tent rentals for birthdays, bachelorettes, anniversaries, and special occasions.
+            Safe, fun, and stress-free glamping experiences for birthdays, family celebrations, and special moments.
             <br className="hidden md:block" />
-            Complete setup, themed decorations, and stress-free cleanup included.
+            We handle everything so you can focus on making memories with your loved ones! 🏕️✨
           </motion.p>
           
-          {/* Enhanced CTA Buttons */}
+          {/* Warm, Inviting CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -188,28 +188,28 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold text-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Book Your Experience
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Start Planning Our Adventure!
+                  <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </span>
               </Link>
             </motion.div>
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-lg border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:shadow-xl"
+              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-xl border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 hover:shadow-xl"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              View the Experience
+              See the Magic
             </motion.button>
           </motion.div>
 
-          {/* Enhanced Trust Indicators */}
+          {/* Family-Focused Trust Indicators */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
             initial={{ opacity: 0, y: 20 }}
@@ -233,14 +233,14 @@ const Hero: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-              <span className="font-medium">200+ Happy Customers</span>
+              <span className="font-medium">200+ Happy Families</span>
             </motion.div>
+            <div className="w-px h-4 bg-white/40" />
+            <div className="font-medium">✓ Kid-Safe & Fun</div>
             <div className="w-px h-4 bg-white/40" />
             <div className="font-medium">✓ All Ages Welcome</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ Year-Round</div>
-            <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ Setup Included</div>
+            <div className="font-medium">✓ Stress-Free Setup</div>
           </motion.div>
         </div>
       </div>
@@ -251,12 +251,12 @@ const Hero: React.FC = () => {
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
         onClick={scrollToVirtualTour}
-        aria-label="Scroll down to view virtual tour"
+        aria-label="Scroll down to see more"
         whileHover={{ scale: 1.1 }}
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity">
-            View Virtual Tour
+            See Our Magic
           </span>
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
             <motion.div

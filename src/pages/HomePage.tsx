@@ -7,28 +7,28 @@ import Testimonials from '../components/sections/Testimonials';
 import VirtualTour from '../components/ui/VirtualTour';
 import ChecklistDownload from '../components/ui/ChecklistDownload';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Glamping WNY | Premium Glamping Experiences for Every Celebration</title>
-        <meta name="description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
+        <title>Glamping WNY | Family Glamping Experiences for Every Celebration</title>
+        <meta name="description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://glampingwny.com" />
-        <meta property="og:title" content="Glamping WNY | Premium Glamping Experiences for Every Celebration" />
-        <meta property="og:description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
+        <meta property="og:title" content="Glamping WNY | Family Glamping Experiences for Every Celebration" />
+        <meta property="og:description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
         <meta property="og:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://glampingwny.com" />
-        <meta name="twitter:title" content="Glamping WNY | Premium Glamping Experiences for Every Celebration" />
-        <meta name="twitter:description" content="Create unforgettable memories with our luxury glamping experiences in Western New York. Perfect for birthdays, bachelorettes, anniversaries, and special occasions." />
+        <meta name="twitter:title" content="Glamping WNY | Family Glamping Experiences for Every Celebration" />
+        <meta name="twitter:description" content="Create unforgettable family memories with our safe, fun glamping experiences in Western New York. Perfect for birthdays, family celebrations, and special occasions." />
         <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100" />
 
         {/* Schema.org markup */}
@@ -38,7 +38,7 @@ const HomePage: React.FC = () => {
             "@type": "LocalBusiness",
             "name": "Glamping WNY",
             "image": "https://picsum.photos/1200/630?random=100",
-            "description": "Premium glamping experiences and luxury tent rentals for special occasions in Western New York.",
+            "description": "Family-friendly glamping experiences and luxury tent rentals for special occasions in Western New York.",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "123 Main Street",
@@ -86,11 +86,11 @@ const HomePage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
-                Experience the Magic
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Experience the Family Magic! 🎥
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto mb-8">
-                Take a virtual tour of our luxury glamping setup and imagine your perfect celebration.
+                Take a virtual tour of our family-friendly glamping setup and imagine your perfect family celebration.
               </p>
             </motion.div>
           </div>
@@ -101,8 +101,8 @@ const HomePage: React.FC = () => {
       
       <Services />
 
-      {/* Checklist Download Section */}
-      <section className="section bg-primary-50">
+      {/* Family Checklist Download Section */}
+      <section className="section bg-orange-50">
         <div className="container-custom max-w-3xl">
           <ChecklistDownload />
         </div>
@@ -110,21 +110,21 @@ const HomePage: React.FC = () => {
       
       <Testimonials />
       
-      {/* Booking Callout */}
+      {/* Family Booking Callout */}
       <section 
         className="relative py-24 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(76, 29, 149, 0.9), rgba(76, 29, 149, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
+          backgroundImage: `linear-gradient(to right, rgba(234, 88, 12, 0.9), rgba(251, 146, 60, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        {/* Sparkle Animation */}
+        {/* Warm Sparkle Animation */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -153,10 +153,10 @@ const HomePage: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Create Your Perfect Celebration?
+              Ready to Create Your Perfect Family Celebration? 👨‍👩‍👧‍👦
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Book your luxury glamping experience today and make memories that will last a lifetime.
+              Book your family glamping experience today and make memories that your family will treasure forever.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -164,10 +164,10 @@ const HomePage: React.FC = () => {
             >
               <Link 
                 to="/book-now" 
-                className="btn btn-secondary inline-flex items-center group relative overflow-hidden"
+                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl text-lg inline-flex items-center group relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                <span className="relative z-10">Let's Create Magic!</span>
-                <Sparkles className="w-5 h-5 ml-2 relative z-10" />
+                <span className="relative z-10">Let's Create Family Magic!</span>
+                <Heart className="w-6 h-6 ml-2 relative z-10 group-hover:scale-110 transition-transform" />
                 <motion.div
                   className="absolute inset-0 bg-white/20"
                   initial={{ scale: 0, opacity: 0 }}

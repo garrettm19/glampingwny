@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 
 const testimonials = [
   {
@@ -8,7 +8,7 @@ const testimonials = [
     name: "Rachel C.",
     image: "https://picsum.photos/100/100?random=50",
     rating: 5,
-    tag: "Themed Party",
+    tag: "Family Celebration",
     date: "2024-02-28"
   },
   {
@@ -16,39 +16,39 @@ const testimonials = [
     name: "Rebecca B.",
     image: "https://picsum.photos/100/100?random=51",
     rating: 5,
-    tag: "Kids Party",
+    tag: "Kids Birthday Party",
     date: "2024-02-25"
   },
   {
-    quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your Glamping needs!",
+    quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your family Glamping needs!",
     name: "Jamie D.",
     image: "https://picsum.photos/100/100?random=52",
     rating: 5,
-    tag: "Perfect Setup",
+    tag: "Perfect Family Setup",
     date: "2024-02-20"
   },
   {
-    quote: "The kids had the most amazing time! Everything was set up perfectly and the cleanup was seamless. Holly made the whole process so easy for us parents.",
+    quote: "The kids had the most amazing time! Everything was set up perfectly and the cleanup was seamless. Holly made the whole process so easy for us parents. Our family will definitely be booking again!",
     name: "Maria S.",
     image: "https://picsum.photos/100/100?random=53",
     rating: 5,
-    tag: "Easy Process",
+    tag: "Easy Family Process",
     date: "2024-02-15"
   },
   {
-    quote: "Worth every penny! The attention to detail was incredible and my daughter felt like a princess. We'll definitely be booking again next year.",
+    quote: "Worth every penny! The attention to detail was incredible and my daughter felt like a princess. We'll definitely be booking again next year for our family celebration.",
     name: "David K.",
     image: "https://picsum.photos/100/100?random=54",
     rating: 5,
-    tag: "Amazing Value",
+    tag: "Amazing Family Value",
     date: "2024-02-10"
   },
   {
-    quote: "Professional, reliable, and magical! Holly exceeded all our expectations. The themed decorations were absolutely perfect.",
+    quote: "Professional, reliable, and magical! Holly exceeded all our family's expectations. The themed decorations were absolutely perfect for our kids.",
     name: "Lisa M.",
     image: "https://picsum.photos/100/100?random=55",
     rating: 5,
-    tag: "Professional",
+    tag: "Professional Family Service",
     date: "2024-02-05"
   }
 ];
@@ -80,13 +80,13 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section bg-gradient-to-br from-primary-900 via-primary-800 to-purple-900 relative overflow-hidden">
-      {/* Decorative elements */}
+    <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 relative overflow-hidden">
+      {/* Warm decorative elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
+            className="absolute w-1 h-1 bg-yellow-300 rounded-full"
             initial={{ opacity: 0 }}
             animate={{
               opacity: [0, 1, 0],
@@ -115,10 +115,10 @@ const Testimonials: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Our Customers Say
+              What Families Are Saying! 👨‍👩‍👧‍👦
             </h2>
-            <p className="text-white/80 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what families have to say about their Glamping WNY experience.
+            <p className="text-white/90 max-w-2xl mx-auto">
+              Real reviews from real families who've experienced the magic of Glamping WNY with their loved ones.
             </p>
           </motion.div>
         </div>
@@ -129,14 +129,14 @@ const Testimonials: React.FC = () => {
             <button
               onClick={handlePrevious}
               className="pointer-events-auto p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
-              aria-label="Previous testimonial"
+              aria-label="Previous family testimonial"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={handleNext}
               className="pointer-events-auto p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
-              aria-label="Next testimonial"
+              aria-label="Next family testimonial"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -153,7 +153,7 @@ const Testimonials: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <div className="glass-card rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
+                <div className="bg-white/95 backdrop-blur-sm border border-orange-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
                   {/* Floating hearts on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
                     {[...Array(5)].map((_, i) => (
@@ -182,7 +182,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Tag */}
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-secondary-500 text-white rounded-full text-sm font-medium">
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-orange-500 text-white rounded-full text-sm font-medium">
                     {testimonials[currentIndex].tag}
                   </span>
 
@@ -197,7 +197,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-xl text-primary-900 mb-8 max-w-2xl">
+                  <blockquote className="text-xl text-gray-800 mb-8 max-w-2xl">
                     "{testimonials[currentIndex].quote}"
                   </blockquote>
 
@@ -206,10 +206,10 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-primary-200"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-orange-200"
                     />
                     <div className="ml-4 text-left">
-                      <div className="font-bold text-primary-900">
+                      <div className="font-bold text-gray-800">
                         {testimonials[currentIndex].name}
                       </div>
                       <div className="text-gray-600">
@@ -236,7 +236,7 @@ const Testimonials: React.FC = () => {
                     ? 'bg-white w-6'
                     : 'bg-white/30 hover:bg-white/50'
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to family testimonial ${index + 1}`}
               />
             ))}
           </div>

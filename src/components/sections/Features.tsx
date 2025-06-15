@@ -6,72 +6,72 @@ import { Link } from 'react-router-dom';
 const features = [
   {
     icon: Tent,
-    title: "Indoor & Outdoor Options",
-    description: "Year-round indoor glamping plus seasonal outdoor experiences",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    title: "Indoor & Outdoor Fun",
+    description: "Year-round adventures for the whole family",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Available 365 days"
   },
   {
     icon: Sparkles,
-    title: "Themed Decorations",
-    description: "Custom setups with twinkling lights and personalized decor",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    title: "Magical Decorations",
+    description: "Themed setups that spark imagination and wonder",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "25+ themes available"
+    stats: "25+ kid-friendly themes"
   },
   {
     icon: Bath,
     title: "Real Bathrooms",
-    description: "No roughing it - full bathroom access included",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    description: "Comfort and convenience for families",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "100% comfort guaranteed"
+    stats: "100% family comfort"
   },
   {
     icon: Clock,
-    title: "Quick Booking",
-    description: "Simple online booking with instant confirmation",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    title: "Easy Booking",
+    description: "Simple planning for busy parents",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Book in under 5 minutes"
   },
   {
     icon: PartyPopper,
     title: "Complete Setup",
-    description: "We handle everything - just show up and celebrate",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    description: "We handle everything so you can enjoy family time",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Zero stress for hosts"
+    stats: "Zero stress for parents"
   },
   {
     icon: Shield,
-    title: "Safety First",
-    description: "Professional setup with sanitized, safe equipment",
-    color: "bg-purple-50 text-purple-600",
-    shadowColor: "shadow-purple-200/50",
+    title: "Safe & Clean",
+    description: "Kid-safe equipment and sanitized supplies",
+    color: "bg-orange-50 text-orange-600",
+    shadowColor: "shadow-orange-200/50",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Fully insured & certified"
+    stats: "Family safety first"
   }
 ];
 
 const services = [
   "Birthday Parties",
-  "Bachelorette Parties", 
-  "Anniversary Celebrations",
-  "Sweet Sixteens",
+  "Family Celebrations", 
   "Slumber Parties",
-  "Date Night Experiences",
-  "Proposal Setups",
+  "Sweet Sixteens",
   "Graduation Parties",
   "Holiday Celebrations",
+  "Sibling Parties",
+  "Playdate Adventures",
+  "Anniversary Celebrations",
   "Girls' Night Out",
-  "Couples Retreats"
+  "Date Night Experiences"
 ];
 
 const container = {
@@ -97,21 +97,21 @@ const item = {
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="section bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Enhanced background decorative elements */}
+    <section id="features" className="section bg-white relative overflow-hidden">
+      {/* Playful background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] w-3 h-3 bg-purple-400 rounded-full animate-pulse-glow" />
-        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-purple-400 rounded-full animate-sparkle animation-delay-700" />
-        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-purple-400 rounded-full animate-float" />
-        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-purple-400 rounded-full animate-pulse-glow animation-delay-700" />
+        <div className="absolute top-10 left-[10%] w-3 h-3 bg-orange-400 rounded-full animate-pulse-glow" />
+        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-yellow-400 rounded-full animate-sparkle animation-delay-700" />
+        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-orange-400 rounded-full animate-float" />
+        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-yellow-400 rounded-full animate-pulse-glow animation-delay-700" />
         
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-purple-200/20 to-blue-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-200/20 to-pink-200/20 rounded-full blur-3xl" />
+        {/* Warm gradient orbs */}
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-orange-200/20 to-yellow-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-amber-200/20 to-orange-200/20 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Enhanced Introduction */}
+        {/* Family-Friendly Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,19 +124,19 @@ const Features: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-block p-3 bg-gradient-primary rounded-full mb-6"
+            className="inline-block p-3 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full mb-6"
           >
-            <Sparkles className="w-8 h-8 text-white" />
+            <Heart className="w-8 h-8 text-white" />
           </motion.div>
           
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4 gradient-text">
-            Your Go-to Glamping Experts in Western New York!
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Why Families Love Glamping WNY! 🏕️
           </h2>
           <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
-            At Glamping WNY, we're here to take the stress out of event planning and turn your special occasion into a celebration to remember! Whether it's a cozy indoor sleepover or an unforgettable outdoor glamping experience, we've got everything you need to make your event shine.
+            We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together and create memories that last a lifetime.
           </p>
           
-          {/* Enhanced Services Grid */}
+          {/* Family-Focused Services Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
             {services.map((service, index) => (
               <motion.div
@@ -145,10 +145,10 @@ const Features: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="glass-card px-4 py-3 text-sm font-medium text-primary-900 hover-lift group cursor-pointer"
+                className="bg-white/80 backdrop-blur-sm border border-orange-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 hover:bg-orange-50 hover:border-orange-300 transition-all duration-300 group cursor-pointer"
                 whileHover={{ scale: 1.02 }}
               >
-                <span className="group-hover:gradient-text transition-all duration-300">
+                <span className="group-hover:text-orange-600 transition-all duration-300">
                   {service}
                 </span>
               </motion.div>
@@ -156,7 +156,7 @@ const Features: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Enhanced Features Grid */}
+        {/* Family-Friendly Features Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
           variants={container}
@@ -172,20 +172,20 @@ const Features: React.FC = () => {
                 y: -8,
                 transition: { duration: 0.3 }
               }}
-              className={`glass-card rounded-xl overflow-hidden ${feature.shadowColor} hover:shadow-2xl transition-all duration-500 group`}
+              className={`bg-white/95 backdrop-blur-sm border border-orange-200 rounded-xl overflow-hidden ${feature.shadowColor} hover:shadow-2xl transition-all duration-500 group`}
             >
-              {/* Enhanced Feature Image */}
+              {/* Feature Image */}
               <div className="h-48 overflow-hidden relative">
                 <img 
                   src={feature.image} 
                   alt={feature.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 {/* Stats overlay */}
                 <motion.div
-                  className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary-900"
+                  className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.5 }}
@@ -195,12 +195,12 @@ const Features: React.FC = () => {
                 </motion.div>
               </div>
               
-              {/* Enhanced Feature Content */}
+              {/* Feature Content */}
               <div className="p-6">
                 <div className={`${feature.color} w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="h-7 w-7" />
                 </div>
-                <h3 className="text-xl font-bold text-primary-900 mb-3 group-hover:gradient-text transition-all duration-300">
+                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition-all duration-300">
                   {feature.title}
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
@@ -211,7 +211,7 @@ const Features: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Enhanced Image Gallery Section */}
+        {/* Family Photo Gallery Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -220,11 +220,11 @@ const Features: React.FC = () => {
           className="mb-20"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary-900 mb-4">
-              See Our Magic in Action
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              See Happy Families in Action! 📸
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Real photos from real celebrations. Every setup is unique and tailored to your special occasion.
+              Real photos from real family celebrations. Every setup is unique and designed to create magical moments for your loved ones.
             </p>
           </div>
           
@@ -245,12 +245,12 @@ const Features: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="aspect-square overflow-hidden rounded-xl hover-lift group cursor-pointer"
+                className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-orange-200"
                 whileHover={{ scale: 1.02 }}
               >
                 <img 
                   src={image} 
-                  alt={`Glamping experience ${index + 1}`}
+                  alt={`Happy family glamping experience ${index + 1}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </motion.div>
@@ -267,51 +267,51 @@ const Features: React.FC = () => {
           >
             <Link
               to="/gallery"
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group"
+              className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold group"
             >
-              View Full Gallery
+              See More Happy Families
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* Enhanced Policies Section */}
+        {/* Family-Friendly Policies Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="glass-card p-8 rounded-2xl"
+          className="bg-white/80 backdrop-blur-sm border border-orange-200 p-8 rounded-2xl"
         >
-          <h2 className="text-2xl font-bold text-primary-900 mb-8 text-center">
-            Important Policies & Guidelines
+          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+            Important Family Guidelines 👨‍👩‍👧‍👦
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 icon: Shield,
-                title: "Rental Care",
-                description: "Items will be examined after return. Any damage will incur replacement or repair costs.",
-                color: "bg-purple-50 text-purple-600"
+                title: "Safety First",
+                description: "All equipment is kid-safe and thoroughly cleaned. Adult supervision required at all times.",
+                color: "bg-orange-50 text-orange-600"
               },
               {
                 icon: Heart,
-                title: "Food & Beverage",
-                description: "Light snacks only in tent areas. Clear/light-colored beverages only to prevent stains.",
-                color: "bg-purple-50 text-purple-600"
+                title: "Family-Friendly Food",
+                description: "Light snacks welcome! Clear beverages only to keep everything clean and safe.",
+                color: "bg-orange-50 text-orange-600"
               },
               {
                 icon: Star,
-                title: "Smoke Free Environment",
-                description: "NO smoking allowed. Additional cleaning fees apply if supplies smell of smoke.",
-                color: "bg-purple-50 text-purple-600"
+                title: "Smoke-Free Environment",
+                description: "We maintain a completely smoke-free environment for the health and safety of all families.",
+                color: "bg-orange-50 text-orange-600"
               },
               {
                 icon: Users,
-                title: "Pet Policy",
-                description: "Pets discouraged in party areas. Customers responsible for any pet-related damages.",
-                color: "bg-purple-50 text-purple-600"
+                title: "Pet Guidelines",
+                description: "Well-behaved pets welcome with advance notice. Pet fee applies for safety and cleanliness.",
+                color: "bg-orange-50 text-orange-600"
               }
             ].map((policy, index) => (
               <motion.div
@@ -320,13 +320,13 @@ const Features: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50/50 transition-colors duration-300"
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-orange-50/50 transition-colors duration-300"
               >
                 <div className={`w-12 h-12 ${policy.color} rounded-full flex items-center justify-center flex-shrink-0`}>
                   <policy.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-primary-900 mb-2">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">
                     {policy.title}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
