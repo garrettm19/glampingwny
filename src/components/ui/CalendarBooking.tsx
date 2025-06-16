@@ -22,6 +22,7 @@ interface ServiceOption {
   requiresBase?: boolean;
   totalInventory: number;
   shortName?: string;
+  booqableId?: string; // For future Booqable integration
 }
 
 interface CalendarBookingProps {
@@ -37,9 +38,9 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPackageType, setSelectedPackageType] = useState<'indoor' | 'outdoor'>('indoor');
 
-  // All available services with realistic inventory
+  // All available services with realistic inventory and Booqable IDs
   const serviceOptions: ServiceOption[] = [
-    // Base Packages - Limited inventory
+    // Base Packages - Each with different inventory levels
     {
       id: 'indoor-base',
       name: 'Indoor Glamping Base Package',
@@ -48,7 +49,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: '1 tent with complete setup, bedding, and decorations',
       maxQuantity: 1,
-      totalInventory: 12
+      totalInventory: 12,
+      booqableId: 'indoor-base-001'
     },
     {
       id: 'bell-tent-16ft',
@@ -58,7 +60,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Outdoor bell tent for small groups',
       maxQuantity: 1,
-      totalInventory: 3
+      totalInventory: 3, // Limited stock
+      booqableId: 'bell-tent-16-001'
     },
     {
       id: 'bell-tent-23ft',
@@ -68,7 +71,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Large outdoor bell tent for bigger groups',
       maxQuantity: 1,
-      totalInventory: 2
+      totalInventory: 2, // Very limited stock
+      booqableId: 'bell-tent-23-001'
     },
     {
       id: 'day-dreamer-lounge',
@@ -78,7 +82,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Perfect for daytime events',
       maxQuantity: 1,
-      totalInventory: 2
+      totalInventory: 2,
+      booqableId: 'day-lounge-001'
     },
     {
       id: 'canvas-tent-only',
@@ -88,7 +93,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Basic tent rental for DIY setup',
       maxQuantity: 1,
-      totalInventory: 5
+      totalInventory: 5,
+      booqableId: 'canvas-tent-001'
     },
     
     // Additional Tents
@@ -101,7 +107,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Extra tent to accommodate more guests',
       maxQuantity: 10,
       requiresBase: true,
-      totalInventory: 20
+      totalInventory: 20,
+      booqableId: 'extra-tent-001'
     },
     {
       id: 'additional-twin-bed',
@@ -112,10 +119,11 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Extra comfortable sleeping space',
       maxQuantity: 5,
       requiresBase: true,
-      totalInventory: 15
+      totalInventory: 15,
+      booqableId: 'twin-bed-001'
     },
     
-    // Add-ons
+    // Add-ons with varying inventory
     {
       id: 'spa-party-addon',
       name: 'Spa Party Add-On',
@@ -125,7 +133,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Complete spa experience (Save $75 vs standalone!)',
       maxQuantity: 1,
       requiresBase: true,
-      totalInventory: 8
+      totalInventory: 8,
+      booqableId: 'spa-addon-001'
     },
     {
       id: 'balloon-garland',
@@ -135,7 +144,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Beautiful balloon garland decoration',
       maxQuantity: 3,
-      totalInventory: 10
+      totalInventory: 10,
+      booqableId: 'balloon-garland-001'
     },
     {
       id: 'luxe-lace-teepee',
@@ -145,7 +155,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Premium lace teepee with balloons',
       maxQuantity: 2,
-      totalInventory: 4
+      totalInventory: 4,
+      booqableId: 'lace-teepee-001'
     },
     {
       id: 'picnic-party',
@@ -155,7 +166,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Complete picnic setup with decorations',
       maxQuantity: 1,
-      totalInventory: 3
+      totalInventory: 3,
+      booqableId: 'picnic-addon-001'
     },
     {
       id: 'in-home-theater',
@@ -165,7 +177,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Movie experience with projector',
       maxQuantity: 1,
-      totalInventory: 6
+      totalInventory: 6,
+      booqableId: 'theater-001'
     },
     {
       id: 'movie-under-stars',
@@ -175,7 +188,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Outdoor movie experience',
       maxQuantity: 1,
-      totalInventory: 2
+      totalInventory: 2,
+      booqableId: 'outdoor-movie-001'
     },
     {
       id: 'instant-camera',
@@ -185,7 +199,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Capture memories instantly',
       maxQuantity: 2,
-      totalInventory: 8
+      totalInventory: 8,
+      booqableId: 'camera-001'
     },
     {
       id: 'smores-bar',
@@ -195,7 +210,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Complete s\'mores experience',
       maxQuantity: 1,
-      totalInventory: 5
+      totalInventory: 5,
+      booqableId: 'smores-001'
     },
     {
       id: 'portable-ac',
@@ -205,7 +221,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Stay cool during warm weather',
       maxQuantity: 2,
-      totalInventory: 4
+      totalInventory: 4,
+      booqableId: 'ac-unit-001'
     },
     {
       id: 'yard-games',
@@ -215,7 +232,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Giant Jenga or Connect 4',
       maxQuantity: 3,
-      totalInventory: 12
+      totalInventory: 12,
+      booqableId: 'yard-games-001'
     },
     {
       id: 'lounger-sofa',
@@ -225,7 +243,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Comfortable outdoor furniture',
       maxQuantity: 2,
-      totalInventory: 6
+      totalInventory: 6,
+      booqableId: 'sofa-001'
     },
     {
       id: 'outdoor-bean-bag',
@@ -235,7 +254,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Comfortable outdoor seating',
       maxQuantity: 4,
-      totalInventory: 15
+      totalInventory: 15,
+      booqableId: 'bean-bag-001'
     },
     {
       id: 'bring-pet',
@@ -245,11 +265,12 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Pet-friendly accommodations',
       maxQuantity: 2,
-      totalInventory: 999
+      totalInventory: 999,
+      booqableId: 'pet-fee-001'
     }
   ];
 
-  // Generate realistic booking data with inventory tracking
+  // Generate realistic booking data with product-specific inventory tracking
   useEffect(() => {
     const generateRealisticData = () => {
       const data: BookingSlot[] = [];
@@ -263,33 +284,40 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
         const dayOfWeek = date.getDay();
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
         
-        // Generate time slots with realistic inventory
+        // Generate time slots with product-specific inventory
         const timeSlots = [
           'Morning Setup (9am-12pm)',
           'Afternoon Setup (1pm-4pm)', 
           'Evening Setup (5pm-8pm)'
         ].map(time => {
-          // Simulate existing bookings affecting inventory
-          const bookingFactor = Math.random();
-          const weekendFactor = isWeekend ? 0.7 : 0.9; // Weekends are busier
-          
           const inventory: {[serviceId: string]: number} = {};
           
           serviceOptions.forEach(service => {
-            // Calculate available inventory for this time slot
+            // Each product has its own booking pattern
+            let bookingRate = 0.3; // Base 30% booking rate
+            
+            // Adjust booking rates by product popularity and type
+            if (service.id === 'bell-tent-16ft') bookingRate = 0.6; // Popular
+            if (service.id === 'bell-tent-23ft') bookingRate = 0.8; // Very popular, limited stock
+            if (service.id === 'spa-party-addon') bookingRate = 0.4; // Moderate demand
+            if (service.id === 'indoor-base') bookingRate = 0.5; // Steady demand
+            
+            // Weekend effect
+            if (isWeekend) bookingRate += 0.2;
+            
+            // Random factor for this specific date/time
+            const randomFactor = Math.random();
+            
+            // Calculate available inventory
             let available = service.totalInventory;
             
-            // Reduce availability based on existing bookings
-            if (bookingFactor < 0.3) { // 30% chance of heavy booking
-              available = Math.floor(available * 0.3);
-            } else if (bookingFactor < 0.6) { // 30% chance of medium booking
-              available = Math.floor(available * 0.6);
-            } else { // 40% chance of light booking
-              available = Math.floor(available * weekendFactor);
+            if (randomFactor < bookingRate) {
+              // Some items are booked
+              const bookedItems = Math.floor(Math.random() * (service.totalInventory * 0.7));
+              available = Math.max(0, service.totalInventory - bookedItems);
             }
             
-            // Ensure we don't go below 0
-            inventory[service.id] = Math.max(0, available);
+            inventory[service.id] = available;
           });
           
           // Time slot is available if we have at least one base package
@@ -537,7 +565,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto mb-4"
         />
-        <p className="text-gray-600">Loading real-time availability...</p>
+        <p className="text-gray-600">Loading real-time inventory...</p>
       </div>
     );
   }
@@ -589,7 +617,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight className="w-6 h-6 text-purple-600" />
+                <ChevronLeft className="w-6 h-6 text-purple-600" />
               </motion.button>
               
               <h2 className="text-2xl font-bold text-purple-900">
@@ -602,7 +630,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronLeft className="w-6 h-6 text-purple-600" />
+                <ChevronRight className="w-6 h-6 text-purple-600" />
               </motion.button>
             </div>
 
@@ -819,7 +847,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               )}
             </div>
 
-            {/* Base Packages */}
+            {/* Base Packages with Individual Inventory */}
             <div className="mb-6">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
                 <Star className="w-4 h-4 text-purple-600" />
@@ -846,17 +874,20 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           <div className="font-medium text-gray-800 text-sm">{service.shortName}</div>
                           <div className="text-purple-600 font-bold">${service.price}</div>
                           
-                          {/* Inventory Status */}
+                          {/* Real-time Inventory Status */}
                           {selectedDate && selectedTime && (
-                            <div className="mt-1">
+                            <div className="mt-1 flex items-center gap-1">
+                              <Package className="w-3 h-3 text-gray-500" />
                               <span className={`text-xs font-medium ${
                                 inventory.status === 'none' ? 'text-red-600' :
                                 inventory.status === 'low' ? 'text-orange-600' :
+                                inventory.status === 'medium' ? 'text-yellow-600' :
                                 'text-green-600'
                               }`}>
                                 {inventory.status === 'none' ? 'Sold Out' :
-                                 inventory.status === 'low' ? `${inventory.available} left` :
-                                 'Available'}
+                                 inventory.status === 'low' ? `Only ${inventory.available} left` :
+                                 inventory.status === 'medium' ? `${inventory.available} available` :
+                                 'In Stock'}
                               </span>
                             </div>
                           )}
@@ -891,7 +922,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               </div>
             </div>
 
-            {/* Add-ons - Compact view */}
+            {/* Add-ons with Individual Inventory */}
             <div className="mb-6">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
                 <Heart className="w-4 h-4 text-pink-600" />
@@ -923,6 +954,22 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           <div className={`font-bold text-sm ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
                             ${service.price}
                           </div>
+                          
+                          {/* Individual Product Inventory */}
+                          {selectedDate && selectedTime && (
+                            <div className="mt-1 flex items-center gap-1">
+                              <Package className="w-3 h-3 text-gray-500" />
+                              <span className={`text-xs font-medium ${
+                                inventory.status === 'none' ? 'text-red-600' :
+                                inventory.status === 'low' ? 'text-orange-600' :
+                                'text-green-600'
+                              }`}>
+                                {inventory.status === 'none' ? 'Sold Out' :
+                                 inventory.status === 'low' ? `${inventory.available} left` :
+                                 'Available'}
+                              </span>
+                            </div>
+                          )}
                         </div>
                         <div className="flex items-center gap-1">
                           <button
@@ -993,6 +1040,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 <p className="text-yellow-800 text-sm font-medium">
                   Select a base package first
                 </p>
+              </div>
+            )}
+
+            {/* Real-time Inventory Notice */}
+            {selectedTime && (
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <Package className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-blue-800">
+                    <p className="font-medium mb-1">Live Inventory</p>
+                    <p>Stock levels update in real-time. Popular items like the 23ft Bell Tent may sell out quickly!</p>
+                  </div>
+                </div>
               </div>
             )}
           </motion.div>
