@@ -1,10 +1,24 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, ArrowRight, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
 const Hero: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   const scrollToBooking = useCallback(() => {
     const bookingSection = document.getElementById('booking');
     if (bookingSection) {
@@ -35,6 +49,49 @@ const Hero: React.FC = () => {
         
         {/* Additional backdrop for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+      </div>
+
+      {/* Beautiful Firefly Effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            initial={{ 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+              opacity: 0 
+            }}
+            animate={{
+              x: [
+                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
+              ],
+              y: [
+                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
+              ],
+              opacity: [0, 0.9, 0.3, 0.8, 0],
+              scale: [1, 1.4, 0.6, 1.3, 1]
+            }}
+            transition={{
+              duration: 12 + Math.random() * 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 8
+            }}
+          >
+            <div 
+              className="w-2 h-2 bg-lavender-300 rounded-full firefly"
+              style={{
+                boxShadow: '0 0 12px 4px rgba(183, 148, 244, 0.8), 0 0 20px 6px rgba(45, 212, 191, 0.4)',
+                background: 'radial-gradient(circle, rgba(183, 148, 244, 0.95) 0%, rgba(45, 212, 191, 0.6) 60%, transparent 100%)'
+              }}
+            />
+          </motion.div>
+        ))}
       </div>
 
       {/* Main Content */}
