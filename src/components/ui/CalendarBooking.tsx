@@ -506,10 +506,16 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
     const isCheckIn = (day === 15 || day === 22) && booking?.available;
     const isCheckOut = (day === 18 || day === 25) && booking?.available;
     
+    // Check if this date is between check-in and check-out (should be greyed out)
+    const isBetweenBooking = ((day > 15 && day < 18) || (day > 22 && day < 25)) && booking?.available;
+    
     let cellClass = "h-12 w-full border border-gray-200 flex items-center justify-center text-sm font-medium cursor-pointer transition-all duration-200 relative ";
     
     if (isPast) {
       cellClass += "text-gray-300 cursor-not-allowed bg-gray-50 ";
+    } else if (isBetweenBooking) {
+      // Days between check-in and check-out should be greyed out (unavailable)
+      cellClass += "bg-gray-200 text-gray-500 cursor-not-allowed ";
     } else if (booking?.available) {
       if (isSelected) {
         cellClass += "bg-purple-600 text-white shadow-lg ";
@@ -520,7 +526,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       cellClass += "bg-gray-100 text-gray-400 cursor-not-allowed ";
     }
 
-    return { cellClass, isCheckIn, isCheckOut };
+    return { cellClass, isCheckIn, isCheckOut, isBetweenBooking };
   };
 
   if (isLoading) {
@@ -583,7 +589,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronLeft className="w-6 h-6 text-purple-600" />
+                <ChevronRight className="w-6 h-6 text-purple-600" />
               </motion.button>
               
               <h2 className="text-2xl font-bold text-purple-900">
@@ -596,7 +602,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight className="w-6 h-6 text-purple-600" />
+                <ChevronLeft className="w-6 h-6 text-purple-600" />
               </motion.button>
             </div>
 
@@ -609,6 +615,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 bg-gray-100 rounded border border-gray-200"></div>
                 <span className="text-gray-600 font-medium">Unavailable</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 bg-gray-200 rounded border border-gray-300"></div>
+                <span className="text-gray-600 font-medium">Booked Period</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 bg-purple-600 rounded relative overflow-hidden">
@@ -656,7 +666,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       const isSelected = selectedDate === formatDate(date);
                       const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
 
-                      const { cellClass, isCheckIn, isCheckOut } = getDateStyle(date, booking, isSelected, isPast);
+                      const { cellClass, isCheckIn, isCheckOut, isBetweenBooking } = getDateStyle(date, booking, isSelected, isPast);
 
                       let finalCellClass = cellClass;
                       if (isToday && !isSelected) {
@@ -666,11 +676,11 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       return (
                         <motion.button
                           key={index}
-                          onClick={() => !isPast && handleDateSelect(date)}
-                          disabled={isPast || !booking?.available}
+                          onClick={() => !isPast && !isBetweenBooking && handleDateSelect(date)}
+                          disabled={isPast || !booking?.available || isBetweenBooking}
                           className={finalCellClass}
-                          whileHover={booking?.available && !isPast ? { scale: 1.05 } : {}}
-                          whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
+                          whileHover={booking?.available && !isPast && !isBetweenBooking ? { scale: 1.05 } : {}}
+                          whileTap={booking?.available && !isPast && !isBetweenBooking ? { scale: 0.95 } : {}}
                         >
                           {date.getDate()}
                           
@@ -898,12 +908,21 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                       key={service.id}
                       className={`p-2 border rounded-lg transition-all duration-200 ${
                         service.requiresBase && !hasBasePackage() ? 'opacity-50' : 'hover:border-pink-300'
-                      } border-gray-200`}
+                      } border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="font-medium text-gray-800 text-xs">{service.shortName}</div>
-                          <div className="text-pink-600 font-bold text-sm">${service.price}</div>
+                          <div className="font-medium text-gray-800 text-xs flex items-center gap-2">
+                            {service.shortName}
+                            {service.id === 'spa-party-addon' && (
+                              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                Save $75!
+                              </span>
+                            )}
+                          </div>
+                          <div className={`font-bold text-sm ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
+                            ${service.price}
+                          </div>
                         </div>
                         <div className="flex items-center gap-1">
                           <button
