@@ -88,18 +88,10 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section relative overflow-hidden" style={{
-      background: `linear-gradient(135deg, 
-        #0f172a 0%, 
-        #1e293b 25%, 
-        #334155 50%, 
-        #1e293b 75%, 
-        #0f172a 100%)`
-    }}>
-      {/* Enhanced magical background */}
+    <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 relative overflow-hidden">
+      {/* Elegant decorative elements */}
       <div className="absolute inset-0">
-        {/* Floating stars */}
-        {[...Array(30)].map((_, i) => (
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full"
@@ -117,21 +109,6 @@ const Testimonials: React.FC = () => {
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-            }}
-          />
-        ))}
-
-        {/* Magical orbs */}
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute magical-orb"
-            style={{
-              width: `${40 + Math.random() * 30}px`,
-              height: `${40 + Math.random() * 30}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
             }}
           />
         ))}
@@ -203,7 +180,7 @@ const Testimonials: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <div className="glass-card-premium h-full flex flex-col items-center justify-center text-center relative group p-8">
+                <div className="bg-white/95 backdrop-blur-sm border border-lavender-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
                   {/* Floating hearts on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
                     {[...Array(5)].map((_, i) => (
@@ -248,8 +225,8 @@ const Testimonials: React.FC = () => {
 
                   {/* Quote */}
                   <div className="relative mb-8">
-                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-lavender-300/50" />
-                    <blockquote className="text-lg text-gray-200 max-w-2xl leading-relaxed">
+                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-lavender-200" />
+                    <blockquote className="text-lg text-gray-800 max-w-2xl leading-relaxed">
                       "{testimonials[currentIndex].quote}"
                     </blockquote>
                   </div>
@@ -259,16 +236,16 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-lavender-300/50"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-lavender-200"
                     />
                     <div className="ml-4 text-left">
-                      <div className="font-bold text-gray-200">
+                      <div className="font-bold text-gray-800">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-lavender-300 text-sm">
+                      <div className="text-gray-600 text-sm">
                         {testimonials[currentIndex].occasion}
                       </div>
-                      <div className="text-gray-400 text-xs">
+                      <div className="text-gray-500 text-xs">
                         {new Date(testimonials[currentIndex].date).toLocaleDateString('en-US', {
                           month: 'long',
                           year: 'numeric'

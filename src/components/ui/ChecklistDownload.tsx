@@ -68,7 +68,7 @@ Have an amazing family glamping celebration!
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="glass-card p-8 text-center relative overflow-hidden"
+      className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-8 text-center relative overflow-hidden rounded-xl"
     >
       {/* Background sparkles */}
       <div className="absolute inset-0 pointer-events-none">
@@ -97,15 +97,15 @@ Have an amazing family glamping celebration!
 
       {/* Header */}
       <div className="relative z-10">
-        <div className="w-16 h-16 bg-lavender-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Heart className="w-8 h-8 text-lavender-300" />
+        <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Heart className="w-8 h-8 text-lavender-600" />
         </div>
         
-        <h3 className="text-2xl font-bold text-gray-100 mb-4">
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">
           Free Family Celebration Planning Checklist 👨‍👩‍👧‍👦
         </h3>
         
-        <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+        <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
           Download our comprehensive family checklist to ensure your glamping celebration goes off without a hitch. 
           Everything you need to know for an unforgettable family experience!
         </p>
@@ -119,13 +119,13 @@ Have an amazing family glamping celebration!
           ].map((feature, index) => (
             <motion.div
               key={index}
-              className="flex items-center justify-center gap-2 text-gray-200"
+              className="flex items-center justify-center gap-2 text-gray-800"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <CheckCircle className="w-5 h-5 text-lavender-400" />
+              <CheckCircle className="w-5 h-5 text-lavender-500" />
               <span className="font-medium">{feature}</span>
             </motion.div>
           ))}
@@ -142,7 +142,7 @@ Have an amazing family glamping celebration!
           Download Free Family Checklist
         </motion.button>
 
-        <p className="text-sm text-gray-400 mt-4">
+        <p className="text-sm text-gray-600 mt-4">
           No email required • Instant download • 100% free for families
         </p>
       </div>

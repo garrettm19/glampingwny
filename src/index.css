@@ -8,12 +8,11 @@
   }
   
   body {
-    @apply font-sans text-gray-800 bg-gradient-to-br from-lavender-50 via-cream-50 to-sage-50;
-    background-attachment: fixed;
+    @apply font-sans text-gray-900 bg-gradient-to-br from-lavender-50 via-white to-teal-50;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display leading-tight text-gray-800;
+    @apply font-display leading-tight text-gray-900;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -40,7 +39,7 @@
   }
 
   .btn-outline {
-    @apply border-2 border-lavender-300 text-lavender-700 hover:bg-lavender-50 hover:border-lavender-400 backdrop-blur-sm;
+    @apply border-2 border-lavender-300 text-lavender-700 hover:bg-lavender-50 hover:border-lavender-400;
   }
 
   .container-custom {
@@ -52,36 +51,25 @@
   }
 
   .glass-card {
-    @apply bg-white/95 backdrop-blur-xl border border-lavender-200/50 shadow-xl hover:shadow-lavender transition-all duration-500 rounded-2xl;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 247, 255, 0.9));
-  }
-
-  .glass-card-light {
-    @apply bg-white/90 backdrop-blur-xl border border-sage-200/50 shadow-lg hover:shadow-sage transition-all duration-500 rounded-xl;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 247, 246, 0.85));
-  }
-
-  .glass-card-premium {
-    @apply bg-gradient-to-br from-white/98 via-lavender-50/95 to-cream-50/95 backdrop-blur-xl border border-lavender-300/30 shadow-2xl hover:shadow-lavender transition-all duration-500 rounded-2xl;
-  }
-
-  .hover-lift {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(183, 148, 244, 0.15);
+    @apply bg-white/95 backdrop-blur-sm border border-lavender-200/50 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl;
   }
 }
 
 @layer utilities {
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(183, 148, 244, 0.4);
+    box-shadow: 0 0 20px rgba(183, 148, 244, 0.3);
   }
 
   .shadow-glow-lg {
-    box-shadow: 0 0 40px rgba(183, 148, 244, 0.5);
+    box-shadow: 0 0 40px rgba(183, 148, 244, 0.4);
+  }
+
+  .shadow-lavender {
+    box-shadow: 0 10px 25px rgba(183, 148, 244, 0.15);
+  }
+
+  .shadow-teal {
+    box-shadow: 0 10px 25px rgba(45, 212, 191, 0.15);
   }
 
   .animation-delay-700 {
@@ -129,17 +117,6 @@
   }
 }
 
-@keyframes gentle-float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-15px) rotate(180deg);
-    opacity: 1;
-  }
-}
-
 .animate-sparkle {
   animation: sparkle 3s ease-in-out infinite;
 }
@@ -152,17 +129,13 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-.animate-gentle-float {
-  animation: gentle-float 8s ease-in-out infinite;
-}
-
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f4edff;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -176,12 +149,12 @@
 
 /* Enhanced focus styles */
 .focus-ring {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-500 focus-visible:ring-offset-2 focus-visible:ring-offset-lavender-50 rounded-lg;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-500 focus-visible:ring-offset-2 rounded-lg;
 }
 
 /* Smooth transitions for all interactive elements */
 button, a, input, textarea, select {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 /* Gradient backgrounds */
@@ -210,46 +183,4 @@ button, a, input, textarea, select {
   background: radial-gradient(circle, rgba(183, 148, 244, 0.8) 0%, rgba(45, 212, 191, 0.6) 70%, transparent 100%);
   border-radius: 50%;
   animation: sparkle 3s ease-in-out infinite;
-}
-
-/* Form inputs */
-input, textarea, select {
-  @apply bg-white/90 border-lavender-200 text-gray-800 placeholder-gray-500 backdrop-blur-sm;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 247, 255, 0.85));
-}
-
-input:focus, textarea:focus, select:focus {
-  @apply border-lavender-400 ring-lavender-300/30 shadow-lavender;
-  box-shadow: 0 0 0 3px rgba(183, 148, 244, 0.1), 0 0 20px rgba(183, 148, 244, 0.15);
-}
-
-/* Magical elements */
-.magical-orb {
-  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.15), rgba(45, 212, 191, 0.1), transparent 70%);
-  filter: blur(2px);
-  animation: gentle-float 12s ease-in-out infinite;
-  border-radius: 50%;
-}
-
-/* Premium card effects */
-.premium-card {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.98) 0%, 
-    rgba(250, 247, 255, 0.95) 25%, 
-    rgba(246, 247, 246, 0.95) 50%, 
-    rgba(250, 247, 255, 0.95) 75%, 
-    rgba(255, 255, 255, 0.98) 100%);
-  border: 1px solid rgba(183, 148, 244, 0.2);
-  box-shadow: 
-    0 0 30px rgba(183, 148, 244, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-.premium-card:hover {
-  border-color: rgba(183, 148, 244, 0.4);
-  box-shadow: 
-    0 0 40px rgba(183, 148, 244, 0.2),
-    0 20px 40px rgba(183, 148, 244, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transform: translateY(-2px);
 }

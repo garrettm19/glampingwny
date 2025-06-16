@@ -19,21 +19,21 @@ const ServiceAreaMap: React.FC<ServiceAreaMapProps> = ({
   ];
 
   return (
-    <div className={`glass-card p-6 md:p-8 ${className}`}>
+    <div className={`bg-teal-50 border border-teal-200 rounded-xl p-6 md:p-8 ${className}`}>
       <div className="text-center mb-6">
-        <div className="inline-block p-3 bg-teal-500/20 rounded-full mb-4">
-          <MapPin className="w-6 h-6 text-teal-300" />
+        <div className="inline-block p-3 bg-teal-100 rounded-full mb-4">
+          <MapPin className="w-6 h-6 text-teal-600" />
         </div>
-        <h3 className="text-2xl font-bold text-teal-300 mb-2">
+        <h3 className="text-2xl font-bold text-teal-800 mb-2">
           Proudly Servicing the Buffalo Metro Area 🗺️
         </h3>
-        <p className="text-gray-300">
+        <p className="text-teal-700">
           We bring magical family experiences throughout Western New York
         </p>
       </div>
       
       {/* Interactive Map */}
-      <div className="aspect-video bg-slate-700 rounded-lg shadow-md p-2 mb-6">
+      <div className="aspect-video bg-white rounded-lg shadow-md p-2 mb-6">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93589.72503288712!2d-78.87433459754272!3d42.88644610607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d3126152dfe5a1%3A0x982304a5181f8171!2sHamburg%2C%20NY%2014075!5e0!3m2!1sen!2sus!4v1709347721813!5m2!1sen!2sus"
           width="100%"
@@ -50,59 +50,59 @@ const ServiceAreaMap: React.FC<ServiceAreaMapProps> = ({
       {showPricing && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <motion.div 
-            className="text-center p-4 glass-card-light"
+            className="text-center p-4 bg-white rounded-lg border border-teal-200"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Check className="w-6 h-6 text-teal-300" />
+            <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Check className="w-6 h-6 text-teal-600" />
             </div>
-            <h4 className="font-bold text-teal-300 mb-2">FREE Delivery Zone</h4>
-            <p className="text-sm text-gray-300 mb-2">Within 20 miles of Hamburg, NY</p>
-            <p className="text-lg font-bold text-teal-400">$0 Delivery Fee</p>
+            <h4 className="font-bold text-teal-800 mb-2">FREE Delivery Zone</h4>
+            <p className="text-sm text-teal-700 mb-2">Within 20 miles of Hamburg, NY</p>
+            <p className="text-lg font-bold text-teal-600">$0 Delivery Fee</p>
           </motion.div>
           
           <motion.div 
-            className="text-center p-4 glass-card-light"
+            className="text-center p-4 bg-white rounded-lg border border-lavender-200"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-lavender-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-              <DollarSign className="w-6 h-6 text-lavender-300" />
+            <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <DollarSign className="w-6 h-6 text-lavender-600" />
             </div>
-            <h4 className="font-bold text-lavender-300 mb-2">Extended Zone 1</h4>
-            <p className="text-sm text-gray-300 mb-2">21-31 miles from Hamburg</p>
-            <p className="text-lg font-bold text-lavender-400">$50 Delivery Fee</p>
+            <h4 className="font-bold text-lavender-800 mb-2">Extended Zone 1</h4>
+            <p className="text-sm text-lavender-700 mb-2">21-31 miles from Hamburg</p>
+            <p className="text-lg font-bold text-lavender-600">$50 Delivery Fee</p>
           </motion.div>
           
           <motion.div 
-            className="text-center p-4 glass-card-light"
+            className="text-center p-4 bg-white rounded-lg border border-purple-200"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-              <DollarSign className="w-6 h-6 text-purple-300" />
+            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <DollarSign className="w-6 h-6 text-purple-600" />
             </div>
-            <h4 className="font-bold text-purple-300 mb-2">Extended Zone 2</h4>
-            <p className="text-sm text-gray-300 mb-2">32-42 miles from Hamburg</p>
-            <p className="text-lg font-bold text-purple-400">$100 Delivery Fee</p>
+            <h4 className="font-bold text-purple-800 mb-2">Extended Zone 2</h4>
+            <p className="text-sm text-purple-700 mb-2">32-42 miles from Hamburg</p>
+            <p className="text-lg font-bold text-purple-600">$100 Delivery Fee</p>
           </motion.div>
         </div>
       )}
 
       {/* Popular Areas */}
       <div className="text-center">
-        <h4 className="font-bold text-teal-300 mb-3">Popular Service Areas Include:</h4>
+        <h4 className="font-bold text-teal-800 mb-3">Popular Service Areas Include:</h4>
         <div className="flex flex-wrap justify-center gap-2">
           {popularAreas.map((city, index) => (
             <motion.span 
               key={index}
-              className="px-3 py-1 bg-slate-700/80 text-gray-300 rounded-full text-sm font-medium hover:bg-slate-600/80 transition-colors cursor-default"
+              className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium hover:bg-teal-200 transition-colors cursor-default"
               whileHover={{ scale: 1.05 }}
             >
               {city}
             </motion.span>
           ))}
         </div>
-        <p className="text-sm text-gray-400 mt-4">
-          Don't see your area? <a href="/contact" className="font-medium hover:underline text-teal-400">Contact us</a> - we may still be able to serve you!
+        <p className="text-sm text-teal-600 mt-4">
+          Don't see your area? <a href="/contact" className="font-medium hover:underline">Contact us</a> - we may still be able to serve you!
         </p>
       </div>
     </div>

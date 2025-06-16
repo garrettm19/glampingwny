@@ -189,7 +189,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section className="section dark-section-alt">
+    <section className="section bg-white">
       <div className="container-custom">
         {/* Indoor Packages Header */}
         <div className="text-center mb-16">
@@ -199,13 +199,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-lavender-500/20 rounded-full mb-6">
+            <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
               <span className="text-2xl">🏠</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Indoor Family Glamping Packages 🏠
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Transform your home into a magical family wonderland! Perfect for year-round family fun and celebrations.
             </p>
           </motion.div>
@@ -233,13 +233,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-teal-500/20 rounded-full mb-6">
+            <div className="inline-block p-3 bg-teal-100 rounded-full mb-6">
               <span className="text-2xl">🏕️</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Outdoor Family Adventure Packages 🏕️
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Experience the magic of outdoor family glamping in your own backyard!
               Available Spring/Summer 2025!
             </p>
@@ -268,13 +268,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-purple-500/20 rounded-full mb-6">
+            <div className="inline-block p-3 bg-purple-100 rounded-full mb-6">
               <span className="text-2xl">✨</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Family Fun Add-ons ✨
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Make your family glamping experience even more special with these magical touches.
             </p>
           </motion.div>
@@ -284,7 +284,7 @@ const Services: React.FC = () => {
           {addons.map((addon, index) => (
             <motion.div
               key={index}
-              className="premium-card p-6 flex flex-col h-full hover-lift"
+              className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-6 rounded-xl flex flex-col h-full hover:shadow-lg transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -292,10 +292,10 @@ const Services: React.FC = () => {
               whileHover={{ y: -5 }}
             >
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-lg font-bold text-gray-200">{addon.title}</h3>
-                <span className="text-lavender-400 font-bold">{addon.price}</span>
+                <h3 className="text-lg font-bold text-gray-800">{addon.title}</h3>
+                <span className="text-lavender-600 font-bold">{addon.price}</span>
               </div>
-              <p className="text-gray-300 mb-4 flex-grow">{addon.description}</p>
+              <p className="text-gray-700 mb-4 flex-grow">{addon.description}</p>
               <Link 
                 to="/book-now"
                 onClick={() => handleAddonClick(addon.title)}
@@ -315,13 +315,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-pink-500/20 rounded-full mb-6">
+            <div className="inline-block p-3 bg-pink-100 rounded-full mb-6">
               <span className="text-2xl">🎨</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Family-Friendly Themes 🎨
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Choose from our magical selection of family themes, or let us create a custom theme just for your family!
             </p>
           </motion.div>
@@ -331,18 +331,18 @@ const Services: React.FC = () => {
           {themes.map((theme, index) => (
             <motion.div
               key={index}
-              className="premium-card p-4 text-center hover-lift"
+              className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-4 text-center rounded-xl hover:bg-lavender-50 hover:border-lavender-300 transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
             >
-              <p className="text-gray-200 font-medium">{theme}</p>
+              <p className="text-gray-800 font-medium">{theme}</p>
             </motion.div>
           ))}
         </div>
-        <div className="text-center mt-8 text-gray-400">
+        <div className="text-center mt-8 text-gray-600">
           * Custom family theme designs available upon request for an additional fee
         </div>
 
@@ -354,13 +354,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-blue-500/20 rounded-full mb-6">
+            <div className="inline-block p-3 bg-blue-100 rounded-full mb-6">
               <span className="text-2xl">📏</span>
             </div>
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Family Space Requirements 📏
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Make sure you have enough space for your magical family experience!
             </p>
           </motion.div>
@@ -368,31 +368,31 @@ const Services: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
-            className="glass-card p-6"
+            className="bg-lavender-50 border border-lavender-200 p-6 rounded-xl"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-gray-200 mb-4">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">
               Indoor Family Tents
             </h3>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-700 mb-4">
               Each family tent is approximately 4ft wide x 7ft long. We suggest leaving 1-2 feet of walkway space for safe family movement.
             </p>
           </motion.div>
           
           <motion.div
-            className="glass-card p-6"
+            className="bg-teal-50 border border-teal-200 p-6 rounded-xl"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-xl font-bold text-gray-200 mb-4">
+            <h3 className="text-xl font-bold text-gray-800 mb-4">
               Outdoor Family Bell Tents
             </h3>
-            <ul className="text-gray-300 space-y-2">
+            <ul className="text-gray-700 space-y-2">
               <li>• Standard 16ft Family Bell Tent: 20' x 20' grassy area for safe staking</li>
               <li>• Large 23ft Family Bell Tent: 26' x 26' grassy area for safe staking</li>
             </ul>
