@@ -87,30 +87,100 @@ const KidsSpaPartyPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-pink-300 rounded-full"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: i * 0.2,
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Magical Spa Glow Effects */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={`glow-${i}`}
+                className="absolute"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ 
+                  opacity: [0, 0.3, 0.5, 0.3, 0],
+                  scale: [0, 1.5, 2, 1.5, 0],
+                  x: Math.random() * 100 - 50,
+                  y: Math.random() * 100 - 50
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  delay: i * 2,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${20 + i * 15}%`,
+                  top: `${30 + (i % 3) * 20}%`,
+                  background: 'radial-gradient(circle, rgba(216, 180, 254, 0.3) 0%, rgba(192, 132, 252, 0.2) 50%, transparent 80%)',
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: '50%',
+                  filter: 'blur(15px)'
+                }}
+              />
+            ))}
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -118,7 +188,7 @@ const KidsSpaPartyPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center text-white"
           >
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <Crown className="w-8 h-8 text-white" />
@@ -126,7 +196,7 @@ const KidsSpaPartyPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Kids Spa Party Add-On 👑✨
             </h1>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Transform your glamping experience into the ultimate spa adventure! 
               Add magical spa activities to any glamping package and save money.
             </p>
@@ -306,7 +376,7 @@ const KidsSpaPartyPage: React.FC = () => {
       </section>
 
       {/* What's Included Section */}
-      <section className="section bg-gradient-to-br from-pink-50 to-purple-50">
+      <section className="section bg-gradient-to-br from-lavender-50 to-purple-50">
         <div className="container-custom">
           <div className="text-center mb-16">
             <motion.div
@@ -315,8 +385,8 @@ const KidsSpaPartyPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="inline-block p-3 bg-pink-100 rounded-full mb-6">
-                <Heart className="w-6 h-6 text-pink-600" />
+              <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+                <Heart className="w-6 h-6 text-lavender-600" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                 What's Included in Your Spa Add-On 🧖‍♀️
@@ -336,8 +406,8 @@ const KidsSpaPartyPage: React.FC = () => {
             className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto mb-12"
           >
             <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Crown className="w-10 h-10 text-pink-600" />
+              <div className="w-20 h-20 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Crown className="w-10 h-10 text-lavender-600" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">Spa Party Add-On</h3>
               <p className="text-gray-600">Add to any glamping package for just $250</p>
@@ -346,7 +416,7 @@ const KidsSpaPartyPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h4 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-pink-500" />
+                  <Sparkles className="w-5 h-5 text-lavender-500" />
                   Spa Activities Included
                 </h4>
                 <div className="space-y-3">
@@ -359,7 +429,7 @@ const KidsSpaPartyPage: React.FC = () => {
                     'Themed decorations and accessories'
                   ].map((feature, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-lavender-500 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
@@ -398,7 +468,7 @@ const KidsSpaPartyPage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-8 max-w-3xl mx-auto">
+            <div className="bg-gradient-to-r from-lavender-100 to-purple-100 rounded-xl p-8 max-w-3xl mx-auto">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">
                 The Perfect Combination! 🎯
               </h3>
@@ -480,31 +550,100 @@ const KidsSpaPartyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-pink-600 via-purple-600 to-indigo-700 text-white relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-pink-300 rounded-full"
-              initial={{ opacity: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: i * 0.2,
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+      {/* CTA Section - Starry Night */}
+      <section className="section relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Magical Spa Glow Effects */}
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={`glow-${i}`}
+                className="absolute"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ 
+                  opacity: [0, 0.3, 0.5, 0.3, 0],
+                  scale: [0, 1.5, 2, 1.5, 0],
+                  x: Math.random() * 100 - 50,
+                  y: Math.random() * 100 - 50
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  delay: i * 2,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${20 + i * 15}%`,
+                  top: `${30 + (i % 3) * 20}%`,
+                  background: 'radial-gradient(circle, rgba(216, 180, 254, 0.3) 0%, rgba(192, 132, 252, 0.2) 50%, transparent 80%)',
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: '50%',
+                  filter: 'blur(15px)'
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="container-custom relative z-10">
@@ -515,10 +654,10 @@ const KidsSpaPartyPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Ready to Book Your Glamping + Spa Bundle? 👑✨
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Save $75 and give your kids the ultimate adventure and relaxation experience!
             </p>
             
@@ -529,7 +668,7 @@ const KidsSpaPartyPage: React.FC = () => {
               >
                 <Link
                   to="/book-now"
-                  className="inline-flex items-center gap-2 bg-white text-purple-600 hover:bg-purple-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="inline-flex items-center gap-2 bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <Crown className="w-5 h-5" />
                   Book Bundle & Save $75
@@ -552,10 +691,10 @@ const KidsSpaPartyPage: React.FC = () => {
 
             {/* Value Proposition */}
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto mb-8">
-              <h3 className="text-xl font-bold mb-4">Bundle Value Breakdown:</h3>
+              <h3 className="text-xl font-bold mb-4 text-white">Bundle Value Breakdown:</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div>
-                  <div className="font-bold text-lg">${spaPackageInfo.bundleTotal}</div>
+                  <div className="font-bold text-lg text-white">${spaPackageInfo.bundleTotal}</div>
                   <div className="text-white/80">Bundle Price</div>
                 </div>
                 <div>
@@ -563,7 +702,7 @@ const KidsSpaPartyPage: React.FC = () => {
                   <div className="text-white/80">You Save</div>
                 </div>
                 <div>
-                  <div className="font-bold text-lg">2-in-1</div>
+                  <div className="font-bold text-lg text-white">2-in-1</div>
                   <div className="text-white/80">Experiences</div>
                 </div>
               </div>
@@ -572,19 +711,19 @@ const KidsSpaPartyPage: React.FC = () => {
             {/* Trust Indicators */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
               <div className="text-center">
-                <div className="text-2xl font-bold">200+</div>
+                <div className="text-2xl font-bold text-white">200+</div>
                 <div className="text-sm text-white/80">Happy Families</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">100%</div>
+                <div className="text-2xl font-bold text-white">100%</div>
                 <div className="text-sm text-white/80">Safe Products</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">24hr</div>
+                <div className="text-2xl font-bold text-white">24hr</div>
                 <div className="text-sm text-white/80">Response Time</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold">FREE</div>
+                <div className="text-2xl font-bold text-white">FREE</div>
                 <div className="text-sm text-white/80">Local Delivery</div>
               </div>
             </div>

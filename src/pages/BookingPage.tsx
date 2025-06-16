@@ -39,29 +39,91 @@ const BookingPage: React.FC = () => {
         <meta name="description" content="Book your luxury family glamping experience with real-time availability. Choose your date, select your services, and create unforgettable memories in the Buffalo Metro Area." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute top-12 right-16"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
                 repeat: Infinity,
-                delay: i * 0.2,
+                ease: "easeInOut"
               }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -69,7 +131,7 @@ const BookingPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center text-white"
           >
             {/* Step Indicator */}
             <div className="flex justify-center items-center gap-4 mb-8">
@@ -81,7 +143,7 @@ const BookingPage: React.FC = () => {
                 <div key={item.step} className="flex items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     bookingStep === item.step 
-                      ? 'bg-white text-orange-600' 
+                      ? 'bg-white text-lavender-600' 
                       : bookingComplete && index < 2
                         ? 'bg-green-500 text-white'
                         : 'bg-white/20 text-white'
@@ -108,7 +170,7 @@ const BookingPage: React.FC = () => {
               {bookingStep === 'confirmation' && '🎉 Booking Confirmed!'}
             </h1>
             
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               {bookingStep === 'calendar' && 'Select your services, choose your date, and see real-time availability'}
               {bookingStep === 'details' && 'Just a few more details to make your experience perfect'}
               {bookingStep === 'confirmation' && 'Your magical family glamping experience is all set!'}
@@ -142,7 +204,7 @@ const BookingPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-green-50 border-b border-green-200">
+      <section className="py-6 bg-teal-50 border-b border-teal-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -151,10 +213,10 @@ const BookingPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-green-600" />
-              <span className="font-bold text-green-800">Serving the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-teal-600" />
+              <span className="font-bold text-teal-800">Serving the Buffalo Metro Area</span>
             </div>
-            <p className="text-green-700">
+            <p className="text-teal-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -190,7 +252,7 @@ const BookingPage: React.FC = () => {
                 <div className="mb-6">
                   <button
                     onClick={handleBackToCalendar}
-                    className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium"
+                    className="inline-flex items-center gap-2 text-lavender-600 hover:text-lavender-700 font-medium"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     Back to Package Selection
@@ -233,7 +295,7 @@ const BookingPage: React.FC = () => {
                   </p>
 
                   {selectedBooking && (
-                    <div className="bg-orange-50 rounded-lg p-6 mb-8">
+                    <div className="bg-lavender-50 rounded-lg p-6 mb-8">
                       <h3 className="font-bold text-gray-800 mb-4">Booking Details</h3>
                       <div className="space-y-3 text-left max-w-md mx-auto">
                         {selectedBooking.date && (
@@ -251,7 +313,7 @@ const BookingPage: React.FC = () => {
                           </div>
                         )}
                         {selectedBooking.services && (
-                          <div className="border-t border-orange-200 pt-3">
+                          <div className="border-t border-lavender-200 pt-3">
                             <div className="space-y-1">
                               {selectedBooking.services.map((service: any, index: number) => (
                                 <div key={index} className="flex justify-between text-sm">
@@ -263,9 +325,9 @@ const BookingPage: React.FC = () => {
                           </div>
                         )}
                         {selectedBooking.total && (
-                          <div className="flex justify-between font-bold text-lg border-t border-orange-200 pt-3">
+                          <div className="flex justify-between font-bold text-lg border-t border-lavender-200 pt-3">
                             <span>Total:</span>
-                            <span className="text-orange-700">${selectedBooking.total}</span>
+                            <span className="text-lavender-700">${selectedBooking.total}</span>
                           </div>
                         )}
                       </div>
@@ -273,11 +335,11 @@ const BookingPage: React.FC = () => {
                   )}
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                    <button className="btn btn-outline border-orange-200 text-orange-600 hover:bg-orange-50">
+                    <button className="btn btn-outline border-lavender-200 text-lavender-600 hover:bg-lavender-50">
                       <Calendar className="w-5 h-5 mr-2" />
                       Add to Calendar
                     </button>
-                    <button className="btn btn-primary bg-orange-500 hover:bg-orange-600">
+                    <button className="btn btn-primary bg-lavender-500 hover:bg-lavender-600">
                       <Sparkles className="w-5 h-5 mr-2" />
                       Download Confirmation
                     </button>

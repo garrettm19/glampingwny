@@ -47,20 +47,60 @@ const FeaturedTestimonials: React.FC<FeaturedTestimonialsProps> = ({
   return (
     <section className={`py-16 ${className}`}>
       <div className="container-custom">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+        {/* Starry Night Header */}
+        <div className="relative mb-16 rounded-2xl overflow-hidden">
+          <div 
+            className="relative py-16 px-8"
+            style={{
+              background: `linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #1e293b 75%, 
+                #0f172a 100%)`
+            }}
           >
-            <div className="inline-block p-3 bg-orange-100 rounded-full mb-6">
-              <Heart className="w-6 h-6 text-orange-600" />
+            {/* Animated Stars */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(40)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0.3, 1, 0],
+                    scale: [0.5, 1, 0.8, 1.2, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 4,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                />
+              ))}
             </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">{title}</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
-          </motion.div>
+
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
+                  <Heart className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
+                <p className="text-blue-100 max-w-2xl mx-auto">{subtitle}</p>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* Testimonials Grid */}
@@ -72,10 +112,10 @@ const FeaturedTestimonials: React.FC<FeaturedTestimonialsProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white border border-orange-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300"
+              className="bg-white border border-lavender-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300"
             >
               {/* Highlight Tag */}
-              <div className="absolute top-4 right-4 px-3 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">
+              <div className="absolute top-4 right-4 px-3 py-1 bg-lavender-500 text-white text-xs font-medium rounded-full">
                 {testimonial.highlight}
               </div>
 
@@ -91,7 +131,7 @@ const FeaturedTestimonials: React.FC<FeaturedTestimonialsProps> = ({
 
               {/* Quote */}
               <div className="relative mb-6">
-                <Quote className="absolute -top-2 -left-2 w-6 h-6 text-orange-200" />
+                <Quote className="absolute -top-2 -left-2 w-6 h-6 text-lavender-200" />
                 <blockquote className="text-gray-700 pl-4 leading-relaxed text-sm">
                   "{testimonial.quote}"
                 </blockquote>
@@ -102,11 +142,11 @@ const FeaturedTestimonials: React.FC<FeaturedTestimonialsProps> = ({
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-10 h-10 rounded-full object-cover border-2 border-orange-200"
+                  className="w-10 h-10 rounded-full object-cover border-2 border-lavender-200"
                 />
                 <div>
                   <div className="font-bold text-gray-800 text-sm">{testimonial.name}</div>
-                  <div className="text-xs text-orange-600">{testimonial.tag}</div>
+                  <div className="text-xs text-lavender-600">{testimonial.tag}</div>
                 </div>
               </div>
             </motion.div>
@@ -124,7 +164,7 @@ const FeaturedTestimonials: React.FC<FeaturedTestimonialsProps> = ({
           >
             <Link
               to="/testimonials"
-              className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold group"
+              className="inline-flex items-center gap-2 text-lavender-600 hover:text-lavender-700 font-semibold group"
             >
               Read All 200+ Family Reviews
               <Heart className="w-4 h-4 group-hover:scale-110 transition-transform" />

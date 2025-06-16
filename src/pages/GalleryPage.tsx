@@ -62,21 +62,91 @@ const GalleryPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-white relative overflow-hidden">
-        {/* Sparkle effects */}
-        <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
-            <span 
-              key={i}
-              className="sparkle-dot"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(70)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(2)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 15 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
+            <motion.div
+              className="absolute top-12 right-16"
+              animate={{
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
-            />
-          ))}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -84,10 +154,10 @@ const GalleryPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-3xl mx-auto text-center text-white"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Gallery</h1>
-            <p className="text-xl text-white/90 mb-6">
+            <p className="text-xl text-blue-100 mb-6">
               Browse through our luxury glamping experiences and get inspired for your celebration.
             </p>
           </motion.div>
@@ -102,7 +172,7 @@ const GalleryPage: React.FC = () => {
       </section>
       
       {/* Virtual Tour */}
-      <section className="section bg-primary-50">
+      <section className="section bg-lavender-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.div
@@ -111,7 +181,7 @@ const GalleryPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-primary-900 mb-4">
+              <h2 className="text-3xl font-bold text-lavender-900 mb-4">
                 Take a Virtual Tour
               </h2>
               <p className="text-gray-700 max-w-2xl mx-auto mb-8">
@@ -125,7 +195,7 @@ const GalleryPage: React.FC = () => {
       </section>
       
       {/* CTA */}
-      <section className="section bg-primary-900 text-white relative overflow-hidden">
+      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         <div className="container-custom">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -157,7 +227,7 @@ const GalleryPage: React.FC = () => {
             className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50"
           >
             <div className="bg-glass backdrop-blur-md rounded-full px-6 py-3 shadow-glow flex items-center gap-4">
-              <p className="text-primary-900 font-medium">
+              <p className="text-lavender-900 font-medium">
                 Want this for your next celebration?
               </p>
               <Link 

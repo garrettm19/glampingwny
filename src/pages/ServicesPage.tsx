@@ -342,30 +342,91 @@ const ServicesPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(10)].map((_, i) => (
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute top-12 right-16"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
                 repeat: Infinity,
-                delay: i * 0.2,
+                ease: "easeInOut"
               }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -373,17 +434,17 @@ const ServicesPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center text-white"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Family Packages 🏕️</h1>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Choose from our carefully designed indoor and outdoor packages or customize your own magical family experience.
             </p>
             
             {/* Service Area Highlight */}
             <div className="inline-block bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3">
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-yellow-300" />
+                <MapPin className="w-5 h-5 text-white" />
                 <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
               </div>
             </div>
@@ -392,7 +453,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-green-50 border-b border-green-200">
+      <section className="py-6 bg-teal-50 border-b border-teal-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -401,10 +462,10 @@ const ServicesPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-green-600" />
-              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-teal-600" />
+              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-green-700">
+            <p className="text-teal-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery: 21-31 miles ($50) • 32-42 miles ($100)
             </p>
@@ -444,7 +505,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Indoor Glamping Section */}
-      <section id="indoor" className="section bg-orange-50">
+      <section id="indoor" className="section bg-lavender-50">
         <div className="container-custom">
           <div className="text-center mb-16">
             <motion.div
@@ -453,8 +514,8 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="inline-block p-3 bg-orange-100 rounded-full mb-6">
-                <Tent className="w-6 h-6 text-orange-600" />
+              <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+                <Tent className="w-6 h-6 text-lavender-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Indoor Family Glamping 🏠
@@ -474,7 +535,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
+              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
                 1
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -495,7 +556,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-orange-200">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-lavender-200">
                 {/* Available Badge */}
                 <div className="bg-green-500 text-white px-4 py-2 text-sm font-bold">
                   ✓ Available
@@ -522,8 +583,8 @@ const ServicesPage: React.FC = () => {
                 {/* Package Content */}
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                      <Tent className="w-6 h-6 text-orange-600" />
+                    <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center">
+                      <Tent className="w-6 h-6 text-lavender-600" />
                     </div>
                     <div>
                       <h4 className="text-xl font-bold text-gray-800">{basePackage.title}</h4>
@@ -535,7 +596,7 @@ const ServicesPage: React.FC = () => {
                   <div className="space-y-3 mb-8">
                     {basePackage.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                        <Check className="w-5 h-5 text-lavender-500 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
@@ -549,7 +610,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handlePackageClick(basePackage.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Reserve Base Package
@@ -570,7 +631,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
+              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
                 2
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -591,7 +652,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-blue-200">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-teal-200">
                 {/* Available Badge */}
                 <div className="bg-green-500 text-white px-4 py-2 text-sm font-bold">
                   ✓ Available
@@ -618,8 +679,8 @@ const ServicesPage: React.FC = () => {
                 {/* Package Content */}
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Plus className="w-6 h-6 text-blue-600" />
+                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center">
+                      <Plus className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
                       <h4 className="text-xl font-bold text-gray-800">{additionalTent.title}</h4>
@@ -631,7 +692,7 @@ const ServicesPage: React.FC = () => {
                   <div className="space-y-3 mb-8">
                     {additionalTent.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                        <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
                         <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
@@ -645,7 +706,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handlePackageClick(additionalTent.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-teal-500 to-lavender-500 hover:from-teal-600 hover:to-lavender-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Add Extra Tent
@@ -666,7 +727,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
+              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
                 3
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -715,7 +776,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handleAddonClick(addon.title)}
-                    className="block w-full text-center py-3 px-4 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-semibold rounded-lg transition-all duration-300 group"
+                    className="block w-full text-center py-3 px-4 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold rounded-lg transition-all duration-300 group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Add to Package
@@ -730,7 +791,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Outdoor Glamping Section */}
-      <section id="outdoor" className="section bg-green-50">
+      <section id="outdoor" className="section bg-teal-50">
         <div className="container-custom">
           <div className="text-center mb-16">
             <motion.div
@@ -739,15 +800,15 @@ const ServicesPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="inline-block p-3 bg-green-100 rounded-full mb-6">
-                <TreePine className="w-6 h-6 text-green-600" />
+              <div className="inline-block p-3 bg-teal-100 rounded-full mb-6">
+                <TreePine className="w-6 h-6 text-teal-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Outdoor Family Glamping 🌲
               </h2>
               <p className="text-gray-700 max-w-3xl mx-auto text-lg">
                 Experience the magic of outdoor family glamping in your own backyard! 
-                <span className="font-semibold text-green-600"> Available Spring/Summer 2025!</span>
+                <span className="font-semibold text-teal-600"> Available Spring/Summer 2025!</span>
               </p>
             </motion.div>
           </div>
@@ -761,7 +822,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
+              <div className="inline-block bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
                 1
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -781,14 +842,14 @@ const ServicesPage: React.FC = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 ${
-                    tent.popular ? 'border-green-300 ring-4 ring-green-100' : 'border-gray-200'
+                    tent.popular ? 'border-teal-300 ring-4 ring-teal-100' : 'border-gray-200'
                   }`}
                   whileHover={{ y: -5 }}
                 >
                   {/* Popular Badge */}
                   {tent.popular && (
                     <div className="absolute top-4 right-4 z-10">
-                      <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                      <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                         <Star className="w-4 h-4 inline mr-1" />
                         Most Popular
                       </div>
@@ -819,7 +880,7 @@ const ServicesPage: React.FC = () => {
 
                     {/* Capacity Badge */}
                     <div className="absolute top-4 left-4">
-                      <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                         {tent.capacity}
                       </div>
                     </div>
@@ -836,12 +897,12 @@ const ServicesPage: React.FC = () => {
 
                     {/* Quick Info */}
                     <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="text-center p-3 bg-green-50 rounded-lg">
-                        <Users className="w-5 h-5 text-green-600 mx-auto mb-1" />
+                      <div className="text-center p-3 bg-teal-50 rounded-lg">
+                        <Users className="w-5 h-5 text-teal-600 mx-auto mb-1" />
                         <div className="text-sm font-medium text-gray-800">{tent.capacity}</div>
                       </div>
-                      <div className="text-center p-3 bg-green-50 rounded-lg">
-                        <Tent className="w-5 h-5 text-green-600 mx-auto mb-1" />
+                      <div className="text-center p-3 bg-teal-50 rounded-lg">
+                        <Tent className="w-5 h-5 text-teal-600 mx-auto mb-1" />
                         <div className="text-sm font-medium text-gray-800">{tent.size}</div>
                       </div>
                     </div>
@@ -850,7 +911,7 @@ const ServicesPage: React.FC = () => {
                     <div className="space-y-2 mb-6">
                       {tent.features.slice(0, 4).map((feature, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" />
                           <span className="text-gray-700 text-sm">{feature}</span>
                         </div>
                       ))}
@@ -867,8 +928,8 @@ const ServicesPage: React.FC = () => {
                       onClick={() => handlePackageClick(tent.title)}
                       className={`block w-full text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 group ${
                         tent.popular
-                          ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl'
-                          : 'bg-gray-100 hover:bg-green-50 text-gray-800 hover:text-green-600 border-2 border-gray-200 hover:border-green-300'
+                          ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-xl'
+                          : 'bg-gray-100 hover:bg-teal-50 text-gray-800 hover:text-teal-600 border-2 border-gray-200 hover:border-teal-300'
                       }`}
                     >
                       <span className="flex items-center justify-center gap-2">
@@ -891,7 +952,7 @@ const ServicesPage: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <div className="inline-block bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
+              <div className="inline-block bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
                 2
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -980,15 +1041,15 @@ const ServicesPage: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div
-                className="bg-orange-50 border border-orange-200 rounded-xl p-8"
+                className="bg-lavender-50 border border-lavender-200 rounded-xl p-8"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Tent className="w-8 h-8 text-orange-600" />
+                  <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Tent className="w-8 h-8 text-lavender-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4">
                     Indoor Family Tents
@@ -997,7 +1058,7 @@ const ServicesPage: React.FC = () => {
                     Each family tent is approximately <strong>4ft wide x 7ft long</strong>. 
                     We suggest leaving 1-2 feet of walkway space for safe family movement.
                   </p>
-                  <div className="bg-white rounded-lg p-4 border border-orange-200">
+                  <div className="bg-white rounded-lg p-4 border border-lavender-200">
                     <p className="text-sm text-gray-600">
                       <strong>Example:</strong> For 4 tents, you'll need approximately 12ft x 16ft of space
                     </p>
@@ -1006,34 +1067,34 @@ const ServicesPage: React.FC = () => {
               </motion.div>
               
               <motion.div
-                className="bg-green-50 border border-green-200 rounded-xl p-8"
+                className="bg-teal-50 border border-teal-200 rounded-xl p-8"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <TreePine className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TreePine className="w-8 h-8 text-teal-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-4">
                     Outdoor Family Bell Tents
                   </h3>
                   <ul className="text-gray-700 space-y-2 text-left">
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
                       <span><strong>16ft Bell Tent:</strong> 20' x 20' grassy area for safe staking</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
                       <span><strong>23ft Bell Tent:</strong> 26' x 26' grassy area for safe staking</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
                       <span>Level ground preferred for comfort</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
                       <span>Access for setup equipment needed</span>
                     </li>
                   </ul>
@@ -1075,7 +1136,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
+      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -1093,7 +1154,7 @@ const ServicesPage: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
                 to="/book-now"
-                className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 onClick={() => trackEvent('CTA', 'book_now_click', 'services_page')}
               >
                 Book Your Family Experience
