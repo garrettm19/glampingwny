@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus, AlertCircle, Package } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus, AlertCircle, Package, Crown } from 'lucide-react';
 
 interface BookingSlot {
   date: string;
@@ -36,7 +36,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   const [selectedServices, setSelectedServices] = useState<{[key: string]: number}>({});
   const [bookingData, setBookingData] = useState<BookingSlot[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedPackageType, setSelectedPackageType] = useState<'indoor' | 'outdoor'>('indoor');
+  const [selectedPackageType, setSelectedPackageType] = useState<'indoor' | 'outdoor' | 'spa'>('indoor');
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
   // All available services with realistic inventory and Booqable IDs
@@ -96,6 +96,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       maxQuantity: 1,
       totalInventory: 5,
       booqableId: 'canvas-tent-001'
+    },
+    
+    // NEW: Spa Party as Standalone Package
+    {
+      id: 'spa-party-standalone',
+      name: 'Spa Party Experience (Standalone)',
+      shortName: 'Spa Party',
+      price: 325,
+      category: 'base',
+      description: 'Complete spa party experience with all treatments and activities',
+      maxQuantity: 1,
+      totalInventory: 6, // Limited spa setups
+      booqableId: 'spa-standalone-001'
     },
     
     // Additional Tents
@@ -301,6 +314,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             if (service.id === 'bell-tent-16ft') bookingRate = 0.6; // Popular
             if (service.id === 'bell-tent-23ft') bookingRate = 0.8; // Very popular, limited stock
             if (service.id === 'spa-party-addon') bookingRate = 0.4; // Moderate demand
+            if (service.id === 'spa-party-standalone') bookingRate = 0.5; // NEW: Spa standalone demand
             if (service.id === 'indoor-base') bookingRate = 0.5; // Steady demand
             
             // Weekend effect
@@ -534,14 +548,20 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
         s.id === 'additional-twin-bed' ||
         (s.category === 'addon' && !s.id.includes('outdoor') && !s.id.includes('bell-tent'))
       );
-    } else {
+    } else if (selectedPackageType === 'outdoor') {
       return serviceOptions.filter(s => 
         s.id.includes('bell-tent') || 
         s.id.includes('canvas-tent') || 
         s.id.includes('day-dreamer') ||
         (s.category === 'addon')
       );
+    } else if (selectedPackageType === 'spa') {
+      return serviceOptions.filter(s => 
+        s.id === 'spa-party-standalone' ||
+        (s.category === 'addon' && !s.id.includes('spa-party-addon')) // Exclude the add-on version for standalone spa
+      );
     }
+    return [];
   };
 
   const getBasePackages = () => {
@@ -630,6 +650,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
           >
             🌲 Outdoor Glamping
           </button>
+          <button
+            onClick={() => {
+              setSelectedPackageType('spa');
+              setSelectedProduct(null);
+            }}
+            className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+              selectedPackageType === 'spa'
+                ? 'bg-pink-500 text-white shadow-lg transform scale-105'
+                : 'bg-white text-gray-700 hover:bg-pink-50 border-2 border-pink-200'
+            }`}
+          >
+            👑 Spa Party
+          </button>
         </div>
 
         {/* Individual Package Selection */}
@@ -642,18 +675,27 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               <motion.button
                 key={service.id}
                 onClick={() => setSelectedProduct(service.id)}
-                className={`p-6 rounded-xl border-2 transition-all duration-300 text-left ${
+                className={`p-6 rounded-xl border-2 transition-all duration-300 text-left relative ${
                   isSelected
                     ? 'border-purple-500 bg-purple-50 shadow-lg transform scale-105'
                     : 'border-gray-200 bg-white hover:border-purple-300 hover:shadow-md'
-                }`}
+                } ${service.id === 'spa-party-standalone' ? 'ring-2 ring-pink-200' : ''}`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
+                {/* Special Spa Badge */}
+                {service.id === 'spa-party-standalone' && (
+                  <div className="absolute top-2 right-2">
+                    <Crown className="w-6 h-6 text-pink-500" />
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="font-bold text-gray-800">{service.shortName}</h3>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-purple-600">${service.price}</div>
+                    <div className={`text-lg font-bold ${service.id === 'spa-party-standalone' ? 'text-pink-600' : 'text-purple-600'}`}>
+                      ${service.price}
+                    </div>
                     <div className={`text-xs font-medium ${
                       inventory.status === 'none' ? 'text-red-600' :
                       inventory.status === 'low' ? 'text-orange-600' :
@@ -666,6 +708,15 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                   </div>
                 </div>
                 <p className="text-gray-600 text-sm mb-3">{service.description}</p>
+                
+                {/* Special Spa Note */}
+                {service.id === 'spa-party-standalone' && (
+                  <div className="bg-pink-50 border border-pink-200 rounded-lg p-3 mb-3">
+                    <p className="text-pink-800 text-xs font-medium">
+                      ✨ Complete spa experience with all treatments, activities, and setup included!
+                    </p>
+                  </div>
+                )}
                 
                 {/* Selection indicator */}
                 {isSelected && (
@@ -939,11 +990,24 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               className="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border border-purple-100"
             >
               <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-8 h-8 text-purple-600" />
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  selectedProduct === 'spa-party-standalone' ? 'bg-pink-100' : 'bg-purple-100'
+                }`}>
+                  {selectedProduct === 'spa-party-standalone' ? (
+                    <Crown className="w-8 h-8 text-pink-600" />
+                  ) : (
+                    <Sparkles className="w-8 h-8 text-purple-600" />
+                  )}
                 </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">Customize Your Package</h3>
-                <p className="text-gray-600 text-sm">Add extras to your {serviceOptions.find(s => s.id === selectedProduct)?.shortName}</p>
+                <h3 className="text-xl font-bold text-purple-900 mb-2">
+                  {selectedProduct === 'spa-party-standalone' ? 'Your Spa Experience' : 'Customize Your Package'}
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  {selectedProduct === 'spa-party-standalone' 
+                    ? 'Complete spa party with all treatments included'
+                    : `Add extras to your ${serviceOptions.find(s => s.id === selectedProduct)?.shortName}`
+                  }
+                </p>
                 {selectedDate && selectedTime && (
                   <div className="mt-3 p-3 bg-blue-50 rounded-lg">
                     <p className="text-xs text-blue-700 font-medium">
@@ -955,87 +1019,110 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
               {/* Selected Base Package */}
               {selectedProduct && (
-                <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
-                  <h4 className="font-bold text-purple-900 mb-2">Your Base Package</h4>
+                <div className={`mb-6 p-4 rounded-lg border ${
+                  selectedProduct === 'spa-party-standalone' 
+                    ? 'bg-pink-50 border-pink-200' 
+                    : 'bg-purple-50 border-purple-200'
+                }`}>
+                  <h4 className={`font-bold mb-2 ${
+                    selectedProduct === 'spa-party-standalone' ? 'text-pink-900' : 'text-purple-900'
+                  }`}>
+                    {selectedProduct === 'spa-party-standalone' ? 'Your Spa Package' : 'Your Base Package'}
+                  </h4>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">{serviceOptions.find(s => s.id === selectedProduct)?.shortName}</span>
-                    <span className="font-bold text-purple-600">${serviceOptions.find(s => s.id === selectedProduct)?.price}</span>
+                    <span className={`font-bold ${
+                      selectedProduct === 'spa-party-standalone' ? 'text-pink-600' : 'text-purple-600'
+                    }`}>
+                      ${serviceOptions.find(s => s.id === selectedProduct)?.price}
+                    </span>
                   </div>
+                  
+                  {/* Special Spa Package Details */}
+                  {selectedProduct === 'spa-party-standalone' && (
+                    <div className="mt-3 pt-3 border-t border-pink-200">
+                      <p className="text-pink-800 text-xs">
+                        ✨ Includes: Professional spa setup, kid-safe treatments, relaxing activities, themed decorations, and complete cleanup
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {/* Add-ons */}
-              <div className="mb-6">
-                <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-pink-600" />
-                  Add-ons
-                </h4>
-                <div className="space-y-2 max-h-48 overflow-y-auto">
-                  {getFilteredServices().filter(s => s.category === 'addon').slice(0, 5).map((service) => {
-                    const inventory = getInventoryStatus(service.id);
-                    const currentQuantity = selectedServices[service.id] || 0;
-                    const canAdd = canAddService(service);
-                    
-                    return (
-                      <div
-                        key={service.id}
-                        className={`p-2 border rounded-lg transition-all duration-200 hover:border-pink-300 border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-800 text-xs flex items-center gap-2">
-                              {service.shortName}
-                              {service.id === 'spa-party-addon' && (
-                                <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                  Save $75!
-                                </span>
+              {/* Add-ons (only show if not standalone spa) */}
+              {selectedProduct !== 'spa-party-standalone' && (
+                <div className="mb-6">
+                  <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-pink-600" />
+                    Add-ons
+                  </h4>
+                  <div className="space-y-2 max-h-48 overflow-y-auto">
+                    {getFilteredServices().filter(s => s.category === 'addon').slice(0, 5).map((service) => {
+                      const inventory = getInventoryStatus(service.id);
+                      const currentQuantity = selectedServices[service.id] || 0;
+                      const canAdd = canAddService(service);
+                      
+                      return (
+                        <div
+                          key={service.id}
+                          className={`p-2 border rounded-lg transition-all duration-200 hover:border-pink-300 border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="font-medium text-gray-800 text-xs flex items-center gap-2">
+                                {service.shortName}
+                                {service.id === 'spa-party-addon' && (
+                                  <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                                    Save $75!
+                                  </span>
+                                )}
+                              </div>
+                              <div className={`font-bold text-sm ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
+                                ${service.price}
+                              </div>
+                              
+                              {/* Individual Product Inventory */}
+                              {selectedDate && selectedTime && (
+                                <div className="mt-1 flex items-center gap-1">
+                                  <Package className="w-3 h-3 text-gray-500" />
+                                  <span className={`text-xs font-medium ${
+                                    inventory.status === 'none' ? 'text-red-600' :
+                                    inventory.status === 'low' ? 'text-orange-600' :
+                                    'text-green-600'
+                                  }`}>
+                                    {inventory.status === 'none' ? 'Sold Out' :
+                                     inventory.status === 'low' ? `${inventory.available} left` :
+                                     'Available'}
+                                  </span>
+                                </div>
                               )}
                             </div>
-                            <div className={`font-bold text-sm ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
-                              ${service.price}
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => handleServiceQuantityChange(service.id, -1)}
+                                disabled={!currentQuantity || !canAdd}
+                                className="w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
+                              >
+                                <Minus className="w-2 h-2" />
+                              </button>
+                              <span className="w-4 text-center text-xs font-medium">
+                                {currentQuantity}
+                              </span>
+                              <button
+                                onClick={() => handleServiceQuantityChange(service.id, 1)}
+                                disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
+                                className="w-5 h-5 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
+                              >
+                                <Plus className="w-2 h-2" />
+                              </button>
                             </div>
-                            
-                            {/* Individual Product Inventory */}
-                            {selectedDate && selectedTime && (
-                              <div className="mt-1 flex items-center gap-1">
-                                <Package className="w-3 h-3 text-gray-500" />
-                                <span className={`text-xs font-medium ${
-                                  inventory.status === 'none' ? 'text-red-600' :
-                                  inventory.status === 'low' ? 'text-orange-600' :
-                                  'text-green-600'
-                                }`}>
-                                  {inventory.status === 'none' ? 'Sold Out' :
-                                   inventory.status === 'low' ? `${inventory.available} left` :
-                                   'Available'}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <button
-                              onClick={() => handleServiceQuantityChange(service.id, -1)}
-                              disabled={!currentQuantity || !canAdd}
-                              className="w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
-                            >
-                              <Minus className="w-2 h-2" />
-                            </button>
-                            <span className="w-4 text-center text-xs font-medium">
-                              {currentQuantity}
-                            </span>
-                            <button
-                              onClick={() => handleServiceQuantityChange(service.id, 1)}
-                              disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
-                              className="w-5 h-5 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
-                            >
-                              <Plus className="w-2 h-2" />
-                            </button>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Package Summary */}
               {selectedProduct && (
@@ -1056,7 +1143,9 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                   <div className="border-t border-gray-200 pt-2">
                     <div className="flex justify-between font-bold text-lg">
                       <span>Total:</span>
-                      <span className="text-purple-700">${(serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()}</span>
+                      <span className={selectedProduct === 'spa-party-standalone' ? 'text-pink-700' : 'text-purple-700'}>
+                        ${(serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1066,14 +1155,22 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               {selectedTime && selectedProduct && (
                 <motion.button
                   onClick={handleBookingConfirm}
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold py-4 rounded-xl mt-6 hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg"
+                  className={`w-full font-bold py-4 rounded-xl mt-6 transition-all duration-300 shadow-lg ${
+                    selectedProduct === 'spa-party-standalone'
+                      ? 'bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800'
+                      : 'bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800'
+                  }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <span className="flex items-center justify-center gap-2">
-                    <Sparkles className="w-5 h-5" />
+                    {selectedProduct === 'spa-party-standalone' ? (
+                      <Crown className="w-5 h-5" />
+                    ) : (
+                      <Sparkles className="w-5 h-5" />
+                    )}
                     Book Now - ${(serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()}
                   </span>
                 </motion.button>
