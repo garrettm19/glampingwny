@@ -295,17 +295,11 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 0 0 3px rgba(183, 148, 244, 0.1), 0 0 20px rgba(183, 148, 244, 0.2);
 }
 
-/* Enhanced magical elements */
+/* Enhanced magical elements - SIMPLIFIED */
 .magical-orb {
-  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.8), rgba(45, 212, 191, 0.6), transparent 70%);
-  filter: blur(1px);
-  animation: magical-float 10s ease-in-out infinite;
-}
-
-.constellation-line {
-  background: linear-gradient(90deg, transparent, rgba(183, 148, 244, 0.5), transparent);
-  height: 1px;
-  animation: shimmer 3s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.4), rgba(45, 212, 191, 0.3), transparent 70%);
+  filter: blur(2px);
+  animation: magical-float 12s ease-in-out infinite;
 }
 
 /* Premium card effects */

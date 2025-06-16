@@ -98,52 +98,37 @@ const item = {
 const Features: React.FC = () => {
   return (
     <section id="features" className="section dark-section relative overflow-hidden">
-      {/* Enhanced magical background */}
+      {/* Simplified magical background */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Floating magical orbs */}
-        {[...Array(8)].map((_, i) => (
+        {/* Gentle floating orbs */}
+        {[...Array(4)].map((_, i) => (
           <div
             key={i}
             className="absolute magical-orb"
             style={{
-              width: `${60 + Math.random() * 40}px`,
-              height: `${60 + Math.random() * 40}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-            }}
-          />
-        ))}
-        
-        {/* Constellation lines */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute constellation-line"
-            style={{
-              width: `${100 + Math.random() * 200}px`,
-              left: `${Math.random() * 80}%`,
+              width: `${40 + Math.random() * 20}px`,
+              height: `${40 + Math.random() * 20}px`,
+              left: `${20 + Math.random() * 60}%`,
               top: `${20 + Math.random() * 60}%`,
-              transform: `rotate(${Math.random() * 360}deg)`,
-              animationDelay: `${Math.random() * 3}s`,
+              animationDelay: `${Math.random() * 8}s`,
             }}
           />
         ))}
         
-        {/* Sparkle particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Subtle sparkle particles */}
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-lavender-400 rounded-full"
             animate={{
-              opacity: [0, 1, 0],
-              scale: [0.5, 1.2, 0.5],
-              y: [0, -30, 0],
+              opacity: [0, 0.8, 0],
+              scale: [0.5, 1, 0.5],
+              y: [0, -20, 0],
             }}
             transition={{
-              duration: 4,
+              duration: 6,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: Math.random() * 6,
               ease: "easeInOut"
             }}
             style={{

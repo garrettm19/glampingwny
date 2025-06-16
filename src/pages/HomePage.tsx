@@ -102,37 +102,37 @@ const HomePage: React.FC = () => {
       
       {/* Why Choose Us - Simplified */}
       <section className="section dark-section relative overflow-hidden">
-        {/* Enhanced magical background */}
+        {/* Simplified magical background */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Floating magical orbs */}
-          {[...Array(6)].map((_, i) => (
+          {/* Gentle floating orbs */}
+          {[...Array(3)].map((_, i) => (
             <div
               key={i}
               className="absolute magical-orb"
               style={{
-                width: `${60 + Math.random() * 40}px`,
-                height: `${60 + Math.random() * 40}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 10}s`,
+                width: `${50 + Math.random() * 30}px`,
+                height: `${50 + Math.random() * 30}px`,
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
+                animationDelay: `${Math.random() * 8}s`,
               }}
             />
           ))}
           
-          {/* Sparkle particles */}
-          {[...Array(15)].map((_, i) => (
+          {/* Subtle sparkle particles */}
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-lavender-400 rounded-full"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [0.5, 1.2, 0.5],
-                y: [0, -30, 0],
+                opacity: [0, 0.8, 0],
+                scale: [0.5, 1, 0.5],
+                y: [0, -20, 0],
               }}
               transition={{
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
-                delay: Math.random() * 4,
+                delay: Math.random() * 6,
                 ease: "easeInOut"
               }}
               style={{
@@ -144,64 +144,24 @@ const HomePage: React.FC = () => {
         </div>
 
         <div className="container-custom relative z-10">
-          {/* Starry Night Header */}
-          <div className="relative mb-16 rounded-2xl overflow-hidden">
-            <div 
-              className="relative py-16 px-8"
-              style={{
-                background: `linear-gradient(135deg, 
-                  #0f172a 0%, 
-                  #1e293b 25%, 
-                  #334155 50%, 
-                  #1e293b 75%, 
-                  #0f172a 100%)`
-              }}
+          {/* Clean Section Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
             >
-              {/* Animated Stars */}
-              <div className="absolute inset-0 overflow-hidden">
-                {[...Array(50)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 0.3, 1, 0],
-                      scale: [0.5, 1, 0.8, 1.2, 0.5]
-                    }}
-                    transition={{
-                      duration: 3 + Math.random() * 4,
-                      repeat: Infinity,
-                      delay: Math.random() * 5,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                  />
-                ))}
+              <div className="inline-block p-3 bg-lavender-500/20 rounded-full mb-6">
+                <Heart className="w-8 h-8 text-lavender-300" />
               </div>
-
-              {/* Content */}
-              <div className="relative z-10 text-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
-                    <Heart className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Why Families Love Glamping WNY! 🏕️
-                  </h2>
-                  <p className="text-blue-100 max-w-3xl mx-auto mb-8">
-                    We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4">
+                Why Families Love Glamping WNY! 🏕️
+              </h2>
+              <p className="text-gray-300 max-w-3xl mx-auto mb-8">
+                We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together.
+              </p>
+            </motion.div>
           </div>
 
           {/* Key Benefits - Simplified Grid */}
@@ -333,10 +293,10 @@ const HomePage: React.FC = () => {
           #1e293b 75%, 
           #0f172a 100%)`
       }}>
-        {/* Enhanced magical background */}
+        {/* Simplified magical background */}
         <div className="absolute inset-0">
           {/* Floating stars */}
-          {[...Array(30)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full"
@@ -358,16 +318,16 @@ const HomePage: React.FC = () => {
             />
           ))}
 
-          {/* Magical orbs */}
-          {[...Array(4)].map((_, i) => (
+          {/* Gentle magical orbs */}
+          {[...Array(2)].map((_, i) => (
             <div
               key={i}
               className="absolute magical-orb"
               style={{
-                width: `${40 + Math.random() * 30}px`,
-                height: `${40 + Math.random() * 30}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                width: `${30 + Math.random() * 20}px`,
+                height: `${30 + Math.random() * 20}px`,
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
                 animationDelay: `${Math.random() * 8}s`,
               }}
             />
@@ -432,9 +392,9 @@ const HomePage: React.FC = () => {
           backgroundPosition: 'center'
         }}
       >
-        {/* Enhanced magical sparkle animation */}
+        {/* Simplified sparkle animation */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full"
@@ -447,7 +407,7 @@ const HomePage: React.FC = () => {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                delay: i * 0.2,
+                delay: i * 0.3,
               }}
               style={{
                 left: `${Math.random() * 100}%`,
@@ -456,16 +416,16 @@ const HomePage: React.FC = () => {
             />
           ))}
           
-          {/* Magical orbs */}
-          {[...Array(5)].map((_, i) => (
+          {/* Gentle magical orbs */}
+          {[...Array(2)].map((_, i) => (
             <div
               key={i}
               className="absolute magical-orb"
               style={{
-                width: `${50 + Math.random() * 30}px`,
-                height: `${50 + Math.random() * 30}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                width: `${40 + Math.random() * 20}px`,
+                height: `${40 + Math.random() * 20}px`,
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
                 animationDelay: `${Math.random() * 8}s`,
               }}
             />
