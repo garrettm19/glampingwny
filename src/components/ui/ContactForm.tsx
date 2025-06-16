@@ -51,7 +51,7 @@ const ContactForm: React.FC = () => {
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-accent-400 rounded-full"
+            className="absolute w-1 h-1 bg-lavender-400 rounded-full"
             animate={{
               opacity: [0, 1, 0],
               scale: [1, 1.2, 1],
@@ -73,10 +73,10 @@ const ContactForm: React.FC = () => {
 
       {/* Form Header */}
       <div className="text-center mb-8">
-        <div className="inline-block p-3 bg-primary-100 rounded-full mb-4">
-          <Sparkles className="w-6 h-6 text-primary-600" />
+        <div className="inline-block p-3 bg-lavender-100 rounded-full mb-4">
+          <Sparkles className="w-6 h-6 text-lavender-600" />
         </div>
-        <h3 className="text-2xl font-bold text-primary-900 mb-2">
+        <h3 className="text-2xl font-bold text-lavender-900 mb-2">
           Let's Create Magic Together! ✨
         </h3>
         <p className="text-gray-600">
@@ -96,7 +96,7 @@ const ContactForm: React.FC = () => {
                 id="name"
                 name="name"
                 required
-                className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow"
+                className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
                 placeholder="Enter your name"
               />
             </div>
@@ -110,7 +110,7 @@ const ContactForm: React.FC = () => {
                 id="email"
                 name="email"
                 required
-                className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow"
+                className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
                 placeholder="your@email.com"
               />
             </div>
@@ -124,7 +124,7 @@ const ContactForm: React.FC = () => {
               id="subject"
               name="subject"
               required
-              className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow"
+              className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
             >
               <option value="">Select a topic</option>
               <option value="booking">Booking Question</option>
@@ -143,14 +143,14 @@ const ContactForm: React.FC = () => {
               name="message"
               rows={4}
               required
-              className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-shadow resize-none"
+              className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow resize-none"
               placeholder="Tell us about your dream party..."
             />
           </div>
 
           <motion.button
             type="submit"
-            className="w-full btn btn-primary bg-primary-600 hover:bg-primary-700 text-white group"
+            className="w-full btn btn-primary bg-lavender-600 hover:bg-lavender-700 text-white group"
             disabled={isSubmitting}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -183,11 +183,11 @@ const ContactForm: React.FC = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6"
           >
-            <CheckCircle className="w-8 h-8 text-primary-600" />
+            <CheckCircle className="w-8 h-8 text-lavender-600" />
           </motion.div>
-          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+          <h3 className="text-2xl font-bold text-lavender-900 mb-4">
             Message Sent Successfully! ✨
           </h3>
           <p className="text-gray-700 mb-6">
@@ -195,7 +195,7 @@ const ContactForm: React.FC = () => {
           </p>
           <motion.button
             onClick={() => setIsSuccess(false)}
-            className="btn btn-outline border-primary-200 text-primary-900 hover:bg-primary-50"
+            className="btn btn-outline border-lavender-200 text-lavender-900 hover:bg-lavender-50"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

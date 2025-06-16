@@ -34,13 +34,13 @@ const ContactPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         {/* Sparkle effects */}
         <div className="absolute inset-0">
           {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -73,7 +73,7 @@ const ContactPage: React.FC = () => {
             </p>
             <div className="inline-block bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3">
               <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-yellow-300" />
+                <MapPin className="w-5 h-5 text-white" />
                 <span className="font-medium">Serving the Buffalo Metro Area</span>
               </div>
             </div>
@@ -104,12 +104,12 @@ const ContactPage: React.FC = () => {
 
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-orange-600 mt-1 mr-4 flex-shrink-0" />
+                  <Phone className="w-6 h-6 text-lavender-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-gray-900">Phone</h3>
                     <a 
                       href="tel:+17165551234"
-                      className="text-gray-700 hover:text-orange-600 transition-colors"
+                      className="text-gray-700 hover:text-lavender-600 transition-colors"
                     >
                       (716) 555-1234
                     </a>
@@ -118,12 +118,12 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start">
-                  <Mail className="w-6 h-6 text-orange-600 mt-1 mr-4 flex-shrink-0" />
+                  <Mail className="w-6 h-6 text-lavender-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-gray-900">Email</h3>
                     <a 
                       href="mailto:info@glampingwny.com"
-                      className="text-gray-700 hover:text-orange-600 transition-colors"
+                      className="text-gray-700 hover:text-lavender-600 transition-colors"
                     >
                       info@glampingwny.com
                     </a>
@@ -132,7 +132,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-orange-600 mt-1 mr-4 flex-shrink-0" />
+                  <MapPin className="w-6 h-6 text-lavender-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-gray-900">Service Area</h3>
                     <address className="not-italic text-gray-700">
@@ -144,7 +144,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start">
-                  <Clock className="w-6 h-6 text-orange-600 mt-1 mr-4 flex-shrink-0" />
+                  <Clock className="w-6 h-6 text-lavender-600 mt-1 mr-4 flex-shrink-0" />
                   <div>
                     <h3 className="font-bold text-gray-900">Response Time</h3>
                     <p className="text-gray-700">
@@ -156,10 +156,10 @@ const ContactPage: React.FC = () => {
               </div>
 
               {/* Trust Badge */}
-              <div className="p-6 bg-orange-50 rounded-lg">
+              <div className="p-6 bg-lavender-50 rounded-lg">
                 <div className="flex items-center gap-2 mb-4">
                   <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                  <span className="font-bold text-orange-900">
+                  <span className="font-bold text-lavender-900">
                     Trusted by 200+ Local Families
                   </span>
                 </div>

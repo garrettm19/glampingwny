@@ -16,12 +16,12 @@ const AboutPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -69,7 +69,7 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               className="relative lg:col-span-5"
             >
-              <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto border-4 border-orange-200">
+              <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto border-4 border-lavender-200">
                 <div className="aspect-[3/4]">
                   <img 
                     src="https://picsum.photos/400/500?random=30"
@@ -80,14 +80,14 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               <motion.div
-                className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 border-2 border-orange-200"
+                className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-4 border-2 border-lavender-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 <div className="flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-orange-500" />
+                  <Heart className="w-5 h-5 text-lavender-500" />
                   <span className="text-sm text-gray-600 font-medium">
                     Family-Founded 2021
                   </span>
@@ -110,8 +110,8 @@ const AboutPage: React.FC = () => {
                 
                 <div className="grid grid-cols-2 gap-4 my-8">
                   {[
-                    { icon: Dog, text: "Dog Mom", color: "text-orange-500" },
-                    { icon: Book, text: "Book Lover", color: "text-blue-500" },
+                    { icon: Dog, text: "Dog Mom", color: "text-lavender-500" },
+                    { icon: Book, text: "Book Lover", color: "text-teal-500" },
                     { icon: Sun, text: "Sunshine Seeker", color: "text-yellow-500" },
                     { icon: Coffee, text: "Coffee Enthusiast", color: "text-amber-600" }
                   ].map((item, index) => (
@@ -132,13 +132,13 @@ const AboutPage: React.FC = () => {
               </div>
 
               <motion.blockquote 
-                className="relative p-6 bg-orange-50 rounded-xl border-l-4 border-orange-500"
+                className="relative p-6 bg-lavender-50 rounded-xl border-l-4 border-lavender-500"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <Quote className="absolute -top-3 -left-3 w-8 h-8 text-orange-500 bg-white rounded-full p-1" />
+                <Quote className="absolute -top-3 -left-3 w-8 h-8 text-lavender-500 bg-white rounded-full p-1" />
                 <p className="text-lg italic text-gray-800">
                   "I believe in creating memorable family moments that people will treasure forever. Every tent we set up is a new opportunity to bring joy and wonder to a family's special day. There's nothing better than seeing kids' faces light up and parents relax knowing everything is taken care of!"
                 </p>
@@ -149,7 +149,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Family Values Section */}
-      <section className="section bg-orange-50">
+      <section className="section bg-lavender-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.div
@@ -170,29 +170,32 @@ const AboutPage: React.FC = () => {
               {
                 icon: Heart,
                 title: "Families First",
-                description: "We believe in creating experiences that bring families closer together and create lasting memories for all ages."
+                description: "We believe in creating experiences that bring families closer together and create lasting memories for all ages.",
+                color: "bg-lavender-100 text-lavender-600"
               },
               {
                 icon: Shield,
                 title: "Safety & Quality",
-                description: "Every piece of equipment is kid-safe, thoroughly cleaned, and safety-checked before each family event."
+                description: "Every piece of equipment is kid-safe, thoroughly cleaned, and safety-checked before each family event.",
+                color: "bg-teal-100 text-teal-600"
               },
               {
                 icon: Sparkles,
                 title: "Magical Experiences",
-                description: "We go above and beyond to ensure every detail contributes to a truly special family celebration."
+                description: "We go above and beyond to ensure every detail contributes to a truly special family celebration.",
+                color: "bg-lavender-100 text-lavender-600"
               }
             ].map((value, index) => (
               <motion.div
                 key={index}
-                className="bg-white border border-orange-200 p-6 text-center rounded-xl hover:shadow-lg transition-all duration-300"
+                className="bg-white border border-lavender-200 p-6 text-center rounded-xl hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <value.icon className="w-8 h-8 text-orange-600" />
+                <div className={`w-16 h-16 ${value.color} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                  <value.icon className="w-8 h-8" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-4">{value.title}</h3>
                 <p className="text-gray-700">{value.description}</p>
@@ -233,7 +236,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white">
+      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white">
         <div className="container-custom">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -251,7 +254,7 @@ const AboutPage: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
                 href="/book-now"
-                className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

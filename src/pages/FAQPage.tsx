@@ -12,7 +12,7 @@ const FAQPage: React.FC = () => {
       id: 'booking',
       title: "Booking & Scheduling",
       icon: Calendar,
-      color: "bg-blue-50 text-blue-600",
+      color: "bg-lavender-50 text-lavender-600",
       questions: [
         {
           question: "When do you set up and pick up?",
@@ -40,7 +40,7 @@ const FAQPage: React.FC = () => {
       id: 'delivery',
       title: "Delivery & Service Area",
       icon: MapPin,
-      color: "bg-green-50 text-green-600",
+      color: "bg-teal-50 text-teal-600",
       questions: [
         {
           question: "What areas do you serve?",
@@ -84,7 +84,7 @@ const FAQPage: React.FC = () => {
       id: 'safety',
       title: "Safety & Cleanliness",
       icon: Shield,
-      color: "bg-orange-50 text-orange-600",
+      color: "bg-lavender-50 text-lavender-600",
       questions: [
         {
           question: "How are the tents and bedding cleaned?",
@@ -104,7 +104,7 @@ const FAQPage: React.FC = () => {
       id: 'policies',
       title: "Policies & Payments",
       icon: CreditCard,
-      color: "bg-red-50 text-red-600",
+      color: "bg-teal-50 text-teal-600",
       questions: [
         {
           question: "Can I cancel my reservation?",
@@ -124,7 +124,7 @@ const FAQPage: React.FC = () => {
       id: 'pets',
       title: "Pet-Friendly Options",
       icon: Dog,
-      color: "bg-yellow-50 text-yellow-600",
+      color: "bg-purple-50 text-purple-600",
       questions: [
         {
           question: "Can we bring our pets?",
@@ -166,12 +166,12 @@ const FAQPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -228,7 +228,7 @@ const FAQPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-8 bg-green-50 border-b border-green-200">
+      <section className="py-8 bg-teal-50 border-b border-teal-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -237,10 +237,10 @@ const FAQPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-green-600" />
-              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-teal-600" />
+              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-green-700">
+            <p className="text-teal-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -258,8 +258,8 @@ const FAQPage: React.FC = () => {
                 onClick={() => setActiveCategory(category.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm md:text-base ${
                   activeCategory === category.id
-                    ? 'bg-orange-500 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-orange-50 hover:text-orange-600'
+                    ? 'bg-lavender-500 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-lavender-50 hover:text-lavender-600'
                 }`}
               >
                 <category.icon className="w-4 h-4" />
@@ -303,8 +303,8 @@ const FAQPage: React.FC = () => {
               {/* Special Service Area Map for Delivery Category */}
               {category.id === 'delivery' && (
                 <div className="mb-12">
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-8 mb-8">
-                    <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">
+                  <div className="bg-teal-50 border border-teal-200 rounded-xl p-8 mb-8">
+                    <h3 className="text-2xl font-bold text-teal-800 mb-6 text-center">
                       Our Service Area Map 🗺️
                     </h3>
                     
@@ -324,35 +324,35 @@ const FAQPage: React.FC = () => {
 
                     {/* Delivery Pricing */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="text-center p-4 bg-white rounded-lg border border-green-200">
-                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <MapPin className="w-6 h-6 text-green-600" />
+                      <div className="text-center p-4 bg-white rounded-lg border border-teal-200">
+                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <MapPin className="w-6 h-6 text-teal-600" />
                         </div>
-                        <h4 className="font-bold text-green-800 mb-2">FREE Zone</h4>
-                        <p className="text-sm text-green-700 mb-2">Within 20 miles of Hamburg, NY</p>
-                        <p className="text-lg font-bold text-green-600">$0 Delivery</p>
+                        <h4 className="font-bold text-teal-800 mb-2">FREE Zone</h4>
+                        <p className="text-sm text-teal-700 mb-2">Within 20 miles of Hamburg, NY</p>
+                        <p className="text-lg font-bold text-teal-600">$0 Delivery</p>
                       </div>
-                      <div className="text-center p-4 bg-white rounded-lg border border-yellow-200">
-                        <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <DollarSign className="w-6 h-6 text-yellow-600" />
+                      <div className="text-center p-4 bg-white rounded-lg border border-lavender-200">
+                        <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <DollarSign className="w-6 h-6 text-lavender-600" />
                         </div>
-                        <h4 className="font-bold text-yellow-800 mb-2">Extended Zone 1</h4>
-                        <p className="text-sm text-yellow-700 mb-2">21-31 miles from Hamburg</p>
-                        <p className="text-lg font-bold text-yellow-600">$50 Delivery</p>
+                        <h4 className="font-bold text-lavender-800 mb-2">Extended Zone 1</h4>
+                        <p className="text-sm text-lavender-700 mb-2">21-31 miles from Hamburg</p>
+                        <p className="text-lg font-bold text-lavender-600">$50 Delivery</p>
                       </div>
-                      <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
-                        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <DollarSign className="w-6 h-6 text-orange-600" />
+                      <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <DollarSign className="w-6 h-6 text-purple-600" />
                         </div>
-                        <h4 className="font-bold text-orange-800 mb-2">Extended Zone 2</h4>
-                        <p className="text-sm text-orange-700 mb-2">32-42 miles from Hamburg</p>
-                        <p className="text-lg font-bold text-orange-600">$100 Delivery</p>
+                        <h4 className="font-bold text-purple-800 mb-2">Extended Zone 2</h4>
+                        <p className="text-sm text-purple-700 mb-2">32-42 miles from Hamburg</p>
+                        <p className="text-lg font-bold text-purple-600">$100 Delivery</p>
                       </div>
                     </div>
 
                     {/* Popular Areas */}
                     <div className="mt-6 text-center">
-                      <h4 className="font-bold text-green-800 mb-3">Popular Service Areas Include:</h4>
+                      <h4 className="font-bold text-teal-800 mb-3">Popular Service Areas Include:</h4>
                       <div className="flex flex-wrap justify-center gap-2">
                         {[
                           'Buffalo', 'Cheektowaga', 'West Seneca', 'Orchard Park', 
@@ -361,7 +361,7 @@ const FAQPage: React.FC = () => {
                         ].map((city, index) => (
                           <span 
                             key={index}
-                            className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium"
+                            className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium"
                           >
                             {city}
                           </span>
@@ -380,7 +380,7 @@ const FAQPage: React.FC = () => {
       </section>
 
       {/* Quick Contact Section */}
-      <section className="section bg-orange-50">
+      <section className="section bg-lavender-50">
         <div className="container-custom">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -389,9 +389,9 @@ const FAQPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white border border-orange-200 rounded-xl p-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-8 h-8 text-orange-600" />
+            <div className="bg-white border border-lavender-200 rounded-xl p-8">
+              <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <MessageCircle className="w-8 h-8 text-lavender-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Still Have Questions? 💬
@@ -403,15 +403,15 @@ const FAQPage: React.FC = () => {
               {/* Contact Options */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <MessageCircle className="w-6 h-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <MessageCircle className="w-6 h-6 text-lavender-600" />
                   </div>
                   <h3 className="font-bold text-gray-800 mb-2">Live Chat</h3>
                   <p className="text-sm text-gray-600">Quick answers to simple questions</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Clock className="w-6 h-6 text-green-600" />
+                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-teal-600" />
                   </div>
                   <h3 className="font-bold text-gray-800 mb-2">24hr Response</h3>
                   <p className="text-sm text-gray-600">We'll get back to you quickly</p>
@@ -428,7 +428,7 @@ const FAQPage: React.FC = () => {
               <div className="flex flex-wrap justify-center gap-4">
                 <motion.a
                   href="/contact"
-                  className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -436,7 +436,7 @@ const FAQPage: React.FC = () => {
                 </motion.a>
                 <motion.a
                   href="/book-now"
-                  className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50 font-semibold py-3 px-6 rounded-xl transition-all duration-300"
+                  className="border-2 border-lavender-500 text-lavender-600 hover:bg-lavender-50 font-semibold py-3 px-6 rounded-xl transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -447,11 +447,11 @@ const FAQPage: React.FC = () => {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <p className="text-sm text-gray-600">
                   <strong>Quick Contact:</strong> Call us at{' '}
-                  <a href="tel:+17165551234" className="text-orange-600 hover:text-orange-700 font-medium">
+                  <a href="tel:+17165551234" className="text-lavender-600 hover:text-lavender-700 font-medium">
                     (716) 555-1234
                   </a>{' '}
                   or email{' '}
-                  <a href="mailto:info@glampingwny.com" className="text-orange-600 hover:text-orange-700 font-medium">
+                  <a href="mailto:info@glampingwny.com" className="text-lavender-600 hover:text-lavender-700 font-medium">
                     info@glampingwny.com
                   </a>
                 </p>

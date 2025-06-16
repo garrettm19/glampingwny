@@ -25,10 +25,10 @@ const TestimonialWidget: React.FC<TestimonialWidgetProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className={`bg-white border border-orange-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300 ${className}`}
+      className={`bg-white border border-lavender-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300 ${className}`}
     >
       {/* Tag */}
-      <div className="absolute top-4 right-4 px-3 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">
+      <div className="absolute top-4 right-4 px-3 py-1 bg-lavender-500 text-white text-xs font-medium rounded-full">
         {tag}
       </div>
 
@@ -44,7 +44,7 @@ const TestimonialWidget: React.FC<TestimonialWidgetProps> = ({
 
       {/* Quote */}
       <div className="relative mb-6">
-        <Quote className="absolute -top-2 -left-2 w-6 h-6 text-orange-200" />
+        <Quote className="absolute -top-2 -left-2 w-6 h-6 text-lavender-200" />
         <blockquote className="text-gray-700 pl-4 leading-relaxed">
           "{quote}"
         </blockquote>
@@ -55,11 +55,11 @@ const TestimonialWidget: React.FC<TestimonialWidgetProps> = ({
         <img
           src={image}
           alt={name}
-          className="w-10 h-10 rounded-full object-cover border-2 border-orange-200"
+          className="w-10 h-10 rounded-full object-cover border-2 border-lavender-200"
         />
         <div>
           <div className="font-bold text-gray-800">{name}</div>
-          <div className="text-xs text-orange-600">Verified Customer</div>
+          <div className="text-xs text-lavender-600">Verified Customer</div>
         </div>
       </div>
     </motion.div>

@@ -160,10 +160,10 @@ const allTestimonials = [
 ];
 
 const categories = [
-  { name: "Birthday Parties", icon: PartyPopper, color: "bg-pink-50 text-pink-600" },
-  { name: "Family Experiences", icon: Users, color: "bg-blue-50 text-blue-600" },
+  { name: "Birthday Parties", icon: PartyPopper, color: "bg-lavender-50 text-lavender-600" },
+  { name: "Family Experiences", icon: Users, color: "bg-teal-50 text-teal-600" },
   { name: "Special Occasions", icon: Heart, color: "bg-purple-50 text-purple-600" },
-  { name: "Professional Service", icon: Award, color: "bg-green-50 text-green-600" }
+  { name: "Professional Service", icon: Award, color: "bg-lavender-50 text-lavender-600" }
 ];
 
 const TestimonialsPage: React.FC = () => {
@@ -217,13 +217,13 @@ const TestimonialsPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
         {/* Sparkle effects */}
         <div className="absolute inset-0">
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -253,7 +253,7 @@ const TestimonialsPage: React.FC = () => {
             <div className="flex justify-center mb-6">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-8 h-8 text-yellow-300 fill-yellow-300" />
+                  <Star key={i} className="w-8 h-8 text-white fill-white" />
                 ))}
               </div>
             </div>
@@ -301,8 +301,8 @@ const TestimonialsPage: React.FC = () => {
               onClick={() => setSelectedCategory(null)}
               className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                 selectedCategory === null
-                  ? 'bg-orange-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-orange-50 hover:text-orange-600'
+                  ? 'bg-lavender-500 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-lavender-50 hover:text-lavender-600'
               }`}
             >
               All Reviews ({allTestimonials.length})
@@ -315,8 +315,8 @@ const TestimonialsPage: React.FC = () => {
                   onClick={() => setSelectedCategory(category.name)}
                   className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
                     selectedCategory === category.name
-                      ? 'bg-orange-500 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-orange-50 hover:text-orange-600'
+                      ? 'bg-lavender-500 text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-lavender-50 hover:text-lavender-600'
                   }`}
                 >
                   <category.icon className="w-4 h-4" />
@@ -339,10 +339,10 @@ const TestimonialsPage: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white border border-orange-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300"
+                className="bg-white border border-lavender-200 rounded-xl p-6 relative hover:shadow-lg transition-all duration-300"
               >
                 {/* Category Tag */}
-                <div className="absolute top-4 right-4 px-3 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">
+                <div className="absolute top-4 right-4 px-3 py-1 bg-lavender-500 text-white text-xs font-medium rounded-full">
                   {testimonial.category}
                 </div>
 
@@ -358,7 +358,7 @@ const TestimonialsPage: React.FC = () => {
 
                 {/* Quote */}
                 <div className="relative mb-6">
-                  <Quote className="absolute -top-2 -left-2 w-6 h-6 text-orange-200" />
+                  <Quote className="absolute -top-2 -left-2 w-6 h-6 text-lavender-200" />
                   <blockquote className="text-gray-700 pl-4 leading-relaxed">
                     "{testimonial.quote}"
                   </blockquote>
@@ -369,11 +369,11 @@ const TestimonialsPage: React.FC = () => {
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-orange-200"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-lavender-200"
                   />
                   <div>
                     <div className="font-bold text-gray-800">{testimonial.name}</div>
-                    <div className="text-sm text-orange-600 font-medium">{testimonial.occasion}</div>
+                    <div className="text-sm text-lavender-600 font-medium">{testimonial.occasion}</div>
                     <div className="text-xs text-gray-500">
                       {new Date(testimonial.date).toLocaleDateString('en-US', {
                         month: 'long',
@@ -389,7 +389,7 @@ const TestimonialsPage: React.FC = () => {
       </section>
 
       {/* Share Your Experience */}
-      <section className="section bg-orange-50">
+      <section className="section bg-lavender-50">
         <div className="container-custom">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -398,9 +398,9 @@ const TestimonialsPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white border border-orange-200 rounded-xl p-8">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-orange-600" />
+            <div className="bg-white border border-lavender-200 rounded-xl p-8">
+              <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="w-8 h-8 text-lavender-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 Share Your Family Experience With Us! 💕
@@ -413,7 +413,7 @@ const TestimonialsPage: React.FC = () => {
                   href="https://google.com/review" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Review on Google
                 </a>
@@ -421,7 +421,7 @@ const TestimonialsPage: React.FC = () => {
                   href="https://facebook.com/review" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="border-2 border-orange-500 text-orange-600 hover:bg-orange-50 font-semibold px-6 py-3 rounded-xl transition-all duration-300"
+                  className="border-2 border-lavender-500 text-lavender-600 hover:bg-lavender-50 font-semibold px-6 py-3 rounded-xl transition-all duration-300"
                 >
                   Review on Facebook
                 </a>
@@ -435,7 +435,7 @@ const TestimonialsPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 text-white">
+      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white">
         <div className="container-custom">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
@@ -453,7 +453,7 @@ const TestimonialsPage: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/book-now"
-                className="bg-white text-orange-600 hover:bg-orange-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Book Your Family Experience
               </Link>
