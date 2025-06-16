@@ -71,49 +71,6 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
 
-      {/* Animated floating elements - more playful */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 6 : 12)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0 
-            }}
-            animate={{
-              x: [
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
-              ],
-              y: [
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
-              ],
-              opacity: [0, 0.8, 0.4, 0.9, 0],
-              scale: [1, 1.3, 0.7, 1.2, 1]
-            }}
-            transition={{
-              duration: 15 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 10
-            }}
-          >
-            <div 
-              className="w-2 h-2 bg-lavender-300 rounded-full"
-              style={{
-                boxShadow: '0 0 8px 3px rgba(183, 148, 244, 0.6)',
-                background: 'radial-gradient(circle, rgba(183, 148, 244, 0.9) 0%, rgba(45, 212, 191, 0.5) 70%, transparent 100%)'
-              }}
-            />
-          </motion.div>
-        ))}
-      </div>
-
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl text-center">
