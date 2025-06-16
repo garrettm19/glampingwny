@@ -242,7 +242,7 @@ const Header: React.FC = () => {
           >
             <Link 
               to="/book-now" 
-              className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-lavender-500 to-sage-500 hover:from-lavender-600 hover:to-sage-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
               onClick={() => handleNavClick('book_now')}
               aria-label="Book Now"
             >
@@ -330,7 +330,7 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Mobile Contact Info */}
-                <div className="p-6 bg-gradient-to-br from-lavender-50 to-teal-50 border-b border-gray-100">
+                <div className="p-6 bg-gradient-to-br from-lavender-50 to-sage-50 border-b border-gray-100">
                   <div className="space-y-4">
                     <motion.a 
                       href="tel:+17165551234"
@@ -353,8 +353,8 @@ const Header: React.FC = () => {
                       onClick={() => trackEvent('Contact', 'email_click', 'mobile_menu')}
                       whileHover={{ x: 5 }}
                     >
-                      <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors">
-                        <Mail className="w-5 h-5 text-teal-600" />
+                      <div className="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center group-hover:bg-sage-200 transition-colors">
+                        <Mail className="w-5 h-5 text-sage-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Email Us</div>
@@ -417,7 +417,7 @@ const Header: React.FC = () => {
                   >
                     <Link 
                       to="/book-now" 
-                      className="block w-full text-center bg-gradient-to-r from-lavender-500 to-teal-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="block w-full text-center bg-gradient-to-r from-lavender-500 to-sage-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       onClick={() => handleNavClick('book_now_mobile')}
                     >
                       Book Your Experience

@@ -99,13 +99,13 @@ const Hero: React.FC = () => {
                   background: `radial-gradient(circle, 
                     rgba(255, 255, 255, 0.95) 0%, 
                     rgba(255, 255, 255, 0.8) 20%,
-                    rgba(183, 148, 244, 0.7) 50%, 
-                    rgba(125, 145, 125, 0.5) 80%, 
+                    rgba(167, 139, 250, 0.7) 50%, 
+                    rgba(107, 124, 107, 0.5) 80%, 
                     transparent 100%)`,
                   boxShadow: `
                     0 0 ${size * 3}px ${size}px rgba(255, 255, 255, 0.6),
-                    0 0 ${size * 6}px ${size * 2}px rgba(183, 148, 244, 0.4),
-                    0 0 ${size * 9}px ${size * 3}px rgba(125, 145, 125, 0.2)
+                    0 0 ${size * 6}px ${size * 2}px rgba(167, 139, 250, 0.4),
+                    0 0 ${size * 9}px ${size * 3}px rgba(107, 124, 107, 0.2)
                   `,
                   filter: 'blur(0.3px)'
                 }}
