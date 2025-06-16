@@ -15,91 +15,79 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(80)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 12 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Moon */}
+      {/* Hero Section - Clean Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-900">
+        {/* Animated Stars */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(80)].map((_, i) => (
             <motion.div
-              className="absolute top-12 right-16"
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              initial={{ opacity: 0 }}
               animate={{
-                opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                opacity: [0, 1, 0.3, 1, 0],
+                scale: [0.5, 1, 0.8, 1.2, 0.5]
               }}
               transition={{
-                duration: 8,
+                duration: 3 + Math.random() * 4,
                 repeat: Infinity,
+                delay: Math.random() * 5,
                 ease: "easeInOut"
               }}
-            >
-              <div 
-                className="w-16 h-16 bg-yellow-100 rounded-full"
-                style={{
-                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-                }}
-              />
-            </motion.div>
-          </div>
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+          
+          {/* Shooting Stars */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`shooting-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white rounded-full"
+              initial={{ 
+                x: -50,
+                y: Math.random() * 200,
+                opacity: 0 
+              }}
+              animate={{
+                x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                y: Math.random() * 200 + 100,
+                opacity: [0, 1, 1, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 12 + Math.random() * 5,
+                ease: "easeOut"
+              }}
+              style={{
+                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+              }}
+            />
+          ))}
+
+          {/* Moon */}
+          <motion.div
+            className="absolute top-12 right-16"
+            animate={{
+              opacity: [0.7, 1, 0.7],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div 
+              className="w-16 h-16 bg-yellow-100 rounded-full"
+              style={{
+                boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+              }}
+            />
+          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -172,7 +160,7 @@ const AboutPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 my-8">
                   {[
                     { icon: Dog, text: "Dog Mom", color: "text-lavender-500" },
-                    { icon: Book, text: "Book Lover", color: "text-teal-500" },
+                    { icon: Book, text: "Book Lover", color: "text-slate-500" },
                     { icon: Sun, text: "Sunshine Seeker", color: "text-yellow-500" },
                     { icon: Coffee, text: "Coffee Enthusiast", color: "text-amber-600" }
                   ].map((item, index) => (
@@ -209,22 +197,12 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Family Values Section - Starry Night Header */}
+      {/* Family Values Section - Clean Starry Night Header */}
       <section className="section bg-lavender-50">
         <div className="container-custom">
-          {/* Starry Night Header */}
-          <div className="relative mb-16 rounded-2xl overflow-hidden">
-            <div 
-              className="relative py-16 px-8"
-              style={{
-                background: `linear-gradient(135deg, 
-                  #0f172a 0%, 
-                  #1e293b 25%, 
-                  #334155 50%, 
-                  #1e293b 75%, 
-                  #0f172a 100%)`
-              }}
-            >
+          {/* Clean Starry Night Header */}
+          <div className="relative mb-16 rounded-2xl overflow-hidden bg-slate-900">
+            <div className="relative py-16 px-8">
               {/* Animated Stars */}
               <div className="absolute inset-0 overflow-hidden">
                 {[...Array(40)].map((_, i) => (
@@ -279,7 +257,7 @@ const AboutPage: React.FC = () => {
                 icon: Shield,
                 title: "Safety & Quality",
                 description: "Every piece of equipment is kid-safe, thoroughly cleaned, and safety-checked before each family event.",
-                color: "bg-teal-100 text-teal-600"
+                color: "bg-slate-100 text-slate-600"
               },
               {
                 icon: Sparkles,
@@ -307,22 +285,12 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Customer Testimonial - Starry Night Header */}
+      {/* Customer Testimonial - Clean Starry Night Header */}
       <section className="section bg-white">
         <div className="container-custom">
-          {/* Starry Night Header */}
-          <div className="relative mb-16 rounded-2xl overflow-hidden">
-            <div 
-              className="relative py-16 px-8"
-              style={{
-                background: `linear-gradient(135deg, 
-                  #0f172a 0%, 
-                  #1e293b 25%, 
-                  #334155 50%, 
-                  #1e293b 75%, 
-                  #0f172a 100%)`
-              }}
-            >
+          {/* Clean Starry Night Header */}
+          <div className="relative mb-16 rounded-2xl overflow-hidden bg-slate-900">
+            <div className="relative py-16 px-8">
               {/* Animated Stars */}
               <div className="absolute inset-0 overflow-hidden">
                 {[...Array(35)].map((_, i) => (
@@ -378,43 +346,31 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section - Starry Night */}
-      <section className="section relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(60)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-          </div>
+      {/* CTA Section - Clean Starry Night */}
+      <section className="section relative overflow-hidden bg-slate-900">
+        {/* Animated Stars */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(60)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 0.3, 1, 0],
+                scale: [0.5, 1, 0.8, 1.2, 0.5]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
 
         <div className="container-custom relative z-10">

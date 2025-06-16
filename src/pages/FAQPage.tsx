@@ -40,7 +40,7 @@ const FAQPage: React.FC = () => {
       id: 'delivery',
       title: "Delivery & Service Area",
       icon: MapPin,
-      color: "bg-teal-50 text-teal-600",
+      color: "bg-slate-50 text-slate-600",
       questions: [
         {
           question: "What areas do you serve?",
@@ -104,7 +104,7 @@ const FAQPage: React.FC = () => {
       id: 'policies',
       title: "Policies & Payments",
       icon: CreditCard,
-      color: "bg-teal-50 text-teal-600",
+      color: "bg-slate-50 text-slate-600",
       questions: [
         {
           question: "Can I cancel my reservation?",
@@ -165,91 +165,79 @@ const FAQPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section - Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(80)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 12 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Moon */}
+      {/* Hero Section - Clean Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-900">
+        {/* Animated Stars */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(80)].map((_, i) => (
             <motion.div
-              className="absolute top-12 right-16"
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              initial={{ opacity: 0 }}
               animate={{
-                opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                opacity: [0, 1, 0.3, 1, 0],
+                scale: [0.5, 1, 0.8, 1.2, 0.5]
               }}
               transition={{
-                duration: 8,
+                duration: 3 + Math.random() * 4,
                 repeat: Infinity,
+                delay: Math.random() * 5,
                 ease: "easeInOut"
               }}
-            >
-              <div 
-                className="w-16 h-16 bg-yellow-100 rounded-full"
-                style={{
-                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-                }}
-              />
-            </motion.div>
-          </div>
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+          
+          {/* Shooting Stars */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`shooting-${i}`}
+              className="absolute w-0.5 h-0.5 bg-white rounded-full"
+              initial={{ 
+                x: -50,
+                y: Math.random() * 200,
+                opacity: 0 
+              }}
+              animate={{
+                x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                y: Math.random() * 200 + 100,
+                opacity: [0, 1, 1, 0]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 12 + Math.random() * 5,
+                ease: "easeOut"
+              }}
+              style={{
+                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+              }}
+            />
+          ))}
+
+          {/* Moon */}
+          <motion.div
+            className="absolute top-12 right-16"
+            animate={{
+              opacity: [0.7, 1, 0.7],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div 
+              className="w-16 h-16 bg-yellow-100 rounded-full"
+              style={{
+                boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+              }}
+            />
+          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -289,7 +277,7 @@ const FAQPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-8 bg-teal-50 border-b border-teal-200">
+      <section className="py-8 bg-slate-50 border-b border-slate-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -298,10 +286,10 @@ const FAQPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-teal-600" />
-              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-slate-600" />
+              <span className="font-bold text-slate-800">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-teal-700">
+            <p className="text-slate-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -364,8 +352,8 @@ const FAQPage: React.FC = () => {
               {/* Special Service Area Map for Delivery Category */}
               {category.id === 'delivery' && (
                 <div className="mb-12">
-                  <div className="bg-teal-50 border border-teal-200 rounded-xl p-8 mb-8">
-                    <h3 className="text-2xl font-bold text-teal-800 mb-6 text-center">
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-8 mb-8">
+                    <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">
                       Our Service Area Map 🗺️
                     </h3>
                     
@@ -385,13 +373,13 @@ const FAQPage: React.FC = () => {
 
                     {/* Delivery Pricing */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="text-center p-4 bg-white rounded-lg border border-teal-200">
-                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <MapPin className="w-6 h-6 text-teal-600" />
+                      <div className="text-center p-4 bg-white rounded-lg border border-slate-200">
+                        <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <MapPin className="w-6 h-6 text-slate-600" />
                         </div>
-                        <h4 className="font-bold text-teal-800 mb-2">FREE Zone</h4>
-                        <p className="text-sm text-teal-700 mb-2">Within 20 miles of Hamburg, NY</p>
-                        <p className="text-lg font-bold text-teal-600">$0 Delivery</p>
+                        <h4 className="font-bold text-slate-800 mb-2">FREE Zone</h4>
+                        <p className="text-sm text-slate-700 mb-2">Within 20 miles of Hamburg, NY</p>
+                        <p className="text-lg font-bold text-slate-600">$0 Delivery</p>
                       </div>
                       <div className="text-center p-4 bg-white rounded-lg border border-lavender-200">
                         <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -413,7 +401,7 @@ const FAQPage: React.FC = () => {
 
                     {/* Popular Areas */}
                     <div className="mt-6 text-center">
-                      <h4 className="font-bold text-teal-800 mb-3">Popular Service Areas Include:</h4>
+                      <h4 className="font-bold text-slate-800 mb-3">Popular Service Areas Include:</h4>
                       <div className="flex flex-wrap justify-center gap-2">
                         {[
                           'Buffalo', 'Cheektowaga', 'West Seneca', 'Orchard Park', 
@@ -422,7 +410,7 @@ const FAQPage: React.FC = () => {
                         ].map((city, index) => (
                           <span 
                             key={index}
-                            className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium"
+                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium"
                           >
                             {city}
                           </span>
@@ -440,43 +428,31 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Quick Contact Section - Starry Night */}
-      <section className="section relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-          </div>
+      {/* Quick Contact Section - Clean Starry Night */}
+      <section className="section relative overflow-hidden bg-slate-900">
+        {/* Animated Stars */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 0.3, 1, 0],
+                scale: [0.5, 1, 0.8, 1.2, 0.5]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
 
         <div className="container-custom relative z-10">
