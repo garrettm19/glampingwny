@@ -1,37 +1,10 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Sparkles, Calendar, Star, ArrowRight, MapPin, Play, Heart } from 'lucide-react';
+import React, { useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Star, ArrowRight, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 
 const Hero: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const heroImages = [
-    "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-  ];
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    // Auto-rotate background images
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 8000);
-
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      clearInterval(interval);
-    };
-  }, []);
-
   const scrollToBooking = useCallback(() => {
     const bookingSection = document.getElementById('booking');
     if (bookingSection) {
@@ -49,20 +22,13 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Dynamic Background with Crossfade */}
+      {/* Single Static Background */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={currentImageIndex}
-            src={heroImages[currentImageIndex]}
-            alt="Family glamping experience"
-            className="w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-          />
-        </AnimatePresence>
+        <img
+          src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+          alt="Family glamping experience"
+          className="w-full h-full object-cover"
+        />
         
         {/* Lavender-Teal gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-lavender-900/70 via-teal-800/60 to-lavender-900/70" />
@@ -168,7 +134,7 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               See the Magic
             </motion.button>
           </motion.div>
@@ -231,21 +197,6 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </motion.button>
-
-      {/* Image indicators */}
-      <div className="absolute bottom-20 right-8 z-20 flex flex-col gap-2">
-        {heroImages.map((_, index) => (
-          <motion.button
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentImageIndex ? 'bg-white' : 'bg-white/40'
-            }`}
-            onClick={() => setCurrentImageIndex(index)}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-          />
-        ))}
-      </div>
     </section>
   );
 };
