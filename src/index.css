@@ -8,12 +8,12 @@
   }
   
   body {
-    @apply font-sans text-gray-100 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950;
+    @apply font-sans text-gray-800 bg-gradient-to-br from-lavender-50 via-cream-50 to-sage-50;
     background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display leading-tight text-gray-100;
+    @apply font-display leading-tight text-gray-800;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -32,15 +32,15 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-lavender-500 to-teal-500 text-white border border-lavender-400/20 hover:from-lavender-600 hover:to-teal-600 hover:shadow-lavender-500/25;
+    @apply bg-gradient-to-r from-lavender-500 to-teal-500 text-white border border-lavender-400/20 hover:from-lavender-600 hover:to-teal-600 hover:shadow-lavender;
   }
 
   .btn-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-lavender-500 text-white hover:from-teal-600 hover:to-lavender-600 hover:shadow-teal-500/25;
+    @apply bg-gradient-to-r from-teal-500 to-lavender-500 text-white hover:from-teal-600 hover:to-lavender-600 hover:shadow-teal;
   }
 
   .btn-outline {
-    @apply border-2 border-lavender-400/50 text-lavender-300 hover:bg-lavender-500/20 hover:border-lavender-400 hover:text-lavender-200 backdrop-blur-sm;
+    @apply border-2 border-lavender-300 text-lavender-700 hover:bg-lavender-50 hover:border-lavender-400 backdrop-blur-sm;
   }
 
   .container-custom {
@@ -52,25 +52,25 @@
   }
 
   .glass-card {
-    @apply bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl hover:shadow-lavender-500/10 transition-all duration-500 rounded-2xl;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.8));
+    @apply bg-white/95 backdrop-blur-xl border border-lavender-200/50 shadow-xl hover:shadow-lavender transition-all duration-500 rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 247, 255, 0.9));
   }
 
   .glass-card-light {
-    @apply bg-slate-700/90 backdrop-blur-xl border border-slate-600/50 shadow-xl hover:shadow-teal-500/10 transition-all duration-500 rounded-xl;
-    background: linear-gradient(135deg, rgba(51, 65, 85, 0.9), rgba(71, 85, 105, 0.8));
+    @apply bg-white/90 backdrop-blur-xl border border-sage-200/50 shadow-lg hover:shadow-sage transition-all duration-500 rounded-xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(246, 247, 246, 0.85));
   }
 
   .glass-card-premium {
-    @apply bg-gradient-to-br from-slate-800/95 via-slate-700/90 to-slate-800/95 backdrop-blur-xl border border-lavender-500/20 shadow-2xl hover:shadow-lavender-500/20 transition-all duration-500 rounded-2xl;
+    @apply bg-gradient-to-br from-white/98 via-lavender-50/95 to-cream-50/95 backdrop-blur-xl border border-lavender-300/30 shadow-2xl hover:shadow-lavender transition-all duration-500 rounded-2xl;
   }
 
-  .dark-section {
-    @apply bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80 relative;
+  .earthy-section {
+    @apply bg-gradient-to-br from-sage-50/80 via-cream-50/60 to-lavender-50/80 relative;
   }
 
-  .dark-section-alt {
-    @apply bg-gradient-to-br from-slate-950/90 via-slate-900/70 to-slate-950/90 relative;
+  .earthy-section-alt {
+    @apply bg-gradient-to-br from-lavender-50/90 via-sage-50/70 to-cream-50/90 relative;
   }
 
   .magical-glow {
@@ -88,11 +88,11 @@
   }
 
   .bg-glass {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.9));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 247, 255, 0.9));
   }
 
   .bg-glass-hover {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(51, 65, 85, 0.95));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 247, 255, 0.95));
   }
 
   .text-contrast {
@@ -170,14 +170,14 @@
   }
 }
 
-@keyframes magical-float {
+@keyframes gentle-float {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.6;
   }
   50% {
     transform: translateY(-15px) rotate(180deg);
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 
@@ -201,13 +201,13 @@
   animation: shimmer 2s infinite;
 }
 
-.animate-magical-float {
-  animation: magical-float 12s ease-in-out infinite;
+.animate-gentle-float {
+  animation: gentle-float 8s ease-in-out infinite;
 }
 
 /* Firefly effect */
 .firefly {
-  @apply w-1 h-1 bg-lavender-300 rounded-full opacity-0;
+  @apply w-1 h-1 bg-lavender-400 rounded-full opacity-0;
   box-shadow: 0 0 10px 2px rgba(183, 148, 244, 0.8);
 }
 
@@ -215,7 +215,7 @@
 .floating-particle {
   position: absolute;
   pointer-events: none;
-  animation: magical-float 8s ease-in-out infinite;
+  animation: gentle-float 8s ease-in-out infinite;
 }
 
 /* Custom scrollbar */
@@ -224,7 +224,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #f4edff;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -238,7 +238,7 @@
 
 /* Enhanced focus styles */
 .focus-ring {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-800 rounded-lg;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-500 focus-visible:ring-offset-2 focus-visible:ring-offset-lavender-50 rounded-lg;
 }
 
 /* Smooth transitions for all interactive elements */
@@ -253,7 +253,7 @@ button, a, input, textarea, select {
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(183, 148, 244, 0.2);
+  box-shadow: 0 20px 40px rgba(183, 148, 244, 0.15);
 }
 
 /* Gradient backgrounds */
@@ -267,11 +267,11 @@ button, a, input, textarea, select {
 
 /* Text effects */
 .text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .text-shadow-lg {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Sparkle dots for backgrounds */
@@ -284,44 +284,44 @@ button, a, input, textarea, select {
   animation: sparkle 3s ease-in-out infinite;
 }
 
-/* Dark theme form inputs */
+/* Earthy theme form inputs */
 input, textarea, select {
-  @apply bg-slate-800/90 border-slate-600/50 text-gray-100 placeholder-gray-400 backdrop-blur-sm;
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.8));
+  @apply bg-white/90 border-lavender-200 text-gray-800 placeholder-gray-500 backdrop-blur-sm;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(250, 247, 255, 0.85));
 }
 
 input:focus, textarea:focus, select:focus {
-  @apply border-lavender-500/70 ring-lavender-500/20 shadow-lavender-500/20;
-  box-shadow: 0 0 0 3px rgba(183, 148, 244, 0.1), 0 0 20px rgba(183, 148, 244, 0.2);
+  @apply border-lavender-400 ring-lavender-300/30 shadow-lavender;
+  box-shadow: 0 0 0 3px rgba(183, 148, 244, 0.1), 0 0 20px rgba(183, 148, 244, 0.15);
 }
 
 /* SIMPLIFIED magical elements - CLEAN VERSION */
 .magical-orb {
-  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.2), rgba(45, 212, 191, 0.15), transparent 70%);
-  filter: blur(3px);
-  animation: magical-float 12s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.15), rgba(45, 212, 191, 0.1), transparent 70%);
+  filter: blur(2px);
+  animation: gentle-float 12s ease-in-out infinite;
   border-radius: 50%;
 }
 
 /* Premium card effects */
 .premium-card {
   background: linear-gradient(135deg, 
-    rgba(30, 41, 59, 0.95) 0%, 
-    rgba(51, 65, 85, 0.9) 25%, 
-    rgba(30, 41, 59, 0.95) 50%, 
-    rgba(51, 65, 85, 0.9) 75%, 
-    rgba(30, 41, 59, 0.95) 100%);
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(250, 247, 255, 0.95) 25%, 
+    rgba(246, 247, 246, 0.95) 50%, 
+    rgba(250, 247, 255, 0.95) 75%, 
+    rgba(255, 255, 255, 0.98) 100%);
   border: 1px solid rgba(183, 148, 244, 0.2);
   box-shadow: 
     0 0 30px rgba(183, 148, 244, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .premium-card:hover {
   border-color: rgba(183, 148, 244, 0.4);
   box-shadow: 
     0 0 40px rgba(183, 148, 244, 0.2),
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 20px 40px rgba(183, 148, 244, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
 }
