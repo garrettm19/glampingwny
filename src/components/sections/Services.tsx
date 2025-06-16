@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ServiceCard from '../components/ui/ServiceCard';
+import ServiceCard from '../ui/ServiceCard';
 import { trackEvent } from '../../utils/analytics';
 
 const indoorPackages = [
