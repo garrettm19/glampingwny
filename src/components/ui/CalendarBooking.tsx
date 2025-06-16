@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus, AlertCircle, Package, Crown } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, Clock, Users, MapPin, Sparkles, Check, Star, Heart, Plus, Minus, AlertCircle, Package } from 'lucide-react';
 
 interface BookingSlot {
   date: string;
@@ -22,7 +22,7 @@ interface ServiceOption {
   requiresBase?: boolean;
   totalInventory: number;
   shortName?: string;
-  booqableId?: string;
+  bookingPattern?: 'high' | 'medium' | 'low'; // How often this gets booked
 }
 
 interface CalendarBookingProps {
@@ -34,14 +34,13 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [selectedServices, setSelectedServices] = useState<{[key: string]: number}>({});
-  const [bookingData, setBookingData] = useState<BookingSlot[]>([]);
+  const [bookingData, setBookingData] = useState<{[serviceId: string]: BookingSlot[]}>({});
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedPackageType, setSelectedPackageType] = useState<'indoor' | 'outdoor' | 'spa'>('indoor');
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<string>('indoor-base');
 
-  // All available services with realistic inventory and Booqable IDs
+  // All available services with realistic inventory and booking patterns
   const serviceOptions: ServiceOption[] = [
-    // Base Packages - Each with different inventory levels and booking patterns
+    // Base Packages - Each with different popularity/booking patterns
     {
       id: 'indoor-base',
       name: 'Indoor Glamping Base Package',
@@ -50,8 +49,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: '1 tent with complete setup, bedding, and decorations',
       maxQuantity: 1,
-      totalInventory: 12, // Good availability
-      booqableId: 'indoor-base-001'
+      totalInventory: 12,
+      bookingPattern: 'medium' // Steady bookings
     },
     {
       id: 'bell-tent-16ft',
@@ -61,8 +60,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Outdoor bell tent for small groups',
       maxQuantity: 1,
-      totalInventory: 3, // Limited stock - popular item
-      booqableId: 'bell-tent-16-001'
+      totalInventory: 3,
+      bookingPattern: 'high' // Very popular, books out fast
     },
     {
       id: 'bell-tent-23ft',
@@ -72,8 +71,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Large outdoor bell tent for bigger groups',
       maxQuantity: 1,
-      totalInventory: 2, // Very limited stock - premium item
-      booqableId: 'bell-tent-23-001'
+      totalInventory: 2,
+      bookingPattern: 'high' // Extremely popular, very limited
     },
     {
       id: 'day-dreamer-lounge',
@@ -83,8 +82,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Perfect for daytime events',
       maxQuantity: 1,
-      totalInventory: 2, // Limited availability
-      booqableId: 'day-lounge-001'
+      totalInventory: 2,
+      bookingPattern: 'low' // Less popular, more availability
     },
     {
       id: 'canvas-tent-only',
@@ -94,21 +93,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'base',
       description: 'Basic tent rental for DIY setup',
       maxQuantity: 1,
-      totalInventory: 5, // Moderate availability
-      booqableId: 'canvas-tent-001'
+      totalInventory: 5,
+      bookingPattern: 'low' // Budget option, decent availability
     },
-    
-    // NEW: Spa Party as Standalone Package
     {
       id: 'spa-party-standalone',
-      name: 'Spa Party Experience (Standalone)',
+      name: 'Spa Party Experience',
       shortName: 'Spa Party',
       price: 325,
       category: 'base',
-      description: 'Complete spa party experience with all treatments and activities',
+      description: 'Complete spa party setup and activities',
       maxQuantity: 1,
-      totalInventory: 6, // Limited spa setups - specialized service
-      booqableId: 'spa-standalone-001'
+      totalInventory: 6,
+      bookingPattern: 'medium' // Popular for special occasions
     },
     
     // Additional Tents
@@ -121,8 +118,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Extra tent to accommodate more guests',
       maxQuantity: 10,
       requiresBase: true,
-      totalInventory: 20, // Good availability
-      booqableId: 'extra-tent-001'
+      totalInventory: 20,
+      bookingPattern: 'medium'
     },
     {
       id: 'additional-twin-bed',
@@ -133,11 +130,11 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Extra comfortable sleeping space',
       maxQuantity: 5,
       requiresBase: true,
-      totalInventory: 15, // Good availability
-      booqableId: 'twin-bed-001'
+      totalInventory: 15,
+      bookingPattern: 'low'
     },
     
-    // Add-ons with varying inventory
+    // Add-ons
     {
       id: 'spa-party-addon',
       name: 'Spa Party Add-On',
@@ -147,8 +144,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       description: 'Complete spa experience (Save $75 vs standalone!)',
       maxQuantity: 1,
       requiresBase: true,
-      totalInventory: 8, // Limited spa equipment
-      booqableId: 'spa-addon-001'
+      totalInventory: 8,
+      bookingPattern: 'medium'
     },
     {
       id: 'balloon-garland',
@@ -158,8 +155,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Beautiful balloon garland decoration',
       maxQuantity: 3,
-      totalInventory: 10, // Good availability
-      booqableId: 'balloon-garland-001'
+      totalInventory: 10,
+      bookingPattern: 'low'
     },
     {
       id: 'luxe-lace-teepee',
@@ -169,8 +166,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Premium lace teepee with balloons',
       maxQuantity: 2,
-      totalInventory: 4, // Limited premium items
-      booqableId: 'lace-teepee-001'
+      totalInventory: 4,
+      bookingPattern: 'medium'
     },
     {
       id: 'picnic-party',
@@ -180,8 +177,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Complete picnic setup with decorations',
       maxQuantity: 1,
-      totalInventory: 3, // Limited picnic setups
-      booqableId: 'picnic-addon-001'
+      totalInventory: 3,
+      bookingPattern: 'low'
     },
     {
       id: 'in-home-theater',
@@ -191,8 +188,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Movie experience with projector',
       maxQuantity: 1,
-      totalInventory: 6, // Moderate availability
-      booqableId: 'theater-001'
+      totalInventory: 6,
+      bookingPattern: 'medium'
     },
     {
       id: 'movie-under-stars',
@@ -202,8 +199,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Outdoor movie experience',
       maxQuantity: 1,
-      totalInventory: 2, // Very limited outdoor equipment
-      booqableId: 'outdoor-movie-001'
+      totalInventory: 2,
+      bookingPattern: 'low'
     },
     {
       id: 'instant-camera',
@@ -213,8 +210,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Capture memories instantly',
       maxQuantity: 2,
-      totalInventory: 8, // Good availability
-      booqableId: 'camera-001'
+      totalInventory: 8,
+      bookingPattern: 'low'
     },
     {
       id: 'smores-bar',
@@ -224,8 +221,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Complete s\'mores experience',
       maxQuantity: 1,
-      totalInventory: 5, // Moderate availability
-      booqableId: 'smores-001'
+      totalInventory: 5,
+      bookingPattern: 'low'
     },
     {
       id: 'portable-ac',
@@ -235,8 +232,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Stay cool during warm weather',
       maxQuantity: 2,
-      totalInventory: 4, // Limited AC units
-      booqableId: 'ac-unit-001'
+      totalInventory: 4,
+      bookingPattern: 'low'
     },
     {
       id: 'yard-games',
@@ -246,8 +243,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Giant Jenga or Connect 4',
       maxQuantity: 3,
-      totalInventory: 12, // Good availability
-      booqableId: 'yard-games-001'
+      totalInventory: 12,
+      bookingPattern: 'low'
     },
     {
       id: 'lounger-sofa',
@@ -257,8 +254,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Comfortable outdoor furniture',
       maxQuantity: 2,
-      totalInventory: 6, // Moderate availability
-      booqableId: 'sofa-001'
+      totalInventory: 6,
+      bookingPattern: 'low'
     },
     {
       id: 'outdoor-bean-bag',
@@ -268,8 +265,8 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Comfortable outdoor seating',
       maxQuantity: 4,
-      totalInventory: 15, // Good availability
-      booqableId: 'bean-bag-001'
+      totalInventory: 15,
+      bookingPattern: 'low'
     },
     {
       id: 'bring-pet',
@@ -279,157 +276,129 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       category: 'addon',
       description: 'Pet-friendly accommodations',
       maxQuantity: 2,
-      totalInventory: 999, // No real limit on pet fees
-      booqableId: 'pet-fee-001'
+      totalInventory: 999,
+      bookingPattern: 'low'
     }
   ];
 
-  // Generate realistic booking data with product-specific inventory tracking and example bookings
+  // Generate product-specific booking data
   useEffect(() => {
-    const generateRealisticData = () => {
-      const data: BookingSlot[] = [];
+    const generateProductSpecificData = () => {
+      const allBookingData: {[serviceId: string]: BookingSlot[]} = {};
       const today = new Date();
       
-      for (let i = 0; i < 180; i++) { // 6 months of data
-        const date = new Date(today);
-        date.setDate(today.getDate() + i);
+      // Generate data for each service
+      serviceOptions.forEach(service => {
+        const serviceData: BookingSlot[] = [];
         
-        const dateStr = date.toISOString().split('T')[0];
-        const dayOfWeek = date.getDay();
-        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-        const day = date.getDate();
-        
-        // Generate time slots with product-specific inventory and realistic booking patterns
-        const timeSlots = [
-          'Morning Setup (9am-12pm)',
-          'Afternoon Setup (1pm-4pm)', 
-          'Evening Setup (5pm-8pm)'
-        ].map(time => {
-          const inventory: {[serviceId: string]: number} = {};
+        for (let i = 0; i < 90; i++) { // 3 months of data
+          const date = new Date(today);
+          date.setDate(today.getDate() + i);
           
-          serviceOptions.forEach(service => {
-            // Each product has its own booking pattern and demand
-            let baseBookingRate = 0.2; // Base 20% booking rate
+          const dateStr = date.toISOString().split('T')[0];
+          const dayOfWeek = date.getDay();
+          const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+          const dayOfMonth = date.getDate();
+          
+          // Different booking patterns for each service
+          let bookingProbability = 0.3; // Base probability
+          
+          // Adjust based on service popularity
+          switch (service.bookingPattern) {
+            case 'high':
+              bookingProbability = isWeekend ? 0.8 : 0.6;
+              break;
+            case 'medium':
+              bookingProbability = isWeekend ? 0.6 : 0.4;
+              break;
+            case 'low':
+              bookingProbability = isWeekend ? 0.4 : 0.2;
+              break;
+          }
+          
+          // Popular dates (mid-month weekends)
+          if ((dayOfMonth >= 15 && dayOfMonth <= 16) || (dayOfMonth >= 22 && dayOfMonth <= 23)) {
+            bookingProbability += 0.2;
+          }
+          
+          // Special patterns for specific services
+          if (service.id === 'bell-tent-23ft') {
+            // 23ft tent is extremely popular, often sold out
+            bookingProbability = isWeekend ? 0.9 : 0.7;
+          } else if (service.id === 'spa-party-standalone') {
+            // Spa parties more popular on Fridays/Saturdays
+            if (dayOfWeek === 5 || dayOfWeek === 6) bookingProbability += 0.3;
+          } else if (service.id === 'day-dreamer-lounge') {
+            // Day events less popular on weekdays
+            if (!isWeekend) bookingProbability -= 0.2;
+          }
+          
+          // Generate time slots with service-specific inventory
+          const timeSlots = [
+            'Morning Setup (9am-12pm)',
+            'Afternoon Setup (1pm-4pm)', 
+            'Evening Setup (5pm-8pm)'
+          ].map(time => {
+            // Random booking factor for this specific time slot
+            const slotBookingFactor = Math.random();
             
-            // Adjust booking rates by product popularity and type
-            switch(service.id) {
-              case 'bell-tent-16ft':
-                baseBookingRate = 0.7; // Very popular, often booked
-                break;
-              case 'bell-tent-23ft':
-                baseBookingRate = 0.85; // Extremely popular, limited stock
-                break;
-              case 'spa-party-standalone':
-                baseBookingRate = 0.6; // High demand for spa experiences
-                break;
-              case 'spa-party-addon':
-                baseBookingRate = 0.45; // Popular add-on
-                break;
-              case 'indoor-base':
-                baseBookingRate = 0.4; // Steady demand
-                break;
-              case 'luxe-lace-teepee':
-                baseBookingRate = 0.5; // Premium item, moderate demand
-                break;
-              case 'movie-under-stars':
-                baseBookingRate = 0.6; // Popular but limited equipment
-                break;
-              case 'picnic-party':
-                baseBookingRate = 0.4; // Seasonal demand
-                break;
-              default:
-                baseBookingRate = 0.25; // Default moderate demand
-            }
+            let availableInventory = service.totalInventory;
             
-            // Weekend effect (higher demand)
-            if (isWeekend) baseBookingRate += 0.15;
-            
-            // Special high-demand dates (simulate popular booking dates)
-            const isHighDemandDate = (
-              day === 15 || day === 16 || // Mid-month weekend
-              day === 22 || day === 23 || // Popular weekend
-              day === 8 || day === 9      // Another popular weekend
-            );
-            if (isHighDemandDate) baseBookingRate += 0.2;
-            
-            // Random factor for this specific date/time
-            const randomFactor = Math.random();
-            
-            // Calculate available inventory based on booking patterns
-            let available = service.totalInventory;
-            
-            if (randomFactor < baseBookingRate) {
-              // Calculate how many items are booked
-              let bookedItems = 0;
-              
-              if (service.totalInventory <= 2) {
-                // For very limited items (like 23ft bell tent), often fully booked
-                bookedItems = randomFactor < (baseBookingRate * 0.8) ? service.totalInventory : Math.floor(service.totalInventory * 0.5);
-              } else if (service.totalInventory <= 5) {
-                // For limited items, book 60-80% when there's demand
-                bookedItems = Math.floor(service.totalInventory * (0.6 + Math.random() * 0.2));
+            // Reduce inventory based on booking probability
+            if (slotBookingFactor < bookingProbability) {
+              const bookingIntensity = Math.random();
+              if (bookingIntensity < 0.3) {
+                // Heavy booking - 70-90% booked
+                availableInventory = Math.floor(service.totalInventory * (0.1 + Math.random() * 0.2));
+              } else if (bookingIntensity < 0.6) {
+                // Medium booking - 40-70% booked
+                availableInventory = Math.floor(service.totalInventory * (0.3 + Math.random() * 0.4));
               } else {
-                // For items with good availability, book 30-60% when there's demand
-                bookedItems = Math.floor(service.totalInventory * (0.3 + Math.random() * 0.3));
+                // Light booking - 10-40% booked
+                availableInventory = Math.floor(service.totalInventory * (0.6 + Math.random() * 0.3));
               }
-              
-              available = Math.max(0, service.totalInventory - bookedItems);
             }
             
-            // Create some completely sold-out scenarios for popular items
-            if (isHighDemandDate && service.totalInventory <= 3 && randomFactor < 0.3) {
-              available = 0; // Completely sold out
-            }
+            // Ensure we don't go below 0
+            availableInventory = Math.max(0, availableInventory);
             
-            inventory[service.id] = available;
+            // Create inventory object for this service
+            const inventory: {[serviceId: string]: number} = {};
+            serviceOptions.forEach(s => {
+              if (s.id === service.id) {
+                inventory[s.id] = availableInventory;
+              } else {
+                // Other services have their own availability
+                inventory[s.id] = Math.floor(s.totalInventory * (0.5 + Math.random() * 0.5));
+              }
+            });
+            
+            return {
+              time,
+              available: availableInventory > 0,
+              inventory
+            };
           });
           
-          // Time slot is available if we have at least one base package
-          const hasBasePackages = serviceOptions
-            .filter(s => s.category === 'base')
-            .some(s => inventory[s.id] > 0);
+          // Date is available if any time slot is available for this service
+          const dateAvailable = timeSlots.some(slot => slot.inventory[service.id] > 0);
           
-          return {
-            time,
-            available: hasBasePackages,
-            inventory
-          };
-        });
+          serviceData.push({
+            date: dateStr,
+            available: dateAvailable,
+            timeSlots
+          });
+        }
         
-        // Date is available if any time slot is available
-        const dateAvailable = timeSlots.some(slot => slot.available);
-        
-        data.push({
-          date: dateStr,
-          available: dateAvailable,
-          timeSlots
-        });
-      }
+        allBookingData[service.id] = serviceData;
+      });
       
-      setBookingData(data);
+      setBookingData(allBookingData);
       setIsLoading(false);
     };
 
-    setTimeout(generateRealisticData, 1000);
+    setTimeout(generateProductSpecificData, 1000);
   }, []);
-
-  // When a product is selected, filter calendar data specific to that product
-  useEffect(() => {
-    if (selectedProduct && bookingData.length > 0) {
-      // Don't regenerate data, just use existing data filtered by product
-      // This maintains the realistic booking patterns we created
-    }
-  }, [selectedProduct]);
-
-  const getMonthsToShow = () => {
-    const months = [];
-    for (let i = 0; i < 3; i++) {
-      const date = new Date(currentDate);
-      date.setMonth(currentDate.getMonth() + i);
-      months.push(date);
-    }
-    return months;
-  };
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -457,25 +426,22 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   };
 
   const getBookingForDate = (date: Date) => {
-    return bookingData.find(booking => booking.date === formatDate(date));
+    const currentBookingData = bookingData[selectedPackage];
+    if (!currentBookingData) return null;
+    return currentBookingData.find(booking => booking.date === formatDate(date));
   };
 
-  const navigateMonths = (direction: 'prev' | 'next') => {
+  const navigateMonth = (direction: 'prev' | 'next') => {
     setCurrentDate(prev => {
       const newDate = new Date(prev);
-      newDate.setMonth(prev.getMonth() + (direction === 'next' ? 3 : -3));
+      newDate.setMonth(prev.getMonth() + (direction === 'next' ? 1 : -1));
       return newDate;
     });
   };
 
   const handleDateSelect = (date: Date) => {
     const booking = getBookingForDate(date);
-    // Check if the selected product is available on this date
-    const productAvailable = selectedProduct && booking?.timeSlots.some(slot => 
-      slot.inventory[selectedProduct] > 0
-    );
-    
-    if (booking?.available && productAvailable) {
+    if (booking?.available) {
       setSelectedDate(formatDate(date));
       setSelectedTime(null);
     }
@@ -488,7 +454,10 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   const getAvailableInventory = (serviceId: string): number => {
     if (!selectedDate || !selectedTime) return 0;
     
-    const booking = bookingData.find(b => b.date === selectedDate);
+    const currentBookingData = bookingData[selectedPackage];
+    if (!currentBookingData) return 0;
+    
+    const booking = currentBookingData.find(b => b.date === selectedDate);
     const timeSlot = booking?.timeSlots.find(t => t.time === selectedTime);
     
     return timeSlot?.inventory[serviceId] || 0;
@@ -566,18 +535,12 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
   };
 
   const handleBookingConfirm = () => {
-    if (selectedDate && selectedTime && selectedProduct) {
+    if (selectedDate && selectedTime && hasBasePackage()) {
       const bookingDetails = {
         date: selectedDate,
         time: selectedTime,
-        services: [
-          {
-            ...serviceOptions.find(s => s.id === selectedProduct),
-            quantity: 1
-          },
-          ...getSelectedServicesList()
-        ].filter(Boolean),
-        total: (serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()
+        services: getSelectedServicesList(),
+        total: calculateTotal()
       };
       onBookingSelect?.(bookingDetails);
     }
@@ -590,68 +553,9 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  const getFilteredServices = () => {
-    if (selectedPackageType === 'indoor') {
-      return serviceOptions.filter(s => 
-        s.id === 'indoor-base' || 
-        s.id === 'additional-indoor-tent' || 
-        s.id === 'additional-twin-bed' ||
-        (s.category === 'addon' && !s.id.includes('outdoor') && !s.id.includes('bell-tent'))
-      );
-    } else if (selectedPackageType === 'outdoor') {
-      return serviceOptions.filter(s => 
-        s.id.includes('bell-tent') || 
-        s.id.includes('canvas-tent') || 
-        s.id.includes('day-dreamer') ||
-        (s.category === 'addon')
-      );
-    } else if (selectedPackageType === 'spa') {
-      return serviceOptions.filter(s => 
-        s.id === 'spa-party-standalone' ||
-        (s.category === 'addon' && !s.id.includes('spa-party-addon')) // Exclude the add-on version for standalone spa
-      );
-    }
-    return [];
-  };
-
-  const getBasePackages = () => {
-    return getFilteredServices().filter(s => s.category === 'base');
-  };
-
-  // Helper function to determine if a date should show check-in/check-out styling
-  const getDateStyle = (date: Date, booking: any, isSelected: boolean, isPast: boolean) => {
-    const day = date.getDate();
-    
-    // Example check-in/check-out dates for demonstration (realistic booking patterns)
-    const isCheckIn = (day === 15 || day === 22 || day === 8) && booking?.available;
-    const isCheckOut = (day === 18 || day === 25 || day === 11) && booking?.available;
-    
-    // Check if this date is between check-in and check-out (should be greyed out)
-    const isBetweenBooking = (
-      (day > 15 && day < 18) || // 3-day booking
-      (day > 22 && day < 25) || // 3-day booking  
-      (day > 8 && day < 11)     // 3-day booking
-    ) && booking?.available;
-    
-    let cellClass = "h-12 w-full border border-gray-200 flex items-center justify-center text-sm font-medium cursor-pointer transition-all duration-200 relative ";
-    
-    if (isPast) {
-      cellClass += "text-gray-300 cursor-not-allowed bg-gray-50 ";
-    } else if (isBetweenBooking) {
-      // Days between check-in and check-out should be greyed out (unavailable)
-      cellClass += "bg-gray-200 text-gray-500 cursor-not-allowed ";
-    } else if (booking?.available) {
-      if (isSelected) {
-        cellClass += "bg-purple-600 text-white shadow-lg ";
-      } else {
-        cellClass += "bg-purple-100 text-purple-800 hover:bg-purple-200 ";
-      }
-    } else {
-      cellClass += "bg-gray-100 text-gray-400 cursor-not-allowed ";
-    }
-
-    return { cellClass, isCheckIn, isCheckOut, isBetweenBooking };
-  };
+  // Get current package info
+  const currentPackage = serviceOptions.find(s => s.id === selectedPackage);
+  const currentBookingData = bookingData[selectedPackage];
 
   if (isLoading) {
     return (
@@ -659,626 +563,495 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full mx-auto mb-4"
+          className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full mx-auto mb-4"
         />
-        <p className="text-gray-600">Loading real-time inventory...</p>
+        <p className="text-gray-600">Loading real-time availability...</p>
       </div>
     );
   }
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Package Selection */}
-      <div className="mb-8">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Choose Your Package</h2>
-          <p className="text-gray-600 mb-6">Select a package to see its specific availability calendar with real inventory levels</p>
-        </div>
-
-        {/* Package Type Tabs */}
-        <div className="flex justify-center gap-4 mb-6">
-          <button
-            onClick={() => {
-              setSelectedPackageType('indoor');
-              setSelectedProduct(null);
-            }}
-            className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-              selectedPackageType === 'indoor'
-                ? 'bg-purple-500 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-purple-50 border-2 border-purple-200'
-            }`}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        {/* Package Selection */}
+        <div className="xl:col-span-1 order-2 xl:order-1">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="glass-card p-6 sticky top-8"
           >
-            🏠 Indoor Glamping
-          </button>
-          <button
-            onClick={() => {
-              setSelectedPackageType('outdoor');
-              setSelectedProduct(null);
-            }}
-            className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-              selectedPackageType === 'outdoor'
-                ? 'bg-green-500 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-green-50 border-2 border-green-200'
-            }`}
-          >
-            🌲 Outdoor Glamping
-          </button>
-          <button
-            onClick={() => {
-              setSelectedPackageType('spa');
-              setSelectedProduct(null);
-            }}
-            className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
-              selectedPackageType === 'spa'
-                ? 'bg-pink-500 text-white shadow-lg transform scale-105'
-                : 'bg-white text-gray-700 hover:bg-pink-50 border-2 border-pink-200'
-            }`}
-          >
-            👑 Spa Party
-          </button>
-        </div>
-
-        {/* Individual Package Selection */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {getBasePackages().map((service) => {
-            const isSelected = selectedProduct === service.id;
-            
-            // Calculate overall availability for this product across all dates
-            const totalAvailableDates = bookingData.filter(booking => 
-              booking.timeSlots.some(slot => slot.inventory[service.id] > 0)
-            ).length;
-            
-            const availabilityPercentage = totalAvailableDates / bookingData.length;
-            
-            let availabilityStatus = 'high';
-            if (availabilityPercentage < 0.3) availabilityStatus = 'low';
-            else if (availabilityPercentage < 0.6) availabilityStatus = 'medium';
-            
-            return (
-              <motion.button
-                key={service.id}
-                onClick={() => setSelectedProduct(service.id)}
-                className={`p-6 rounded-xl border-2 transition-all duration-300 text-left relative ${
-                  isSelected
-                    ? 'border-purple-500 bg-purple-50 shadow-lg transform scale-105'
-                    : 'border-gray-200 bg-white hover:border-purple-300 hover:shadow-md'
-                } ${service.id === 'spa-party-standalone' ? 'ring-2 ring-pink-200' : ''}`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* Special Spa Badge */}
-                {service.id === 'spa-party-standalone' && (
-                  <div className="absolute top-2 right-2">
-                    <Crown className="w-6 h-6 text-pink-500" />
-                  </div>
-                )}
-
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-gray-800">{service.shortName}</h3>
-                  <div className="text-right">
-                    <div className={`text-lg font-bold ${service.id === 'spa-party-standalone' ? 'text-pink-600' : 'text-purple-600'}`}>
-                      ${service.price}
-                    </div>
-                    <div className={`text-xs font-medium ${
-                      availabilityStatus === 'low' ? 'text-red-600' :
-                      availabilityStatus === 'medium' ? 'text-orange-600' :
-                      'text-green-600'
-                    }`}>
-                      {availabilityStatus === 'low' ? 'Limited Availability' :
-                       availabilityStatus === 'medium' ? 'Moderate Availability' :
-                       'Good Availability'}
-                    </div>
-                  </div>
-                </div>
-                <p className="text-gray-600 text-sm mb-3">{service.description}</p>
-                
-                {/* Inventory Info */}
-                <div className="bg-gray-50 rounded-lg p-3 mb-3">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-600">Total Inventory:</span>
-                    <span className="font-bold text-gray-800">{service.totalInventory} units</span>
-                  </div>
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-600">Available Dates:</span>
-                    <span className="font-bold text-gray-800">{totalAvailableDates} of {bookingData.length}</span>
-                  </div>
-                </div>
-                
-                {/* Special Spa Note */}
-                {service.id === 'spa-party-standalone' && (
-                  <div className="bg-pink-50 border border-pink-200 rounded-lg p-3 mb-3">
-                    <p className="text-pink-800 text-xs font-medium">
-                      ✨ Complete spa experience with all treatments, activities, and setup included!
-                    </p>
-                  </div>
-                )}
-                
-                {/* Selection indicator */}
-                {isSelected && (
-                  <div className="flex items-center gap-2 text-purple-600">
-                    <Check className="w-4 h-4" />
-                    <span className="text-sm font-medium">Selected - View Calendar Below</span>
-                  </div>
-                )}
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {!selectedProduct && (
-          <div className="text-center mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-xl max-w-2xl mx-auto">
-            <AlertCircle className="w-8 h-8 text-yellow-600 mx-auto mb-3" />
-            <h3 className="font-bold text-yellow-800 mb-2">Select a Package First</h3>
-            <p className="text-yellow-700">Choose a package above to see its specific availability calendar with real-time inventory and example bookings.</p>
-          </div>
-        )}
-      </div>
-
-      {/* Calendar and Booking - Only show when product is selected */}
-      {selectedProduct && (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Calendar Section */}
-          <div className="lg:col-span-3 order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-2xl shadow-xl p-8 border border-purple-100"
-            >
-              {/* Calendar Header */}
-              <div className="flex items-center justify-between mb-8">
-                <motion.button
-                  onClick={() => navigateMonths('prev')}
-                  className="p-3 hover:bg-purple-50 rounded-xl transition-colors border border-purple-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronLeft className="w-6 h-6 text-purple-600" />
-                </motion.button>
-                
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold text-purple-900">
-                    {serviceOptions.find(s => s.id === selectedProduct)?.shortName} Calendar
-                  </h2>
-                  <p className="text-purple-600">Real-time availability with example bookings</p>
-                </div>
-                
-                <motion.button
-                  onClick={() => navigateMonths('next')}
-                  className="p-3 hover:bg-purple-50 rounded-xl transition-colors border border-purple-200"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronRight className="w-6 h-6 text-purple-600" />
-                </motion.button>
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-8 h-8 text-primary-600" />
               </div>
+              <h3 className="text-xl font-bold text-primary-900 mb-2">Select Your Package</h3>
+              <p className="text-gray-600 text-sm">Choose a package to see its availability</p>
+            </div>
 
-              {/* Legend */}
-              <div className="flex items-center justify-center gap-8 mb-8 p-4 bg-purple-50 rounded-xl">
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-purple-100 rounded border border-purple-200"></div>
-                  <span className="text-purple-800 font-medium">Available</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-gray-100 rounded border border-gray-200"></div>
-                  <span className="text-gray-600 font-medium">Sold Out</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-gray-200 rounded border border-gray-300"></div>
-                  <span className="text-gray-600 font-medium">Booked Period</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-purple-600 rounded relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-0 h-0 border-l-[10px] border-l-purple-800 border-b-[10px] border-b-transparent"></div>
-                  </div>
-                  <span className="text-purple-800 font-medium">Check-In</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 bg-purple-600 rounded relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-0 h-0 border-r-[10px] border-r-purple-800 border-b-[10px] border-b-transparent"></div>
-                  </div>
-                  <span className="text-purple-800 font-medium">Check-Out</span>
-                </div>
-              </div>
-
-              {/* Multi-Month Calendar Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {getMonthsToShow().map((monthDate, monthIndex) => (
-                  <div key={monthIndex} className="bg-gradient-to-b from-purple-50 to-white rounded-xl border border-purple-200 overflow-hidden">
-                    {/* Month Header */}
-                    <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white text-center py-4">
-                      <h3 className="font-bold text-lg">
-                        {monthNames[monthDate.getMonth()]} {monthDate.getFullYear()}
-                      </h3>
-                    </div>
-
-                    {/* Day Headers */}
-                    <div className="grid grid-cols-7 bg-purple-100">
-                      {dayNames.map((day) => (
-                        <div key={day} className="p-3 text-center text-sm font-bold text-purple-800">
-                          {day}
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Calendar Grid */}
-                    <div className="grid grid-cols-7 gap-0">
-                      {getDaysInMonth(monthDate).map((date, index) => {
-                        if (!date) {
-                          return <div key={index} className="h-12 border border-gray-100" />;
-                        }
-
-                        const booking = getBookingForDate(date);
-                        const isToday = formatDate(date) === formatDate(new Date());
-                        const isSelected = selectedDate === formatDate(date);
-                        const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
-
-                        // Check product-specific availability
-                        const productAvailable = selectedProduct && booking?.timeSlots.some(slot => 
-                          slot.inventory[selectedProduct] > 0
-                        );
-
-                        const { cellClass, isCheckIn, isCheckOut, isBetweenBooking } = getDateStyle(date, { available: productAvailable }, isSelected, isPast);
-
-                        let finalCellClass = cellClass;
-                        if (isToday && !isSelected) {
-                          finalCellClass += "ring-2 ring-purple-400 ";
-                        }
-
-                        return (
-                          <motion.button
-                            key={index}
-                            onClick={() => !isPast && !isBetweenBooking && productAvailable && handleDateSelect(date)}
-                            disabled={isPast || !productAvailable || isBetweenBooking}
-                            className={finalCellClass}
-                            whileHover={productAvailable && !isPast && !isBetweenBooking ? { scale: 1.05 } : {}}
-                            whileTap={productAvailable && !isPast && !isBetweenBooking ? { scale: 0.95 } : {}}
-                          >
-                            {date.getDate()}
-                            
-                            {/* Check-in corner triangle */}
-                            {isCheckIn && (
-                              <div className="absolute top-0 left-0 w-0 h-0 border-l-[12px] border-l-purple-800 border-b-[12px] border-b-transparent"></div>
-                            )}
-                            
-                            {/* Check-out corner triangle */}
-                            {isCheckOut && (
-                              <div className="absolute top-0 right-0 w-0 h-0 border-r-[12px] border-r-purple-800 border-b-[12px] border-b-transparent"></div>
-                            )}
-                          </motion.button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Navigation */}
-              <div className="flex justify-center mt-8 gap-4">
-                <button
-                  onClick={() => navigateMonths('prev')}
-                  className="px-8 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg"
-                >
-                  ← Previous
-                </button>
-                <button
-                  onClick={() => navigateMonths('next')}
-                  className="px-8 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg"
-                >
-                  Next →
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Time Selection */}
-            {selectedDate && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 mt-8 border border-purple-100"
-              >
-                <h3 className="text-2xl font-bold text-purple-900 mb-6">Select Your Setup Time</h3>
-                
-                {/* Selected Date Display */}
-                <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 mb-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Calendar className="w-6 h-6 text-purple-600" />
-                    <span className="font-bold text-purple-900 text-lg">Selected Date</span>
-                  </div>
-                  <p className="text-purple-800 font-bold text-xl">
-                    {new Date(selectedDate).toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
-                </div>
-
-                {/* Time Selection */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Clock className="w-6 h-6 text-purple-600" />
-                    <span className="font-bold text-purple-900 text-lg">Setup Time</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {bookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => {
-                      const productAvailable = selectedProduct && timeSlot.inventory[selectedProduct] > 0;
-                      const inventoryCount = selectedProduct ? timeSlot.inventory[selectedProduct] : 0;
-                      
-                      return (
-                        <motion.label
-                          key={timeSlot.time}
-                          className={`block cursor-pointer ${
-                            selectedTime === timeSlot.time 
-                              ? 'ring-4 ring-purple-300' 
-                              : productAvailable
-                                ? 'hover:ring-2 hover:ring-purple-200'
-                                : 'opacity-50 cursor-not-allowed'
-                          }`}
-                          whileHover={productAvailable ? { scale: 1.02 } : {}}
-                          whileTap={productAvailable ? { scale: 0.98 } : {}}
-                        >
-                          <input
-                            type="radio"
-                            name="time"
-                            value={timeSlot.time}
-                            checked={selectedTime === timeSlot.time}
-                            onChange={(e) => productAvailable && handleTimeSelect(e.target.value)}
-                            disabled={!productAvailable}
-                            className="sr-only"
-                          />
-                          <div className={`p-6 border-2 rounded-xl transition-all duration-300 ${
-                            selectedTime === timeSlot.time
-                              ? 'border-purple-500 bg-purple-50'
-                              : productAvailable
-                                ? 'border-gray-200 bg-white hover:border-purple-300'
-                                : 'border-gray-200 bg-gray-50'
-                          }`}>
-                            <div className="text-center">
-                              <span className="font-bold text-gray-900 text-lg block mb-2">{timeSlot.time}</span>
-                              {!productAvailable ? (
-                                <div className="text-sm text-red-600 font-medium">Sold Out</div>
-                              ) : (
-                                <div className="text-sm text-green-600 font-medium">
-                                  {inventoryCount} available
-                                </div>
-                              )}
-                              {selectedTime === timeSlot.time && (
-                                <Check className="w-6 h-6 text-purple-600 mx-auto mt-2" />
-                              )}
-                            </div>
-                          </div>
-                        </motion.label>
-                      );
-                    })}
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </div>
-
-          {/* Service Selection Sidebar */}
-          <div className="lg:col-span-1 order-2">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border border-purple-100"
-            >
-              <div className="text-center mb-6">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-                  selectedProduct === 'spa-party-standalone' ? 'bg-pink-100' : 'bg-purple-100'
-                }`}>
-                  {selectedProduct === 'spa-party-standalone' ? (
-                    <Crown className="w-8 h-8 text-pink-600" />
-                  ) : (
-                    <Sparkles className="w-8 h-8 text-purple-600" />
-                  )}
-                </div>
-                <h3 className="text-xl font-bold text-purple-900 mb-2">
-                  {selectedProduct === 'spa-party-standalone' ? 'Your Spa Experience' : 'Customize Your Package'}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {selectedProduct === 'spa-party-standalone' 
-                    ? 'Complete spa party with all treatments included'
-                    : `Add extras to your ${serviceOptions.find(s => s.id === selectedProduct)?.shortName}`
-                  }
-                </p>
-                {selectedDate && selectedTime && (
-                  <div className="mt-3 p-3 bg-blue-50 rounded-lg">
-                    <p className="text-xs text-blue-700 font-medium">
-                      {selectedTime} on {new Date(selectedDate).toLocaleDateString()}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Selected Base Package */}
-              {selectedProduct && (
-                <div className={`mb-6 p-4 rounded-lg border ${
-                  selectedProduct === 'spa-party-standalone' 
-                    ? 'bg-pink-50 border-pink-200' 
-                    : 'bg-purple-50 border-purple-200'
-                }`}>
-                  <h4 className={`font-bold mb-2 ${
-                    selectedProduct === 'spa-party-standalone' ? 'text-pink-900' : 'text-purple-900'
-                  }`}>
-                    {selectedProduct === 'spa-party-standalone' ? 'Your Spa Package' : 'Your Base Package'}
-                  </h4>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">{serviceOptions.find(s => s.id === selectedProduct)?.shortName}</span>
-                    <span className={`font-bold ${
-                      selectedProduct === 'spa-party-standalone' ? 'text-pink-600' : 'text-purple-600'
-                    }`}>
-                      ${serviceOptions.find(s => s.id === selectedProduct)?.price}
-                    </span>
-                  </div>
+            {/* Package Selection */}
+            <div className="mb-6">
+              <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <Star className="w-4 h-4 text-primary-600" />
+                Available Packages
+              </h4>
+              <div className="space-y-2">
+                {serviceOptions.filter(s => s.category === 'base').map((service) => {
+                  const isSelected = selectedPackage === service.id;
                   
-                  {/* Real-time inventory for selected product */}
-                  {selectedDate && selectedTime && (
-                    <div className="mt-2 pt-2 border-t border-gray-200">
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="text-gray-600">Available:</span>
-                        <span className="font-bold text-green-600">
-                          {getAvailableInventory(selectedProduct)} units
+                  return (
+                    <button
+                      key={service.id}
+                      onClick={() => {
+                        setSelectedPackage(service.id);
+                        setSelectedDate(null);
+                        setSelectedTime(null);
+                        setSelectedServices({});
+                      }}
+                      className={`w-full p-4 border-2 rounded-lg transition-all duration-200 text-left ${
+                        isSelected 
+                          ? 'border-primary-500 bg-primary-50' 
+                          : 'border-gray-200 hover:border-primary-300 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-medium text-gray-800 text-sm">{service.shortName || service.name}</div>
+                        <div className="text-primary-600 font-bold">${service.price}</div>
+                      </div>
+                      <div className="text-xs text-gray-600 mb-2">{service.description}</div>
+                      
+                      {/* Package-specific availability indicator */}
+                      <div className="flex items-center gap-1">
+                        <Package className="w-3 h-3 text-gray-500" />
+                        <span className={`text-xs font-medium ${
+                          service.totalInventory > 5 ? 'text-green-600' :
+                          service.totalInventory > 2 ? 'text-yellow-600' :
+                          'text-red-600'
+                        }`}>
+                          {service.totalInventory > 5 ? 'Good Availability' :
+                           service.totalInventory > 2 ? 'Limited Availability' :
+                           'Very Limited'}
                         </span>
                       </div>
-                    </div>
-                  )}
-                  
-                  {/* Special Spa Package Details */}
-                  {selectedProduct === 'spa-party-standalone' && (
-                    <div className="mt-3 pt-3 border-t border-pink-200">
-                      <p className="text-pink-800 text-xs">
-                        ✨ Includes: Professional spa setup, kid-safe treatments, relaxing activities, themed decorations, and complete cleanup
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Add-ons (only show if not standalone spa) */}
-              {selectedProduct !== 'spa-party-standalone' && (
-                <div className="mb-6">
-                  <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <Heart className="w-4 h-4 text-pink-600" />
-                    Add-ons
-                  </h4>
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {getFilteredServices().filter(s => s.category === 'addon').slice(0, 5).map((service) => {
-                      const inventory = getInventoryStatus(service.id);
-                      const currentQuantity = selectedServices[service.id] || 0;
-                      const canAdd = canAddService(service);
                       
-                      return (
-                        <div
-                          key={service.id}
-                          className={`p-2 border rounded-lg transition-all duration-200 hover:border-pink-300 border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
+                      {isSelected && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute top-2 right-2 w-5 h-5 bg-primary-600 rounded-full flex items-center justify-center"
                         >
-                          <div className="flex items-center justify-between">
-                            <div className="flex-1">
-                              <div className="font-medium text-gray-800 text-xs flex items-center gap-2">
-                                {service.shortName}
-                                {service.id === 'spa-party-addon' && (
-                                  <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                    Save $75!
-                                  </span>
-                                )}
-                              </div>
-                              <div className={`font-bold text-sm ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
-                                ${service.price}
-                              </div>
-                              
-                              {/* Individual Product Inventory */}
-                              {selectedDate && selectedTime && (
-                                <div className="mt-1 flex items-center gap-1">
-                                  <Package className="w-3 h-3 text-gray-500" />
-                                  <span className={`text-xs font-medium ${
-                                    inventory.status === 'none' ? 'text-red-600' :
-                                    inventory.status === 'low' ? 'text-orange-600' :
-                                    'text-green-600'
-                                  }`}>
-                                    {inventory.status === 'none' ? 'Sold Out' :
-                                     inventory.status === 'low' ? `${inventory.available} left` :
-                                     `${inventory.available} available`}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <button
-                                onClick={() => handleServiceQuantityChange(service.id, -1)}
-                                disabled={!currentQuantity || !canAdd}
-                                className="w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
-                              >
-                                <Minus className="w-2 h-2" />
-                              </button>
-                              <span className="w-4 text-center text-xs font-medium">
-                                {currentQuantity}
-                              </span>
-                              <button
-                                onClick={() => handleServiceQuantityChange(service.id, 1)}
-                                disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
-                                className="w-5 h-5 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
-                              >
-                                <Plus className="w-2 h-2" />
-                              </button>
+                          <Check className="w-3 h-3 text-white" />
+                        </motion.div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Current Package Info */}
+            {currentPackage && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h4 className="font-bold text-blue-800 mb-2">Selected Package</h4>
+                <div className="text-sm text-blue-700">
+                  <div className="font-medium">{currentPackage.name}</div>
+                  <div className="text-xs mt-1">{currentPackage.description}</div>
+                  <div className="mt-2 flex justify-between">
+                    <span>Price:</span>
+                    <span className="font-bold">${currentPackage.price}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Total Units:</span>
+                    <span className="font-bold">{currentPackage.totalInventory}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Service Selection (only show if package selected and date/time selected) */}
+            {selectedDate && selectedTime && (
+              <div className="space-y-4">
+                <h4 className="font-bold text-gray-800 flex items-center gap-2">
+                  <Plus className="w-4 h-4 text-blue-600" />
+                  Add Services
+                </h4>
+                
+                {/* Add selected package first */}
+                <div className="p-3 border-2 border-primary-500 bg-primary-50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-800 text-sm">{currentPackage?.shortName}</div>
+                      <div className="text-primary-600 font-bold">${currentPackage?.price}</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleServiceQuantityChange(selectedPackage, -1)}
+                        disabled={!selectedServices[selectedPackage]}
+                        className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
+                      >
+                        <Minus className="w-3 h-3" />
+                      </button>
+                      <span className="w-6 text-center text-sm font-medium">
+                        {selectedServices[selectedPackage] || 0}
+                      </span>
+                      <button
+                        onClick={() => handleServiceQuantityChange(selectedPackage, 1)}
+                        disabled={(selectedServices[selectedPackage] || 0) >= Math.min(currentPackage?.maxQuantity || 1, getAvailableInventory(selectedPackage))}
+                        className="w-6 h-6 rounded-full bg-primary-200 hover:bg-primary-300 disabled:opacity-50 flex items-center justify-center"
+                      >
+                        <Plus className="w-3 h-3" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-xs text-gray-600">
+                    Available: {getAvailableInventory(selectedPackage)}
+                  </div>
+                </div>
+
+                {/* Add-ons */}
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {serviceOptions.filter(s => s.category === 'addon').slice(0, 5).map((service) => {
+                    const inventory = getInventoryStatus(service.id);
+                    const currentQuantity = selectedServices[service.id] || 0;
+                    const canAdd = canAddService(service);
+                    
+                    return (
+                      <div
+                        key={service.id}
+                        className={`p-3 border-2 rounded-lg transition-all duration-200 ${
+                          !canAdd ? 'opacity-50' : 'hover:border-pink-300'
+                        } border-gray-200`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-800 text-sm">{service.shortName}</div>
+                            <div className="text-pink-600 font-bold text-sm">${service.price}</div>
+                            <div className="text-xs text-gray-600">
+                              Available: {inventory.available}
                             </div>
                           </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleServiceQuantityChange(service.id, -1)}
+                              disabled={!currentQuantity || !canAdd}
+                              className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
+                            >
+                              <Minus className="w-3 h-3" />
+                            </button>
+                            <span className="w-6 text-center text-sm font-medium">
+                              {currentQuantity}
+                            </span>
+                            <button
+                              onClick={() => handleServiceQuantityChange(service.id, 1)}
+                              disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
+                              className="w-6 h-6 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Package Summary */}
-              {selectedProduct && (
-                <div className="border-t border-gray-200 pt-4">
-                  <h4 className="font-bold text-gray-800 mb-3">Summary</h4>
-                  <div className="space-y-1 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span>{serviceOptions.find(s => s.id === selectedProduct)?.shortName}</span>
-                      <span className="font-medium">${serviceOptions.find(s => s.id === selectedProduct)?.price}</span>
-                    </div>
-                    {getSelectedServicesList().map((service) => (
-                      <div key={service.id} className="flex justify-between text-sm">
-                        <span>{service.shortName} {service.quantity > 1 && `(×${service.quantity})`}</span>
-                        <span className="font-medium">${service.price * service.quantity}</span>
                       </div>
-                    ))}
-                  </div>
-                  <div className="border-t border-gray-200 pt-2">
-                    <div className="flex justify-between font-bold text-lg">
-                      <span>Total:</span>
-                      <span className={selectedProduct === 'spa-party-standalone' ? 'text-pink-700' : 'text-purple-700'}>
-                        ${(serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()}
-                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Package Summary */}
+            {Object.keys(selectedServices).length > 0 && (
+              <div className="border-t border-gray-200 pt-4 mt-6">
+                <h4 className="font-bold text-gray-800 mb-3">Package Summary</h4>
+                <div className="space-y-2 mb-4">
+                  {getSelectedServicesList().map((service) => (
+                    <div key={service.id} className="flex justify-between text-sm">
+                      <span>{service.shortName || service.name} {service.quantity > 1 && `(×${service.quantity})`}</span>
+                      <span className="font-medium">${service.price * service.quantity}</span>
                     </div>
+                  ))}
+                </div>
+                <div className="border-t border-gray-200 pt-2">
+                  <div className="flex justify-between font-bold text-lg">
+                    <span>Total:</span>
+                    <span className="text-primary-700">${calculateTotal()}</span>
                   </div>
                 </div>
+              </div>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Calendar and Booking */}
+        <div className="xl:col-span-2 order-1 xl:order-2">
+          {/* Calendar */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="glass-card p-6 mb-8"
+          >
+            {/* Calendar Header */}
+            <div className="flex items-center justify-between mb-6">
+              <motion.button
+                onClick={() => navigateMonth('prev')}
+                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronLeft className="w-5 h-5 text-primary-600" />
+              </motion.button>
+              
+              <div className="text-center">
+                <h2 className="text-xl font-bold text-primary-900">
+                  {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
+                </h2>
+                {currentPackage && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    Showing availability for: {currentPackage.shortName}
+                  </p>
+                )}
+              </div>
+              
+              <motion.button
+                onClick={() => navigateMonth('next')}
+                className="p-2 hover:bg-primary-50 rounded-lg transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-5 h-5 text-primary-600" />
+              </motion.button>
+            </div>
+
+            {/* Day Headers */}
+            <div className="grid grid-cols-7 gap-1 mb-2">
+              {dayNames.map((day) => (
+                <div key={day} className="p-2 text-center text-sm font-medium text-gray-600">
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-1">
+              {getDaysInMonth(currentDate).map((date, index) => {
+                if (!date) {
+                  return <div key={index} className="p-2" />;
+                }
+
+                const booking = getBookingForDate(date);
+                const isToday = formatDate(date) === formatDate(new Date());
+                const isSelected = selectedDate === formatDate(date);
+                const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
+
+                return (
+                  <motion.button
+                    key={index}
+                    onClick={() => !isPast && handleDateSelect(date)}
+                    disabled={isPast || !booking?.available}
+                    className={`
+                      relative p-2 h-12 text-sm font-medium rounded-lg transition-all duration-200
+                      ${isPast 
+                        ? 'text-gray-300 cursor-not-allowed' 
+                        : booking?.available
+                          ? isSelected
+                            ? 'bg-primary-600 text-white shadow-lg'
+                            : 'hover:bg-primary-50 text-primary-900 cursor-pointer'
+                          : 'text-gray-400 cursor-not-allowed bg-gray-50'
+                      }
+                      ${isToday && !isSelected ? 'ring-2 ring-primary-300' : ''}
+                    `}
+                    whileHover={booking?.available && !isPast ? { scale: 1.05 } : {}}
+                    whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
+                  >
+                    {date.getDate()}
+                    
+                    {/* Availability indicator */}
+                    {booking && !isPast && (
+                      <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full ${
+                        booking.available ? 'bg-green-400' : 'bg-red-400'
+                      }`} />
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center justify-center gap-6 mt-6 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-400 rounded-full" />
+                <span className="text-gray-600">Available</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-red-400 rounded-full" />
+                <span className="text-gray-600">Fully Booked</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-gray-300 rounded-full" />
+                <span className="text-gray-600">Past Date</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Time Selection and Booking */}
+          {selectedDate && currentBookingData && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-card p-6"
+            >
+              <h3 className="text-xl font-bold text-primary-900 mb-6">Select Setup Time</h3>
+              
+              {/* Selected Date Display */}
+              <div className="bg-primary-50 rounded-lg p-4 mb-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <Calendar className="w-4 h-4 text-primary-600" />
+                  <span className="font-medium text-primary-900">Selected Date & Package</span>
+                </div>
+                <p className="text-primary-700 font-bold">
+                  {new Date(selectedDate).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+                <p className="text-primary-600 text-sm mt-1">
+                  Package: {currentPackage?.name}
+                </p>
+              </div>
+
+              {/* Time Selection */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <Clock className="w-4 h-4 text-primary-600" />
+                  <span className="font-medium text-primary-900">Setup Time</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {currentBookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => {
+                    const packageInventory = timeSlot.inventory[selectedPackage] || 0;
+                    const isAvailable = packageInventory > 0;
+                    
+                    return (
+                      <motion.label
+                        key={timeSlot.time}
+                        className={`block cursor-pointer ${
+                          selectedTime === timeSlot.time 
+                            ? 'ring-2 ring-primary-500' 
+                            : isAvailable
+                              ? 'hover:ring-2 hover:ring-primary-300'
+                              : 'opacity-50 cursor-not-allowed'
+                        }`}
+                        whileHover={isAvailable ? { scale: 1.02 } : {}}
+                        whileTap={isAvailable ? { scale: 0.98 } : {}}
+                      >
+                        <input
+                          type="radio"
+                          name="time"
+                          value={timeSlot.time}
+                          checked={selectedTime === timeSlot.time}
+                          onChange={(e) => isAvailable && handleTimeSelect(e.target.value)}
+                          disabled={!isAvailable}
+                          className="sr-only"
+                        />
+                        <div className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
+                          <div>
+                            <span className="font-medium text-gray-900">{timeSlot.time}</span>
+                            <div className="text-xs text-gray-600 mt-1">
+                              {isAvailable ? (
+                                <span className="text-green-600">
+                                  {packageInventory} available
+                                </span>
+                              ) : (
+                                <span className="text-red-600">Sold Out</span>
+                              )}
+                            </div>
+                          </div>
+                          {selectedTime === timeSlot.time && (
+                            <Check className="w-5 h-5 text-primary-600" />
+                          )}
+                        </div>
+                      </motion.label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Final Booking Summary */}
+              {selectedTime && Object.keys(selectedServices).length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-lg p-6 mb-6"
+                >
+                  <h4 className="font-bold text-primary-900 mb-4">Final Booking Summary</h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between">
+                      <span>Date:</span>
+                      <span className="font-medium">{new Date(selectedDate).toLocaleDateString()}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Setup Time:</span>
+                      <span className="font-medium">{selectedTime}</span>
+                    </div>
+                    <div className="border-t border-primary-200 pt-3">
+                      <div className="space-y-2">
+                        {getSelectedServicesList().map((service) => (
+                          <div key={service.id} className="flex justify-between text-sm">
+                            <span>{service.shortName || service.name} {service.quantity > 1 && `(×${service.quantity})`}</span>
+                            <span>${service.price * service.quantity}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="border-t border-primary-200 pt-3">
+                      <div className="flex justify-between font-bold text-xl">
+                        <span>Total:</span>
+                        <span className="text-primary-700">${calculateTotal()}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               )}
 
               {/* Book Now Button */}
-              {selectedTime && selectedProduct && (
+              {selectedTime && Object.keys(selectedServices).length > 0 && (
                 <motion.button
                   onClick={handleBookingConfirm}
-                  className={`w-full font-bold py-4 rounded-xl mt-6 transition-all duration-300 shadow-lg ${
-                    selectedProduct === 'spa-party-standalone'
-                      ? 'bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800'
-                      : 'bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800'
-                  }`}
+                  className="w-full btn btn-primary group relative overflow-hidden py-4 text-lg"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    {selectedProduct === 'spa-party-standalone' ? (
-                      <Crown className="w-5 h-5" />
-                    ) : (
-                      <Sparkles className="w-5 h-5" />
-                    )}
-                    Book Now - ${(serviceOptions.find(s => s.id === selectedProduct)?.price || 0) + calculateTotal()}
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Confirm Booking - ${calculateTotal()}
                   </span>
+                  
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
                 </motion.button>
               )}
 
-              {/* Product-Specific Inventory Notice */}
-              {selectedTime && selectedProduct && (
+              {/* Inventory Notice */}
+              {selectedTime && (
                 <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                   <div className="flex items-start gap-2">
                     <Package className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
                     <div className="text-sm text-blue-800">
-                      <p className="font-medium mb-1">Real-Time Inventory</p>
-                      <p>This calendar shows live availability for {serviceOptions.find(s => s.id === selectedProduct)?.shortName}. Each package has independent inventory tracking with realistic booking patterns.</p>
+                      <p className="font-medium mb-1">Real-Time Availability for {currentPackage?.shortName}</p>
+                      <p>This calendar shows live availability specifically for your selected package. Each product has different booking patterns and inventory levels.</p>
                     </div>
                   </div>
                 </div>
               )}
             </motion.div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
