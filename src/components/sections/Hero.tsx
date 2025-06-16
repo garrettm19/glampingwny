@@ -51,94 +51,158 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
 
-      {/* Enhanced Magical Firefly Effect */}
+      {/* Enhanced Magical Firefly Effect - Smoother & More Beautiful */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 12 : 25)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0 
-            }}
-            animate={{
-              x: [
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
-              ],
-              y: [
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
-              ],
-              opacity: [0, 1, 0.3, 0.9, 0],
-              scale: [0.5, 1.5, 0.8, 1.2, 0.5]
-            }}
-            transition={{
-              duration: 8 + Math.random() * 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 5
-            }}
-          >
-            <div 
-              className="w-3 h-3 rounded-full"
-              style={{
-                background: `radial-gradient(circle, 
-                  rgba(255, 255, 255, 1) 0%, 
-                  rgba(183, 148, 244, 0.9) 30%, 
-                  rgba(45, 212, 191, 0.7) 60%, 
-                  transparent 100%)`,
-                boxShadow: `
-                  0 0 8px 2px rgba(255, 255, 255, 0.8),
-                  0 0 16px 4px rgba(183, 148, 244, 0.6),
-                  0 0 24px 6px rgba(45, 212, 191, 0.4),
-                  0 0 32px 8px rgba(183, 148, 244, 0.2)
-                `,
-                filter: 'blur(0.5px)'
+        {/* Main Fireflies - Smooth Floating Motion */}
+        {[...Array(isMobile ? 8 : 18)].map((_, i) => {
+          const size = 2 + Math.random() * 2; // 2-4px size variation
+          const duration = 12 + Math.random() * 8; // 12-20 second cycles
+          const delay = Math.random() * 10;
+          
+          return (
+            <motion.div
+              key={i}
+              className="absolute"
+              initial={{ 
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                opacity: 0 
               }}
-            />
-          </motion.div>
-        ))}
+              animate={{
+                x: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
+                ],
+                y: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
+                ],
+                opacity: [0, 0.8, 1, 0.6, 0.9, 0],
+                scale: [0.3, 1, 1.2, 0.8, 1.1, 0.3]
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                ease: [0.25, 0.46, 0.45, 0.94], // Custom cubic-bezier for smooth, natural motion
+                delay: delay
+              }}
+            >
+              <div 
+                className="rounded-full"
+                style={{
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  background: `radial-gradient(circle, 
+                    rgba(255, 255, 255, 0.95) 0%, 
+                    rgba(255, 255, 255, 0.8) 20%,
+                    rgba(183, 148, 244, 0.7) 50%, 
+                    rgba(45, 212, 191, 0.5) 80%, 
+                    transparent 100%)`,
+                  boxShadow: `
+                    0 0 ${size * 3}px ${size}px rgba(255, 255, 255, 0.6),
+                    0 0 ${size * 6}px ${size * 2}px rgba(183, 148, 244, 0.4),
+                    0 0 ${size * 9}px ${size * 3}px rgba(45, 212, 191, 0.2)
+                  `,
+                  filter: 'blur(0.3px)'
+                }}
+              />
+            </motion.div>
+          );
+        })}
         
-        {/* Additional Sparkle Layer */}
-        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
-          <motion.div
-            key={`sparkle-${i}`}
-            className="absolute"
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0,
-              scale: 0
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 2 + Math.random() * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 4
-            }}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          >
-            <div 
-              className="w-1 h-1 rounded-full"
-              style={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.6), 0 0 12px 4px rgba(183, 148, 244, 0.4)'
+        {/* Gentle Sparkle Layer - Soft Twinkling */}
+        {[...Array(isMobile ? 5 : 10)].map((_, i) => {
+          const sparkleDelay = Math.random() * 6;
+          const sparkleDuration = 3 + Math.random() * 2;
+          
+          return (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute"
+              initial={{ 
+                opacity: 0,
+                scale: 0
               }}
-            />
-          </motion.div>
-        ))}
+              animate={{
+                opacity: [0, 0.8, 1, 0.8, 0],
+                scale: [0, 0.8, 1, 0.8, 0],
+                rotate: [0, 90, 180, 270, 360]
+              }}
+              transition={{
+                duration: sparkleDuration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: sparkleDelay
+              }}
+              style={{
+                left: `${10 + Math.random() * 80}%`,
+                top: `${10 + Math.random() * 80}%`,
+              }}
+            >
+              <div 
+                className="w-1 h-1 rounded-full"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  boxShadow: `
+                    0 0 4px 1px rgba(255, 255, 255, 0.8),
+                    0 0 8px 2px rgba(183, 148, 244, 0.5),
+                    0 0 12px 3px rgba(45, 212, 191, 0.3)
+                  `
+                }}
+              />
+            </motion.div>
+          );
+        })}
+
+        {/* Ambient Glow Particles - Very Subtle */}
+        {[...Array(isMobile ? 3 : 6)].map((_, i) => {
+          const glowDuration = 20 + Math.random() * 10;
+          const glowDelay = Math.random() * 15;
+          
+          return (
+            <motion.div
+              key={`glow-${i}`}
+              className="absolute"
+              initial={{ 
+                opacity: 0,
+                scale: 0.5
+              }}
+              animate={{
+                x: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
+                ],
+                y: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
+                ],
+                opacity: [0, 0.3, 0.5, 0.3, 0],
+                scale: [0.5, 1.5, 2, 1.5, 0.5]
+              }}
+              transition={{
+                duration: glowDuration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: glowDelay
+              }}
+            >
+              <div 
+                className="w-8 h-8 rounded-full"
+                style={{
+                  background: `radial-gradient(circle, 
+                    rgba(183, 148, 244, 0.1) 0%, 
+                    rgba(45, 212, 191, 0.05) 50%, 
+                    transparent 100%)`,
+                  filter: 'blur(4px)'
+                }}
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Main Content */}
