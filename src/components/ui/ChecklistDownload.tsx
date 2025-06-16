@@ -68,14 +68,14 @@ Have an amazing family glamping celebration!
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="bg-white/80 backdrop-blur-sm border border-orange-200 p-8 text-center relative overflow-hidden rounded-xl"
+      className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-8 text-center relative overflow-hidden rounded-xl"
     >
       {/* Background sparkles */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-orange-400 rounded-full"
+            className="absolute w-1 h-1 bg-lavender-400 rounded-full"
             animate={{
               opacity: [0, 1, 0],
               scale: [1, 1.2, 1],
@@ -97,8 +97,8 @@ Have an amazing family glamping celebration!
 
       {/* Header */}
       <div className="relative z-10">
-        <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Heart className="w-8 h-8 text-orange-600" />
+        <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Heart className="w-8 h-8 text-lavender-600" />
         </div>
         
         <h3 className="text-2xl font-bold text-gray-800 mb-4">
@@ -125,7 +125,7 @@ Have an amazing family glamping celebration!
               transition={{ duration: 0.3, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <CheckCircle className="w-5 h-5 text-orange-500" />
+              <CheckCircle className="w-5 h-5 text-lavender-500" />
               <span className="font-medium">{feature}</span>
             </motion.div>
           ))}
@@ -134,7 +134,7 @@ Have an amazing family glamping celebration!
         {/* Download Button */}
         <motion.button
           onClick={handleDownload}
-          className="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-bold py-3 px-6 rounded-xl inline-flex items-center gap-2 group transition-all duration-300 shadow-lg hover:shadow-xl"
+          className="bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-bold py-3 px-6 rounded-xl inline-flex items-center gap-2 group transition-all duration-300 shadow-lg hover:shadow-xl"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

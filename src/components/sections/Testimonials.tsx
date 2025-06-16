@@ -88,13 +88,13 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section bg-gradient-to-br from-orange-600 via-amber-600 to-orange-700 relative overflow-hidden">
-      {/* Warm decorative elements */}
+    <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 relative overflow-hidden">
+      {/* Elegant decorative elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+            className="absolute w-1 h-1 bg-white rounded-full"
             initial={{ opacity: 0 }}
             animate={{
               opacity: [0, 1, 0],
@@ -137,7 +137,7 @@ const Testimonials: React.FC = () => {
               <div className="flex items-center gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-300 fill-yellow-300" />
+                    <Star key={i} className="w-4 h-4 text-white fill-white" />
                   ))}
                 </div>
                 <span className="font-medium">5.0 Average Rating</span>
@@ -180,7 +180,7 @@ const Testimonials: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <div className="bg-white/95 backdrop-blur-sm border border-orange-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
+                <div className="bg-white/95 backdrop-blur-sm border border-lavender-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
                   {/* Floating hearts on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
                     {[...Array(5)].map((_, i) => (
@@ -209,7 +209,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Tag */}
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-orange-500 text-white rounded-full text-sm font-medium">
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-lavender-500 text-white rounded-full text-sm font-medium">
                     {testimonials[currentIndex].tag}
                   </span>
 
@@ -225,7 +225,7 @@ const Testimonials: React.FC = () => {
 
                   {/* Quote */}
                   <div className="relative mb-8">
-                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-orange-200" />
+                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-lavender-200" />
                     <blockquote className="text-lg text-gray-800 max-w-2xl leading-relaxed">
                       "{testimonials[currentIndex].quote}"
                     </blockquote>
@@ -236,7 +236,7 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-orange-200"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-lavender-200"
                     />
                     <div className="ml-4 text-left">
                       <div className="font-bold text-gray-800">

@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-green-50 border-b border-green-200">
+      <section className="py-6 bg-teal-50 border-b border-teal-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -96,10 +96,10 @@ const HomePage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-green-600" />
-              <span className="font-bold text-green-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-teal-600" />
+              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-green-700">
+            <p className="text-teal-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -165,7 +165,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Family Checklist Download Section */}
-      <section className="section bg-orange-50">
+      <section className="section bg-lavender-50">
         <div className="container-custom max-w-3xl">
           <ChecklistDownload />
         </div>
@@ -177,17 +177,17 @@ const HomePage: React.FC = () => {
       <section 
         className="relative py-24 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(234, 88, 12, 0.9), rgba(251, 146, 60, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
+          backgroundImage: `linear-gradient(to right, rgba(183, 148, 244, 0.9), rgba(45, 212, 191, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        {/* Warm Sparkle Animation */}
+        {/* Elegant Sparkle Animation */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-yellow-300 rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full"
               initial={{ opacity: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -227,12 +227,12 @@ const HomePage: React.FC = () => {
             >
               <Link 
                 to="/book-now" 
-                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-xl text-lg inline-flex items-center group relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-white to-white/95 hover:from-white/95 hover:to-white text-lavender-700 font-bold py-4 px-8 rounded-xl text-lg inline-flex items-center group relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <span className="relative z-10">Let's Create Family Magic!</span>
                 <Heart className="w-6 h-6 ml-2 relative z-10 group-hover:scale-110 transition-transform" />
                 <motion.div
-                  className="absolute inset-0 bg-white/20"
+                  className="absolute inset-0 bg-lavender-100/20"
                   initial={{ scale: 0, opacity: 0 }}
                   whileHover={{ scale: 2, opacity: 1 }}
                   transition={{ duration: 0.5 }}
