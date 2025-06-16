@@ -45,10 +45,10 @@ const Hero: React.FC = () => {
         />
         
         {/* Soft lavender overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-lavender-900/70 via-teal-800/60 to-lavender-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-lavender-800/70 via-lavender-600/60 to-sage-800/70" />
         
         {/* Additional backdrop for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30" />
       </div>
 
       {/* Enhanced Magical Firefly Effect */}
@@ -100,12 +100,12 @@ const Hero: React.FC = () => {
                     rgba(255, 255, 255, 0.95) 0%, 
                     rgba(255, 255, 255, 0.8) 20%,
                     rgba(183, 148, 244, 0.7) 50%, 
-                    rgba(45, 212, 191, 0.5) 80%, 
+                    rgba(125, 145, 125, 0.5) 80%, 
                     transparent 100%)`,
                   boxShadow: `
                     0 0 ${size * 3}px ${size}px rgba(255, 255, 255, 0.6),
                     0 0 ${size * 6}px ${size * 2}px rgba(183, 148, 244, 0.4),
-                    0 0 ${size * 9}px ${size * 3}px rgba(45, 212, 191, 0.2)
+                    0 0 ${size * 9}px ${size * 3}px rgba(125, 145, 125, 0.2)
                   `,
                   filter: 'blur(0.3px)'
                 }}
@@ -189,7 +189,7 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-lavender-500 to-sage-500 hover:from-lavender-600 hover:to-sage-600 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-2">

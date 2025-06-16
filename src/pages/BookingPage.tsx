@@ -40,22 +40,22 @@ const BookingPage: React.FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-purple-600 to-teal-600 relative overflow-hidden">
-        {/* Animated Stars */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-400 via-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Gentle floating elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(80)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/30 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -144,7 +144,7 @@ const BookingPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-teal-50 border-b border-teal-200">
+      <section className="py-6 bg-sage-50 border-b border-sage-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -153,12 +153,12 @@ const BookingPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-teal-600" />
-              <span className="font-bold text-teal-800">Serving the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-sage-600" />
+              <span className="font-bold text-sage-800">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-teal-700">
+            <p className="text-sage-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
-              Extended delivery available with fees
+              Extended delivery: 21-31 miles ($50) • 32-42 miles ($100)
             </p>
           </motion.div>
         </div>
@@ -316,7 +316,7 @@ const BookingPage: React.FC = () => {
 
       {/* Information Cards - Only show on calendar step */}
       {bookingStep === 'calendar' && (
-        <section className="section bg-gray-50">
+        <section className="section bg-cream-50">
           <div className="container-custom">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">Everything You Need to Know</h2>
@@ -329,25 +329,25 @@ const BookingPage: React.FC = () => {
                   icon: Clock, 
                   title: "Setup & Pickup", 
                   description: "Setup by 4 PM, pickup after 10 AM next day", 
-                  color: "bg-blue-50 text-blue-600" 
+                  color: "bg-lavender-100 text-lavender-600" 
                 },
                 { 
                   icon: MapPin, 
                   title: "Service Area", 
                   description: "Free delivery within 20 miles of Hamburg, NY", 
-                  color: "bg-green-50 text-green-600" 
+                  color: "bg-sage-100 text-sage-600" 
                 },
                 { 
                   icon: Users, 
                   title: "All Ages Welcome", 
                   description: "Perfect for kids, teens, and adults (5+ years)", 
-                  color: "bg-purple-50 text-purple-600" 
+                  color: "bg-cream-100 text-cream-600" 
                 },
                 { 
                   icon: Shield, 
                   title: "Safety First", 
                   description: "All equipment sanitized between uses", 
-                  color: "bg-orange-50 text-orange-600" 
+                  color: "bg-lavender-100 text-lavender-600" 
                 }
               ].map((info, index) => (
                 <motion.div

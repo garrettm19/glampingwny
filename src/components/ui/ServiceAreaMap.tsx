@@ -19,15 +19,15 @@ const ServiceAreaMap: React.FC<ServiceAreaMapProps> = ({
   ];
 
   return (
-    <div className={`bg-teal-50 border border-teal-200 rounded-xl p-6 md:p-8 ${className}`}>
+    <div className={`bg-sage-50 border border-sage-200 rounded-xl p-6 md:p-8 ${className}`}>
       <div className="text-center mb-6">
-        <div className="inline-block p-3 bg-teal-100 rounded-full mb-4">
-          <MapPin className="w-6 h-6 text-teal-600" />
+        <div className="inline-block p-3 bg-sage-100 rounded-full mb-4">
+          <MapPin className="w-6 h-6 text-sage-600" />
         </div>
-        <h3 className="text-2xl font-bold text-teal-800 mb-2">
+        <h3 className="text-2xl font-bold text-sage-800 mb-2">
           Proudly Servicing the Buffalo Metro Area 🗺️
         </h3>
-        <p className="text-teal-700">
+        <p className="text-sage-700">
           We bring magical family experiences throughout Western New York
         </p>
       </div>
@@ -50,15 +50,15 @@ const ServiceAreaMap: React.FC<ServiceAreaMapProps> = ({
       {showPricing && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <motion.div 
-            className="text-center p-4 bg-white rounded-lg border border-teal-200"
+            className="text-center p-4 bg-white rounded-lg border border-sage-200"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Check className="w-6 h-6 text-teal-600" />
+            <div className="w-12 h-12 bg-sage-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Check className="w-6 h-6 text-sage-600" />
             </div>
-            <h4 className="font-bold text-teal-800 mb-2">FREE Delivery Zone</h4>
-            <p className="text-sm text-teal-700 mb-2">Within 20 miles of Hamburg, NY</p>
-            <p className="text-lg font-bold text-teal-600">$0 Delivery Fee</p>
+            <h4 className="font-bold text-sage-800 mb-2">FREE Delivery Zone</h4>
+            <p className="text-sm text-sage-700 mb-2">Within 20 miles of Hamburg, NY</p>
+            <p className="text-lg font-bold text-sage-600">$0 Delivery Fee</p>
           </motion.div>
           
           <motion.div 
@@ -74,34 +74,34 @@ const ServiceAreaMap: React.FC<ServiceAreaMapProps> = ({
           </motion.div>
           
           <motion.div 
-            className="text-center p-4 bg-white rounded-lg border border-purple-200"
+            className="text-center p-4 bg-white rounded-lg border border-cream-200"
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <DollarSign className="w-6 h-6 text-purple-600" />
+            <div className="w-12 h-12 bg-cream-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <DollarSign className="w-6 h-6 text-cream-600" />
             </div>
-            <h4 className="font-bold text-purple-800 mb-2">Extended Zone 2</h4>
-            <p className="text-sm text-purple-700 mb-2">32-42 miles from Hamburg</p>
-            <p className="text-lg font-bold text-purple-600">$100 Delivery Fee</p>
+            <h4 className="font-bold text-cream-800 mb-2">Extended Zone 2</h4>
+            <p className="text-sm text-cream-700 mb-2">32-42 miles from Hamburg</p>
+            <p className="text-lg font-bold text-cream-600">$100 Delivery Fee</p>
           </motion.div>
         </div>
       )}
 
       {/* Popular Areas */}
       <div className="text-center">
-        <h4 className="font-bold text-teal-800 mb-3">Popular Service Areas Include:</h4>
+        <h4 className="font-bold text-sage-800 mb-3">Popular Service Areas Include:</h4>
         <div className="flex flex-wrap justify-center gap-2">
           {popularAreas.map((city, index) => (
             <motion.span 
               key={index}
-              className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium hover:bg-teal-200 transition-colors cursor-default"
+              className="px-3 py-1 bg-sage-100 text-sage-700 rounded-full text-sm font-medium hover:bg-sage-200 transition-colors cursor-default"
               whileHover={{ scale: 1.05 }}
             >
               {city}
             </motion.span>
           ))}
         </div>
-        <p className="text-sm text-teal-600 mt-4">
+        <p className="text-sm text-sage-600 mt-4">
           Don't see your area? <a href="/contact" className="font-medium hover:underline">Contact us</a> - we may still be able to serve you!
         </p>
       </div>
