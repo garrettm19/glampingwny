@@ -191,85 +191,24 @@ const Services: React.FC = () => {
   return (
     <section className="section dark-section-alt">
       <div className="container-custom">
-        {/* Starry Night Header for Indoor Packages */}
-        <div className="relative mb-16 rounded-2xl overflow-hidden">
-          <div 
-            className="relative py-16 px-8"
-            style={{
-              background: `linear-gradient(135deg, 
-                #0f172a 0%, 
-                #1e293b 25%, 
-                #334155 50%, 
-                #1e293b 75%, 
-                #0f172a 100%)`
-            }}
+        {/* Indoor Packages Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            {/* Animated Stars */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(50)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.3, 1, 0],
-                    scale: [0.5, 1, 0.8, 1.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                />
-              ))}
-              
-              {/* Shooting Star */}
-              <motion.div
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: 50,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: 150,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: 8,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
+            <div className="inline-block p-3 bg-lavender-500/20 rounded-full mb-6">
+              <span className="text-2xl">🏠</span>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Indoor Family Glamping Packages 🏠
-                </h2>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Transform your home into a magical family wonderland! Perfect for year-round family fun and celebrations.
-                </p>
-              </motion.div>
-            </div>
-          </div>
+            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+              Indoor Family Glamping Packages 🏠
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Transform your home into a magical family wonderland! Perfect for year-round family fun and celebrations.
+            </p>
+          </motion.div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
@@ -286,62 +225,25 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Starry Night Header for Outdoor Packages */}
-        <div className="relative mb-16 rounded-2xl overflow-hidden">
-          <div 
-            className="relative py-16 px-8"
-            style={{
-              background: `linear-gradient(135deg, 
-                #0f172a 0%, 
-                #1e293b 25%, 
-                #334155 50%, 
-                #1e293b 75%, 
-                #0f172a 100%)`
-            }}
+        {/* Outdoor Packages Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            {/* Animated Stars */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(45)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.3, 1, 0],
-                    scale: [0.5, 1, 0.8, 1.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                />
-              ))}
+            <div className="inline-block p-3 bg-teal-500/20 rounded-full mb-6">
+              <span className="text-2xl">🏕️</span>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Outdoor Family Adventure Packages 🏕️
-                </h2>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Experience the magic of outdoor family glamping in your own backyard!
-                  Available Spring/Summer 2025!
-                </p>
-              </motion.div>
-            </div>
-          </div>
+            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+              Outdoor Family Adventure Packages 🏕️
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Experience the magic of outdoor family glamping in your own backyard!
+              Available Spring/Summer 2025!
+            </p>
+          </motion.div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
@@ -358,61 +260,24 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Starry Night Header for Add-ons */}
-        <div className="relative mb-16 rounded-2xl overflow-hidden">
-          <div 
-            className="relative py-16 px-8"
-            style={{
-              background: `linear-gradient(135deg, 
-                #0f172a 0%, 
-                #1e293b 25%, 
-                #334155 50%, 
-                #1e293b 75%, 
-                #0f172a 100%)`
-            }}
+        {/* Add-ons Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            {/* Animated Stars */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(40)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.3, 1, 0],
-                    scale: [0.5, 1, 0.8, 1.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                />
-              ))}
+            <div className="inline-block p-3 bg-purple-500/20 rounded-full mb-6">
+              <span className="text-2xl">✨</span>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Family Fun Add-ons ✨
-                </h2>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Make your family glamping experience even more special with these magical touches.
-                </p>
-              </motion.div>
-            </div>
-          </div>
+            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+              Family Fun Add-ons ✨
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Make your family glamping experience even more special with these magical touches.
+            </p>
+          </motion.div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
@@ -442,61 +307,24 @@ const Services: React.FC = () => {
           ))}
         </div>
 
-        {/* Starry Night Header for Themes */}
-        <div className="relative mb-16 rounded-2xl overflow-hidden">
-          <div 
-            className="relative py-16 px-8"
-            style={{
-              background: `linear-gradient(135deg, 
-                #0f172a 0%, 
-                #1e293b 25%, 
-                #334155 50%, 
-                #1e293b 75%, 
-                #0f172a 100%)`
-            }}
+        {/* Themes Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            {/* Animated Stars */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(35)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.3, 1, 0],
-                    scale: [0.5, 1, 0.8, 1.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                />
-              ))}
+            <div className="inline-block p-3 bg-pink-500/20 rounded-full mb-6">
+              <span className="text-2xl">🎨</span>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Family-Friendly Themes 🎨
-                </h2>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Choose from our magical selection of family themes, or let us create a custom theme just for your family!
-                </p>
-              </motion.div>
-            </div>
-          </div>
+            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+              Family-Friendly Themes 🎨
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Choose from our magical selection of family themes, or let us create a custom theme just for your family!
+            </p>
+          </motion.div>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
@@ -518,61 +346,24 @@ const Services: React.FC = () => {
           * Custom family theme designs available upon request for an additional fee
         </div>
 
-        {/* Starry Night Header for Space Requirements */}
-        <div className="relative mt-20 mb-16 rounded-2xl overflow-hidden">
-          <div 
-            className="relative py-16 px-8"
-            style={{
-              background: `linear-gradient(135deg, 
-                #0f172a 0%, 
-                #1e293b 25%, 
-                #334155 50%, 
-                #1e293b 75%, 
-                #0f172a 100%)`
-            }}
+        {/* Space Requirements Header */}
+        <div className="text-center mt-20 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
-            {/* Animated Stars */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(30)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0.3, 1, 0],
-                    scale: [0.5, 1, 0.8, 1.2, 0.5]
-                  }}
-                  transition={{
-                    duration: 3 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                />
-              ))}
+            <div className="inline-block p-3 bg-blue-500/20 rounded-full mb-6">
+              <span className="text-2xl">📏</span>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Family Space Requirements 📏
-                </h2>
-                <p className="text-blue-100 max-w-2xl mx-auto">
-                  Make sure you have enough space for your magical family experience!
-                </p>
-              </motion.div>
-            </div>
-          </div>
+            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+              Family Space Requirements 📏
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Make sure you have enough space for your magical family experience!
+            </p>
+          </motion.div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
