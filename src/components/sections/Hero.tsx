@@ -51,12 +51,12 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
 
-      {/* Enhanced Magical Firefly Effect - Smoother & More Beautiful */}
+      {/* Enhanced Magical Firefly Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {/* Main Fireflies - Smooth Floating Motion */}
+        {/* Main Fireflies */}
         {[...Array(isMobile ? 8 : 18)].map((_, i) => {
-          const size = 2 + Math.random() * 2; // 2-4px size variation
-          const duration = 12 + Math.random() * 8; // 12-20 second cycles
+          const size = 2 + Math.random() * 2;
+          const duration = 12 + Math.random() * 8;
           const delay = Math.random() * 10;
           
           return (
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
               transition={{
                 duration: duration,
                 repeat: Infinity,
-                ease: [0.25, 0.46, 0.45, 0.94], // Custom cubic-bezier for smooth, natural motion
+                ease: [0.25, 0.46, 0.45, 0.94],
                 delay: delay
               }}
             >
@@ -113,102 +113,12 @@ const Hero: React.FC = () => {
             </motion.div>
           );
         })}
-        
-        {/* Gentle Sparkle Layer - Soft Twinkling */}
-        {[...Array(isMobile ? 5 : 10)].map((_, i) => {
-          const sparkleDelay = Math.random() * 6;
-          const sparkleDuration = 3 + Math.random() * 2;
-          
-          return (
-            <motion.div
-              key={`sparkle-${i}`}
-              className="absolute"
-              initial={{ 
-                opacity: 0,
-                scale: 0
-              }}
-              animate={{
-                opacity: [0, 0.8, 1, 0.8, 0],
-                scale: [0, 0.8, 1, 0.8, 0],
-                rotate: [0, 90, 180, 270, 360]
-              }}
-              transition={{
-                duration: sparkleDuration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: sparkleDelay
-              }}
-              style={{
-                left: `${10 + Math.random() * 80}%`,
-                top: `${10 + Math.random() * 80}%`,
-              }}
-            >
-              <div 
-                className="w-1 h-1 rounded-full"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  boxShadow: `
-                    0 0 4px 1px rgba(255, 255, 255, 0.8),
-                    0 0 8px 2px rgba(183, 148, 244, 0.5),
-                    0 0 12px 3px rgba(45, 212, 191, 0.3)
-                  `
-                }}
-              />
-            </motion.div>
-          );
-        })}
-
-        {/* Ambient Glow Particles - Very Subtle */}
-        {[...Array(isMobile ? 3 : 6)].map((_, i) => {
-          const glowDuration = 20 + Math.random() * 10;
-          const glowDelay = Math.random() * 15;
-          
-          return (
-            <motion.div
-              key={`glow-${i}`}
-              className="absolute"
-              initial={{ 
-                opacity: 0,
-                scale: 0.5
-              }}
-              animate={{
-                x: [
-                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200)
-                ],
-                y: [
-                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
-                ],
-                opacity: [0, 0.3, 0.5, 0.3, 0],
-                scale: [0.5, 1.5, 2, 1.5, 0.5]
-              }}
-              transition={{
-                duration: glowDuration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: glowDelay
-              }}
-            >
-              <div 
-                className="w-8 h-8 rounded-full"
-                style={{
-                  background: `radial-gradient(circle, 
-                    rgba(183, 148, 244, 0.1) 0%, 
-                    rgba(45, 212, 191, 0.05) 50%, 
-                    transparent 100%)`,
-                  filter: 'blur(4px)'
-                }}
-              />
-            </motion.div>
-          );
-        })}
       </div>
 
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl text-center">
-          {/* Location Badge with family-friendly styling */}
+          {/* Location Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -226,7 +136,7 @@ const Hero: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Warm, Family-Friendly Main Headline */}
+          {/* Main Headline */}
           <motion.h1 
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-[0.9] text-white"
             initial={{ opacity: 0, y: 30 }}
@@ -240,7 +150,7 @@ const Hero: React.FC = () => {
             Glamping WNY
           </motion.h1>
 
-          {/* Family-Focused Subheadline */}
+          {/* Subheadline */}
           <motion.h2 
             className="text-xl md:text-2xl lg:text-3xl text-white font-medium mb-6 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -253,7 +163,7 @@ const Hero: React.FC = () => {
             Where Families Create Magical Memories Together
           </motion.h2>
           
-          {/* Family-Friendly Value Proposition */}
+          {/* Value Proposition */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
@@ -266,7 +176,7 @@ const Hero: React.FC = () => {
             We handle everything so you can focus on making memories with your loved ones! 🏕️✨
           </motion.p>
           
-          {/* Warm, Inviting CTA Buttons */}
+          {/* CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -307,7 +217,7 @@ const Hero: React.FC = () => {
             </motion.button>
           </motion.div>
 
-          {/* Family-Focused Trust Indicators */}
+          {/* Trust Indicators */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
             initial={{ opacity: 0, y: 20 }}
@@ -343,7 +253,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Enhanced Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}

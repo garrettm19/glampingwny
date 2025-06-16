@@ -1,13 +1,23 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { Send, CheckCircle, Sparkles } from 'lucide-react';
 import { trackFormSubmit } from '../../utils/analytics';
 
 const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
   const formRef = useRef<HTMLFormElement>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,22 +26,18 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        formRef.current,
-        'YOUR_PUBLIC_KEY'
-      );
+      // Simulate form submission - replace with actual form handling
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       trackFormSubmit('contact');
       setIsSuccess(true);
-      formRef.current.reset();
+      setFormData({ name: '', email: '', subject: '', message: '' });
       
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
     } catch (error) {
-      console.error('Failed to send email:', error);
+      console.error('Failed to send message:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -95,6 +101,8 @@ const ContactForm: React.FC = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={formData.name}
+                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
                 placeholder="Enter your name"
@@ -109,6 +117,8 @@ const ContactForm: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
                 placeholder="your@email.com"
@@ -123,6 +133,8 @@ const ContactForm: React.FC = () => {
             <select
               id="subject"
               name="subject"
+              value={formData.subject}
+              onChange={handleChange}
               required
               className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow"
             >
@@ -142,6 +154,8 @@ const ContactForm: React.FC = () => {
               id="message"
               name="message"
               rows={4}
+              value={formData.message}
+              onChange={handleChange}
               required
               className="w-full px-4 py-2 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-shadow resize-none"
               placeholder="Tell us about your dream party..."
