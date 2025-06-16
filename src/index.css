@@ -8,7 +8,8 @@
   }
   
   body {
-    @apply font-sans text-gray-100 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800;
+    @apply font-sans text-gray-100 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950;
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -27,19 +28,19 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl relative overflow-hidden;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl relative overflow-hidden;
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-lavender-500 to-teal-500 text-white border border-lavender-400/20 hover:from-lavender-600 hover:to-teal-600 hover:shadow-lavender;
+    @apply bg-gradient-to-r from-lavender-500 to-teal-500 text-white border border-lavender-400/20 hover:from-lavender-600 hover:to-teal-600 hover:shadow-lavender-500/25;
   }
 
   .btn-secondary {
-    @apply bg-gradient-to-r from-teal-500 to-lavender-500 text-white hover:from-teal-600 hover:to-lavender-600 hover:shadow-teal;
+    @apply bg-gradient-to-r from-teal-500 to-lavender-500 text-white hover:from-teal-600 hover:to-lavender-600 hover:shadow-teal-500/25;
   }
 
   .btn-outline {
-    @apply border-2 border-lavender-300 text-lavender-300 hover:bg-lavender-500/20 hover:border-lavender-400 hover:text-lavender-200;
+    @apply border-2 border-lavender-400/50 text-lavender-300 hover:bg-lavender-500/20 hover:border-lavender-400 hover:text-lavender-200 backdrop-blur-sm;
   }
 
   .container-custom {
@@ -51,21 +52,39 @@
   }
 
   .glass-card {
-    @apply bg-slate-800/95 backdrop-blur-sm border border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-xl;
+    @apply bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl hover:shadow-lavender-500/10 transition-all duration-500 rounded-2xl;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.8));
   }
 
   .glass-card-light {
-    @apply bg-slate-700/95 backdrop-blur-sm border border-slate-600/50 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-xl;
+    @apply bg-slate-700/90 backdrop-blur-xl border border-slate-600/50 shadow-xl hover:shadow-teal-500/10 transition-all duration-500 rounded-xl;
+    background: linear-gradient(135deg, rgba(51, 65, 85, 0.9), rgba(71, 85, 105, 0.8));
+  }
+
+  .glass-card-premium {
+    @apply bg-gradient-to-br from-slate-800/95 via-slate-700/90 to-slate-800/95 backdrop-blur-xl border border-lavender-500/20 shadow-2xl hover:shadow-lavender-500/20 transition-all duration-500 rounded-2xl;
+  }
+
+  .dark-section {
+    @apply bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80 relative;
+  }
+
+  .dark-section-alt {
+    @apply bg-gradient-to-br from-slate-950/90 via-slate-900/70 to-slate-950/90 relative;
+  }
+
+  .magical-glow {
+    box-shadow: 0 0 30px rgba(183, 148, 244, 0.3), 0 0 60px rgba(45, 212, 191, 0.2);
   }
 }
 
 @layer utilities {
   .shadow-glow {
-    box-shadow: 0 0 20px rgba(183, 148, 244, 0.3);
+    box-shadow: 0 0 20px rgba(183, 148, 244, 0.4);
   }
 
   .shadow-glow-lg {
-    box-shadow: 0 0 40px rgba(183, 148, 244, 0.4);
+    box-shadow: 0 0 40px rgba(183, 148, 244, 0.5);
   }
 
   .bg-glass {
@@ -78,7 +97,7 @@
 
   .text-contrast {
     @apply text-white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .animation-delay-700 {
@@ -92,12 +111,9 @@
     background-clip: text;
   }
 
-  .dark-section {
-    @apply bg-slate-800/50;
-  }
-
-  .dark-section-alt {
-    @apply bg-slate-900/50;
+  .magical-border {
+    border: 1px solid;
+    border-image: linear-gradient(135deg, rgba(183, 148, 244, 0.5), rgba(45, 212, 191, 0.5)) 1;
   }
 }
 
@@ -154,6 +170,17 @@
   }
 }
 
+@keyframes magical-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
 .animate-sparkle {
   animation: sparkle 3s ease-in-out infinite;
 }
@@ -174,6 +201,10 @@
   animation: shimmer 2s infinite;
 }
 
+.animate-magical-float {
+  animation: magical-float 8s ease-in-out infinite;
+}
+
 /* Firefly effect */
 .firefly {
   @apply w-1 h-1 bg-lavender-300 rounded-full opacity-0;
@@ -184,7 +215,7 @@
 .floating-particle {
   position: absolute;
   pointer-events: none;
-  animation: float 8s ease-in-out infinite;
+  animation: magical-float 8s ease-in-out infinite;
 }
 
 /* Custom scrollbar */
@@ -212,17 +243,17 @@
 
 /* Smooth transitions for all interactive elements */
 button, a, input, textarea, select {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Enhanced hover effects */
 .hover-lift {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(183, 148, 244, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(183, 148, 244, 0.2);
 }
 
 /* Gradient backgrounds */
@@ -236,11 +267,11 @@ button, a, input, textarea, select {
 
 /* Text effects */
 .text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .text-shadow-lg {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* Sparkle dots for backgrounds */
@@ -255,9 +286,47 @@ button, a, input, textarea, select {
 
 /* Dark theme form inputs */
 input, textarea, select {
-  @apply bg-slate-700 border-slate-600 text-gray-100 placeholder-gray-400;
+  @apply bg-slate-800/90 border-slate-600/50 text-gray-100 placeholder-gray-400 backdrop-blur-sm;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(51, 65, 85, 0.8));
 }
 
 input:focus, textarea:focus, select:focus {
-  @apply border-lavender-500 ring-lavender-500/20;
+  @apply border-lavender-500/70 ring-lavender-500/20 shadow-lavender-500/20;
+  box-shadow: 0 0 0 3px rgba(183, 148, 244, 0.1), 0 0 20px rgba(183, 148, 244, 0.2);
+}
+
+/* Enhanced magical elements */
+.magical-orb {
+  background: radial-gradient(circle at 30% 30%, rgba(183, 148, 244, 0.8), rgba(45, 212, 191, 0.6), transparent 70%);
+  filter: blur(1px);
+  animation: magical-float 10s ease-in-out infinite;
+}
+
+.constellation-line {
+  background: linear-gradient(90deg, transparent, rgba(183, 148, 244, 0.5), transparent);
+  height: 1px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Premium card effects */
+.premium-card {
+  background: linear-gradient(135deg, 
+    rgba(30, 41, 59, 0.95) 0%, 
+    rgba(51, 65, 85, 0.9) 25%, 
+    rgba(30, 41, 59, 0.95) 50%, 
+    rgba(51, 65, 85, 0.9) 75%, 
+    rgba(30, 41, 59, 0.95) 100%);
+  border: 1px solid rgba(183, 148, 244, 0.2);
+  box-shadow: 
+    0 0 30px rgba(183, 148, 244, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.premium-card:hover {
+  border-color: rgba(183, 148, 244, 0.4);
+  box-shadow: 
+    0 0 40px rgba(183, 148, 244, 0.2),
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }

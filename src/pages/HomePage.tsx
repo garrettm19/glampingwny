@@ -322,9 +322,9 @@ const HomePage: React.FC = () => {
           backgroundPosition: 'center'
         }}
       >
-        {/* Elegant Sparkle Animation */}
+        {/* Enhanced magical sparkle animation */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full"
@@ -342,6 +342,21 @@ const HomePage: React.FC = () => {
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+          
+          {/* Magical orbs */}
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute magical-orb"
+              style={{
+                width: `${50 + Math.random() * 30}px`,
+                height: `${50 + Math.random() * 30}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 8}s`,
               }}
             />
           ))}

@@ -98,16 +98,60 @@ const item = {
 const Features: React.FC = () => {
   return (
     <section id="features" className="section dark-section relative overflow-hidden">
-      {/* Playful background decorative elements */}
+      {/* Enhanced magical background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] w-3 h-3 bg-lavender-400 rounded-full animate-pulse-glow" />
-        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-teal-400 rounded-full animate-sparkle animation-delay-700" />
-        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-lavender-400 rounded-full animate-float" />
-        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-teal-400 rounded-full animate-pulse-glow animation-delay-700" />
+        {/* Floating magical orbs */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute magical-orb"
+            style={{
+              width: `${60 + Math.random() * 40}px`,
+              height: `${60 + Math.random() * 40}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+            }}
+          />
+        ))}
         
-        {/* Elegant gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-lavender-500/10 to-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-teal-500/10 to-lavender-500/10 rounded-full blur-3xl" />
+        {/* Constellation lines */}
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute constellation-line"
+            style={{
+              width: `${100 + Math.random() * 200}px`,
+              left: `${Math.random() * 80}%`,
+              top: `${20 + Math.random() * 60}%`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+              animationDelay: `${Math.random() * 3}s`,
+            }}
+          />
+        ))}
+        
+        {/* Sparkle particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-lavender-400 rounded-full"
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0.5, 1.2, 0.5],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: Math.random() * 4,
+              ease: "easeInOut"
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="container-custom relative z-10">
@@ -229,10 +273,10 @@ const Features: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="glass-card p-4 text-sm font-medium text-gray-200 hover:bg-slate-700/95 hover:border-slate-600/50 transition-all duration-300 group cursor-pointer"
+              className="premium-card p-4 text-sm font-medium text-gray-200 hover-lift cursor-pointer"
               whileHover={{ scale: 1.02 }}
             >
-              <span className="group-hover:text-lavender-300 transition-all duration-300">
+              <span className="block text-center">
                 {service}
               </span>
             </motion.div>
@@ -255,7 +299,7 @@ const Features: React.FC = () => {
                 y: -8,
                 transition: { duration: 0.3 }
               }}
-              className={`glass-card overflow-hidden ${feature.shadowColor} hover:shadow-2xl transition-all duration-500 group`}
+              className="glass-card-premium overflow-hidden hover-lift"
             >
               {/* Feature Image */}
               <div className="h-48 overflow-hidden relative">
@@ -264,7 +308,7 @@ const Features: React.FC = () => {
                   alt={feature.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
                 
                 {/* Stats overlay */}
                 <motion.div
@@ -368,7 +412,7 @@ const Features: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-slate-700"
+              className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-slate-700 hover:border-lavender-500/50"
               whileHover={{ scale: 1.02 }}
             >
               <img 

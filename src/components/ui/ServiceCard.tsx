@@ -25,7 +25,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <motion.div 
-      className="glass-card rounded-xl overflow-hidden shadow-lg h-full flex flex-col"
+      className="glass-card-premium rounded-xl overflow-hidden shadow-lg h-full flex flex-col hover-lift"
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
     >
@@ -34,7 +34,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         className="h-52 bg-cover bg-center relative"
         style={{ backgroundImage: `url(${image})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-lavender-900/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
         <div className="absolute bottom-4 left-4 right-4">
           <h3 className="text-white text-xl font-bold">{title}</h3>
           <p className="text-white/90 text-sm mt-1">{description}</p>
@@ -44,15 +44,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
         <div className="mb-4">
-          <span className="text-sm text-gray-500">Starting at</span>
-          <p className="text-2xl font-bold text-lavender-700">{price}</p>
+          <span className="text-sm text-gray-400">Starting at</span>
+          <p className="text-2xl font-bold text-lavender-400">{price}</p>
         </div>
         
         <ul className="space-y-2 mb-6 flex-grow">
           {features.map((feature, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-lavender-500 mr-2 font-bold">✓</span>
-              <span className="text-gray-700">{feature}</span>
+              <span className="text-lavender-400 mr-2 font-bold">✓</span>
+              <span className="text-gray-300">{feature}</span>
             </li>
           ))}
         </ul>
