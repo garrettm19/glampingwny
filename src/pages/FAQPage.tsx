@@ -165,23 +165,23 @@ const FAQPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section - Clean Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-900">
-        {/* Animated Stars */}
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(80)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -190,54 +190,6 @@ const FAQPage: React.FC = () => {
               }}
             />
           ))}
-          
-          {/* Shooting Stars */}
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`shooting-${i}`}
-              className="absolute w-0.5 h-0.5 bg-white rounded-full"
-              initial={{ 
-                x: -50,
-                y: Math.random() * 200,
-                opacity: 0 
-              }}
-              animate={{
-                x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                y: Math.random() * 200 + 100,
-                opacity: [0, 1, 1, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 12 + Math.random() * 5,
-                ease: "easeOut"
-              }}
-              style={{
-                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-              }}
-            />
-          ))}
-
-          {/* Moon */}
-          <motion.div
-            className="absolute top-12 right-16"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div 
-              className="w-16 h-16 bg-yellow-100 rounded-full"
-              style={{
-                boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-              }}
-            />
-          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -253,7 +205,7 @@ const FAQPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Frequently Asked Questions 🤔
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Everything you need to know about creating magical family memories with Glamping WNY.
             </p>
             
@@ -428,23 +380,23 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Quick Contact Section - Clean Starry Night */}
-      <section className="section relative overflow-hidden bg-slate-900">
-        {/* Animated Stars */}
+      {/* Quick Contact Section */}
+      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -470,7 +422,7 @@ const FAQPage: React.FC = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Still Have Questions? 💬
               </h2>
-              <p className="text-blue-100 mb-8">
+              <p className="text-white/90 mb-8">
                 Can't find what you're looking for? Our family-friendly team is here to help create your perfect glamping experience!
               </p>
               
@@ -481,21 +433,21 @@ const FAQPage: React.FC = () => {
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-bold text-white mb-2">Live Chat</h3>
-                  <p className="text-sm text-blue-100">Quick answers to simple questions</p>
+                  <p className="text-sm text-white/80">Quick answers to simple questions</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-bold text-white mb-2">24hr Response</h3>
-                  <p className="text-sm text-blue-100">We'll get back to you quickly</p>
+                  <p className="text-sm text-white/80">We'll get back to you quickly</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-bold text-white mb-2">Family Experts</h3>
-                  <p className="text-sm text-blue-100">We understand family celebrations</p>
+                  <p className="text-sm text-white/80">We understand family celebrations</p>
                 </div>
               </div>
 
@@ -519,13 +471,13 @@ const FAQPage: React.FC = () => {
               </div>
 
               <div className="mt-6 pt-6 border-t border-white/20">
-                <p className="text-sm text-blue-100">
+                <p className="text-sm text-white/80">
                   <strong>Quick Contact:</strong> Call us at{' '}
-                  <a href="tel:+17165551234" className="text-white hover:text-blue-200 font-medium">
+                  <a href="tel:+17165551234" className="text-white hover:text-white/80 font-medium">
                     (716) 555-1234
                   </a>{' '}
                   or email{' '}
-                  <a href="mailto:info@glampingwny.com" className="text-white hover:text-blue-200 font-medium">
+                  <a href="mailto:info@glampingwny.com" className="text-white hover:text-white/80 font-medium">
                     info@glampingwny.com
                   </a>
                 </p>

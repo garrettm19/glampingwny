@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Gallery from '../components/ui/Gallery';
 import VirtualTour from '../components/ui/VirtualTour';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const GalleryPage: React.FC = () => {
@@ -62,91 +62,31 @@ const GalleryPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section - Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(70)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(2)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 15 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Moon */}
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              className="absolute top-12 right-16"
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 8,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
-            >
-              <div 
-                className="w-16 h-16 bg-yellow-100 rounded-full"
-                style={{
-                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-                }}
-              />
-            </motion.div>
-          </div>
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
         
         <div className="container-custom relative z-10">
@@ -156,8 +96,11 @@ const GalleryPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center text-white"
           >
+            <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
+              <Camera className="w-8 h-8 text-white" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Gallery</h1>
-            <p className="text-xl text-blue-100 mb-6">
+            <p className="text-xl text-white/90 mb-6">
               Browse through our luxury glamping experiences and get inspired for your celebration.
             </p>
           </motion.div>
@@ -195,8 +138,33 @@ const GalleryPage: React.FC = () => {
       </section>
       
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
-        <div className="container-custom">
+      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 text-white relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -210,7 +178,7 @@ const GalleryPage: React.FC = () => {
             <p className="text-xl text-white/90 mb-8">
               Book your luxury glamping experience today.
             </p>
-            <button className="btn btn-secondary">
+            <button className="btn btn-secondary bg-white text-lavender-600 hover:bg-lavender-50">
               Book Now
             </button>
           </motion.div>

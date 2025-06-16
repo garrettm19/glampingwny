@@ -15,23 +15,23 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Clean Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-900">
-        {/* Animated Stars */}
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(80)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -40,54 +40,6 @@ const AboutPage: React.FC = () => {
               }}
             />
           ))}
-          
-          {/* Shooting Stars */}
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`shooting-${i}`}
-              className="absolute w-0.5 h-0.5 bg-white rounded-full"
-              initial={{ 
-                x: -50,
-                y: Math.random() * 200,
-                opacity: 0 
-              }}
-              animate={{
-                x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                y: Math.random() * 200 + 100,
-                opacity: [0, 1, 1, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 12 + Math.random() * 5,
-                ease: "easeOut"
-              }}
-              style={{
-                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-              }}
-            />
-          ))}
-
-          {/* Moon */}
-          <motion.div
-            className="absolute top-12 right-16"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div 
-              className="w-16 h-16 bg-yellow-100 rounded-full"
-              style={{
-                boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-              }}
-            />
-          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -95,12 +47,15 @@ const AboutPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl text-white"
+            className="max-w-3xl text-white text-center mx-auto"
           >
+            <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Our Family Story 👨‍👩‍👧‍👦
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl text-white/90">
               From backyard dreams to unforgettable family celebrations across Western New York.
             </p>
           </motion.div>
@@ -197,52 +152,25 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Family Values Section - Clean Starry Night Header */}
+      {/* Family Values Section */}
       <section className="section bg-lavender-50">
         <div className="container-custom">
-          {/* Clean Starry Night Header */}
-          <div className="relative mb-16 rounded-2xl overflow-hidden bg-slate-900">
-            <div className="relative py-16 px-8">
-              {/* Animated Stars */}
-              <div className="absolute inset-0 overflow-hidden">
-                {[...Array(40)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 0.3, 1, 0],
-                      scale: [0.5, 1, 0.8, 1.2, 0.5]
-                    }}
-                    transition={{
-                      duration: 3 + Math.random() * 4,
-                      repeat: Infinity,
-                      delay: Math.random() * 5,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                  />
-                ))}
+          {/* Clean Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+                <Heart className="w-8 h-8 text-lavender-600" />
               </div>
-
-              {/* Content */}
-              <div className="relative z-10 text-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-3xl font-bold text-white mb-4">Our Family Values 💕</h2>
-                  <p className="text-blue-100 max-w-2xl mx-auto">
-                    These core family values guide everything we do at Glamping WNY.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Family Values 💕</h2>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                These core family values guide everything we do at Glamping WNY.
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -285,52 +213,25 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Customer Testimonial - Clean Starry Night Header */}
+      {/* Customer Testimonial */}
       <section className="section bg-white">
         <div className="container-custom">
-          {/* Clean Starry Night Header */}
-          <div className="relative mb-16 rounded-2xl overflow-hidden bg-slate-900">
-            <div className="relative py-16 px-8">
-              {/* Animated Stars */}
-              <div className="absolute inset-0 overflow-hidden">
-                {[...Array(35)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white rounded-full"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: [0, 1, 0.3, 1, 0],
-                      scale: [0.5, 1, 0.8, 1.2, 0.5]
-                    }}
-                    transition={{
-                      duration: 3 + Math.random() * 4,
-                      repeat: Infinity,
-                      delay: Math.random() * 5,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                  />
-                ))}
+          {/* Clean Header */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+                <Star className="w-8 h-8 text-lavender-600" />
               </div>
-
-              {/* Content */}
-              <div className="relative z-10 text-center">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-3xl font-bold text-white mb-4">What Families Say About Holly 🌟</h2>
-                  <p className="text-blue-100 max-w-2xl mx-auto">
-                    Real feedback from real families about their experience with our team.
-                  </p>
-                </motion.div>
-              </div>
-            </div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">What Families Say About Holly 🌟</h2>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                Real feedback from real families about their experience with our team.
+              </p>
+            </motion.div>
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -346,23 +247,23 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section - Clean Starry Night */}
-      <section className="section relative overflow-hidden bg-slate-900">
-        {/* Animated Stars */}
+      {/* CTA Section */}
+      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(60)].map((_, i) => (
+          {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -384,7 +285,7 @@ const AboutPage: React.FC = () => {
             <h2 className="text-3xl font-bold mb-6 text-white">
               Ready to Create Family Magic Together? ✨
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Let's start planning your most memorable family celebration yet!
             </p>
             <div className="flex flex-wrap justify-center gap-4">

@@ -87,100 +87,31 @@ const KidsSpaPartyPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(80)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 12 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Magical Spa Glow Effects */}
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={`glow-${i}`}
-                className="absolute"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.3, 0.5, 0.3, 0],
-                  scale: [0, 1.5, 2, 1.5, 0],
-                  x: Math.random() * 100 - 50,
-                  y: Math.random() * 100 - 50
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  delay: i * 2,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${30 + (i % 3) * 20}%`,
-                  background: 'radial-gradient(circle, rgba(216, 180, 254, 0.3) 0%, rgba(192, 132, 252, 0.2) 50%, transparent 80%)',
-                  width: '100px',
-                  height: '100px',
-                  borderRadius: '50%',
-                  filter: 'blur(15px)'
-                }}
-              />
-            ))}
-          </div>
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
         
         <div className="container-custom relative z-10">
@@ -196,7 +127,7 @@ const KidsSpaPartyPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Kids Spa Party Add-On 👑✨
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Transform your glamping experience into the ultimate spa adventure! 
               Add magical spa activities to any glamping package and save money.
             </p>
@@ -550,100 +481,31 @@ const KidsSpaPartyPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section - Starry Night */}
-      <section className="section relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(80)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 12 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Magical Spa Glow Effects */}
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={`glow-${i}`}
-                className="absolute"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ 
-                  opacity: [0, 0.3, 0.5, 0.3, 0],
-                  scale: [0, 1.5, 2, 1.5, 0],
-                  x: Math.random() * 100 - 50,
-                  y: Math.random() * 100 - 50
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  delay: i * 2,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${20 + i * 15}%`,
-                  top: `${30 + (i % 3) * 20}%`,
-                  background: 'radial-gradient(circle, rgba(216, 180, 254, 0.3) 0%, rgba(192, 132, 252, 0.2) 50%, transparent 80%)',
-                  width: '100px',
-                  height: '100px',
-                  borderRadius: '50%',
-                  filter: 'blur(15px)'
-                }}
-              />
-            ))}
-          </div>
+      {/* CTA Section */}
+      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
 
         <div className="container-custom relative z-10">
@@ -657,7 +519,7 @@ const KidsSpaPartyPage: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Ready to Book Your Glamping + Spa Bundle? 👑✨
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Save $75 and give your kids the ultimate adventure and relaxation experience!
             </p>
             

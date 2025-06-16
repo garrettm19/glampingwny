@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ui/ContactForm';
 import ServiceAreaMap from '../components/ui/ServiceAreaMap';
-import { Phone, Mail, MapPin, Clock, Star } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Star, Heart } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   return (
@@ -33,23 +33,23 @@ const ContactPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section - Clean Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-900">
-        {/* Animated Stars */}
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(80)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0, 1, 0.3, 1, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
               style={{
@@ -58,54 +58,6 @@ const ContactPage: React.FC = () => {
               }}
             />
           ))}
-          
-          {/* Shooting Stars */}
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`shooting-${i}`}
-              className="absolute w-0.5 h-0.5 bg-white rounded-full"
-              initial={{ 
-                x: -50,
-                y: Math.random() * 200,
-                opacity: 0 
-              }}
-              animate={{
-                x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                y: Math.random() * 200 + 100,
-                opacity: [0, 1, 1, 0]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: i * 12 + Math.random() * 5,
-                ease: "easeOut"
-              }}
-              style={{
-                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-              }}
-            />
-          ))}
-
-          {/* Moon */}
-          <motion.div
-            className="absolute top-12 right-16"
-            animate={{
-              opacity: [0.7, 1, 0.7],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div 
-              className="w-16 h-16 bg-yellow-100 rounded-full"
-              style={{
-                boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-              }}
-            />
-          </motion.div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -115,8 +67,11 @@ const ContactPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center text-white"
           >
+            <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch 💬</h1>
-            <p className="text-xl text-blue-100 mb-6">
+            <p className="text-xl text-white/90 mb-6">
               Questions about our family experiences? We'd love to hear from you!
             </p>
             <div className="inline-block bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3">

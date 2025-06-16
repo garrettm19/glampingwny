@@ -342,91 +342,31 @@ const ServicesPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Starry Night */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, 
-              #0f172a 0%, 
-              #1e293b 25%, 
-              #334155 50%, 
-              #1e293b 75%, 
-              #0f172a 100%)`
-          }}
-        >
-          {/* Animated Stars */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(80)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: [0, 1, 0.3, 1, 0],
-                  scale: [0.5, 1, 0.8, 1.2, 0.5]
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "easeInOut"
-                }}
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-              />
-            ))}
-            
-            {/* Shooting Stars */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute w-0.5 h-0.5 bg-white rounded-full"
-                initial={{ 
-                  x: -50,
-                  y: Math.random() * 200,
-                  opacity: 0 
-                }}
-                animate={{
-                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
-                  y: Math.random() * 200 + 100,
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 12 + Math.random() * 5,
-                  ease: "easeOut"
-                }}
-                style={{
-                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
-                }}
-              />
-            ))}
-
-            {/* Moon */}
+      {/* Hero Section - Clean Professional */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              className="absolute top-12 right-16"
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
               animate={{
-                opacity: [0.7, 1, 0.7],
-                scale: [1, 1.05, 1]
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 8,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
+                delay: Math.random() * 3,
                 ease: "easeInOut"
               }}
-            >
-              <div 
-                className="w-16 h-16 bg-yellow-100 rounded-full"
-                style={{
-                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
-                }}
-              />
-            </motion.div>
-          </div>
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
         </div>
         
         <div className="container-custom relative z-10">
@@ -436,8 +376,11 @@ const ServicesPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto text-center text-white"
           >
+            <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
+              <Tent className="w-8 h-8 text-white" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Family Packages 🏕️</h1>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               Choose from our carefully designed indoor and outdoor packages or customize your own magical family experience.
             </p>
             
@@ -610,7 +553,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handlePackageClick(basePackage.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Reserve Base Package
@@ -706,7 +649,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handlePackageClick(additionalTent.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-teal-500 to-lavender-500 hover:from-teal-600 hover:to-lavender-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Add Extra Tent
@@ -776,7 +719,7 @@ const ServicesPage: React.FC = () => {
                   <Link
                     to="/book-now"
                     onClick={() => handleAddonClick(addon.title)}
-                    className="block w-full text-center py-3 px-4 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold rounded-lg transition-all duration-300 group"
+                    className="block w-full text-center py-3 px-4 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-semibold rounded-lg transition-all duration-300 group"
                   >
                     <span className="flex items-center justify-center gap-2">
                       Add to Package
@@ -1136,7 +1079,32 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
+      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 text-white relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.8, 0.3],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
         <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
