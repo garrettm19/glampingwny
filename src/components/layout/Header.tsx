@@ -54,7 +54,7 @@ const Header: React.FC = () => {
     <motion.header 
       className={`fixed w-full z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-white/20 py-3' 
+          ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-lavender-200/20 py-3' 
           : 'bg-transparent py-4'
       }`}
       role="banner"
@@ -98,8 +98,8 @@ const Header: React.FC = () => {
                   <button
                     className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group flex items-center gap-1 ${
                       isScrolled 
-                        ? 'text-gray-700 hover:text-primary-600' 
-                        : 'text-white hover:text-primary-300'
+                        ? 'text-gray-700 hover:text-lavender-600' 
+                        : 'text-white hover:text-lavender-300'
                     }`}
                   >
                     <span className="relative z-10">{link.name}</span>
@@ -109,7 +109,7 @@ const Header: React.FC = () => {
                     <motion.div
                       className={`absolute inset-0 rounded-lg ${
                         isScrolled 
-                          ? 'bg-primary-50' 
+                          ? 'bg-lavender-50' 
                           : 'bg-white/10'
                       }`}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -126,14 +126,14 @@ const Header: React.FC = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50"
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-lavender-200 py-2 z-50"
                       >
                         {link.dropdownItems?.map((item, i) => (
                           <Link
                             key={i}
                             to={item.path}
                             onClick={() => handleNavClick(item.name.toLowerCase())}
-                            className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                            className="block px-4 py-2 text-gray-700 hover:bg-lavender-50 hover:text-lavender-600 transition-colors"
                           >
                             {item.name}
                           </Link>
@@ -148,8 +148,8 @@ const Header: React.FC = () => {
                   onClick={() => handleNavClick(link.name.toLowerCase())}
                   className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
                     isScrolled 
-                      ? 'text-gray-700 hover:text-primary-600' 
-                      : 'text-white hover:text-primary-300'
+                      ? 'text-gray-700 hover:text-lavender-600' 
+                      : 'text-white hover:text-lavender-300'
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
@@ -158,7 +158,7 @@ const Header: React.FC = () => {
                   <motion.div
                     className={`absolute inset-0 rounded-lg ${
                       isScrolled 
-                        ? 'bg-primary-50' 
+                        ? 'bg-lavender-50' 
                         : 'bg-white/10'
                     }`}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -169,7 +169,7 @@ const Header: React.FC = () => {
                   {/* Active indicator */}
                   {location.pathname === link.path && (
                     <motion.div
-                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary-500 rounded-full"
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-lavender-500 rounded-full"
                       layoutId="activeIndicator"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -187,8 +187,8 @@ const Header: React.FC = () => {
               href="tel:+17165551234"
               className={`flex items-center gap-2 transition-all duration-300 group ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-primary-600' 
-                  : 'text-white hover:text-primary-300'
+                  ? 'text-gray-700 hover:text-lavender-600' 
+                  : 'text-white hover:text-lavender-300'
               }`}
               onClick={() => trackEvent('Contact', 'phone_click', 'header')}
               whileHover={{ scale: 1.02 }}
@@ -242,7 +242,7 @@ const Header: React.FC = () => {
           >
             <Link 
               to="/book-now" 
-              className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
               onClick={() => handleNavClick('book_now')}
               aria-label="Book Now"
             >
@@ -261,7 +261,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+          className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-400"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
@@ -330,16 +330,16 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Mobile Contact Info */}
-                <div className="p-6 bg-gradient-to-br from-primary-50 to-blue-50 border-b border-gray-100">
+                <div className="p-6 bg-gradient-to-br from-lavender-50 to-teal-50 border-b border-gray-100">
                   <div className="space-y-4">
                     <motion.a 
                       href="tel:+17165551234"
-                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-primary-600 transition-colors group"
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-lavender-600 transition-colors group"
                       onClick={() => trackEvent('Contact', 'phone_click', 'mobile_menu')}
                       whileHover={{ x: 5 }}
                     >
-                      <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center group-hover:bg-primary-200 transition-colors">
-                        <Phone className="w-5 h-5 text-primary-600" />
+                      <div className="w-12 h-12 bg-lavender-100 rounded-xl flex items-center justify-center group-hover:bg-lavender-200 transition-colors">
+                        <Phone className="w-5 h-5 text-lavender-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Call Us</div>
@@ -349,12 +349,12 @@ const Header: React.FC = () => {
                     
                     <motion.a 
                       href="mailto:info@glampingwny.com"
-                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-primary-600 transition-colors group"
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-lavender-600 transition-colors group"
                       onClick={() => trackEvent('Contact', 'email_click', 'mobile_menu')}
                       whileHover={{ x: 5 }}
                     >
-                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                        <Mail className="w-5 h-5 text-blue-600" />
+                      <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center group-hover:bg-teal-200 transition-colors">
+                        <Mail className="w-5 h-5 text-teal-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Email Us</div>
@@ -378,7 +378,7 @@ const Header: React.FC = () => {
                           <div>
                             <Link
                               to={link.path}
-                              className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
+                              className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-lavender-50 hover:text-lavender-600 rounded-xl transition-all duration-200"
                               onClick={() => handleNavClick(link.name.toLowerCase())}
                             >
                               {link.name}
@@ -388,7 +388,7 @@ const Header: React.FC = () => {
                                 <Link
                                   key={i}
                                   to={item.path}
-                                  className="block px-4 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-all duration-200"
+                                  className="block px-4 py-2 text-gray-600 hover:bg-lavender-50 hover:text-lavender-600 rounded-lg transition-all duration-200"
                                   onClick={() => handleNavClick(item.name.toLowerCase())}
                                 >
                                   {item.name}
@@ -399,7 +399,7 @@ const Header: React.FC = () => {
                         ) : (
                           <Link
                             to={link.path}
-                            className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
+                            className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-lavender-50 hover:text-lavender-600 rounded-xl transition-all duration-200"
                             onClick={() => handleNavClick(link.name.toLowerCase())}
                           >
                             {link.name}
@@ -417,7 +417,7 @@ const Header: React.FC = () => {
                   >
                     <Link 
                       to="/book-now" 
-                      className="block w-full text-center bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="block w-full text-center bg-gradient-to-r from-lavender-500 to-teal-500 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       onClick={() => handleNavClick('book_now_mobile')}
                     >
                       Book Your Experience
