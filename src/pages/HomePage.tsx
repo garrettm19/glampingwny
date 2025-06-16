@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-teal-50 border-b border-teal-200">
+      <section className="py-6 bg-slate-800/80 border-b border-slate-700">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -96,10 +96,10 @@ const HomePage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-teal-600" />
-              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-teal-400" />
+              <span className="font-bold text-teal-300">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-teal-700">
+            <p className="text-teal-200">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -110,7 +110,7 @@ const HomePage: React.FC = () => {
       <Features />
       
       {/* Virtual Tour Section - Starry Night Header */}
-      <section id="virtual-tour" className="section bg-white">
+      <section id="virtual-tour" className="section dark-section">
         <div className="container-custom">
           {/* Starry Night Header */}
           <div className="relative mb-12 rounded-2xl overflow-hidden">
@@ -234,7 +234,7 @@ const HomePage: React.FC = () => {
       <Services />
 
       {/* Service Area Map Section - Starry Night Header */}
-      <section className="section bg-gray-50">
+      <section className="section dark-section-alt">
         <div className="container-custom">
           {/* Starry Night Header */}
           <div className="relative mb-12 rounded-2xl overflow-hidden">
@@ -305,7 +305,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Family Checklist Download Section */}
-      <section className="section bg-lavender-50">
+      <section className="section dark-section">
         <div className="container-custom max-w-3xl">
           <ChecklistDownload />
         </div>
@@ -317,7 +317,7 @@ const HomePage: React.FC = () => {
       <section 
         className="relative py-24 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(183, 148, 244, 0.9), rgba(45, 212, 191, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
+          backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)), url('https://picsum.photos/1920/1080?random=101')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
