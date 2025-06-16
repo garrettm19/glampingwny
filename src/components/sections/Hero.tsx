@@ -51,9 +51,9 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
 
-      {/* Beautiful Firefly Effect */}
+      {/* Enhanced Magical Firefly Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+        {[...Array(isMobile ? 12 : 25)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
@@ -73,21 +73,68 @@ const Hero: React.FC = () => {
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800)
               ],
-              opacity: [0, 0.9, 0.3, 0.8, 0],
-              scale: [1, 1.4, 0.6, 1.3, 1]
+              opacity: [0, 1, 0.3, 0.9, 0],
+              scale: [0.5, 1.5, 0.8, 1.2, 0.5]
             }}
             transition={{
-              duration: 12 + Math.random() * 8,
+              duration: 8 + Math.random() * 6,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 8
+              delay: Math.random() * 5
             }}
           >
             <div 
-              className="w-2 h-2 bg-lavender-300 rounded-full firefly"
+              className="w-3 h-3 rounded-full"
               style={{
-                boxShadow: '0 0 12px 4px rgba(183, 148, 244, 0.8), 0 0 20px 6px rgba(45, 212, 191, 0.4)',
-                background: 'radial-gradient(circle, rgba(183, 148, 244, 0.95) 0%, rgba(45, 212, 191, 0.6) 60%, transparent 100%)'
+                background: `radial-gradient(circle, 
+                  rgba(255, 255, 255, 1) 0%, 
+                  rgba(183, 148, 244, 0.9) 30%, 
+                  rgba(45, 212, 191, 0.7) 60%, 
+                  transparent 100%)`,
+                boxShadow: `
+                  0 0 8px 2px rgba(255, 255, 255, 0.8),
+                  0 0 16px 4px rgba(183, 148, 244, 0.6),
+                  0 0 24px 6px rgba(45, 212, 191, 0.4),
+                  0 0 32px 8px rgba(183, 148, 244, 0.2)
+                `,
+                filter: 'blur(0.5px)'
+              }}
+            />
+          </motion.div>
+        ))}
+        
+        {/* Additional Sparkle Layer */}
+        {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+          <motion.div
+            key={`sparkle-${i}`}
+            className="absolute"
+            initial={{ 
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+              opacity: 0,
+              scale: 0
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: 2 + Math.random() * 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 4
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          >
+            <div 
+              className="w-1 h-1 rounded-full"
+              style={{
+                background: 'rgba(255, 255, 255, 0.9)',
+                boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.6), 0 0 12px 4px rgba(183, 148, 244, 0.4)'
               }}
             />
           </motion.div>
