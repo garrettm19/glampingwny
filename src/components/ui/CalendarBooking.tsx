@@ -506,22 +506,18 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
     const isCheckIn = (day === 15 || day === 22) && booking?.available;
     const isCheckOut = (day === 18 || day === 25) && booking?.available;
     
-    let cellClass = "h-10 border-r border-b border-gray-100 flex items-center justify-center text-xs cursor-pointer transition-all duration-200 relative ";
+    let cellClass = "h-12 w-full border border-gray-200 flex items-center justify-center text-sm font-medium cursor-pointer transition-all duration-200 relative ";
     
     if (isPast) {
-      cellClass += "text-gray-300 cursor-not-allowed ";
+      cellClass += "text-gray-300 cursor-not-allowed bg-gray-50 ";
     } else if (booking?.available) {
       if (isSelected) {
-        cellClass += "bg-purple-600 text-white font-bold ";
-      } else if (isCheckIn) {
-        cellClass += "bg-purple-600 text-white relative ";
-      } else if (isCheckOut) {
-        cellClass += "bg-purple-600 text-white relative ";
+        cellClass += "bg-purple-600 text-white shadow-lg ";
       } else {
-        cellClass += "bg-purple-600 text-white hover:bg-purple-700 ";
+        cellClass += "bg-purple-100 text-purple-800 hover:bg-purple-200 ";
       }
     } else {
-      cellClass += "bg-gray-300 text-gray-500 cursor-not-allowed ";
+      cellClass += "bg-gray-100 text-gray-400 cursor-not-allowed ";
     }
 
     return { cellClass, isCheckIn, isCheckOut };
@@ -545,114 +541,114 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
       {/* Package Type Selection */}
       <div className="mb-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Choose Your Package Type</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Choose Your Experience</h2>
           <div className="flex justify-center gap-4">
             <button
               onClick={() => setSelectedPackageType('indoor')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 selectedPackageType === 'indoor'
-                  ? 'bg-purple-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-purple-500 text-white shadow-lg transform scale-105'
+                  : 'bg-white text-gray-700 hover:bg-purple-50 border-2 border-purple-200'
               }`}
             >
-              Indoor Glamping
+              🏠 Indoor Glamping
             </button>
             <button
               onClick={() => setSelectedPackageType('outdoor')}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                 selectedPackageType === 'outdoor'
-                  ? 'bg-green-500 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-green-50'
+                  ? 'bg-green-500 text-white shadow-lg transform scale-105'
+                  : 'bg-white text-gray-700 hover:bg-green-50 border-2 border-green-200'
               }`}
             >
-              Outdoor Glamping
+              🌲 Outdoor Glamping
             </button>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
-        {/* Calendar Section */}
-        <div className="xl:col-span-3 order-1">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Calendar Section - Now takes up more space */}
+        <div className="lg:col-span-3 order-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="glass-card p-6"
+            className="bg-white rounded-2xl shadow-xl p-8 border border-purple-100"
           >
             {/* Calendar Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-8">
               <motion.button
                 onClick={() => navigateMonths('prev')}
-                className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                className="p-3 hover:bg-purple-50 rounded-xl transition-colors border border-purple-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <ChevronLeft className="w-5 h-5 text-purple-600" />
+                <ChevronLeft className="w-6 h-6 text-purple-600" />
               </motion.button>
               
-              <h2 className="text-xl font-bold text-purple-900">
-                Select Your Date
+              <h2 className="text-2xl font-bold text-purple-900">
+                Select Your Perfect Date
               </h2>
               
               <motion.button
                 onClick={() => navigateMonths('next')}
-                className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                className="p-3 hover:bg-purple-50 rounded-xl transition-colors border border-purple-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <ChevronRight className="w-5 h-5 text-purple-600" />
+                <ChevronRight className="w-6 h-6 text-purple-600" />
               </motion.button>
             </div>
 
             {/* Legend */}
-            <div className="flex items-center justify-center gap-6 mb-6 text-xs">
+            <div className="flex items-center justify-center gap-8 mb-8 p-4 bg-purple-50 rounded-xl">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-purple-600 rounded"></div>
-                <span className="text-gray-600">Available</span>
+                <div className="w-5 h-5 bg-purple-100 rounded border border-purple-200"></div>
+                <span className="text-purple-800 font-medium">Available</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-gray-300 rounded"></div>
-                <span className="text-gray-600">Unavailable</span>
+                <div className="w-5 h-5 bg-gray-100 rounded border border-gray-200"></div>
+                <span className="text-gray-600 font-medium">Unavailable</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-purple-600 rounded relative">
-                  <div className="absolute inset-0 bg-purple-800 transform rotate-45 origin-bottom-left"></div>
+                <div className="w-5 h-5 bg-purple-600 rounded relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-0 h-0 border-l-[10px] border-l-purple-800 border-b-[10px] border-b-transparent"></div>
                 </div>
-                <span className="text-gray-600">Check-In</span>
+                <span className="text-purple-800 font-medium">Check-In</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-purple-600 rounded relative">
-                  <div className="absolute inset-0 bg-purple-800 transform -rotate-45 origin-bottom-right"></div>
+                <div className="w-5 h-5 bg-purple-600 rounded relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-0 h-0 border-r-[10px] border-r-purple-800 border-b-[10px] border-b-transparent"></div>
                 </div>
-                <span className="text-gray-600">Check-Out</span>
+                <span className="text-purple-800 font-medium">Check-Out</span>
               </div>
             </div>
 
             {/* Multi-Month Calendar Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {getMonthsToShow().map((monthDate, monthIndex) => (
-                <div key={monthIndex} className="bg-white rounded-lg border border-gray-200">
+                <div key={monthIndex} className="bg-gradient-to-b from-purple-50 to-white rounded-xl border border-purple-200 overflow-hidden">
                   {/* Month Header */}
-                  <div className="bg-purple-900 text-white text-center py-3 rounded-t-lg">
-                    <h3 className="font-bold text-sm">
-                      {monthNames[monthDate.getMonth()].toUpperCase()} {monthDate.getFullYear()}
+                  <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white text-center py-4">
+                    <h3 className="font-bold text-lg">
+                      {monthNames[monthDate.getMonth()]} {monthDate.getFullYear()}
                     </h3>
                   </div>
 
                   {/* Day Headers */}
-                  <div className="grid grid-cols-7 border-b border-gray-200">
+                  <div className="grid grid-cols-7 bg-purple-100">
                     {dayNames.map((day) => (
-                      <div key={day} className="p-2 text-center text-xs font-medium text-gray-600 bg-gray-50">
+                      <div key={day} className="p-3 text-center text-sm font-bold text-purple-800">
                         {day}
                       </div>
                     ))}
                   </div>
 
                   {/* Calendar Grid */}
-                  <div className="grid grid-cols-7">
+                  <div className="grid grid-cols-7 gap-0">
                     {getDaysInMonth(monthDate).map((date, index) => {
                       if (!date) {
-                        return <div key={index} className="h-10 border-r border-b border-gray-100" />;
+                        return <div key={index} className="h-12 border border-gray-100" />;
                       }
 
                       const booking = getBookingForDate(date);
@@ -673,19 +669,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                           onClick={() => !isPast && handleDateSelect(date)}
                           disabled={isPast || !booking?.available}
                           className={finalCellClass}
-                          whileHover={booking?.available && !isPast ? { scale: 1.1 } : {}}
+                          whileHover={booking?.available && !isPast ? { scale: 1.05 } : {}}
                           whileTap={booking?.available && !isPast ? { scale: 0.95 } : {}}
                         >
                           {date.getDate()}
                           
-                          {/* Check-in diagonal stripe */}
+                          {/* Check-in corner triangle */}
                           {isCheckIn && (
-                            <div className="absolute inset-0 bg-purple-800 transform rotate-45 origin-bottom-left opacity-50"></div>
+                            <div className="absolute top-0 left-0 w-0 h-0 border-l-[12px] border-l-purple-800 border-b-[12px] border-b-transparent"></div>
                           )}
                           
-                          {/* Check-out diagonal stripe */}
+                          {/* Check-out corner triangle */}
                           {isCheckOut && (
-                            <div className="absolute inset-0 bg-purple-800 transform -rotate-45 origin-bottom-right opacity-50"></div>
+                            <div className="absolute top-0 right-0 w-0 h-0 border-r-[12px] border-r-purple-800 border-b-[12px] border-b-transparent"></div>
                           )}
                         </motion.button>
                       );
@@ -696,24 +692,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-center mt-6 gap-4">
+            <div className="flex justify-center mt-8 gap-4">
               <button
                 onClick={() => navigateMonths('prev')}
-                className="px-6 py-2 bg-purple-900 text-white rounded font-medium hover:bg-purple-800 transition-colors"
+                className="px-8 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg"
               >
-                PREV
+                ← Previous
               </button>
               <button
                 onClick={() => navigateMonths('next')}
-                className="px-6 py-2 bg-purple-900 text-white rounded font-medium hover:bg-purple-800 transition-colors"
+                className="px-8 py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg"
               >
-                NEXT
+                Next →
               </button>
-            </div>
-
-            {/* Drag for Availability Note */}
-            <div className="text-center mt-4 text-gray-500 text-sm">
-              ← Drag for Availability
             </div>
           </motion.div>
 
@@ -722,17 +713,17 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="glass-card p-6 mt-6"
+              className="bg-white rounded-2xl shadow-xl p-8 mt-8 border border-purple-100"
             >
-              <h3 className="text-xl font-bold text-purple-900 mb-6">Select Setup Time</h3>
+              <h3 className="text-2xl font-bold text-purple-900 mb-6">Select Your Setup Time</h3>
               
               {/* Selected Date Display */}
-              <div className="bg-purple-50 rounded-lg p-4 mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-4 h-4 text-purple-600" />
-                  <span className="font-medium text-purple-900">Selected Date</span>
+              <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 mb-6">
+                <div className="flex items-center gap-3 mb-2">
+                  <Calendar className="w-6 h-6 text-purple-600" />
+                  <span className="font-bold text-purple-900 text-lg">Selected Date</span>
                 </div>
-                <p className="text-purple-700 font-bold">
+                <p className="text-purple-800 font-bold text-xl">
                   {new Date(selectedDate).toLocaleDateString('en-US', {
                     weekday: 'long',
                     year: 'numeric',
@@ -744,19 +735,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
 
               {/* Time Selection */}
               <div className="mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <Clock className="w-4 h-4 text-purple-600" />
-                  <span className="font-medium text-purple-900">Setup Time</span>
+                <div className="flex items-center gap-3 mb-4">
+                  <Clock className="w-6 h-6 text-purple-600" />
+                  <span className="font-bold text-purple-900 text-lg">Setup Time</span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {bookingData.find(b => b.date === selectedDate)?.timeSlots.map((timeSlot) => (
                     <motion.label
                       key={timeSlot.time}
                       className={`block cursor-pointer ${
                         selectedTime === timeSlot.time 
-                          ? 'ring-2 ring-purple-500' 
+                          ? 'ring-4 ring-purple-300' 
                           : timeSlot.available
-                            ? 'hover:ring-2 hover:ring-purple-300'
+                            ? 'hover:ring-2 hover:ring-purple-200'
                             : 'opacity-50 cursor-not-allowed'
                       }`}
                       whileHover={timeSlot.available ? { scale: 1.02 } : {}}
@@ -771,16 +762,22 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                         disabled={!timeSlot.available}
                         className="sr-only"
                       />
-                      <div className="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg">
-                        <div>
-                          <span className="font-medium text-gray-900">{timeSlot.time}</span>
+                      <div className={`p-6 border-2 rounded-xl transition-all duration-300 ${
+                        selectedTime === timeSlot.time
+                          ? 'border-purple-500 bg-purple-50'
+                          : timeSlot.available
+                            ? 'border-gray-200 bg-white hover:border-purple-300'
+                            : 'border-gray-200 bg-gray-50'
+                      }`}>
+                        <div className="text-center">
+                          <span className="font-bold text-gray-900 text-lg block mb-2">{timeSlot.time}</span>
                           {!timeSlot.available && (
-                            <div className="text-xs text-red-600 mt-1">Fully Booked</div>
+                            <div className="text-sm text-red-600 font-medium">Fully Booked</div>
+                          )}
+                          {selectedTime === timeSlot.time && (
+                            <Check className="w-6 h-6 text-purple-600 mx-auto mt-2" />
                           )}
                         </div>
-                        {selectedTime === timeSlot.time && (
-                          <Check className="w-5 h-5 text-purple-600" />
-                        )}
                       </div>
                     </motion.label>
                   ))}
@@ -790,23 +787,23 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
           )}
         </div>
 
-        {/* Service Selection Sidebar */}
-        <div className="xl:col-span-1 order-2">
+        {/* Service Selection Sidebar - Now more compact */}
+        <div className="lg:col-span-1 order-2">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="glass-card p-6 sticky top-8"
+            className="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border border-purple-100"
           >
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-8 h-8 text-purple-600" />
               </div>
               <h3 className="text-xl font-bold text-purple-900 mb-2">Build Your Package</h3>
-              <p className="text-gray-600 text-sm">Select services for your {selectedPackageType} celebration</p>
+              <p className="text-gray-600 text-sm">Customize your {selectedPackageType} experience</p>
               {selectedDate && selectedTime && (
-                <div className="mt-3 p-2 bg-blue-50 rounded-lg">
+                <div className="mt-3 p-3 bg-blue-50 rounded-lg">
                   <p className="text-xs text-blue-700 font-medium">
-                    Showing availability for {selectedTime} on {new Date(selectedDate).toLocaleDateString()}
+                    {selectedTime} on {new Date(selectedDate).toLocaleDateString()}
                   </p>
                 </div>
               )}
@@ -816,7 +813,7 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             <div className="mb-6">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
                 <Star className="w-4 h-4 text-purple-600" />
-                Base Package (Choose One)
+                Base Package
               </h4>
               <div className="space-y-2">
                 {getFilteredServices().filter(s => s.category === 'base').map((service) => {
@@ -836,23 +833,19 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="font-medium text-gray-800 text-sm">{service.name}</div>
-                          <div className="text-xs text-gray-600">{service.description}</div>
+                          <div className="font-medium text-gray-800 text-sm">{service.shortName}</div>
                           <div className="text-purple-600 font-bold">${service.price}</div>
                           
                           {/* Inventory Status */}
                           {selectedDate && selectedTime && (
-                            <div className="mt-1 flex items-center gap-1">
-                              <Package className="w-3 h-3 text-gray-500" />
+                            <div className="mt-1">
                               <span className={`text-xs font-medium ${
                                 inventory.status === 'none' ? 'text-red-600' :
                                 inventory.status === 'low' ? 'text-orange-600' :
-                                inventory.status === 'medium' ? 'text-yellow-600' :
                                 'text-green-600'
                               }`}>
                                 {inventory.status === 'none' ? 'Sold Out' :
-                                 inventory.status === 'low' ? `Only ${inventory.available} left` :
-                                 inventory.status === 'medium' ? `${inventory.available} available` :
+                                 inventory.status === 'low' ? `${inventory.available} left` :
                                  'Available'}
                               </span>
                             </div>
@@ -888,24 +881,14 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
               </div>
             </div>
 
-            {/* Additional Tents */}
+            {/* Add-ons - Compact view */}
             <div className="mb-6">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Plus className="w-4 h-4 text-blue-600" />
-                Additional Tents
+                <Heart className="w-4 h-4 text-pink-600" />
+                Add-ons
               </h4>
-              {!hasBasePackage() && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-3">
-                  <div className="flex items-start gap-2">
-                    <AlertCircle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                    <p className="text-yellow-800 text-xs">
-                      Select a base package first to add extra tents
-                    </p>
-                  </div>
-                </div>
-              )}
-              <div className="space-y-2">
-                {getFilteredServices().filter(s => s.category === 'tent').map((service) => {
+              <div className="space-y-2 max-h-48 overflow-y-auto">
+                {getFilteredServices().filter(s => s.category === 'addon').slice(0, 5).map((service) => {
                   const inventory = getInventoryStatus(service.id);
                   const currentQuantity = selectedServices[service.id] || 0;
                   const canAdd = canAddService(service);
@@ -913,133 +896,32 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
                   return (
                     <div
                       key={service.id}
-                      className={`p-3 border-2 rounded-lg transition-all duration-200 ${
-                        !canAdd ? 'opacity-50' : 'hover:border-blue-300'
+                      className={`p-2 border rounded-lg transition-all duration-200 ${
+                        service.requiresBase && !hasBasePackage() ? 'opacity-50' : 'hover:border-pink-300'
                       } border-gray-200`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="font-medium text-gray-800 text-sm">{service.name}</div>
-                          <div className="text-xs text-gray-600">{service.description}</div>
-                          <div className="text-blue-600 font-bold">${service.price}</div>
-                          
-                          {/* Inventory Status */}
-                          {selectedDate && selectedTime && (
-                            <div className="mt-1 flex items-center gap-1">
-                              <Package className="w-3 h-3 text-gray-500" />
-                              <span className={`text-xs font-medium ${
-                                inventory.status === 'none' ? 'text-red-600' :
-                                inventory.status === 'low' ? 'text-orange-600' :
-                                inventory.status === 'medium' ? 'text-yellow-600' :
-                                'text-green-600'
-                              }`}>
-                                {inventory.status === 'none' ? 'Sold Out' :
-                                 inventory.status === 'low' ? `Only ${inventory.available} left` :
-                                 `${inventory.available} available`}
-                              </span>
-                            </div>
-                          )}
+                          <div className="font-medium text-gray-800 text-xs">{service.shortName}</div>
+                          <div className="text-pink-600 font-bold text-sm">${service.price}</div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
                           <button
                             onClick={() => handleServiceQuantityChange(service.id, -1)}
                             disabled={!currentQuantity || !canAdd}
-                            className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
+                            className="w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
                           >
-                            <Minus className="w-3 h-3" />
+                            <Minus className="w-2 h-2" />
                           </button>
-                          <span className="w-6 text-center text-sm font-medium">
+                          <span className="w-4 text-center text-xs font-medium">
                             {currentQuantity}
                           </span>
                           <button
                             onClick={() => handleServiceQuantityChange(service.id, 1)}
                             disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
-                            className="w-6 h-6 rounded-full bg-blue-200 hover:bg-blue-300 disabled:opacity-50 flex items-center justify-center"
+                            className="w-5 h-5 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
                           >
-                            <Plus className="w-3 h-3" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Add-ons */}
-            <div className="mb-6">
-              <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Heart className="w-4 h-4 text-pink-600" />
-                Add-ons & Enhancements
-              </h4>
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {getFilteredServices().filter(s => s.category === 'addon').map((service) => {
-                  const inventory = getInventoryStatus(service.id);
-                  const currentQuantity = selectedServices[service.id] || 0;
-                  const canAdd = canAddService(service);
-                  
-                  return (
-                    <div
-                      key={service.id}
-                      className={`p-3 border-2 rounded-lg transition-all duration-200 ${
-                        service.requiresBase && !hasBasePackage() ? 'opacity-50' : 'hover:border-pink-300'
-                      } border-gray-200 ${service.id === 'spa-party-addon' ? 'ring-2 ring-green-200 bg-green-50' : ''}`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-800 text-sm flex items-center gap-2">
-                            {service.name}
-                            {service.id === 'spa-party-addon' && (
-                              <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                Save $75!
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-xs text-gray-600">{service.description}</div>
-                          <div className={`font-bold ${service.id === 'spa-party-addon' ? 'text-green-600' : 'text-pink-600'}`}>
-                            ${service.price}
-                          </div>
-                          
-                          {/* Inventory Status */}
-                          {selectedDate && selectedTime && (
-                            <div className="mt-1 flex items-center gap-1">
-                              <Package className="w-3 h-3 text-gray-500" />
-                              <span className={`text-xs font-medium ${
-                                inventory.status === 'none' ? 'text-red-600' :
-                                inventory.status === 'low' ? 'text-orange-600' :
-                                inventory.status === 'medium' ? 'text-yellow-600' :
-                                'text-green-600'
-                              }`}>
-                                {inventory.status === 'none' ? 'Sold Out' :
-                                 inventory.status === 'low' ? `Only ${inventory.available} left` :
-                                 inventory.available > 10 ? 'Available' : `${inventory.available} available`}
-                              </span>
-                            </div>
-                          )}
-                          
-                          {service.requiresBase && !hasBasePackage() && (
-                            <div className="text-xs text-yellow-600 mt-1">
-                              Requires base package
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => handleServiceQuantityChange(service.id, -1)}
-                            disabled={!currentQuantity || !canAdd}
-                            className="w-6 h-6 rounded-full bg-gray-200 hover:bg-gray-300 disabled:opacity-50 flex items-center justify-center"
-                          >
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="w-6 text-center text-sm font-medium">
-                            {currentQuantity}
-                          </span>
-                          <button
-                            onClick={() => handleServiceQuantityChange(service.id, 1)}
-                            disabled={currentQuantity >= Math.min(service.maxQuantity || 1, inventory.available) || !canAdd}
-                            className="w-6 h-6 rounded-full bg-pink-200 hover:bg-pink-300 disabled:opacity-50 flex items-center justify-center"
-                          >
-                            <Plus className="w-3 h-3" />
+                            <Plus className="w-2 h-2" />
                           </button>
                         </div>
                       </div>
@@ -1052,11 +934,11 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             {/* Package Summary */}
             {Object.keys(selectedServices).length > 0 && (
               <div className="border-t border-gray-200 pt-4">
-                <h4 className="font-bold text-gray-800 mb-3">Package Summary</h4>
-                <div className="space-y-2 mb-4">
+                <h4 className="font-bold text-gray-800 mb-3">Summary</h4>
+                <div className="space-y-1 mb-4">
                   {getSelectedServicesList().map((service) => (
                     <div key={service.id} className="flex justify-between text-sm">
-                      <span>{service.shortName || service.name} {service.quantity > 1 && `(×${service.quantity})`}</span>
+                      <span>{service.shortName} {service.quantity > 1 && `(×${service.quantity})`}</span>
                       <span className="font-medium">${service.price * service.quantity}</span>
                     </div>
                   ))}
@@ -1074,31 +956,23 @@ const CalendarBooking: React.FC<CalendarBookingProps> = ({ onBookingSelect }) =>
             {selectedTime && hasBasePackage() && (
               <motion.button
                 onClick={handleBookingConfirm}
-                className="w-full btn btn-primary group relative overflow-hidden py-4 text-lg mt-6"
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold py-4 rounded-xl mt-6 hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-2">
                   <Sparkles className="w-5 h-5" />
-                  Confirm Booking - ${calculateTotal()}
+                  Book Now - ${calculateTotal()}
                 </span>
-                
-                {/* Shimmer effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                />
               </motion.button>
             )}
 
             {!hasBasePackage() && (
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center mt-6">
                 <p className="text-yellow-800 text-sm font-medium">
-                  Please select a base package to continue
+                  Select a base package first
                 </p>
               </div>
             )}
