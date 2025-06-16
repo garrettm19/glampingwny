@@ -15,30 +15,91 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute top-12 right-16"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
                 repeat: Infinity,
-                delay: i * 0.2,
+                ease: "easeInOut"
               }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -46,12 +107,12 @@ const AboutPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-3xl"
+            className="max-w-3xl text-white"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Our Family Story 👨‍👩‍👧‍👦
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-xl text-blue-100">
               From backyard dreams to unforgettable family celebrations across Western New York.
             </p>
           </motion.div>
@@ -148,21 +209,62 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Family Values Section */}
+      {/* Family Values Section - Starry Night Header */}
       <section className="section bg-lavender-50">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+          {/* Starry Night Header */}
+          <div className="relative mb-16 rounded-2xl overflow-hidden">
+            <div 
+              className="relative py-16 px-8"
+              style={{
+                background: `linear-gradient(135deg, 
+                  #0f172a 0%, 
+                  #1e293b 25%, 
+                  #334155 50%, 
+                  #1e293b 75%, 
+                  #0f172a 100%)`
+              }}
             >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Family Values 💕</h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                These core family values guide everything we do at Glamping WNY.
-              </p>
-            </motion.div>
+              {/* Animated Stars */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(40)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0.3, 1, 0],
+                      scale: [0.5, 1, 0.8, 1.2, 0.5]
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 4,
+                      repeat: Infinity,
+                      delay: Math.random() * 5,
+                      ease: "easeInOut"
+                    }}
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-3xl font-bold text-white mb-4">Our Family Values 💕</h2>
+                  <p className="text-blue-100 max-w-2xl mx-auto">
+                    These core family values guide everything we do at Glamping WNY.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -205,21 +307,62 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Customer Testimonial */}
+      {/* Customer Testimonial - Starry Night Header */}
       <section className="section bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+          {/* Starry Night Header */}
+          <div className="relative mb-16 rounded-2xl overflow-hidden">
+            <div 
+              className="relative py-16 px-8"
+              style={{
+                background: `linear-gradient(135deg, 
+                  #0f172a 0%, 
+                  #1e293b 25%, 
+                  #334155 50%, 
+                  #1e293b 75%, 
+                  #0f172a 100%)`
+              }}
             >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">What Families Say About Holly 🌟</h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                Real feedback from real families about their experience with our team.
-              </p>
-            </motion.div>
+              {/* Animated Stars */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(35)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1 h-1 bg-white rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0, 1, 0.3, 1, 0],
+                      scale: [0.5, 1, 0.8, 1.2, 0.5]
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 4,
+                      repeat: Infinity,
+                      delay: Math.random() * 5,
+                      ease: "easeInOut"
+                    }}
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-3xl font-bold text-white mb-4">What Families Say About Holly 🌟</h2>
+                  <p className="text-blue-100 max-w-2xl mx-auto">
+                    Real feedback from real families about their experience with our team.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
           </div>
 
           <div className="max-w-4xl mx-auto">

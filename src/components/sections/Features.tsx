@@ -111,50 +111,133 @@ const Features: React.FC = () => {
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Family-Friendly Introduction */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-block p-3 bg-gradient-to-r from-lavender-500 to-teal-500 rounded-full mb-6"
+        {/* Starry Night Header */}
+        <div className="relative mb-16 rounded-2xl overflow-hidden">
+          <div 
+            className="relative py-16 px-8"
+            style={{
+              background: `linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #1e293b 75%, 
+                #0f172a 100%)`
+            }}
           >
-            <Heart className="w-8 h-8 text-white" />
-          </motion.div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Why Families Love Glamping WNY! 🏕️
-          </h2>
-          <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
-            We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together and create memories that last a lifetime.
-          </p>
-          
-          {/* Family-Focused Services Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
-            {services.map((service, index) => (
+            {/* Animated Stars */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(60)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0.3, 1, 0],
+                    scale: [0.5, 1, 0.8, 1.2, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 4,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                />
+              ))}
+              
+              {/* Shooting Stars */}
+              {[...Array(2)].map((_, i) => (
+                <motion.div
+                  key={`shooting-${i}`}
+                  className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                  initial={{ 
+                    x: -50,
+                    y: Math.random() * 150,
+                    opacity: 0 
+                  }}
+                  animate={{
+                    x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                    y: Math.random() * 150 + 50,
+                    opacity: [0, 1, 1, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 10 + Math.random() * 5,
+                    ease: "easeOut"
+                  }}
+                  style={{
+                    boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                  }}
+                />
+              ))}
+
+              {/* Moon */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="bg-white/80 backdrop-blur-sm border border-lavender-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 hover:bg-lavender-50 hover:border-lavender-300 transition-all duration-300 group cursor-pointer"
-                whileHover={{ scale: 1.02 }}
+                className="absolute top-8 right-12"
+                animate={{
+                  opacity: [0.7, 1, 0.7],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                <span className="group-hover:text-lavender-600 transition-all duration-300">
-                  {service}
-                </span>
+                <div 
+                  className="w-12 h-12 bg-yellow-100 rounded-full"
+                  style={{
+                    boxShadow: '0 0 20px 5px rgba(254, 249, 195, 0.6), 0 0 40px 10px rgba(254, 249, 195, 0.3)'
+                  }}
+                />
               </motion.div>
-            ))}
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-block p-3 bg-gradient-to-r from-lavender-500 to-teal-500 rounded-full mb-6">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Why Families Love Glamping WNY! 🏕️
+                </h2>
+                <p className="text-blue-100 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
+                  We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together and create memories that last a lifetime.
+                </p>
+              </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Family-Focused Services Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className="bg-white/80 backdrop-blur-sm border border-lavender-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 hover:bg-lavender-50 hover:border-lavender-300 transition-all duration-300 group cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+            >
+              <span className="group-hover:text-lavender-600 transition-all duration-300">
+                {service}
+              </span>
+            </motion.div>
+          ))}
+        </div>
 
         {/* Family-Friendly Features Grid */}
         <motion.div
@@ -211,82 +294,164 @@ const Features: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Family Photo Gallery Section */}
+        {/* Family Photo Gallery Section - Starry Night Header */}
+        <div className="relative mb-16 rounded-2xl overflow-hidden">
+          <div 
+            className="relative py-16 px-8"
+            style={{
+              background: `linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #1e293b 75%, 
+                #0f172a 100%)`
+            }}
+          >
+            {/* Animated Stars */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(45)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0.3, 1, 0],
+                    scale: [0.5, 1, 0.8, 1.2, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 4,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl font-bold text-white mb-4">
+                  See Happy Families in Action! 📸
+                </h2>
+                <p className="text-blue-100 max-w-2xl mx-auto">
+                  Real photos from real family celebrations. Every setup is unique and designed to create magical moments for your loved ones.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[
+            "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=300&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=300&q=80"
+          ].map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-lavender-200"
+              whileHover={{ scale: 1.02 }}
+            >
+              <img 
+                src={image} 
+                alt={`Happy family glamping experience ${index + 1}`}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </motion.div>
+          ))}
+        </div>
+        
+        {/* View Gallery CTA */}
         <motion.div
+          className="text-center mt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           viewport={{ once: true }}
-          className="mb-20"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              See Happy Families in Action! 📸
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Real photos from real family celebrations. Every setup is unique and designed to create magical moments for your loved ones.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=300&q=80",
-              "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=300&q=80"
-            ].map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-lavender-200"
-                whileHover={{ scale: 1.02 }}
-              >
-                <img 
-                  src={image} 
-                  alt={`Happy family glamping experience ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* View Gallery CTA */}
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
+          <Link
+            to="/gallery"
+            className="inline-flex items-center gap-2 text-lavender-600 hover:text-lavender-700 font-semibold group"
           >
-            <Link
-              to="/gallery"
-              className="inline-flex items-center gap-2 text-lavender-600 hover:text-lavender-700 font-semibold group"
-            >
-              See More Happy Families
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+            See More Happy Families
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </motion.div>
 
-        {/* Family-Friendly Policies Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-8 rounded-2xl"
-        >
-          <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-            Important Family Guidelines 👨‍👩‍👧‍👦
-          </h2>
-          
+        {/* Family-Friendly Policies Section - Starry Night Header */}
+        <div className="relative mt-20 mb-16 rounded-2xl overflow-hidden">
+          <div 
+            className="relative py-16 px-8"
+            style={{
+              background: `linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #1e293b 75%, 
+                #0f172a 100%)`
+            }}
+          >
+            {/* Animated Stars */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(35)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: [0, 1, 0.3, 1, 0],
+                    scale: [0.5, 1, 0.8, 1.2, 0.5]
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 4,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold text-white mb-8">
+                  Important Family Guidelines 👨‍👩‍👧‍👦
+                </h2>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="bg-white/80 backdrop-blur-sm border border-lavender-200 p-8 rounded-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
@@ -336,7 +501,7 @@ const Features: React.FC = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
