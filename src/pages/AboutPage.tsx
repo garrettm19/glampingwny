@@ -378,9 +378,46 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white">
-        <div className="container-custom">
+      {/* CTA Section - Starry Night */}
+      <section className="section relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(60)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -388,10 +425,10 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">
+            <h2 className="text-3xl font-bold mb-6 text-white">
               Ready to Create Family Magic Together? ✨
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Let's start planning your most memorable family celebration yet!
             </p>
             <div className="flex flex-wrap justify-center gap-4">

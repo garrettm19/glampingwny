@@ -165,30 +165,91 @@ const FAQPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute top-12 right-16"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
                 repeat: Infinity,
-                delay: i * 0.2,
+                ease: "easeInOut"
               }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -196,7 +257,7 @@ const FAQPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center text-white"
           >
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <HelpCircle className="w-8 h-8 text-white" />
@@ -204,7 +265,7 @@ const FAQPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Frequently Asked Questions 🤔
             </h1>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Everything you need to know about creating magical family memories with Glamping WNY.
             </p>
             
@@ -379,9 +440,46 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Quick Contact Section */}
-      <section className="section bg-lavender-50">
-        <div className="container-custom">
+      {/* Quick Contact Section - Starry Night */}
+      <section className="section relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -389,46 +487,46 @@ const FAQPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white border border-lavender-200 rounded-xl p-8">
-              <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MessageCircle className="w-8 h-8 text-lavender-600" />
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <MessageCircle className="w-8 h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Still Have Questions? 💬
               </h2>
-              <p className="text-gray-700 mb-8">
+              <p className="text-blue-100 mb-8">
                 Can't find what you're looking for? Our family-friendly team is here to help create your perfect glamping experience!
               </p>
               
               {/* Contact Options */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <MessageCircle className="w-6 h-6 text-lavender-600" />
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <MessageCircle className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800 mb-2">Live Chat</h3>
-                  <p className="text-sm text-gray-600">Quick answers to simple questions</p>
+                  <h3 className="font-bold text-white mb-2">Live Chat</h3>
+                  <p className="text-sm text-blue-100">Quick answers to simple questions</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Clock className="w-6 h-6 text-teal-600" />
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800 mb-2">24hr Response</h3>
-                  <p className="text-sm text-gray-600">We'll get back to you quickly</p>
+                  <h3 className="font-bold text-white mb-2">24hr Response</h3>
+                  <p className="text-sm text-blue-100">We'll get back to you quickly</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-6 h-6 text-purple-600" />
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Users className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="font-bold text-gray-800 mb-2">Family Experts</h3>
-                  <p className="text-sm text-gray-600">We understand family celebrations</p>
+                  <h3 className="font-bold text-white mb-2">Family Experts</h3>
+                  <p className="text-sm text-blue-100">We understand family celebrations</p>
                 </div>
               </div>
 
               <div className="flex flex-wrap justify-center gap-4">
                 <motion.a
                   href="/contact"
-                  className="bg-gradient-to-r from-lavender-500 to-teal-500 hover:from-lavender-600 hover:to-teal-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -436,7 +534,7 @@ const FAQPage: React.FC = () => {
                 </motion.a>
                 <motion.a
                   href="/book-now"
-                  className="border-2 border-lavender-500 text-lavender-600 hover:bg-lavender-50 font-semibold py-3 px-6 rounded-xl transition-all duration-300"
+                  className="border-2 border-white text-white hover:bg-white/20 font-semibold py-3 px-6 rounded-xl transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -444,14 +542,14 @@ const FAQPage: React.FC = () => {
                 </motion.a>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600">
+              <div className="mt-6 pt-6 border-t border-white/20">
+                <p className="text-sm text-blue-100">
                   <strong>Quick Contact:</strong> Call us at{' '}
-                  <a href="tel:+17165551234" className="text-lavender-600 hover:text-lavender-700 font-medium">
+                  <a href="tel:+17165551234" className="text-white hover:text-blue-200 font-medium">
                     (716) 555-1234
                   </a>{' '}
                   or email{' '}
-                  <a href="mailto:info@glampingwny.com" className="text-lavender-600 hover:text-lavender-700 font-medium">
+                  <a href="mailto:info@glampingwny.com" className="text-white hover:text-blue-200 font-medium">
                     info@glampingwny.com
                   </a>
                 </p>

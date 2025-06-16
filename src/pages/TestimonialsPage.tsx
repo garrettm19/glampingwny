@@ -216,31 +216,91 @@ const TestimonialsPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white relative overflow-hidden">
-        {/* Sparkle effects */}
-        <div className="absolute inset-0">
-          {[...Array(15)].map((_, i) => (
+      {/* Hero Section - Starry Night */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(80)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            
+            {/* Shooting Stars */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                initial={{ 
+                  x: -50,
+                  y: Math.random() * 200,
+                  opacity: 0 
+                }}
+                animate={{
+                  x: typeof window !== 'undefined' ? window.innerWidth + 50 : 1200,
+                  y: Math.random() * 200 + 100,
+                  opacity: [0, 1, 1, 0]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 12 + Math.random() * 5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  boxShadow: '0 0 6px 2px rgba(255, 255, 255, 0.8), 0 0 12px 4px rgba(255, 255, 255, 0.4)'
+                }}
+              />
+            ))}
+
+            {/* Moon */}
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              initial={{ opacity: 0 }}
+              className="absolute top-12 right-16"
               animate={{
-                opacity: [0, 1, 0],
-                scale: [1, 1.2, 1],
-                y: [0, -20, 0],
+                opacity: [0.7, 1, 0.7],
+                scale: [1, 1.05, 1]
               }}
               transition={{
-                duration: 3,
+                duration: 8,
                 repeat: Infinity,
-                delay: i * 0.2,
+                ease: "easeInOut"
               }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+            >
+              <div 
+                className="w-16 h-16 bg-yellow-100 rounded-full"
+                style={{
+                  boxShadow: '0 0 30px 8px rgba(254, 249, 195, 0.6), 0 0 60px 15px rgba(254, 249, 195, 0.3)'
+                }}
+              />
+            </motion.div>
+          </div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -248,7 +308,7 @@ const TestimonialsPage: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center text-white"
           >
             <div className="flex justify-center mb-6">
               <div className="flex">
@@ -260,7 +320,7 @@ const TestimonialsPage: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               What Families Are Saying About Us! 👨‍👩‍👧‍👦
             </h1>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Real reviews from real families who've experienced the magic of Glamping WNY. 
               Over 200 happy families and counting!
             </p>
@@ -434,9 +494,46 @@ const TestimonialsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-lavender-600 via-teal-600 to-lavender-700 text-white">
-        <div className="container-custom">
+      {/* CTA Section - Starry Night */}
+      <section className="section relative overflow-hidden">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, 
+              #0f172a 0%, 
+              #1e293b 25%, 
+              #334155 50%, 
+              #1e293b 75%, 
+              #0f172a 100%)`
+          }}
+        >
+          {/* Animated Stars */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(60)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: [0, 1, 0.3, 1, 0],
+                  scale: [0.5, 1, 0.8, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="container-custom relative z-10">
           <motion.div 
             className="max-w-3xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -444,10 +541,10 @@ const TestimonialsPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Ready to Create Your Own Family Magic? ✨
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-blue-100 mb-8">
               Join the 200+ families who've made unforgettable memories with Glamping WNY!
             </p>
             <div className="flex flex-wrap justify-center gap-4">
