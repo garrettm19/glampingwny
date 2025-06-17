@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Volume2, VolumeX } from 'lucide-react';
+import Logo from '../components/ui/Logo';
 
 const NotFoundPage: React.FC = () => {
   const [isSoundEnabled, setIsSoundEnabled] = useState(false);
@@ -59,12 +60,17 @@ const NotFoundPage: React.FC = () => {
               {isSoundEnabled ? <Volume2 className="w-6 h-6" /> : <VolumeX className="w-6 h-6" />}
             </motion.button>
 
-            {/* Raccoon Illustration */}
+            {/* Logo */}
+            <div className="mb-8">
+              <Logo size="lg" className="justify-center" />
+            </div>
+
+            {/* Tent Illustration */}
             <div className="mb-8 relative">
               <motion.img
-                src="https://picsum.photos/200/200?random=404"
-                alt="Cute raccoon next to a collapsed tent"
-                className="w-48 h-48 mx-auto object-contain rounded-full"
+                src="/glamping-logo.png"
+                alt="Glamping WNY Logo - Tent not found"
+                className="w-48 h-48 mx-auto object-contain"
                 animate={{
                   rotate: isHovering ? [-5, 5, -5] : 0,
                 }}

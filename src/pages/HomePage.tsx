@@ -6,6 +6,7 @@ import Testimonials from '../components/sections/Testimonials';
 import { motion } from 'framer-motion';
 import { ArrowRight, Heart, MapPin, Star, Users, Shield, Clock, Tent, TreePine } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Logo from '../components/ui/Logo';
 
 const HomePage: React.FC = () => {
   return (
@@ -19,14 +20,14 @@ const HomePage: React.FC = () => {
         <meta property="og:url" content="https://glampingwny.com" />
         <meta property="og:title" content="Glamping WNY | Family Glamping Experiences in Buffalo Metro Area" />
         <meta property="og:description" content="Create unforgettable family memories with our safe, fun glamping experiences in the Buffalo Metro Area. FREE delivery within 20 miles of Hamburg, NY." />
-        <meta property="og:image" content="https://picsum.photos/1200/630?random=100" />
+        <meta property="og:image" content="/glamping-logo.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://glampingwny.com" />
         <meta name="twitter:title" content="Glamping WNY | Family Glamping Experiences in Buffalo Metro Area" />
         <meta name="twitter:description" content="Create unforgettable family memories with our safe, fun glamping experiences in the Buffalo Metro Area. FREE delivery within 20 miles of Hamburg, NY." />
-        <meta name="twitter:image" content="https://picsum.photos/1200/630?random=100" />
+        <meta name="twitter:image" content="/glamping-logo.png" />
 
         {/* Schema.org markup */}
         <script type="application/ld+json">
@@ -34,7 +35,8 @@ const HomePage: React.FC = () => {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Glamping WNY",
-            "image": "https://picsum.photos/1200/630?random=100",
+            "image": "/glamping-logo.png",
+            "logo": "/glamping-logo.png",
             "description": "Family-friendly glamping experiences and luxury tent rentals for special occasions in the Buffalo Metro Area.",
             "address": {
               "@type": "PostalAddress",
@@ -113,6 +115,9 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
+            <div className="flex justify-center mb-6">
+              <Logo size="lg" />
+            </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               Trusted by 200+ Happy Families
             </h2>
@@ -310,6 +315,9 @@ const HomePage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
+            <div className="mb-8">
+              <Logo size="lg" className="justify-center" />
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Ready to Create Your Perfect Family Celebration?
             </h2>

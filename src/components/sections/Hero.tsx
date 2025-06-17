@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, ArrowRight, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
+import Logo from '../ui/Logo';
 
 const Hero: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -118,19 +119,14 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="container-custom relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl text-center">
-          {/* Location Badge */}
+          {/* Logo Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-8 group hover:bg-white/25 transition-all duration-300"
+            className="inline-flex items-center gap-4 px-8 py-4 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-8 group hover:bg-white/25 transition-all duration-300"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Heart className="w-4 h-4 text-lavender-300" />
-            </motion.div>
+            <Logo size="sm" />
             <span className="text-white text-sm font-medium tracking-wide">
               Creating Family Memories in Buffalo & WNY
             </span>
