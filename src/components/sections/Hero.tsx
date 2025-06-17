@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, ArrowRight, Heart, Tent, TreePine, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
-import Logo from '../components/ui/Logo';
+import Logo from '../ui/Logo';
 
 const Hero: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
