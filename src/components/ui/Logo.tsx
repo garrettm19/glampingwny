@@ -16,7 +16,19 @@ const Logo: React.FC<LogoProps> = ({
   const sizeClasses = {
     sm: 'h-8',
     md: 'h-10',
-    lg: 'h-12'
+    lg: 'h-16'
+  };
+
+  const textSizeClasses = {
+    sm: 'text-lg',
+    md: 'text-xl',
+    lg: 'text-2xl'
+  };
+
+  const subTextSizeClasses = {
+    sm: 'text-xs',
+    md: 'text-xs',
+    lg: 'text-sm'
   };
 
   return (
@@ -24,24 +36,20 @@ const Logo: React.FC<LogoProps> = ({
       <img 
         src="/glamping-logo.png" 
         alt="Glamping WNY Logo" 
-        className={`${sizeClasses[size]} w-auto mr-3`}
+        className={`${sizeClasses[size]} w-auto mr-3 drop-shadow-sm`}
       />
       <div className="flex flex-col">
-        <span className={`font-display text-xl font-bold leading-none ${
+        <span className={`font-display ${textSizeClasses[size]} font-bold leading-none ${
           footer 
-            ? 'text-gray-800' 
-            : isScrolled 
-              ? 'text-gray-800' 
-              : 'text-white'
+            ? 'text-neutral-800' 
+            : 'text-neutral-800'
         }`}>
           Glamping WNY
         </span>
-        <span className={`text-xs font-medium tracking-wider ${
+        <span className={`${subTextSizeClasses[size]} font-medium tracking-wider ${
           footer 
-            ? 'text-gray-600' 
-            : isScrolled 
-              ? 'text-gray-600' 
-              : 'text-white/80'
+            ? 'text-neutral-600' 
+            : 'text-neutral-600'
         }`}>
           MAGICAL EXPERIENCES
         </span>
