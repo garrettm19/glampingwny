@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, ArrowRight, Heart, Tent, TreePine, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
-import Logo from '../ui/Logo';
+import Logo from '../components/ui/Logo';
 
 const Hero: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
 
       {/* Main Content */}
       <div className="container-custom relative z-20 min-h-screen flex items-center justify-center">
-        <div className="max-w-6xl text-center">
+        <div className="max-w-7xl text-center">
           {/* Logo Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -104,57 +104,78 @@ const Hero: React.FC = () => {
             </span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - Enhanced Typography */}
           <motion.h1 
-            className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-[0.9] text-white text-shadow-hero"
+            className="text-7xl md:text-8xl lg:text-9xl font-display font-black mb-8 leading-[0.85] text-white tracking-tight"
+            style={{
+              textShadow: '0 8px 32px rgba(0,0,0,0.8), 0 4px 16px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4)',
+              fontFeatureSettings: '"kern" 1, "liga" 1',
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale'
+            }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Glamping WNY
+            <span className="block">Glamping</span>
+            <span className="block bg-gradient-to-r from-primary-300 via-primary-200 to-accent-300 bg-clip-text text-transparent">
+              WNY
+            </span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Enhanced */}
           <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl text-white font-medium mb-6 leading-relaxed text-shadow-medium"
+            className="text-2xl md:text-4xl lg:text-5xl text-white font-display font-semibold mb-8 leading-tight tracking-tight"
+            style={{
+              textShadow: '0 4px 16px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.5)',
+              fontFeatureSettings: '"kern" 1',
+              letterSpacing: '-0.015em'
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Where Families Create Magical Memories Together
+            Where Families Create
+            <br />
+            <span className="text-primary-200">Magical Memories</span> Together
           </motion.h2>
           
-          {/* Value Proposition */}
+          {/* Value Proposition - Enhanced */}
           <motion.p 
-            className="text-xl md:text-2xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed text-shadow-soft"
+            className="text-xl md:text-2xl lg:text-3xl text-white/95 mb-12 max-w-5xl mx-auto leading-relaxed font-sans font-medium"
+            style={{
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+              lineHeight: '1.6'
+            }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             Safe, fun, and stress-free glamping experiences for birthdays, family celebrations, and special moments.
-            <br className="hidden md:block" />
-            We handle everything so you can focus on making memories with your loved ones!
+            <br className="hidden lg:block" />
+            <span className="text-primary-200 font-semibold">We handle everything</span> so you can focus on making memories with your loved ones!
           </motion.p>
           
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Enhanced */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <motion.div
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold text-lg rounded-xl overflow-hidden transition-all duration-300 shadow-elegant hover:shadow-glow-lg"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold text-xl rounded-2xl overflow-hidden transition-all duration-300 shadow-elegant hover:shadow-glow-lg border border-primary-400/30"
                 onClick={() => trackBookNowClick()}
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center gap-3 font-display tracking-tight">
                   Start Planning Our Adventure!
-                  <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <Heart className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </span>
                 {/* Shimmer effect */}
                 <motion.div
@@ -168,24 +189,24 @@ const Hero: React.FC = () => {
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur-md text-white font-semibold text-lg rounded-xl border border-white/40 hover:bg-white/30 hover:border-white/60 transition-all duration-300 shadow-soft hover:shadow-elegant"
-              whileHover={{ scale: 1.05, y: -2 }}
+              className="group inline-flex items-center justify-center px-10 py-5 bg-white/20 backdrop-blur-md text-white font-semibold text-xl rounded-2xl border-2 border-white/40 hover:bg-white/30 hover:border-white/60 transition-all duration-300 shadow-soft hover:shadow-elegant"
+              whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              See the Magic
+              <ArrowRight className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+              <span className="font-display tracking-tight">See the Magic</span>
             </motion.button>
           </motion.div>
 
-          {/* Trust Indicators */}
+          {/* Trust Indicators - Enhanced */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-sm"
+            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-base"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <motion.div 
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex">
@@ -196,23 +217,23 @@ const Hero: React.FC = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.2 + i * 0.1 }}
                   >
-                    <Star className="w-5 h-5 text-yellow-300 fill-yellow-300" />
+                    <Star className="w-6 h-6 text-yellow-300 fill-yellow-300" />
                   </motion.div>
                 ))}
               </div>
-              <span className="font-semibold">200+ Happy Families</span>
+              <span className="font-semibold font-display">200+ Happy Families</span>
             </motion.div>
-            <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold">Family-Safe & Fun</div>
-            <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold">All Ages Welcome</div>
-            <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold">Stress-Free Setup</div>
+            <div className="w-px h-8 bg-white/40" />
+            <div className="font-semibold font-display">Family-Safe & Fun</div>
+            <div className="w-px h-8 bg-white/40" />
+            <div className="font-semibold font-display">All Ages Welcome</div>
+            <div className="w-px h-8 bg-white/40" />
+            <div className="font-semibold font-display">Stress-Free Setup</div>
           </motion.div>
         </div>
       </div>
       
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Enhanced */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}
@@ -221,14 +242,14 @@ const Hero: React.FC = () => {
         aria-label="Scroll down to see more"
         whileHover={{ scale: 1.1 }}
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-sm font-medium opacity-80 group-hover:opacity-100 transition-opacity font-display">
             See Our Magic
           </span>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
+          <div className="w-7 h-12 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
             <motion.div
-              className="w-1 h-3 bg-white/60 rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
+              className="w-1.5 h-4 bg-white/60 rounded-full mt-2"
+              animate={{ y: [0, 16, 0] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             />
           </div>
