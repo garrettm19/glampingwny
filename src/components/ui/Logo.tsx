@@ -51,7 +51,7 @@ const Logo: React.FC<LogoProps> = ({
             ? 'text-neutral-600' 
             : 'text-neutral-600'
         }`}>
-          PREMIUM EXPERIENCES
+          LUXURY EXPERIENCES
         </span>
       </div>
     </div>
