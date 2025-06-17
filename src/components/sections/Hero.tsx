@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
         
         {/* Magical gradient overlay */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-lavender-800/60 to-pink-600/70"
+          className="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-lavender-800/50 to-pink-600/60"
           initial={{ opacity: 0.8 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
             />
           </motion.div>
 
-          {/* Spectacular Main Headline */}
+          {/* Main Headline */}
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-6 leading-tight text-white tracking-tight"
             style={{
@@ -176,7 +176,7 @@ const Hero: React.FC = () => {
             </motion.span>
           </motion.h1>
 
-          {/* Dynamic Subheadline */}
+          {/* Subheadline */}
           <motion.h2 
             className="text-xl md:text-2xl lg:text-3xl text-white font-display font-semibold mb-6 leading-relaxed tracking-tight max-w-4xl mx-auto"
             style={{
@@ -203,7 +203,7 @@ const Hero: React.FC = () => {
             for Every Celebration
           </motion.h2>
           
-          {/* Enhanced Value Proposition */}
+          {/* Value Proposition */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed font-sans"
             style={{
@@ -225,7 +225,7 @@ const Hero: React.FC = () => {
             </motion.span> - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
-          {/* Beautiful CTA Buttons */}
+          {/* CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             initial={{ opacity: 0, y: 30 }}
@@ -284,7 +284,7 @@ const Hero: React.FC = () => {
             </motion.button>
           </motion.div>
 
-          {/* Enhanced Trust Indicators */}
+          {/* Trust Indicators */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
             initial={{ opacity: 0, y: 30 }}

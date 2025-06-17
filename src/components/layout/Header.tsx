@@ -52,10 +52,10 @@ const Header: React.FC = () => {
 
   return (
     <motion.header 
-      className={`fixed w-full z-50 transition-all duration-500 ease-out ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-lavender-100 py-2' 
-          : 'bg-white/95 backdrop-blur-md shadow-md py-3'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-lavender-100 py-2' 
+          : 'bg-white/90 backdrop-blur-md shadow-md py-3'
       }`}
       role="banner"
     >

@@ -33,7 +33,7 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={`flex items-center ${className}`}>
-      {/* Using a tent emoji as placeholder logo */}
+      {/* Beautiful tent logo with gradient */}
       <div className={`${sizeClasses[size]} ${sizeClasses[size]} mr-3 bg-gradient-to-br from-lavender-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-2xl shadow-lg`}>
         🏕️
       </div>
