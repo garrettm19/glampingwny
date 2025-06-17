@@ -16,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({
   const sizeClasses = {
     sm: 'h-8',
     md: 'h-10',
-    lg: 'h-16'
+    lg: 'h-12'
   };
 
   const textSizeClasses = {
@@ -33,11 +33,10 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={`flex items-center ${className}`}>
-      <img 
-        src="/glamping-logo.png" 
-        alt="Glamping WNY Logo" 
-        className={`${sizeClasses[size]} w-auto mr-3 drop-shadow-sm`}
-      />
+      {/* Using a tent emoji as placeholder logo */}
+      <div className={`${sizeClasses[size]} ${sizeClasses[size]} mr-3 bg-gradient-to-br from-lavender-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-2xl shadow-lg`}>
+        🏕️
+      </div>
       <div className="flex flex-col">
         <span className={`font-display ${textSizeClasses[size]} font-bold leading-none ${
           footer 

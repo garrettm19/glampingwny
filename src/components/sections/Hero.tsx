@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
         
         {/* Magical gradient overlay */}
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-purple-900/70 via-lavender-800/50 to-pink-600/60"
+          className="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-lavender-800/60 to-pink-600/70"
           initial={{ opacity: 0.8 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
@@ -80,7 +80,7 @@ const Hero: React.FC = () => {
         {[...Array(isMobile ? 4 : 8)].map((_, i) => {
           const icons = [Tent, TreePine, Heart, Sparkles, Crown, Award, Zap];
           const Icon = icons[i % icons.length];
-          const size = 24 + Math.random() * 12;
+          const size = 20 + Math.random() * 8;
           const duration = 20 + Math.random() * 15;
           const delay = Math.random() * 8;
           
@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
 
       {/* Main Content */}
       <div className="container-custom relative z-20 min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-6xl text-center">
+        <div className="max-w-5xl text-center">
           {/* Beautiful Logo Badge */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
