@@ -15,6 +15,30 @@
     @apply font-display leading-tight text-gray-900;
   }
 
+  /* Enhanced typography for headers */
+  h1 {
+    @apply text-5xl md:text-6xl font-bold tracking-tight;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+    font-weight: 600;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {
       animation-duration: 0.01ms !important;
@@ -53,6 +77,25 @@
   .glass-card {
     @apply bg-white/95 backdrop-blur-sm border border-lavender-200/50 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl;
   }
+
+  /* Enhanced header typography */
+  .header-enhanced {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .subheader-enhanced {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    text-rendering: optimizeLegibility;
+  }
 }
 
 @layer utilities {
@@ -81,6 +124,19 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Enhanced text shadows for headers */
+  .text-shadow-soft {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-medium {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .text-shadow-strong {
+    text-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 }
 

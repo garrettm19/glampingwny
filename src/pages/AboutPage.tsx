@@ -52,10 +52,10 @@ const AboutPage: React.FC = () => {
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <Heart className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Our Family Story 👨‍👩‍👧‍👦
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Our Family Story
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-xl text-white/90 leading-relaxed">
               From backyard dreams to unforgettable family celebrations across Western New York.
             </p>
           </motion.div>
@@ -76,7 +76,7 @@ const AboutPage: React.FC = () => {
               <div className="relative rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto border-4 border-lavender-200">
                 <div className="aspect-[3/4]">
                   <img 
-                    src="https://picsum.photos/400/500?random=30"
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=400&q=80"
                     alt="Holly - Glamping WNY Founder" 
                     className="w-full h-full object-cover"
                   />
@@ -106,8 +106,13 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               className="space-y-6 lg:col-span-7"
             >
-              <h2 className="text-3xl font-bold text-gray-800">Meet Holly - Your Family Glamping Expert! 👋</h2>
-              <div className="space-y-4 text-gray-700">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                Meet Holly
+                <span className="block text-2xl md:text-3xl font-normal text-lavender-600 mt-2">
+                  Your Family Glamping Expert
+                </span>
+              </h2>
+              <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
                   Hey there, families! I'm Holly, the founder of Glamping WNY and a proud small-town business owner with big dreams for creating magical family memories. When I'm not setting up enchanting glamping experiences for amazing families like yours, you can find me working as a Product Manager at Independent Health, cuddling with my dogs, or planning the next exciting family adventure.
                 </p>
@@ -131,7 +136,7 @@ const AboutPage: React.FC = () => {
                 </p>
 
                 <p>
-                  When I'm not creating magical family experiences, you might find me trying new foods, hiking with my amazing husband Joe, or showing off my (admittedly terrible) singing abilities. And of course, like any true Buffalonian - GO BILLS! 🦬 Our family business is all about bringing joy to YOUR family!
+                  When I'm not creating magical family experiences, you might find me trying new foods, hiking with my amazing husband Joe, or showing off my (admittedly terrible) singing abilities. And of course, like any true Buffalonian - GO BILLS! Our family business is all about bringing joy to YOUR family!
                 </p>
               </div>
 
@@ -166,8 +171,10 @@ const AboutPage: React.FC = () => {
               <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
                 <Heart className="w-8 h-8 text-lavender-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Family Values 💕</h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+                Our Family Values
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
                 These core family values guide everything we do at Glamping WNY.
               </p>
             </motion.div>
@@ -227,8 +234,10 @@ const AboutPage: React.FC = () => {
               <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
                 <Star className="w-8 h-8 text-lavender-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">What Families Say About Holly 🌟</h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+                What Families Say About Holly
+              </h2>
+              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
                 Real feedback from real families about their experience with our team.
               </p>
             </motion.div>
@@ -238,7 +247,7 @@ const AboutPage: React.FC = () => {
             <TestimonialWidget
               quote="I cannot say enough good things about Holly + her team! They setup quickly, everything was beautiful, they went above + beyond to make our experience customized + special! We will definitely be Glamping with them again! Highly recommend!!"
               name="Kelly K."
-              image="https://picsum.photos/100/100?random=57"
+              image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&w=100&q=80"
               rating={5}
               tag="Amazing Service"
               className="mx-auto"
@@ -282,8 +291,8 @@ const AboutPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6 text-white">
-              Ready to Create Family Magic Together? ✨
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+              Ready to Create Family Magic Together?
             </h2>
             <p className="text-xl text-white/90 mb-8">
               Let's start planning your most memorable family celebration yet!
