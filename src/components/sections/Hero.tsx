@@ -20,14 +20,6 @@ const Hero: React.FC = () => {
     };
   }, []);
 
-  const scrollToBooking = useCallback(() => {
-    const bookingSection = document.getElementById('booking');
-    if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: 'smooth' });
-      trackBookNowClick();
-    }
-  }, []);
-
   const scrollToVirtualTour = useCallback(() => {
     const virtualTourSection = document.getElementById('virtual-tour');
     if (virtualTourSection) {
@@ -37,7 +29,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Beautiful Background */}
+      {/* Clean Background - No Tint */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
@@ -45,21 +37,18 @@ const Hero: React.FC = () => {
           className="w-full h-full object-cover"
         />
         
-        {/* Modern gradient overlay */}
-        <div className="absolute inset-0 hero-overlay" />
-        
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 hero-pattern opacity-10" />
+        {/* Minimal overlay for text readability only */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
       </div>
 
-      {/* Floating elements for visual interest */}
+      {/* Subtle floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 6 : 12)].map((_, i) => {
+        {[...Array(isMobile ? 4 : 8)].map((_, i) => {
           const icons = [Tent, TreePine, Heart, Sparkles];
           const Icon = icons[i % icons.length];
-          const size = 20 + Math.random() * 10;
-          const duration = 15 + Math.random() * 10;
-          const delay = Math.random() * 8;
+          const size = 16 + Math.random() * 8;
+          const duration = 20 + Math.random() * 10;
+          const delay = Math.random() * 10;
           
           return (
             <motion.div
@@ -74,16 +63,14 @@ const Hero: React.FC = () => {
                 x: [
                   Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
                   Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
                 ],
                 y: [
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 ],
-                opacity: [0, 0.3, 0.6, 0.3, 0],
-                scale: [0.5, 1, 0.8, 1.2, 0.5],
-                rotate: [0, 180, 360]
+                opacity: [0, 0.15, 0.25, 0.15, 0],
+                scale: [0.8, 1, 1.1, 0.9, 0.8],
+                rotate: [0, 360]
               }}
               transition={{
                 duration: duration,
@@ -94,7 +81,7 @@ const Hero: React.FC = () => {
             >
               <Icon 
                 size={size} 
-                className="text-white/20" 
+                className="text-white/10" 
               />
             </motion.div>
           );
@@ -109,10 +96,10 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-4 px-8 py-4 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-8 group hover:bg-white/25 transition-all duration-300"
+            className="inline-flex items-center gap-4 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white transition-all duration-300 shadow-soft"
           >
             <Logo size="sm" />
-            <span className="text-white text-sm font-medium tracking-wide">
+            <span className="text-neutral-700 text-sm font-medium tracking-wide">
               Creating Family Memories in Buffalo & WNY
             </span>
           </motion.div>
@@ -162,7 +149,7 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 hover:bg-primary-50 font-bold text-lg rounded-xl overflow-hidden transition-all duration-300 shadow-elegant hover:shadow-glow-lg"
+                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold text-lg rounded-xl overflow-hidden transition-all duration-300 shadow-elegant hover:shadow-glow-lg"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -171,7 +158,7 @@ const Hero: React.FC = () => {
                 </span>
                 {/* Shimmer effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-100/50 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.6 }}
@@ -181,7 +168,7 @@ const Hero: React.FC = () => {
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-xl border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 shadow-soft hover:shadow-elegant"
+              className="group inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur-md text-white font-semibold text-lg rounded-xl border border-white/40 hover:bg-white/30 hover:border-white/60 transition-all duration-300 shadow-soft hover:shadow-elegant"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
