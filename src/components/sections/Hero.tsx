@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ArrowRight, Heart, Tent, TreePine, Sparkles } from 'lucide-react';
+import { Star, ArrowRight, Heart, Tent, TreePine, Sparkles, Zap, Crown, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { trackBookNowClick } from '../../utils/analytics';
 import Logo from '../ui/Logo';
@@ -29,26 +29,60 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Professional Background */}
+      {/* Professional Background with Parallax Effect */}
       <div className="absolute inset-0 z-0">
-        <img
+        <motion.img
           src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
           alt="Family glamping experience"
           className="w-full h-full object-cover"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "easeOut" }}
         />
         
-        {/* Strong overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40" />
+        {/* Dynamic gradient overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50"
+          initial={{ opacity: 0.8 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        />
+        
+        {/* Animated light rays */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 bg-gradient-to-b from-white/20 to-transparent"
+              style={{
+                height: '200%',
+                left: `${20 + i * 30}%`,
+                top: '-50%',
+                transform: 'rotate(15deg)',
+              }}
+              animate={{
+                opacity: [0, 0.3, 0],
+                scaleY: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 1.5,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Subtle floating elements */}
+      {/* Premium floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 3 : 6)].map((_, i) => {
-          const icons = [Tent, TreePine, Heart, Sparkles];
+        {[...Array(isMobile ? 4 : 8)].map((_, i) => {
+          const icons = [Tent, TreePine, Heart, Sparkles, Crown, Award, Zap];
           const Icon = icons[i % icons.length];
-          const size = 20 + Math.random() * 8;
-          const duration = 25 + Math.random() * 10;
-          const delay = Math.random() * 10;
+          const size = 24 + Math.random() * 12;
+          const duration = 20 + Math.random() * 15;
+          const delay = Math.random() * 8;
           
           return (
             <motion.div
@@ -57,7 +91,8 @@ const Hero: React.FC = () => {
               initial={{ 
                 x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
                 y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                opacity: 0 
+                opacity: 0,
+                scale: 0.5
               }}
               animate={{
                 x: [
@@ -68,9 +103,9 @@ const Hero: React.FC = () => {
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 ],
-                opacity: [0, 0.1, 0.15, 0.1, 0],
-                scale: [0.8, 1, 1.1, 0.9, 0.8],
-                rotate: [0, 360]
+                opacity: [0, 0.15, 0.25, 0.15, 0],
+                scale: [0.5, 1, 1.2, 1, 0.5],
+                rotate: [0, 180, 360]
               }}
               transition={{
                 duration: duration,
@@ -81,7 +116,7 @@ const Hero: React.FC = () => {
             >
               <Icon 
                 size={size} 
-                className="text-white/5" 
+                className="text-white/10 filter drop-shadow-lg" 
               />
             </motion.div>
           );
@@ -91,20 +126,25 @@ const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="container-custom relative z-20 min-h-screen flex items-center justify-center">
         <div className="max-w-6xl text-center">
-          {/* Logo Badge */}
+          {/* Premium Logo Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white transition-all duration-300 shadow-lg"
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white hover:scale-105 transition-all duration-500 shadow-2xl"
           >
             <Logo size="sm" />
             <span className="text-neutral-800 text-sm font-semibold tracking-wide">
               Your Go-to Glamping Experts in Western New York
             </span>
+            <motion.div
+              className="w-2 h-2 bg-primary-500 rounded-full"
+              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           </motion.div>
 
-          {/* Main Headline - Professional */}
+          {/* Spectacular Main Headline */}
           <motion.h1 
             className="text-5xl md:text-7xl lg:text-8xl font-display font-black mb-8 leading-tight text-white tracking-tight"
             style={{
@@ -114,17 +154,29 @@ const Hero: React.FC = () => {
               WebkitFontSmoothing: 'antialiased',
               MozOsxFontSmoothing: 'grayscale'
             }}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           >
-            <span className="block">Glamping</span>
-            <span className="block bg-gradient-to-r from-primary-300 via-primary-200 to-secondary-300 bg-clip-text text-transparent">
+            <motion.span 
+              className="block"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Glamping
+            </motion.span>
+            <motion.span 
+              className="block bg-gradient-to-r from-primary-300 via-primary-200 to-secondary-300 bg-clip-text text-transparent"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
               WNY
-            </span>
+            </motion.span>
           </motion.h1>
 
-          {/* Subheadline - Professional */}
+          {/* Dynamic Subheadline */}
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl text-white font-display font-semibold mb-8 leading-relaxed tracking-tight max-w-5xl mx-auto"
             style={{
@@ -132,78 +184,112 @@ const Hero: React.FC = () => {
               fontFeatureSettings: '"kern" 1',
               letterSpacing: '-0.01em'
             }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 1, delay: 0.6 }}
           >
             Creating Unforgettable
-            <span className="text-primary-200 font-bold"> Experiences </span>
+            <motion.span 
+              className="text-primary-200 font-bold"
+              animate={{ 
+                textShadow: [
+                  '0 0 10px rgba(59, 130, 246, 0.5)',
+                  '0 0 20px rgba(59, 130, 246, 0.8)',
+                  '0 0 10px rgba(59, 130, 246, 0.5)'
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            > Experiences </motion.span>
             for Every Celebration
           </motion.h2>
           
-          {/* Value Proposition - Professional */}
+          {/* Enhanced Value Proposition */}
           <motion.p 
             className="text-xl md:text-2xl text-white/95 mb-12 max-w-5xl mx-auto leading-relaxed font-sans"
             style={{
               textShadow: '0 2px 8px rgba(0,0,0,0.7)',
               lineHeight: '1.6'
             }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 1, delay: 0.8 }}
           >
             We take the stress out of party planning and turn your special occasion into a celebration to remember! 
             <br className="hidden md:block" />
-            <span className="text-primary-200 font-semibold">From cozy indoor sleepovers to outdoor glamping adventures</span> - we handle everything so you can relax and enjoy the moment.
+            <motion.span 
+              className="text-primary-200 font-semibold"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              From cozy indoor sleepovers to outdoor glamping adventures
+            </motion.span> - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
-          {/* CTA Buttons - Professional */}
+          {/* Premium CTA Buttons */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 1, delay: 1.0 }}
           >
             <motion.div
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-10 py-5 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xl rounded-xl overflow-hidden transition-all duration-300 shadow-2xl hover:shadow-glow border border-primary-500"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 hover:from-primary-700 hover:via-primary-600 hover:to-primary-700 text-white font-bold text-xl rounded-xl overflow-hidden transition-all duration-500 shadow-2xl hover:shadow-glow-lg border border-primary-400"
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-3 font-display">
                   Book Your Experience
-                  <Heart className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <motion.div
+                    animate={{ rotate: [0, 15, -15, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+                  >
+                    <Heart className="w-6 h-6" />
+                  </motion.div>
                 </span>
-                {/* Shimmer effect */}
+                
+                {/* Enhanced shimmer effect */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8 }}
+                />
+                
+                {/* Pulsing glow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-primary-400/50 to-primary-600/50 rounded-xl"
+                  animate={{ opacity: [0.5, 0.8, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 />
               </Link>
             </motion.div>
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-10 py-5 bg-white/15 backdrop-blur-md text-white font-bold text-xl rounded-xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 shadow-xl hover:shadow-2xl"
-              whileHover={{ scale: 1.05, y: -2 }}
+              className="group inline-flex items-center justify-center px-10 py-5 bg-white/15 backdrop-blur-md text-white font-bold text-xl rounded-xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-500 shadow-xl hover:shadow-2xl"
+              whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ArrowRight className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              >
+                <ArrowRight className="w-6 h-6 mr-3" />
+              </motion.div>
               <span className="font-display">Explore the Details</span>
             </motion.button>
           </motion.div>
 
-          {/* Trust Indicators - Professional */}
+          {/* Enhanced Trust Indicators */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-base"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            transition={{ duration: 1, delay: 1.2 }}
           >
             <motion.div 
               className="flex items-center gap-3"
@@ -215,25 +301,37 @@ const Hero: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.2 + i * 0.1 }}
+                    transition={{ delay: 1.4 + i * 0.1, type: "spring" }}
                   >
-                    <Star className="w-5 h-5 text-yellow-300 fill-yellow-300" />
+                    <Star className="w-5 h-5 text-yellow-300 fill-yellow-300 drop-shadow-lg" />
                   </motion.div>
                 ))}
               </div>
               <span className="font-semibold font-display">Hundreds of Happy Clients</span>
             </motion.div>
             <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold font-display">All Ages Welcome</div>
+            <motion.div 
+              className="font-semibold font-display"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            >
+              All Ages Welcome
+            </motion.div>
             <div className="w-px h-6 bg-white/40" />
             <div className="font-semibold font-display">Professional Service</div>
             <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold font-display">Stress-Free Planning</div>
+            <motion.div 
+              className="font-semibold font-display"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+            >
+              Stress-Free Planning
+            </motion.div>
           </motion.div>
         </div>
       </div>
       
-      {/* Scroll Indicator - Professional */}
+      {/* Enhanced Scroll Indicator */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}
@@ -246,13 +344,16 @@ const Hero: React.FC = () => {
           <span className="text-sm font-semibold opacity-80 group-hover:opacity-100 transition-opacity font-display">
             Explore Our Services
           </span>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
+          <motion.div 
+            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden"
+            whileHover={{ boxShadow: '0 0 20px rgba(255,255,255,0.3)' }}
+          >
             <motion.div
               className="w-1 h-3 bg-white/60 rounded-full mt-2"
               animate={{ y: [0, 12, 0] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             />
-          </div>
+          </motion.div>
         </div>
       </motion.button>
     </section>

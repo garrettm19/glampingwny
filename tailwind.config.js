@@ -160,6 +160,11 @@ export default {
         'professional': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
         'crisp': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
         'strong': '0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -4px rgba(0, 0, 0, 0.15)',
+        'elegant': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+        'soft': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+        'warm': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
+        'glow': '0 0 20px rgba(14, 165, 233, 0.3)',
+        'glow-lg': '0 0 40px rgba(14, 165, 233, 0.4)',
       },
       keyframes: {
         'fade-in': {
@@ -182,6 +187,19 @@ export default {
           '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
           '50%': { transform: 'translateY(-10px) rotate(5deg)' },
         },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 5px rgba(14, 165, 233, 0.5)' },
+          '50%': { boxShadow: '0 0 20px rgba(14, 165, 233, 0.8), 0 0 30px rgba(14, 165, 233, 0.4)' },
+        },
+        'sparkle': {
+          '0%, 100%': { opacity: '0.8', transform: 'scale(1) rotate(0deg)' },
+          '50%': { opacity: '1', transform: 'scale(1.2) rotate(180deg)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+          '33%': { transform: 'translateY(-10px) rotate(120deg)' },
+          '66%': { transform: 'translateY(5px) rotate(240deg)' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-out',
@@ -189,6 +207,9 @@ export default {
         'gentle-bounce': 'gentle-bounce 2s ease-in-out infinite',
         'shimmer': 'shimmer 2s infinite',
         'float-gentle': 'float-gentle 4s ease-in-out infinite',
+        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+        'sparkle': 'sparkle 3s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
       backgroundImage: {
         'gradient-professional': 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%)',
