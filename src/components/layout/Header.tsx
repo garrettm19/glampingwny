@@ -54,8 +54,8 @@ const Header: React.FC = () => {
     <motion.header 
       className={`fixed w-full z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-xl border-b border-lavender-200/20 py-3' 
-          : 'bg-transparent py-4'
+          ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-gray-100 py-3' 
+          : 'bg-white/95 backdrop-blur-md shadow-sm py-4'
       }`}
       role="banner"
     >
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
             aria-label="Glamping WNY Home"
             onClick={() => handleNavClick('logo')}
           >
-            <Logo isScrolled={isScrolled} />
+            <Logo isScrolled={true} />
           </Link>
         </motion.div>
 
@@ -96,22 +96,14 @@ const Header: React.FC = () => {
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
                   <button
-                    className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group flex items-center gap-1 ${
-                      isScrolled 
-                        ? 'text-gray-700 hover:text-lavender-600' 
-                        : 'text-white hover:text-lavender-300'
-                    }`}
+                    className="relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group flex items-center gap-1 text-gray-700 hover:text-lavender-600"
                   >
                     <span className="relative z-10">{link.name}</span>
                     <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
                     
                     {/* Hover background effect */}
                     <motion.div
-                      className={`absolute inset-0 rounded-lg ${
-                        isScrolled 
-                          ? 'bg-lavender-50' 
-                          : 'bg-white/10'
-                      }`}
+                      className="absolute inset-0 rounded-lg bg-lavender-50"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileHover={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.2 }}
@@ -126,7 +118,7 @@ const Header: React.FC = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-lavender-200 py-2 z-50"
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
                       >
                         {link.dropdownItems?.map((item, i) => (
                           <Link
@@ -146,21 +138,13 @@ const Header: React.FC = () => {
                 <Link
                   to={link.path}
                   onClick={() => handleNavClick(link.name.toLowerCase())}
-                  className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group ${
-                    isScrolled 
-                      ? 'text-gray-700 hover:text-lavender-600' 
-                      : 'text-white hover:text-lavender-300'
-                  }`}
+                  className="relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group text-gray-700 hover:text-lavender-600"
                 >
                   <span className="relative z-10">{link.name}</span>
                   
                   {/* Hover background effect */}
                   <motion.div
-                    className={`absolute inset-0 rounded-lg ${
-                      isScrolled 
-                        ? 'bg-lavender-50' 
-                        : 'bg-white/10'
-                    }`}
+                    className="absolute inset-0 rounded-lg bg-lavender-50"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileHover={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.2 }}
@@ -182,14 +166,10 @@ const Header: React.FC = () => {
           ))}
           
           {/* Contact Info in Header */}
-          <div className="flex items-center space-x-6 ml-8 pl-8 border-l border-white/20">
+          <div className="flex items-center space-x-6 ml-8 pl-8 border-l border-gray-200">
             <motion.a 
               href="tel:+17165551234"
-              className={`flex items-center gap-2 transition-all duration-300 group ${
-                isScrolled 
-                  ? 'text-gray-700 hover:text-lavender-600' 
-                  : 'text-white hover:text-lavender-300'
-              }`}
+              className="flex items-center gap-2 transition-all duration-300 group text-gray-700 hover:text-lavender-600"
               onClick={() => trackEvent('Contact', 'phone_click', 'header')}
               whileHover={{ scale: 1.02 }}
             >
@@ -202,11 +182,7 @@ const Header: React.FC = () => {
                 href="https://instagram.com/glampingwny" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isScrolled 
-                    ? 'bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600' 
-                    : 'bg-white/10 text-white hover:bg-pink-500/20 hover:text-pink-300'
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600"
                 aria-label="Follow us on Instagram"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
@@ -217,11 +193,7 @@ const Header: React.FC = () => {
                 href="https://facebook.com/glampingwny" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isScrolled 
-                    ? 'bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600' 
-                    : 'bg-white/10 text-white hover:bg-blue-500/20 hover:text-blue-300'
-                }`}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600"
                 aria-label="Follow us on Facebook"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.95 }}
@@ -261,7 +233,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-400"
+          className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender-400 text-gray-700"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
@@ -277,7 +249,7 @@ const Header: React.FC = () => {
                 exit={{ rotate: 90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <X className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+                <X className="h-6 w-6" />
               </motion.div>
             ) : (
               <motion.div
@@ -287,7 +259,7 @@ const Header: React.FC = () => {
                 exit={{ rotate: -90, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
+                <Menu className="h-6 w-6" />
               </motion.div>
             )}
           </AnimatePresence>
