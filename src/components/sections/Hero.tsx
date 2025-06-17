@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
           >
             <Logo size="sm" />
             <span className="text-neutral-700 text-sm font-medium tracking-wide">
-              Creating Family Memories in Buffalo & WNY
+              Your Go-to Glamping Experts in Western New York
             </span>
           </motion.div>
 
@@ -136,8 +136,8 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Where Families Create
-            <span className="text-primary-200 font-semibold"> Magical Memories </span>
+            Creating Unforgettable
+            <span className="text-primary-200 font-semibold"> Family Experiences </span>
             Together
           </motion.h2>
           
@@ -152,9 +152,9 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Safe, fun, and stress-free glamping experiences for birthdays, family celebrations, and special moments.
+            We take the stress out of party planning and turn your special occasion into a celebration to remember! 
             <br className="hidden md:block" />
-            <span className="text-primary-200 font-medium">We handle everything</span> so you can focus on making memories with your loved ones!
+            <span className="text-primary-200 font-medium">From cozy indoor sleepovers to outdoor glamping adventures</span> - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
           {/* CTA Buttons - Professional Sizing */}
@@ -174,7 +174,7 @@ const Hero: React.FC = () => {
                 onClick={() => trackBookNowClick()}
               >
                 <span className="relative z-10 flex items-center gap-2 font-display">
-                  Start Planning Our Adventure!
+                  Book Your Experience
                   <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 </span>
                 {/* Shimmer effect */}
@@ -194,7 +194,7 @@ const Hero: React.FC = () => {
               whileTap={{ scale: 0.95 }}
             >
               <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              <span className="font-display">See the Magic</span>
+              <span className="font-display">Explore the Details</span>
             </motion.button>
           </motion.div>
 
@@ -221,14 +221,14 @@ const Hero: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-              <span className="font-medium font-display">200+ Happy Families</span>
+              <span className="font-medium font-display">Hundreds of Happy Clients</span>
             </motion.div>
-            <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium font-display">Family-Safe & Fun</div>
             <div className="w-px h-4 bg-white/40" />
             <div className="font-medium font-display">All Ages Welcome</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium font-display">Stress-Free Setup</div>
+            <div className="font-medium font-display">Professional Service</div>
+            <div className="w-px h-4 bg-white/40" />
+            <div className="font-medium font-display">Stress-Free Planning</div>
           </motion.div>
         </div>
       </div>
@@ -244,7 +244,7 @@ const Hero: React.FC = () => {
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity font-display">
-            See Our Magic
+            Explore Our Services
           </span>
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
             <motion.div
