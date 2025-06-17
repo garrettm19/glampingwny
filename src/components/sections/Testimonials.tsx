@@ -8,7 +8,7 @@ const testimonials = [
   {
     quote: "Holly was absolutely amazing and easy to work with! I told her I was throwing a Barbie themed bachelorette weekend and she knocked the theme out of the park with Barbie décor in our glamping tent! All the girls especially the bride to be were so impressed and we enjoyed our first glamping experience so much! I highly recommend Glamping WNY and will most definitely be using them again in the future!",
     name: "Rachel C.",
-    image: "https://picsum.photos/100/100?random=50",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "Bachelorette Party",
     date: "2024-02-28",
@@ -17,7 +17,7 @@ const testimonials = [
   {
     quote: "I booked Glamping WNY for a surprise sleepover for my nephews. Holly was great! The booking process was so simple. She was easy to contact and communicate with. Also very flexible with drop off and pickup times. She was able to do two different themes for them since they are into different things. The beds were very comfortable and everything was clean and organized. The kids loved it. It was a great experience. Thank you for making their birthday extra special!",
     name: "Rebecca B.",
-    image: "https://picsum.photos/100/100?random=51",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "Kids Birthday",
     date: "2024-02-25",
@@ -26,7 +26,7 @@ const testimonials = [
   {
     quote: "Clean, bright, unique, well thought out. Our experience was 5 stars, Holly covered all the details. Highly recommend booking Holly and Joe for all your Glamping needs!",
     name: "Jamie D.",
-    image: "https://picsum.photos/100/100?random=52",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "5-Star Experience",
     date: "2024-02-20",
@@ -35,7 +35,7 @@ const testimonials = [
   {
     quote: "They were very responsive to any questions I asked, they gave their honest opinions, and I cannot begin to explain how awesome the set up was. It was even better in person than in the pictures! The kids not only slept in it, but played in it for the entire length of time we had them! Everything was clean, fresh, and right up any kids alley! Thank you for an awesome 'stay-cation' for our kiddos!",
     name: "Erin C.",
-    image: "https://picsum.photos/100/100?random=53",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "Kids Staycation",
     date: "2024-02-18",
@@ -44,7 +44,7 @@ const testimonials = [
   {
     quote: "Working with Glamping WNY was so easy. I made sure to book in advance and while booking, was able to receive tips from Holly on theme and components I wanted for the setup. Their product is clean, unique and they take the time to make every display perfect. My daughter loved having the unicorn themed tents to celebrate her birthday and Holly even included a special unicorn gift just for her. Great product, great company and I can't wait to work with them again.",
     name: "Casey S.",
-    image: "https://picsum.photos/100/100?random=54",
+    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "Unicorn Birthday",
     date: "2024-02-15",
@@ -53,7 +53,7 @@ const testimonials = [
   {
     quote: "Amazing from start to finish. I won this as a raffle and will 100% pay to have them do it again. Our guests loved the ambiance and details of the outdoor movie night. They were very communicative leading up as there was a chance of rain. The seating and decorations were SO cute! Holly and her husband got everything set-up quickly and then came after and got it all that night. I have raved about them to everyone and look forward to working with them again!",
     name: "Brett B.",
-    image: "https://picsum.photos/100/100?random=55",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&w=100&q=80",
     rating: 5,
     tag: "Movie Night",
     date: "2024-02-12",
@@ -88,7 +88,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="section bg-gradient-to-br from-lavender-500 via-lavender-600 to-lavender-700 relative overflow-hidden">
+    <section className="section bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 relative overflow-hidden">
       {/* Elegant decorative elements */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
@@ -126,10 +126,10 @@ const Testimonials: React.FC = () => {
               <Heart className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Families Are Saying! 👨‍👩‍👧‍👦
+              What Families Are Saying!
             </h2>
             <p className="text-white/90 max-w-2xl mx-auto mb-6">
-              Real reviews from real families who've experienced the magic of Glamping WNY with their loved ones.
+              Real reviews from real families who've experienced the joy of Glamping WNY with their loved ones.
             </p>
             
             {/* Trust Stats */}
@@ -180,7 +180,7 @@ const Testimonials: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <div className="bg-white/95 backdrop-blur-sm border border-lavender-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
+                <div className="bg-white/95 backdrop-blur-sm border border-primary-200 rounded-xl p-8 h-full flex flex-col items-center justify-center text-center relative group">
                   {/* Floating hearts on hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none">
                     {[...Array(5)].map((_, i) => (
@@ -209,7 +209,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Tag */}
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-lavender-500 text-white rounded-full text-sm font-medium">
+                  <span className="absolute top-4 right-4 px-3 py-1 bg-primary-500 text-white rounded-full text-sm font-medium">
                     {testimonials[currentIndex].tag}
                   </span>
 
@@ -225,7 +225,7 @@ const Testimonials: React.FC = () => {
 
                   {/* Quote */}
                   <div className="relative mb-8">
-                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-lavender-200" />
+                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-primary-200" />
                     <blockquote className="text-lg text-gray-800 max-w-2xl leading-relaxed">
                       "{testimonials[currentIndex].quote}"
                     </blockquote>
@@ -236,7 +236,7 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-lavender-200"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-primary-200"
                     />
                     <div className="ml-4 text-left">
                       <div className="font-bold text-gray-800">

@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
             </span>
           </motion.h1>
 
-          {/* Subheadline - Professional Sizing */}
+          {/* Subheadline - Updated Copy */}
           <motion.h2 
             className="text-xl md:text-2xl lg:text-3xl text-white font-display font-medium mb-6 leading-relaxed tracking-tight max-w-4xl mx-auto"
             style={{
@@ -137,11 +137,11 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Creating Unforgettable
-            <span className="text-primary-200 font-semibold"> Family Experiences </span>
-            Together
+            <span className="text-primary-200 font-semibold"> Experiences </span>
+            for Every Celebration
           </motion.h2>
           
-          {/* Value Proposition - Professional Sizing */}
+          {/* Value Proposition - Updated Copy */}
           <motion.p 
             className="text-lg md:text-xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed font-sans"
             style={{
@@ -198,7 +198,7 @@ const Hero: React.FC = () => {
             </motion.button>
           </motion.div>
 
-          {/* Trust Indicators - Professional Sizing */}
+          {/* Trust Indicators - Updated Copy */}
           <motion.div
             className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
             initial={{ opacity: 0, y: 20 }}
