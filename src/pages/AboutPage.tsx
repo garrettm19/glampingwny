@@ -256,51 +256,29 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-
+      {/* CTA Section - Fixed Colors */}
+      <section className="section bg-white relative overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div 
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center bg-gradient-to-br from-lavender-50 to-lavender-100 rounded-3xl p-12 border border-lavender-200"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            <div className="inline-block p-4 bg-lavender-500 rounded-full mb-8">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 leading-tight">
               Ready to Create Family Magic Together?
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
               Let's start planning your most memorable family celebration yet!
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
                 href="/book-now"
-                className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -308,7 +286,7 @@ const AboutPage: React.FC = () => {
               </motion.a>
               <motion.a
                 href="/contact"
-                className="border-2 border-white text-white hover:bg-white/20 font-semibold py-4 px-8 rounded-xl transition-all duration-300"
+                className="border-2 border-lavender-500 text-lavender-600 hover:bg-lavender-50 font-semibold py-4 px-8 rounded-xl transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
