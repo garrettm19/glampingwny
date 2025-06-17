@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Clean Background - No Tint */}
+      {/* Professional Background */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
@@ -37,17 +37,17 @@ const Hero: React.FC = () => {
           className="w-full h-full object-cover"
         />
         
-        {/* Minimal overlay for text readability only */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+        {/* Strong overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/40" />
       </div>
 
       {/* Subtle floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 4 : 8)].map((_, i) => {
+        {[...Array(isMobile ? 3 : 6)].map((_, i) => {
           const icons = [Tent, TreePine, Heart, Sparkles];
           const Icon = icons[i % icons.length];
-          const size = 16 + Math.random() * 8;
-          const duration = 20 + Math.random() * 10;
+          const size = 20 + Math.random() * 8;
+          const duration = 25 + Math.random() * 10;
           const delay = Math.random() * 10;
           
           return (
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                   Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 ],
-                opacity: [0, 0.15, 0.25, 0.15, 0],
+                opacity: [0, 0.1, 0.15, 0.1, 0],
                 scale: [0.8, 1, 1.1, 0.9, 0.8],
                 rotate: [0, 360]
               }}
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             >
               <Icon 
                 size={size} 
-                className="text-white/10" 
+                className="text-white/5" 
               />
             </motion.div>
           );
@@ -96,19 +96,19 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-6 group hover:bg-white transition-all duration-300 shadow-soft"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white transition-all duration-300 shadow-lg"
           >
             <Logo size="sm" />
-            <span className="text-neutral-700 text-sm font-medium tracking-wide">
+            <span className="text-neutral-800 text-sm font-semibold tracking-wide">
               Your Go-to Glamping Experts in Western New York
             </span>
           </motion.div>
 
-          {/* Main Headline - Professional Sizing */}
+          {/* Main Headline - Professional */}
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight text-white tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-display font-black mb-8 leading-tight text-white tracking-tight"
             style={{
-              textShadow: '0 4px 16px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)',
+              textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6)',
               fontFeatureSettings: '"kern" 1, "liga" 1',
               textRendering: 'optimizeLegibility',
               WebkitFontSmoothing: 'antialiased',
@@ -119,16 +119,16 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="block">Glamping</span>
-            <span className="block bg-gradient-to-r from-primary-300 via-primary-200 to-accent-300 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary-300 via-primary-200 to-secondary-300 bg-clip-text text-transparent">
               WNY
             </span>
           </motion.h1>
 
-          {/* Subheadline - Updated Copy */}
+          {/* Subheadline - Professional */}
           <motion.h2 
-            className="text-xl md:text-2xl lg:text-3xl text-white font-display font-medium mb-6 leading-relaxed tracking-tight max-w-4xl mx-auto"
+            className="text-2xl md:text-3xl lg:text-4xl text-white font-display font-semibold mb-8 leading-relaxed tracking-tight max-w-5xl mx-auto"
             style={{
-              textShadow: '0 2px 8px rgba(0,0,0,0.7)',
+              textShadow: '0 2px 12px rgba(0,0,0,0.8)',
               fontFeatureSettings: '"kern" 1',
               letterSpacing: '-0.01em'
             }}
@@ -137,16 +137,16 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Creating Unforgettable
-            <span className="text-primary-200 font-semibold"> Experiences </span>
+            <span className="text-primary-200 font-bold"> Experiences </span>
             for Every Celebration
           </motion.h2>
           
-          {/* Value Proposition - Updated Copy */}
+          {/* Value Proposition - Professional */}
           <motion.p 
-            className="text-lg md:text-xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed font-sans"
+            className="text-xl md:text-2xl text-white/95 mb-12 max-w-5xl mx-auto leading-relaxed font-sans"
             style={{
-              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
-              lineHeight: '1.7'
+              textShadow: '0 2px 8px rgba(0,0,0,0.7)',
+              lineHeight: '1.6'
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,12 +154,12 @@ const Hero: React.FC = () => {
           >
             We take the stress out of party planning and turn your special occasion into a celebration to remember! 
             <br className="hidden md:block" />
-            <span className="text-primary-200 font-medium">From cozy indoor sleepovers to outdoor glamping adventures</span> - we handle everything so you can relax and enjoy the moment.
+            <span className="text-primary-200 font-semibold">From cozy indoor sleepovers to outdoor glamping adventures</span> - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
-          {/* CTA Buttons - Professional Sizing */}
+          {/* CTA Buttons - Professional */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -170,12 +170,12 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold text-lg rounded-xl overflow-hidden transition-all duration-300 shadow-elegant hover:shadow-glow border border-primary-400/30"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-primary-600 hover:bg-primary-700 text-white font-bold text-xl rounded-xl overflow-hidden transition-all duration-300 shadow-2xl hover:shadow-glow border border-primary-500"
                 onClick={() => trackBookNowClick()}
               >
-                <span className="relative z-10 flex items-center gap-2 font-display">
+                <span className="relative z-10 flex items-center gap-3 font-display">
                   Book Your Experience
-                  <Heart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <Heart className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </span>
                 {/* Shimmer effect */}
                 <motion.div
@@ -189,24 +189,24 @@ const Hero: React.FC = () => {
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-8 py-4 bg-white/15 backdrop-blur-md text-white font-semibold text-lg rounded-xl border border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 shadow-soft hover:shadow-elegant"
+              className="group inline-flex items-center justify-center px-10 py-5 bg-white/15 backdrop-blur-md text-white font-bold text-xl rounded-xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-300 shadow-xl hover:shadow-2xl"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <ArrowRight className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              <ArrowRight className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
               <span className="font-display">Explore the Details</span>
             </motion.button>
           </motion.div>
 
-          {/* Trust Indicators - Updated Copy */}
+          {/* Trust Indicators - Professional */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-6 text-white/90 text-sm"
+            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-base"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <motion.div 
-              className="flex items-center gap-2"
+              className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex">
@@ -217,23 +217,23 @@ const Hero: React.FC = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.2 + i * 0.1 }}
                   >
-                    <Star className="w-4 h-4 text-yellow-300 fill-yellow-300" />
+                    <Star className="w-5 h-5 text-yellow-300 fill-yellow-300" />
                   </motion.div>
                 ))}
               </div>
-              <span className="font-medium font-display">Hundreds of Happy Clients</span>
+              <span className="font-semibold font-display">Hundreds of Happy Clients</span>
             </motion.div>
-            <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium font-display">All Ages Welcome</div>
-            <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium font-display">Professional Service</div>
-            <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium font-display">Stress-Free Planning</div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="font-semibold font-display">All Ages Welcome</div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="font-semibold font-display">Professional Service</div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="font-semibold font-display">Stress-Free Planning</div>
           </motion.div>
         </div>
       </div>
       
-      {/* Scroll Indicator - Professional Sizing */}
+      {/* Scroll Indicator - Professional */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
         animate={{ y: [0, 8, 0] }}
@@ -242,8 +242,8 @@ const Hero: React.FC = () => {
         aria-label="Scroll down to see more"
         whileHover={{ scale: 1.1 }}
       >
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-xs font-medium opacity-80 group-hover:opacity-100 transition-opacity font-display">
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-sm font-semibold opacity-80 group-hover:opacity-100 transition-opacity font-display">
             Explore Our Services
           </span>
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden">
