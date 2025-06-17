@@ -84,7 +84,7 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-lavender-50 border-b border-lavender-200">
+      <section className="py-4 bg-primary-50 border-b border-primary-100">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -93,11 +93,11 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-lavender-600" />
-              <span className="font-bold text-lavender-800">Proudly Servicing the Buffalo Metro Area</span>
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <MapPin className="w-4 h-4 text-primary-600" />
+              <span className="font-semibold text-primary-800 text-sm">Proudly Servicing the Buffalo Metro Area</span>
             </div>
-            <p className="text-lavender-700">
+            <p className="text-primary-700 text-sm">
               <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
               Extended delivery available with fees
             </p>
@@ -115,13 +115,13 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <div className="flex justify-center mb-6">
-              <Logo size="lg" />
+            <div className="flex justify-center mb-4">
+              <Logo size="md" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-800 mb-3">
               Trusted by 200+ Happy Families
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-neutral-600 max-w-2xl mx-auto leading-relaxed">
               We're committed to creating safe, magical experiences that bring families together.
             </p>
           </motion.div>
@@ -129,7 +129,7 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
               { icon: Star, title: "5.0 Rating", subtitle: "200+ Reviews", color: "text-yellow-500" },
-              { icon: Users, title: "Family Safe", subtitle: "All Ages Welcome", color: "text-lavender-500" },
+              { icon: Users, title: "Family Safe", subtitle: "All Ages Welcome", color: "text-primary-500" },
               { icon: Shield, title: "Fully Insured", subtitle: "Professional Service", color: "text-green-500" },
               { icon: Clock, title: "3+ Years", subtitle: "Creating Magic", color: "text-blue-500" }
             ].map((item, index) => (
@@ -141,11 +141,11 @@ const HomePage: React.FC = () => {
                 viewport={{ once: true }}
                 className="text-center p-4"
               >
-                <div className={`w-16 h-16 ${item.color.replace('text-', 'bg-').replace('500', '100')} rounded-full flex items-center justify-center mx-auto mb-3`}>
-                  <item.icon className={`w-8 h-8 ${item.color}`} />
+                <div className={`w-12 h-12 ${item.color.replace('text-', 'bg-').replace('500', '100')} rounded-full flex items-center justify-center mx-auto mb-3`}>
+                  <item.icon className={`w-6 h-6 ${item.color}`} />
                 </div>
-                <h3 className="font-bold text-gray-800 mb-1">{item.title}</h3>
-                <p className="text-sm text-gray-600">{item.subtitle}</p>
+                <h3 className="font-semibold text-neutral-800 mb-1 text-sm">{item.title}</h3>
+                <p className="text-xs text-neutral-600">{item.subtitle}</p>
               </motion.div>
             ))}
           </div>
@@ -155,19 +155,19 @@ const HomePage: React.FC = () => {
       <Features />
       
       {/* Simple Services Preview */}
-      <section className="section bg-lavender-50">
+      <section className="section bg-primary-50">
         <div className="container-custom">
-          <div className="text-center mb-12">
+          <div className="section-header">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              <h2 className="section-title">
                 Choose Your Adventure
               </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
+              <p className="section-subtitle">
                 Indoor or outdoor, we have the perfect package for your family celebration.
               </p>
             </motion.div>
@@ -180,34 +180,34 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lavender-200"
+              className="bg-white rounded-2xl p-8 shadow-soft hover:shadow-elegant transition-all duration-300 border border-primary-100"
             >
               <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Tent className="w-10 h-10 text-lavender-600" />
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Tent className="w-8 h-8 text-primary-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Indoor Glamping</h3>
-                <p className="text-gray-600">Perfect for year-round celebrations</p>
+                <h3 className="text-xl font-semibold text-neutral-800 mb-2">Indoor Glamping</h3>
+                <p className="text-neutral-600">Perfect for year-round celebrations</p>
               </div>
               
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Starting at $225</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Starting at $225</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Weather-proof fun</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Weather-proof fun</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Available year-round</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Available year-round</span>
                 </div>
               </div>
 
               <Link
                 to="/services#indoor"
-                className="block w-full text-center py-3 px-6 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-semibold rounded-xl transition-all duration-300 group"
+                className="block w-full text-center py-3 px-6 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-xl transition-all duration-300 group"
               >
                 <span className="flex items-center justify-center gap-2">
                   Learn More
@@ -222,34 +222,34 @@ const HomePage: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-lavender-200"
+              className="bg-white rounded-2xl p-8 shadow-soft hover:shadow-elegant transition-all duration-300 border border-primary-100"
             >
               <div className="text-center mb-6">
-                <div className="w-20 h-20 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TreePine className="w-10 h-10 text-lavender-600" />
+                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TreePine className="w-8 h-8 text-primary-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">Outdoor Glamping</h3>
-                <p className="text-gray-600">Backyard adventures under the stars</p>
+                <h3 className="text-xl font-semibold text-neutral-800 mb-2">Outdoor Glamping</h3>
+                <p className="text-neutral-600">Backyard adventures under the stars</p>
               </div>
               
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Starting at $500</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Starting at $500</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Premium bell tents</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Premium bell tents</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-lavender-500 rounded-full"></div>
-                  <span className="text-gray-700">Spring/Summer 2025</span>
+                  <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
+                  <span className="text-neutral-700 text-sm">Spring/Summer 2025</span>
                 </div>
               </div>
 
               <Link
                 to="/services#outdoor"
-                className="block w-full text-center py-3 px-6 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-semibold rounded-xl transition-all duration-300 group"
+                className="block w-full text-center py-3 px-6 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-xl transition-all duration-300 group"
               >
                 <span className="flex items-center justify-center gap-2">
                   Learn More
@@ -261,7 +261,7 @@ const HomePage: React.FC = () => {
 
           {/* View All Services */}
           <motion.div
-            className="text-center mt-12"
+            className="text-center mt-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -269,7 +269,7 @@ const HomePage: React.FC = () => {
           >
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-lavender-600 hover:text-lavender-700 font-semibold group"
+              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group"
             >
               View All Packages & Add-ons
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -281,47 +281,22 @@ const HomePage: React.FC = () => {
       <Testimonials />
       
       {/* Final CTA */}
-      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-
+      <section className="section bg-white relative overflow-hidden">
         <div className="container-custom relative z-10">
           <motion.div 
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center bg-gradient-to-br from-primary-50 to-primary-100 rounded-3xl p-12 border border-primary-200"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <div className="mb-8">
-              <Logo size="lg" className="justify-center" />
+            <div className="mb-6">
+              <Logo size="md" className="justify-center" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-800">
               Ready to Create Your Perfect Family Celebration?
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-neutral-700 mb-8 leading-relaxed">
               Book your family glamping experience today and make memories that your family will treasure forever.
             </p>
             <motion.div
@@ -330,10 +305,10 @@ const HomePage: React.FC = () => {
             >
               <Link 
                 to="/book-now" 
-                className="bg-white text-lavender-700 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl text-lg inline-flex items-center group relative overflow-hidden transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-4 px-8 rounded-xl text-lg inline-flex items-center group relative overflow-hidden transition-all duration-300 shadow-soft hover:shadow-warm"
               >
                 <span className="relative z-10">Let's Create Family Magic!</span>
-                <Heart className="w-6 h-6 ml-2 relative z-10 group-hover:scale-110 transition-transform" />
+                <Heart className="w-5 h-5 ml-2 relative z-10 group-hover:scale-110 transition-transform" />
               </Link>
             </motion.div>
           </motion.div>
