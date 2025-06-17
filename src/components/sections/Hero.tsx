@@ -83,9 +83,9 @@ const Hero: React.FC = () => {
       {/* Main Content - Apple-level typography */}
       <div className="container-custom relative z-20 min-h-screen flex items-center justify-center px-6">
         <div className="max-w-6xl text-center">
-          {/* Massive, Beautiful Title */}
+          {/* Perfect-sized, Beautiful Title */}
           <motion.h1 
-            className="text-7xl md:text-9xl lg:text-[10rem] font-black mb-8 leading-[0.85] text-white tracking-tight"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.9] text-white tracking-tight"
             style={{
               textShadow: '0 8px 40px rgba(0,0,0,0.6)',
               fontWeight: 900,
@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
             From cozy indoor sleepovers to outdoor glamping adventures - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
-          {/* Apple-Style CTA Buttons */}
+          {/* Apple-Style CTA Buttons - FIXED SHIMMER */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
             initial={{ opacity: 0, y: 40 }}
@@ -158,25 +158,16 @@ const Hero: React.FC = () => {
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-12 py-6 bg-white text-gray-900 hover:bg-gray-50 font-semibold text-xl rounded-2xl transition-all duration-500 shadow-2xl hover:shadow-3xl"
+                className="group relative inline-flex items-center justify-center px-12 py-6 bg-white text-gray-900 hover:bg-gray-50 font-semibold text-xl rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl overflow-hidden"
                 onClick={() => trackBookNowClick()}
                 style={{ 
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                  backdropFilter: 'blur(20px)'
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
                 }}
               >
                 <span className="flex items-center gap-3 relative z-10">
                   Book Your Experience
                   <Heart className="w-6 h-6 text-pink-500" />
                 </span>
-                
-                {/* Subtle shimmer effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-2xl"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 1.5 }}
-                />
               </Link>
             </motion.div>
             
