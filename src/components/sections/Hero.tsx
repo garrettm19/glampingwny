@@ -173,7 +173,7 @@ const Hero: React.FC = () => {
           >
             Safe, fun, and stress-free glamping experiences for birthdays, family celebrations, and special moments.
             <br className="hidden md:block" />
-            We handle everything so you can focus on making memories with your loved ones! 🏕️✨
+            We handle everything so you can focus on making memories with your loved ones!
           </motion.p>
           
           {/* CTA Buttons */}
@@ -244,11 +244,11 @@ const Hero: React.FC = () => {
               <span className="font-medium">200+ Happy Families</span>
             </motion.div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ Kid-Safe & Fun</div>
+            <div className="font-medium">Family-Safe & Fun</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ All Ages Welcome</div>
+            <div className="font-medium">All Ages Welcome</div>
             <div className="w-px h-4 bg-white/40" />
-            <div className="font-medium">✓ Stress-Free Setup</div>
+            <div className="font-medium">Stress-Free Setup</div>
           </motion.div>
         </div>
       </div>

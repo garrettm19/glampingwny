@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Tent, Sparkles, Bath, Clock, PartyPopper, Shield, Heart, Star, Calendar, Users, Camera, Utensils, ArrowRight } from 'lucide-react';
+import { Tent, Sparkles, Home, Clock, PartyPopper, Shield, Heart, Star, Calendar, Users, Camera, Utensils, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const features = [
   {
     icon: Tent,
-    title: "Indoor & Outdoor Fun",
+    title: "Indoor & Outdoor Options",
     description: "Year-round adventures for the whole family",
     color: "bg-lavender-100 text-lavender-600",
     shadowColor: "shadow-lavender-200/50",
@@ -17,15 +17,15 @@ const features = [
     icon: Sparkles,
     title: "Magical Decorations",
     description: "Themed setups that spark imagination and wonder",
-    color: "bg-teal-100 text-teal-600",
-    shadowColor: "shadow-teal-200/50",
+    color: "bg-lavender-100 text-lavender-600",
+    shadowColor: "shadow-lavender-200/50",
     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "25+ kid-friendly themes"
+    stats: "25+ themes available"
   },
   {
-    icon: Bath,
-    title: "Real Bathrooms",
-    description: "Comfort and convenience for families",
+    icon: Home,
+    title: "Comfortable Setup",
+    description: "Cozy and convenient for families",
     color: "bg-lavender-100 text-lavender-600",
     shadowColor: "shadow-lavender-200/50",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80",
@@ -35,8 +35,8 @@ const features = [
     icon: Clock,
     title: "Easy Booking",
     description: "Simple planning for busy parents",
-    color: "bg-teal-100 text-teal-600",
-    shadowColor: "shadow-teal-200/50",
+    color: "bg-lavender-100 text-lavender-600",
+    shadowColor: "shadow-lavender-200/50",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Book in under 5 minutes"
   },
@@ -52,9 +52,9 @@ const features = [
   {
     icon: Shield,
     title: "Safe & Clean",
-    description: "Kid-safe equipment and sanitized supplies",
-    color: "bg-teal-100 text-teal-600",
-    shadowColor: "shadow-teal-200/50",
+    description: "Family-safe equipment and sanitized supplies",
+    color: "bg-lavender-100 text-lavender-600",
+    shadowColor: "shadow-lavender-200/50",
     image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
     stats: "Family safety first"
   }
@@ -98,16 +98,16 @@ const item = {
 const Features: React.FC = () => {
   return (
     <section id="features" className="section bg-white relative overflow-hidden">
-      {/* Playful background decorative elements */}
+      {/* Subtle background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-[10%] w-3 h-3 bg-lavender-400 rounded-full animate-pulse-glow" />
-        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-teal-400 rounded-full animate-sparkle animation-delay-700" />
+        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-lavender-300 rounded-full animate-sparkle animation-delay-700" />
         <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-lavender-400 rounded-full animate-float" />
-        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-teal-400 rounded-full animate-pulse-glow animation-delay-700" />
+        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-lavender-300 rounded-full animate-pulse-glow animation-delay-700" />
         
         {/* Elegant gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-lavender-200/20 to-teal-200/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-teal-200/20 to-lavender-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-lavender-200/20 to-lavender-100/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-lavender-100/20 to-lavender-200/20 rounded-full blur-3xl" />
       </div>
 
       <div className="container-custom relative z-10">
@@ -123,7 +123,7 @@ const Features: React.FC = () => {
               <Heart className="w-8 h-8 text-lavender-600" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Why Families Love Glamping WNY! 🏕️
+              Why Families Love Glamping WNY
             </h2>
             <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
               We're here to make your family celebrations extra special! From cozy indoor sleepovers to magical outdoor adventures, we create safe, fun experiences that bring families together and create memories that last a lifetime.
@@ -166,7 +166,7 @@ const Features: React.FC = () => {
                 y: -8,
                 transition: { duration: 0.3 }
               }}
-              className={`bg-white/95 backdrop-blur-sm border border-lavender-200 rounded-xl overflow-hidden ${feature.shadowColor} hover:shadow-2xl transition-all duration-500 group`}
+              className={`bg-white/95 backdrop-blur-sm border border-lavender-200/50 shadow-lg hover:shadow-xl transition-all duration-500 group rounded-xl overflow-hidden`}
             >
               {/* Feature Image */}
               <div className="h-48 overflow-hidden relative">
@@ -213,11 +213,11 @@ const Features: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-teal-100 rounded-full mb-6">
-              <Camera className="w-8 h-8 text-teal-600" />
+            <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+              <Camera className="w-8 h-8 text-lavender-600" />
             </div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              See Happy Families in Action! 📸
+              See Happy Families in Action
             </h2>
             <p className="text-gray-700 max-w-2xl mx-auto">
               Real photos from real family celebrations. Every setup is unique and designed to create magical moments for your loved ones.
@@ -279,11 +279,11 @@ const Features: React.FC = () => {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <div className="inline-block p-3 bg-sage-100 rounded-full mb-6">
-              <Shield className="w-8 h-8 text-sage-600" />
+            <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
+              <Shield className="w-8 h-8 text-lavender-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-8">
-              Important Family Guidelines 👨‍👩‍👧‍👦
+              Important Family Guidelines
             </h2>
           </motion.div>
         </div>
@@ -294,14 +294,14 @@ const Features: React.FC = () => {
               {
                 icon: Shield,
                 title: "Safety First",
-                description: "All equipment is kid-safe and thoroughly cleaned. Adult supervision required at all times.",
+                description: "All equipment is family-safe and thoroughly cleaned. Adult supervision required at all times.",
                 color: "bg-lavender-100 text-lavender-600"
               },
               {
                 icon: Heart,
                 title: "Family-Friendly Food",
                 description: "Light snacks welcome! Clear beverages only to keep everything clean and safe.",
-                color: "bg-teal-100 text-teal-600"
+                color: "bg-lavender-100 text-lavender-600"
               },
               {
                 icon: Star,
@@ -313,7 +313,7 @@ const Features: React.FC = () => {
                 icon: Users,
                 title: "Pet Guidelines",
                 description: "Well-behaved pets welcome with advance notice. Pet fee applies for safety and cleanliness.",
-                color: "bg-teal-100 text-teal-600"
+                color: "bg-lavender-100 text-lavender-600"
               }
             ].map((policy, index) => (
               <motion.div
