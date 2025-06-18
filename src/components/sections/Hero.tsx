@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, MapPin, Calendar, Shield, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SparklyBackground from '../ui/SparklyBackground';
 
 const Hero: React.FC = () => {
   return (
@@ -11,99 +12,12 @@ const Hero: React.FC = () => {
         {/* Main night sky background with realistic colors and TONS of stars */}
         <div className="w-full h-full bg-lilac-night-sky"></div>
         
-        {/* MASSIVE SPARKLY STAR OVERLAY - 150+ animated twinkling stars! */}
-        <div className="absolute inset-0 opacity-90">
-          {[...Array(150)].map((_, i) => {
-            const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
-            const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
-                                 Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
-            
-            return (
-              <motion.div
-                key={i}
-                className={`absolute bg-white rounded-full ${animationType}`}
-                style={{
-                  width: size,
-                  height: size,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  filter: 'blur(0.5px)',
-                  boxShadow: '0 0 6px rgba(255,255,255,0.8)',
-                }}
-                animate={{
-                  opacity: [0.2, 1, 0.2],
-                  scale: [0.5, 1.5, 0.5],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 2 + Math.random() * 6,
-                  repeat: Infinity,
-                  delay: Math.random() * 8,
-                  ease: "easeInOut"
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {/* Extra sparkly shooting stars */}
-        <div className="absolute inset-0 opacity-60">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={`shooting-${i}`}
-              className="absolute bg-white rounded-full"
-              style={{
-                width: '4px',
-                height: '1px',
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 50}%`,
-                filter: 'blur(1px)',
-                background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-              }}
-              animate={{
-                x: [0, 100],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 10,
-                ease: "easeOut"
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Magical sparkle dust effect */}
-        <div className="absolute inset-0 opacity-40">
-          {[...Array(80)].map((_, i) => (
-            <motion.div
-              key={`dust-${i}`}
-              className="absolute bg-white rounded-full"
-              style={{
-                width: '1px',
-                height: '1px',
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                filter: 'blur(0.5px)',
-              }}
-              animate={{
-                opacity: [0, 0.8, 0],
-                scale: [0, 1, 0],
-                y: [0, -20, -40],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 6,
-                ease: "easeOut"
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Subtle atmospheric glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
+        {/* Sparkly Background Component */}
+        <SparklyBackground 
+          density="heavy" 
+          showShootingStars={true} 
+          showSparkles={true}
+        />
       </div>
 
       {/* Main Content */}
@@ -126,7 +40,7 @@ const Hero: React.FC = () => {
                 <Star key={i} className="w-4 h-4 text-yellow-300 fill-yellow-300" />
               ))}
             </div>
-            <span className="text-sm font-medium">Trusted by 200+ Families</span>
+            <span className="text-sm font-medium body-text">Trusted by 200+ Families</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -147,7 +61,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed font-light body-text"
           >
             Create unforgettable memories with premium outdoor adventures 
             delivered to your backyard in Western New York
@@ -204,8 +118,8 @@ const Hero: React.FC = () => {
                 <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3 border border-white/20">
                   <item.icon className="w-6 h-6 text-lavender-300" />
                 </div>
-                <div className="text-sm font-semibold">{item.text}</div>
-                <div className="text-xs text-white/70">{item.subtext}</div>
+                <div className="text-sm font-semibold body-text">{item.text}</div>
+                <div className="text-xs text-white/70 body-text">{item.subtext}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -220,7 +134,7 @@ const Hero: React.FC = () => {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70"
       >
         <div className="flex flex-col items-center animate-bounce-gentle">
-          <span className="text-sm mb-2">Discover More</span>
+          <span className="text-sm mb-2 body-text">Discover More</span>
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>

@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+        quote: ['Crimson Text', 'serif'],
       },
       colors: {
         primary: {
@@ -224,6 +225,8 @@ export default {
         'twinkle': 'twinkle 3s ease-in-out infinite',
         'twinkle-fast': 'twinkle 2s ease-in-out infinite',
         'twinkle-slow': 'twinkle 5s ease-in-out infinite',
+        'shooting-star': 'shooting-star 4s ease-out infinite',
+        'sparkle-dust': 'sparkle-dust 6s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -249,6 +252,17 @@ export default {
         twinkle: {
           '0%, 100%': { opacity: '0.4', transform: 'scale(0.8)' },
           '50%': { opacity: '1', transform: 'scale(1.2)' },
+        },
+        'shooting-star': {
+          '0%': { transform: 'translateX(-100px) translateY(-100px)', opacity: '0' },
+          '10%': { opacity: '1' },
+          '90%': { opacity: '1' },
+          '100%': { transform: 'translateX(100px) translateY(100px)', opacity: '0' },
+        },
+        'sparkle-dust': {
+          '0%': { opacity: '0', transform: 'translateY(0) scale(0)' },
+          '50%': { opacity: '1', transform: 'translateY(-20px) scale(1)' },
+          '100%': { opacity: '0', transform: 'translateY(-40px) scale(0)' },
         },
       },
       boxShadow: {

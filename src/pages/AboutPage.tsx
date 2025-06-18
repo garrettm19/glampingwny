@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Users, Heart, Shield, Star, Quote, Sparkles, Clock, Camera, Home, Sparkle, Calendar, Award, Rocket, Video, Palette, Phone, Mail, MapPin, Tent, Dog, Book, Sun, Coffee } from 'lucide-react';
 import TestimonialWidget from '../components/ui/TestimonialWidget';
+import SparklyBackground from '../components/ui/SparklyBackground';
 
 const AboutPage: React.FC = () => {
   return (
@@ -22,99 +23,12 @@ const AboutPage: React.FC = () => {
           {/* Main night sky background with realistic lilac colors and TONS of stars */}
           <div className="w-full h-full bg-lilac-night-sky"></div>
           
-          {/* MASSIVE SPARKLY STAR OVERLAY - 80+ animated twinkling stars! */}
-          <div className="absolute inset-0 opacity-90">
-            {[...Array(80)].map((_, i) => {
-              const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
-              const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
-                                   Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
-              
-              return (
-                <motion.div
-                  key={i}
-                  className={`absolute bg-white rounded-full ${animationType}`}
-                  style={{
-                    width: size,
-                    height: size,
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    filter: 'blur(0.5px)',
-                    boxShadow: '0 0 6px rgba(255,255,255,0.8)',
-                  }}
-                  animate={{
-                    opacity: [0.2, 1, 0.2],
-                    scale: [0.5, 1.5, 0.5],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 2 + Math.random() * 6,
-                    repeat: Infinity,
-                    delay: Math.random() * 8,
-                    ease: "easeInOut"
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Extra sparkly shooting stars */}
-          <div className="absolute inset-0 opacity-60">
-            {[...Array(10)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute bg-white rounded-full"
-                style={{
-                  width: '4px',
-                  height: '1px',
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 50}%`,
-                  filter: 'blur(1px)',
-                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-                }}
-                animate={{
-                  x: [0, 100],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 10,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Magical sparkle dust effect */}
-          <div className="absolute inset-0 opacity-40">
-            {[...Array(40)].map((_, i) => (
-              <motion.div
-                key={`dust-${i}`}
-                className="absolute bg-white rounded-full"
-                style={{
-                  width: '1px',
-                  height: '1px',
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  filter: 'blur(0.5px)',
-                }}
-                animate={{
-                  opacity: [0, 0.8, 0],
-                  scale: [0, 1, 0],
-                  y: [0, -20, -40],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 6,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Subtle atmospheric glow */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
+          {/* Sparkly Background Component */}
+          <SparklyBackground 
+            density="heavy" 
+            showShootingStars={true} 
+            showSparkles={true}
+          />
         </div>
         
         <div className="container-custom relative z-10">
@@ -127,10 +41,10 @@ const AboutPage: React.FC = () => {
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <Heart className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 leading-tight">
               Our Family Story
             </h1>
-            <p className="text-xl text-white/90 leading-relaxed">
+            <p className="text-xl text-white/90 leading-relaxed body-text">
               From backyard dreams to unforgettable family celebrations across Western New York.
             </p>
           </motion.div>
@@ -167,7 +81,7 @@ const AboutPage: React.FC = () => {
               >
                 <div className="flex items-center gap-2">
                   <Heart className="w-5 h-5 text-lavender-500" />
-                  <span className="text-sm text-gray-600 font-medium">
+                  <span className="text-sm text-gray-600 font-medium body-text">
                     Family-Founded 2021
                   </span>
                 </div>
@@ -181,13 +95,13 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true }}
               className="space-y-6 lg:col-span-7"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800 leading-tight">
                 Meet Holly
                 <span className="block text-2xl md:text-3xl font-normal text-lavender-600 mt-2">
                   Your Family Glamping Expert
                 </span>
               </h2>
-              <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
+              <div className="space-y-4 text-gray-700 text-lg leading-relaxed body-text">
                 <p>
                   Hey there, families! I'm Holly, the founder of Glamping WNY and a proud small-town business owner with big dreams for creating magical family memories. When I'm not setting up enchanting glamping experiences for amazing families like yours, you can find me working as a Product Manager at Independent Health, cuddling with my dogs, or planning the next exciting family adventure.
                 </p>
@@ -201,7 +115,7 @@ const AboutPage: React.FC = () => {
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <item.icon className={`w-5 h-5 ${item.color}`} />
-                      <span className="font-medium text-gray-800">{item.text}</span>
+                      <span className="font-medium text-gray-800 body-text">{item.text}</span>
                     </div>
                   ))}
                 </div>
@@ -223,7 +137,7 @@ const AboutPage: React.FC = () => {
                 viewport={{ once: true }}
               >
                 <Quote className="absolute -top-3 -left-3 w-8 h-8 text-lavender-500 bg-white rounded-full p-1" />
-                <p className="text-lg italic text-gray-800">
+                <p className="text-lg italic text-gray-800 quote-text">
                   "I believe in creating memorable family moments that people will treasure forever. Every tent we set up is a new opportunity to bring joy and wonder to a family's special day. There's nothing better than seeing kids' faces light up and parents relax knowing everything is taken care of!"
                 </p>
               </motion.blockquote>
@@ -233,8 +147,11 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Family Values Section */}
-      <section className="section bg-lavender-50">
-        <div className="container-custom">
+      <section className="section bg-lavender-50 relative overflow-hidden">
+        {/* Subtle sparkly background */}
+        <SparklyBackground density="light" showShootingStars={false} showSparkles={true} className="opacity-20" />
+        
+        <div className="container-custom relative z-10">
           {/* Clean Header */}
           <div className="text-center mb-16">
             <motion.div
@@ -246,10 +163,10 @@ const AboutPage: React.FC = () => {
               <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
                 <Heart className="w-8 h-8 text-lavender-600" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-4 leading-tight">
                 Our Family Values
               </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
+              <p className="text-gray-700 max-w-2xl mx-auto text-lg body-text">
                 These core family values guide everything we do at Glamping WNY.
               </p>
             </motion.div>
@@ -287,8 +204,8 @@ const AboutPage: React.FC = () => {
                 <div className={`w-16 h-16 ${value.color} rounded-full flex items-center justify-center mx-auto mb-6`}>
                   <value.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{value.title}</h3>
-                <p className="text-gray-700">{value.description}</p>
+                <h3 className="text-xl font-serif font-bold text-gray-800 mb-4">{value.title}</h3>
+                <p className="text-gray-700 body-text">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -309,10 +226,10 @@ const AboutPage: React.FC = () => {
               <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
                 <Star className="w-8 h-8 text-lavender-600" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-800 mb-4 leading-tight">
                 What Families Say About Holly
               </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto text-lg">
+              <p className="text-gray-700 max-w-2xl mx-auto text-lg body-text">
                 Real feedback from real families about their experience with our team.
               </p>
             </motion.div>
@@ -344,10 +261,10 @@ const AboutPage: React.FC = () => {
             <div className="inline-block p-4 bg-lavender-500 rounded-full mb-8">
               <Sparkles className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 text-gray-800 leading-tight">
               Ready to Create Family Magic Together?
             </h2>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed body-text">
               Let's start planning your most memorable family celebration yet!
             </p>
             <div className="flex flex-wrap justify-center gap-4">

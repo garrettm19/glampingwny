@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Gallery from '../components/ui/Gallery';
 import VirtualTour from '../components/ui/VirtualTour';
+import SparklyBackground from '../components/ui/SparklyBackground';
 import { ArrowRight, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -69,99 +70,12 @@ const GalleryPage: React.FC = () => {
           {/* Main night sky background with realistic lilac colors and TONS of stars */}
           <div className="w-full h-full bg-lilac-night-sky"></div>
           
-          {/* MASSIVE SPARKLY STAR OVERLAY - 100+ animated twinkling stars! */}
-          <div className="absolute inset-0 opacity-90">
-            {[...Array(100)].map((_, i) => {
-              const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
-              const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
-                                   Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
-              
-              return (
-                <motion.div
-                  key={i}
-                  className={`absolute bg-white rounded-full ${animationType}`}
-                  style={{
-                    width: size,
-                    height: size,
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    filter: 'blur(0.5px)',
-                    boxShadow: '0 0 6px rgba(255,255,255,0.8)',
-                  }}
-                  animate={{
-                    opacity: [0.2, 1, 0.2],
-                    scale: [0.5, 1.5, 0.5],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 2 + Math.random() * 6,
-                    repeat: Infinity,
-                    delay: Math.random() * 8,
-                    ease: "easeInOut"
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          {/* Extra sparkly shooting stars */}
-          <div className="absolute inset-0 opacity-60">
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute bg-white rounded-full"
-                style={{
-                  width: '4px',
-                  height: '1px',
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 50}%`,
-                  filter: 'blur(1px)',
-                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-                }}
-                animate={{
-                  x: [0, 100],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 10,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Magical sparkle dust effect */}
-          <div className="absolute inset-0 opacity-40">
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={`dust-${i}`}
-                className="absolute bg-white rounded-full"
-                style={{
-                  width: '1px',
-                  height: '1px',
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  filter: 'blur(0.5px)',
-                }}
-                animate={{
-                  opacity: [0, 0.8, 0],
-                  scale: [0, 1, 0],
-                  y: [0, -20, -40],
-                }}
-                transition={{
-                  duration: 4 + Math.random() * 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 6,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Subtle atmospheric glow */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
+          {/* Sparkly Background Component */}
+          <SparklyBackground 
+            density="heavy" 
+            showShootingStars={true} 
+            showSparkles={true}
+          />
         </div>
         
         <div className="container-custom relative z-10">
@@ -174,8 +88,8 @@ const GalleryPage: React.FC = () => {
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <Camera className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Gallery</h1>
-            <p className="text-xl text-white/90 mb-6">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Our Gallery</h1>
+            <p className="text-xl text-white/90 mb-6 body-text">
               Browse through our luxury glamping experiences and get inspired for your celebration.
             </p>
           </motion.div>
@@ -190,8 +104,11 @@ const GalleryPage: React.FC = () => {
       </section>
       
       {/* Virtual Tour */}
-      <section className="section bg-lavender-50">
-        <div className="container-custom">
+      <section className="section bg-lavender-50 relative overflow-hidden">
+        {/* Subtle sparkly background */}
+        <SparklyBackground density="light" showShootingStars={false} showSparkles={true} className="opacity-20" />
+        
+        <div className="container-custom relative z-10">
           <div className="text-center mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -199,10 +116,10 @@ const GalleryPage: React.FC = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-lavender-900 mb-4">
+              <h2 className="text-3xl font-serif font-bold text-lavender-900 mb-4">
                 Take a Virtual Tour
               </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto mb-8">
+              <p className="text-gray-700 max-w-2xl mx-auto mb-8 body-text">
                 Experience our luxury glamping setup in immersive 3D.
               </p>
             </motion.div>
@@ -214,30 +131,8 @@ const GalleryPage: React.FC = () => {
       
       {/* CTA */}
       <section className="section lilac-night-gradient text-white relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Sparkly background */}
+        <SparklyBackground density="medium" showShootingStars={true} showSparkles={true} className="opacity-60" />
 
         <div className="container-custom relative z-10">
           <motion.div 
@@ -247,10 +142,10 @@ const GalleryPage: React.FC = () => {
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">
+            <h2 className="text-3xl font-serif font-bold mb-6">
               Ready to Create Your Own Magical Moments?
             </h2>
-            <p className="text-xl text-white/90 mb-8">
+            <p className="text-xl text-white/90 mb-8 body-text">
               Book your luxury glamping experience today.
             </p>
             <button className="btn btn-secondary bg-white text-lavender-600 hover:bg-lavender-50">
@@ -270,7 +165,7 @@ const GalleryPage: React.FC = () => {
             className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50"
           >
             <div className="bg-glass backdrop-blur-md rounded-full px-6 py-3 shadow-glow flex items-center gap-4">
-              <p className="text-lavender-900 font-medium">
+              <p className="text-lavender-900 font-medium body-text">
                 Want this for your next celebration?
               </p>
               <Link 
