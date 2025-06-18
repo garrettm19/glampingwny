@@ -8,22 +8,22 @@ Glamping WNY specializes in creating unforgettable family glamping experiences f
 
 ## ✨ Features
 
-- **Family-Focused Design**: Warm, welcoming lavender theme with earthy accents
+- **Family-Focused Design**: Warm, welcoming design that appeals to families
 - **Responsive Layout**: Optimized for all devices and screen sizes
 - **Real Customer Testimonials**: Over 200+ authentic family reviews
 - **Easy Booking System**: Streamlined booking process for busy parents
 - **SEO Optimized**: Built with search engine optimization in mind
 - **Accessibility**: WCAG compliant for all users
-- **Performance**: Fast loading times and optimized assets
+- **Performance**: Fast loading times and optimized images
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18 with TypeScript
-- **Styling**: Tailwind CSS with custom lavender/sage/cream color scheme
+- **Styling**: Tailwind CSS with custom family-friendly color scheme
 - **Animations**: Framer Motion for smooth, delightful interactions
 - **Icons**: Lucide React for consistent iconography
 - **Build Tool**: Vite for fast development and building
-- **Deployment**: Ready for Netlify or similar platforms
+- **Deployment**: Netlify for reliable hosting
 
 ## 🚀 Getting Started
 
@@ -74,23 +74,23 @@ src/
 │   └── ui/            # UI components (Buttons, Cards, etc.)
 ├── pages/             # Page components
 ├── utils/             # Utility functions
+├── assets/            # Static assets
 └── index.css         # Global styles and Tailwind imports
 ```
 
 ## 🎨 Design System
 
 ### Colors
-- **Primary**: Soft lavender tones for warmth and family appeal
-- **Secondary**: Sage greens for earthiness
-- **Accent**: Cream tones for elegance
-- **Neutral**: Soft grays for text and backgrounds
+- **Primary**: Orange/Amber gradient for warmth and family appeal
+- **Secondary**: Complementary colors for accents
+- **Neutral**: Grays for text and backgrounds
 
 ### Typography
 - **Headings**: Fredoka (playful, family-friendly)
 - **Body**: Poppins (clean, readable)
 
 ### Components
-- Premium glass-morphism cards for modern appeal
+- Glass-morphism cards for modern appeal
 - Rounded corners for friendly feel
 - Subtle animations for engagement
 - Family-focused imagery and copy
@@ -104,7 +104,7 @@ src/
 - **Testimonials**: Customer reviews and ratings
 - **Contact**: Contact form and business information
 - **FAQ**: Frequently asked questions
-- **Booking**: Booking form and calendar
+- **Booking**: Booking form and calendar (future enhancement)
 
 ## 🔧 Development
 
@@ -119,6 +119,7 @@ src/
 
 - TypeScript for type safety
 - ESLint for code quality
+- Prettier for code formatting
 - Conventional commits for clear history
 
 ## 🌟 Key Features
@@ -131,9 +132,9 @@ src/
 
 ### Performance
 - Optimized images and assets
+- Lazy loading for better performance
 - Minimal bundle size
 - Fast loading times
-- Efficient animations
 
 ### SEO & Accessibility
 - Semantic HTML structure
@@ -141,6 +142,38 @@ src/
 - Alt text for all images
 - Keyboard navigation support
 - Screen reader friendly
+
+## 📈 Analytics
+
+The site includes Google Analytics 4 integration for tracking:
+- Page views and user behavior
+- Booking form interactions
+- Contact form submissions
+- Popular content and pages
+
+## 🚀 Deployment
+
+The site is deployed on Netlify with:
+- Automatic deployments from main branch
+- Form handling for contact forms
+- CDN for fast global delivery
+- SSL certificate included
+
+### Deploy URL
+- Production: [https://glampingwny.com](https://glampingwny.com)
+- Staging: [https://dapper-eclair-8185fd.netlify.app](https://dapper-eclair-8185fd.netlify.app)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is proprietary and confidential. All rights reserved by Glamping WNY.
 
 ## 📞 Contact
 

@@ -31,7 +31,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="flex flex-col min-h-screen bg-gradient-to-br from-lavender-50 via-white to-teal-50">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
           <Routes>
