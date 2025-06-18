@@ -89,14 +89,14 @@ const Testimonials: React.FC = () => {
           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none z-10">
             <button
               onClick={handlePrevious}
-              className="pointer-events-auto p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="pointer-events-auto p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-lavender-500"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-6 h-6 text-gray-600" />
             </button>
             <button
               onClick={handleNext}
-              className="pointer-events-auto p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="pointer-events-auto p-3 rounded-full bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-lavender-500"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-6 h-6 text-gray-600" />
@@ -116,7 +116,7 @@ const Testimonials: React.FC = () => {
               >
                 <div className="glass-card p-8 h-full flex flex-col justify-center text-center relative">
                   {/* Quote Icon */}
-                  <Quote className="absolute top-6 left-6 w-8 h-8 text-emerald-200" />
+                  <Quote className="absolute top-6 left-6 w-8 h-8 text-lavender-200" />
                   
                   {/* Rating */}
                   <div className="flex justify-center mb-6">
@@ -138,13 +138,13 @@ const Testimonials: React.FC = () => {
                     <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-emerald-200 mr-4"
+                      className="w-16 h-16 rounded-full object-cover border-4 border-lavender-200 mr-4"
                     />
                     <div className="text-left">
                       <div className="font-bold text-gray-900 text-lg">
                         {testimonials[currentIndex].name}
                       </div>
-                      <div className="text-emerald-600 font-medium">
+                      <div className="text-lavender-600 font-medium">
                         {testimonials[currentIndex].event}
                       </div>
                     </div>
@@ -165,7 +165,7 @@ const Testimonials: React.FC = () => {
                 }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-emerald-600 w-8'
+                    ? 'bg-lavender-600 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
@@ -189,7 +189,7 @@ const Testimonials: React.FC = () => {
             { number: "5★", label: "Average Rating" }
           ].map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl font-bold text-emerald-600 mb-2">{stat.number}</div>
+              <div className="text-3xl font-bold text-lavender-600 mb-2">{stat.number}</div>
               <div className="text-gray-600">{stat.label}</div>
             </div>
           ))}

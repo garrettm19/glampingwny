@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-emerald-50 border-b border-emerald-100">
+      <section className="py-6 bg-lavender-50 border-b border-lavender-100">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -28,10 +28,10 @@ const HomePage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-emerald-600" />
-              <span className="font-semibold text-emerald-900">Serving the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-lavender-600" />
+              <span className="font-semibold text-lavender-900">Serving the Buffalo Metro Area</span>
             </div>
-            <p className="text-emerald-700">
+            <p className="text-lavender-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY</strong> • Extended delivery available
             </p>
           </motion.div>
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
                 image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
                 price: "From $500",
                 features: ["Authentic camping", "Stargazing", "Nature immersion"],
-                color: "from-emerald-500 to-teal-500",
+                color: "from-lavender-500 to-purple-500",
                 popular: true
               },
               {
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
                 image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&w=400&q=80",
                 price: "From $325",
                 features: ["Luxury treatments", "Relaxation", "Pampering"],
-                color: "from-blue-500 to-cyan-500"
+                color: "from-indigo-500 to-purple-500"
               }
             ].map((service, index) => (
               <motion.div
@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
                 <div className="glass-card overflow-hidden hover:shadow-large transition-all duration-500 group-hover:-translate-y-3">
                   {service.popular && (
                     <div className="absolute top-4 right-4 z-10">
-                      <div className="bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="bg-lavender-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                         Most Popular
                       </div>
                     </div>
@@ -183,7 +183,7 @@ const HomePage: React.FC = () => {
               </p>
               <Link
                 to="/testimonials"
-                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
+                className="inline-flex items-center gap-2 bg-lavender-600 hover:bg-lavender-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
               >
                 <span>Read All Reviews</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -191,15 +191,15 @@ const HomePage: React.FC = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t border-gray-200">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">5.0</div>
+                  <div className="text-2xl font-bold text-lavender-600">5.0</div>
                   <div className="text-sm text-gray-600">Average Rating</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">200+</div>
+                  <div className="text-2xl font-bold text-lavender-600">200+</div>
                   <div className="text-sm text-gray-600">Happy Families</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-emerald-600">100%</div>
+                  <div className="text-2xl font-bold text-lavender-600">100%</div>
                   <div className="text-sm text-gray-600">Satisfaction Rate</div>
                 </div>
               </div>
@@ -209,8 +209,8 @@ const HomePage: React.FC = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="section hero-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-pattern"></div>
+      <section className="section magical-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-starry-night opacity-30"></div>
         
         <div className="container-custom relative z-10">
           <motion.div 
@@ -223,7 +223,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               Ready to Create Your Perfect Experience?
             </h2>
-            <p className="text-xl text-emerald-100 mb-10 leading-relaxed">
+            <p className="text-xl text-lavender-100 mb-10 leading-relaxed">
               Join hundreds of families who have created magical memories with Glamping WNY. 
               Your adventure awaits.
             </p>
