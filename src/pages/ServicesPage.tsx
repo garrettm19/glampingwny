@@ -47,6 +47,22 @@ const adultServices = [
     popular: true
   },
   {
+    title: "Anniversary Celebration",
+    description: "Celebrate your special milestone with an unforgettable glamping experience designed for couples.",
+    price: "From $425",
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=400&q=80",
+    features: [
+      "Elegant anniversary setup",
+      "Personalized decorations",
+      "Memory lane photo displays",
+      "Champagne service available",
+      "Romantic lighting",
+      "Custom anniversary themes"
+    ],
+    category: "Celebration Experience",
+    popular: true
+  },
+  {
     title: "Adult Spa Retreat",
     description: "Luxury spa experience designed for adults seeking relaxation and rejuvenation.",
     price: "From $375",
@@ -75,21 +91,6 @@ const adultServices = [
       "Customizable themes"
     ],
     category: "Corporate Experience"
-  },
-  {
-    title: "Anniversary Celebration",
-    description: "Celebrate your special milestone with an unforgettable glamping experience.",
-    price: "From $425",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=400&q=80",
-    features: [
-      "Elegant anniversary setup",
-      "Personalized decorations",
-      "Memory lane photo displays",
-      "Champagne service available",
-      "Romantic lighting",
-      "Custom anniversary themes"
-    ],
-    category: "Celebration Experience"
   }
 ];
 
@@ -400,7 +401,7 @@ const ServicesPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                {/* Adult Services Grid */}
+                {/* Adult Services Grid - Now shows all 4 services including Anniversary */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                   {adultServices.map((service, index) => (
                     <motion.div
