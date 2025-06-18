@@ -402,7 +402,7 @@ const ServicesPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                {/* Adult Services Grid - Now shows all 4 services including Anniversary */}
+                {/* Adult Services Grid - Fixed to use 2x2 grid layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                   {adultServices.map((service, index) => (
                     <motion.div
@@ -602,7 +602,7 @@ const ServicesPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                {/* Kids Services Grid */}
+                {/* Kids Services Grid - Fixed to use 2x2 grid layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                   {kidsServices.map((service, index) => (
                     <motion.div
