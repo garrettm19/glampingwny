@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Stunning Glamping Background */}
+      {/* Beautiful Glamping Background */}
       <div className="absolute inset-0 z-0">
         <motion.img
           src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
@@ -37,163 +37,248 @@ const Hero: React.FC = () => {
           className="w-full h-full object-cover"
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 12, ease: "easeOut" }}
+          transition={{ duration: 10, ease: "easeOut" }}
         />
         
         {/* Perfect gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50"
+          initial={{ opacity: 0.8 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        />
         
         {/* Subtle light effects */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/3 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-white/3 rounded-full blur-3xl" />
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 bg-gradient-to-b from-white/20 to-transparent"
+              style={{
+                height: '200%',
+                left: `${20 + i * 30}%`,
+                top: '-50%',
+                transform: 'rotate(15deg)',
+              }}
+              animate={{
+                opacity: [0, 0.3, 0],
+                scaleY: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 1.5,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
         </div>
       </div>
 
       {/* Minimal magical elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0,
-              scale: 0.5
-            }}
-            animate={{
-              y: [0, -40, 0],
-              opacity: [0, 0.15, 0],
-              scale: [0.5, 1.2, 0.5],
-              rotate: [0, 360]
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 3
-            }}
-          >
-            <Sparkles size={16} className="text-white/20" />
-          </motion.div>
-        ))}
+        {[...Array(isMobile ? 4 : 8)].map((_, i) => {
+          const icons = [Tent, TreePine, Heart, Sparkles, Crown, Award, Zap];
+          const Icon = icons[i % icons.length];
+          const size = 24 + Math.random() * 12;
+          const duration = 20 + Math.random() * 15;
+          const delay = Math.random() * 8;
+          
+          return (
+            <motion.div
+              key={i}
+              className="absolute"
+              initial={{ 
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                opacity: 0,
+                scale: 0.5
+              }}
+              animate={{
+                x: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                ],
+                y: [
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                ],
+                opacity: [0, 0.15, 0.25, 0.15, 0],
+                scale: [0.5, 1, 1.2, 1, 0.5],
+                rotate: [0, 180, 360]
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: delay
+              }}
+            >
+              <Icon 
+                size={size} 
+                className="text-white/10 filter drop-shadow-lg" 
+              />
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* Main Content - Apple-level typography */}
-      <div className="container-custom relative z-20 min-h-screen flex items-center justify-center px-6">
+      {/* Main Content */}
+      <div className="container-custom relative z-20 min-h-screen flex items-center justify-center">
         <div className="max-w-6xl text-center">
+          {/* Premium Logo Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white hover:scale-105 transition-all duration-500 shadow-2xl"
+          >
+            <Logo size="sm" />
+            <span className="text-neutral-800 text-sm font-semibold tracking-wide">
+              Your Go-to Glamping Experts in Western New York
+            </span>
+            <motion.div
+              className="w-2 h-2 bg-primary-500 rounded-full"
+              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+
           {/* Perfect-sized, Beautiful Title */}
           <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.9] text-white tracking-tight"
+            className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-8 leading-tight text-white tracking-tight"
             style={{
-              textShadow: '0 8px 40px rgba(0,0,0,0.6)',
-              fontWeight: 900,
-              letterSpacing: '-0.04em'
+              textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6)',
+              fontFeatureSettings: '"kern" 1, "liga" 1',
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale'
             }}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           >
             <motion.span 
               className="block"
-              initial={{ opacity: 0, x: -80 }}
+              initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
               Glamping
             </motion.span>
             <motion.span 
-              className="block bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 bg-clip-text text-transparent"
-              initial={{ opacity: 0, x: 80 }}
+              className="block bg-gradient-to-r from-primary-300 via-primary-200 to-secondary-300 bg-clip-text text-transparent"
+              initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.8, delay: 0.7 }}
             >
               WNY
             </motion.span>
           </motion.h1>
 
-          {/* Beautiful, Readable Subtitle */}
+          {/* Beautiful Subheadline */}
           <motion.h2 
-            className="text-2xl md:text-4xl lg:text-5xl text-white font-medium mb-10 leading-relaxed max-w-5xl mx-auto"
+            className="text-2xl md:text-3xl lg:text-4xl text-white font-display font-semibold mb-8 leading-relaxed tracking-tight max-w-5xl mx-auto"
             style={{
-              textShadow: '0 4px 25px rgba(0,0,0,0.5)',
-              fontWeight: 500,
-              letterSpacing: '-0.02em'
+              textShadow: '0 2px 12px rgba(0,0,0,0.8)',
+              fontFeatureSettings: '"kern" 1',
+              letterSpacing: '-0.01em'
             }}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 0.6 }}
           >
             Creating Unforgettable
-            <span className="text-yellow-200 font-semibold"> Magical Experiences </span>
+            <motion.span 
+              className="text-primary-200 font-bold"
+              animate={{ 
+                textShadow: [
+                  '0 0 10px rgba(59, 130, 246, 0.5)',
+                  '0 0 20px rgba(59, 130, 246, 0.8)',
+                  '0 0 10px rgba(59, 130, 246, 0.5)'
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            > Experiences </motion.span>
             for Every Celebration
           </motion.h2>
           
-          {/* Clean Description */}
+          {/* Enhanced Value Proposition */}
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 mb-14 max-w-5xl mx-auto leading-relaxed font-light"
+            className="text-xl md:text-2xl text-white/95 mb-12 max-w-5xl mx-auto leading-relaxed font-sans"
             style={{
-              textShadow: '0 2px 20px rgba(0,0,0,0.5)'
+              textShadow: '0 2px 8px rgba(0,0,0,0.7)',
+              lineHeight: '1.6'
             }}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 0.8 }}
           >
             We take the stress out of party planning and turn your special occasion into a celebration to remember! 
-            From cozy indoor sleepovers to outdoor glamping adventures - we handle everything so you can relax and enjoy the moment.
+            <br className="hidden md:block" />
+            <motion.span 
+              className="text-primary-200 font-semibold"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              From cozy indoor sleepovers to outdoor glamping adventures
+            </motion.span> - we handle everything so you can relax and enjoy the moment.
           </motion.p>
           
-          {/* Apple-Style CTA Buttons - FIXED SHIMMER */}
+          {/* Clean CTA Buttons - NO SHIMMER BUG */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
-            initial={{ opacity: 0, y: 40 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 1.0 }}
           >
             <motion.div
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Link
                 to="/book-now"
-                className="group relative inline-flex items-center justify-center px-12 py-6 bg-white text-gray-900 hover:bg-gray-50 font-semibold text-xl rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl overflow-hidden"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-white text-primary-600 hover:bg-primary-50 font-bold text-xl rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl"
                 onClick={() => trackBookNowClick()}
-                style={{ 
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
-                }}
               >
-                <span className="flex items-center gap-3 relative z-10">
+                <span className="flex items-center gap-3">
                   Book Your Experience
-                  <Heart className="w-6 h-6 text-pink-500" />
+                  <motion.div
+                    animate={{ rotate: [0, 15, -15, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 2 }}
+                  >
+                    <Heart className="w-6 h-6 text-pink-500" />
+                  </motion.div>
                 </span>
               </Link>
             </motion.div>
             
             <motion.button
               onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-12 py-6 bg-white/5 backdrop-blur-xl text-white font-medium text-xl rounded-2xl border border-white/20 hover:bg-white/10 hover:border-white/30 transition-all duration-500"
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="group inline-flex items-center justify-center px-10 py-5 bg-white/15 backdrop-blur-md text-white font-bold text-xl rounded-xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-500 shadow-xl hover:shadow-2xl"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ArrowRight className="w-6 h-6 mr-3 group-hover:translate-x-1 transition-transform duration-300" />
-              <span>Explore Our Services</span>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              >
+                <ArrowRight className="w-6 h-6 mr-3" />
+              </motion.div>
+              <span className="font-display">Explore the Details</span>
             </motion.button>
           </motion.div>
 
-          {/* Clean Trust Indicators */}
+          {/* Enhanced Trust Indicators */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-lg"
-            initial={{ opacity: 0, y: 40 }}
+            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-base"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 1.2 }}
           >
             <motion.div 
               className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
@@ -201,45 +286,57 @@ const Hero: React.FC = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.7 + i * 0.1, type: "spring", stiffness: 400, damping: 25 }}
+                    transition={{ delay: 1.4 + i * 0.1, type: "spring" }}
                   >
                     <Star className="w-5 h-5 text-yellow-300 fill-yellow-300 drop-shadow-lg" />
                   </motion.div>
                 ))}
               </div>
-              <span className="font-medium">200+ Happy Families</span>
+              <span className="font-semibold font-display">Hundreds of Happy Clients</span>
             </motion.div>
-            <div className="w-px h-6 bg-white/30" />
-            <div className="font-medium">All Ages Welcome</div>
-            <div className="w-px h-6 bg-white/30" />
-            <div className="font-medium">Professional Service</div>
-            <div className="w-px h-6 bg-white/30" />
-            <div className="font-medium">Stress-Free Planning</div>
+            <div className="w-px h-6 bg-white/40" />
+            <motion.div 
+              className="font-semibold font-display"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            >
+              All Ages Welcome
+            </motion.div>
+            <div className="w-px h-6 bg-white/40" />
+            <div className="font-semibold font-display">Professional Service</div>
+            <div className="w-px h-6 bg-white/40" />
+            <motion.div 
+              className="font-semibold font-display"
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+            >
+              Stress-Free Planning
+            </motion.div>
           </motion.div>
         </div>
       </div>
       
-      {/* Apple-Style Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <motion.button
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/70 cursor-pointer z-20 group"
-        animate={{ y: [0, 12, 0] }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
+        animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
         onClick={scrollToVirtualTour}
         aria-label="Scroll down to see more"
         whileHover={{ scale: 1.1 }}
       >
-        <div className="flex flex-col items-center gap-4">
-          <span className="text-sm font-medium opacity-80 group-hover:opacity-100 transition-opacity">
-            Discover Our Services
+        <div className="flex flex-col items-center gap-3">
+          <span className="text-sm font-semibold opacity-80 group-hover:opacity-100 transition-opacity font-display">
+            Explore Our Services
           </span>
           <motion.div 
-            className="w-6 h-12 border-2 border-white/40 rounded-full flex justify-center group-hover:border-white/60 transition-colors relative overflow-hidden"
-            whileHover={{ boxShadow: '0 0 30px rgba(255,255,255,0.2)' }}
+            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden"
+            whileHover={{ boxShadow: '0 0 20px rgba(255,255,255,0.3)' }}
           >
             <motion.div
-              className="w-1.5 h-4 bg-white/50 rounded-full mt-2"
-              animate={{ y: [0, 16, 0] }}
-              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              className="w-1 h-3 bg-white/60 rounded-full mt-2"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
             />
           </motion.div>
         </div>
