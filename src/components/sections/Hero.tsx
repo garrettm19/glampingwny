@@ -6,25 +6,29 @@ import { Link } from 'react-router-dom';
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Magical Night Sky Background */}
+      {/* Earthy Night Sky Background */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900"></div>
+        {/* Base gradient - earthy night sky */}
+        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-700 to-sage-800"></div>
+        
+        {/* Organic overlay pattern */}
+        <div className="absolute inset-0 bg-organic-pattern opacity-40"></div>
         
         {/* Starry Night Pattern */}
-        <div className="absolute inset-0 bg-starry-night opacity-60"></div>
+        <div className="absolute inset-0 bg-starry-night opacity-50"></div>
         
         {/* Animated Stars */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute w-1 h-1 bg-cream-200 rounded-full"
               animate={{
-                opacity: [0.3, 1, 0.3],
-                scale: [1, 1.5, 1],
+                opacity: [0.2, 0.8, 0.2],
+                scale: [1, 1.3, 1],
               }}
               transition={{
-                duration: 2 + Math.random() * 3,
+                duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 delay: Math.random() * 5,
                 ease: "easeInOut"
@@ -37,31 +41,57 @@ const Hero: React.FC = () => {
           ))}
         </div>
 
-        {/* Shooting Stars */}
-        {[...Array(3)].map((_, i) => (
+        {/* Floating Organic Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`organic-${i}`}
+              className="absolute w-3 h-3 bg-sage-300/20 rounded-full blur-sm"
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 8 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Shooting Stars - more subtle */}
+        {[...Array(2)].map((_, i) => (
           <motion.div
             key={`shooting-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full"
+            className="absolute w-1 h-1 bg-cream-100 rounded-full"
             initial={{ x: -100, y: Math.random() * 300, opacity: 0 }}
             animate={{
               x: window.innerWidth + 100,
               y: Math.random() * 300 + 200,
-              opacity: [0, 1, 0],
+              opacity: [0, 0.6, 0],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
-              delay: i * 8 + Math.random() * 5,
+              delay: i * 12 + Math.random() * 8,
               ease: "easeOut"
             }}
             style={{
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
+              boxShadow: '0 0 8px rgba(254, 252, 243, 0.6), 0 0 16px rgba(254, 252, 243, 0.3)',
             }}
           />
         ))}
 
-        {/* Magical Glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 via-transparent to-indigo-900/20"></div>
+        {/* Earthy Glow Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-sage-900/30 via-transparent to-slate-800/20"></div>
       </div>
 
       {/* Main Content */}
@@ -81,7 +111,7 @@ const Hero: React.FC = () => {
           >
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                <Star key={i} className="w-4 h-4 text-cream-300 fill-cream-300" />
               ))}
             </div>
             <span className="text-sm font-medium">Trusted by 200+ Families</span>
@@ -94,9 +124,9 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-shadow-lg"
           >
-            Magical Glamping
-            <span className="block bg-gradient-to-r from-lavender-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
-              Under the Stars
+            Glamping Under
+            <span className="block bg-gradient-to-r from-lavender-300 via-sage-300 to-cream-300 bg-clip-text text-transparent">
+              Starlit Skies
             </span>
           </motion.h1>
 
@@ -105,9 +135,9 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-xl md:text-2xl lg:text-3xl mb-8 text-cream-100/90 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            Create unforgettable memories with luxury outdoor adventures 
+            Experience the magic of nature with luxury outdoor adventures 
             delivered to your backyard in Western New York
           </motion.p>
 
@@ -160,7 +190,7 @@ const Hero: React.FC = () => {
                 className="text-center"
               >
                 <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3 border border-white/20">
-                  <item.icon className="w-6 h-6 text-lavender-300" />
+                  <item.icon className="w-6 h-6 text-sage-300" />
                 </div>
                 <div className="text-sm font-semibold">{item.text}</div>
                 <div className="text-xs text-white/70">{item.subtext}</div>

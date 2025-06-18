@@ -7,42 +7,42 @@ const features = [
     icon: Tent,
     title: "Premium Tents",
     description: "Luxury bell tents and cozy indoor setups with premium bedding and decor",
-    color: "from-lavender-500 to-purple-500",
+    color: "from-sage-500 to-teal-500",
     delay: 0.1
   },
   {
     icon: Sparkles,
     title: "Themed Experiences",
     description: "25+ magical themes from princess parties to outdoor adventures",
-    color: "from-purple-500 to-pink-500",
+    color: "from-lavender-500 to-cream-500",
     delay: 0.2
   },
   {
     icon: Users,
     title: "All Ages Welcome",
     description: "Perfect for kids, teens, and adults - creating memories for the whole family",
-    color: "from-indigo-500 to-purple-500",
+    color: "from-teal-500 to-sage-500",
     delay: 0.3
   },
   {
     icon: Clock,
     title: "Full Service",
     description: "Complete setup, styling, and cleanup - you just enjoy the experience",
-    color: "from-slate-500 to-indigo-500",
+    color: "from-slate-500 to-sage-500",
     delay: 0.4
   },
   {
     icon: Shield,
     title: "Safe & Clean",
     description: "Professionally sanitized equipment and safety-first approach",
-    color: "from-lavender-500 to-indigo-500",
+    color: "from-sage-500 to-lavender-500",
     delay: 0.5
   },
   {
     icon: Heart,
     title: "Memory Making",
     description: "Creating unforgettable moments that families treasure forever",
-    color: "from-pink-500 to-purple-500",
+    color: "from-cream-500 to-lavender-500",
     delay: 0.6
   }
 ];
@@ -120,7 +120,7 @@ const Features: React.FC = () => {
       </section>
 
       {/* Experience Types Section */}
-      <section className="section bg-gradient-to-br from-lavender-50 to-purple-50">
+      <section className="section nature-gradient">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -166,7 +166,7 @@ const Features: React.FC = () => {
                   </div>
                   <div className="p-6">
                     <p className="text-gray-600 mb-4">{experience.description}</p>
-                    <div className="flex items-center text-lavender-600 font-semibold group-hover:text-lavender-700 transition-colors">
+                    <div className="flex items-center text-sage-600 font-semibold group-hover:text-sage-700 transition-colors">
                       <span>Learn More</span>
                       <motion.div
                         className="ml-2"
@@ -199,7 +199,7 @@ const Features: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               Trusted by Families Across WNY
             </h2>
-            <p className="text-xl text-lavender-100 max-w-3xl mx-auto">
+            <p className="text-xl text-sage-100 max-w-3xl mx-auto">
               Join hundreds of families who have created magical memories with us
             </p>
           </motion.div>
@@ -220,7 +220,7 @@ const Features: React.FC = () => {
                 className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
-                <div className="text-lavender-100">{stat.label}</div>
+                <div className="text-sage-100">{stat.label}</div>
               </motion.div>
             ))}
           </div>

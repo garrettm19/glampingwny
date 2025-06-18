@@ -29,7 +29,7 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-lavender-500 to-purple-600 hover:from-lavender-600 hover:to-purple-700 text-white shadow-lg hover:shadow-glow focus:ring-lavender-500 transform hover:scale-105;
+    @apply bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white shadow-lg hover:shadow-glow focus:ring-lavender-500 transform hover:scale-105;
   }
 
   .btn-secondary {
@@ -53,23 +53,23 @@
   }
 
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-lavender-600 to-purple-600;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-lavender-600 to-sage-600;
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, #3b0764 0%, #581c87 25%, #7c3aed 50%, #a855f7 75%, #c084fc 100%);
-  }
-
-  .night-sky-gradient {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
   }
 
-  .starry-gradient {
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #4338ca 50%, #4f46e5 75%, #6366f1 100%);
+  .nature-gradient {
+    background: linear-gradient(135deg, #f6f7f6 0%, #e3e7e3 25%, #c7d0c7 50%, #a3b2a3 75%, #7a8f7a 100%);
   }
 
   .magical-gradient {
-    background: linear-gradient(135deg, #581c87 0%, #7c3aed 25%, #a855f7 50%, #c084fc 75%, #d8b4fe 100%);
+    background: linear-gradient(135deg, #334155 0%, #475569 25%, #64748b 50%, #7a8f7a 75%, #5d735d 100%);
+  }
+
+  .earthy-night {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 30%, #475569 60%, #5d735d 100%);
   }
 }
 
@@ -96,6 +96,10 @@
 
   .animate-twinkle {
     animation: twinkle 3s ease-in-out infinite;
+  }
+
+  .animate-sway {
+    animation: sway 4s ease-in-out infinite;
   }
 }
 
@@ -130,27 +134,36 @@
   }
 }
 
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(1deg);
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f6f7f6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, #a366ff, #5d735d);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #7c3aed, #6b21a8);
+  background: linear-gradient(135deg, #8b3dff, #4a5c4a);
 }
 
 /* Selection color */
 ::selection {
-  background: #a855f7;
+  background: #a366ff;
   color: white;
 }
 

@@ -18,20 +18,19 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-lavender-50 border-b border-lavender-100">
+      <section className="py-6 bg-sage-50 border-b border-sage-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-lavender-600" />
-              <span className="font-semibold text-lavender-900">Serving the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-sage-600" />
+              <span className="font-semibold text-sage-900">Serving the Buffalo Metro Area</span>
             </div>
-            <p className="text-lavender-700">
+            <p className="text-sage-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY</strong> • Extended delivery available
             </p>
           </motion.div>
@@ -70,7 +69,7 @@ const HomePage: React.FC = () => {
                 image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
                 price: "From $225",
                 features: ["Weather-proof", "Year-round", "All ages"],
-                color: "from-purple-500 to-pink-500"
+                color: "from-lavender-500 to-sage-500"
               },
               {
                 icon: TreePine,
@@ -79,7 +78,7 @@ const HomePage: React.FC = () => {
                 image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
                 price: "From $500",
                 features: ["Authentic camping", "Stargazing", "Nature immersion"],
-                color: "from-lavender-500 to-purple-500",
+                color: "from-sage-500 to-teal-500",
                 popular: true
               },
               {
@@ -89,7 +88,7 @@ const HomePage: React.FC = () => {
                 image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&w=400&q=80",
                 price: "From $325",
                 features: ["Luxury treatments", "Relaxation", "Pampering"],
-                color: "from-indigo-500 to-purple-500"
+                color: "from-cream-500 to-lavender-500"
               }
             ].map((service, index) => (
               <motion.div
@@ -103,7 +102,7 @@ const HomePage: React.FC = () => {
                 <div className="glass-card overflow-hidden hover:shadow-large transition-all duration-500 group-hover:-translate-y-3">
                   {service.popular && (
                     <div className="absolute top-4 right-4 z-10">
-                      <div className="bg-lavender-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="bg-sage-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                         Most Popular
                       </div>
                     </div>
@@ -209,7 +208,7 @@ const HomePage: React.FC = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="section magical-gradient text-white relative overflow-hidden">
+      <section className="section earthy-night text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-starry-night opacity-30"></div>
         
         <div className="container-custom relative z-10">
@@ -223,7 +222,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               Ready to Create Your Perfect Experience?
             </h2>
-            <p className="text-xl text-lavender-100 mb-10 leading-relaxed">
+            <p className="text-xl text-sage-100 mb-10 leading-relaxed">
               Join hundreds of families who have created magical memories with Glamping WNY. 
               Your adventure awaits.
             </p>
