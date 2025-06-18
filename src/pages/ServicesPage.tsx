@@ -3,26 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ServiceCard from '../components/ui/ServiceCard';
-import { 
-  Tent, 
-  TreePine, 
-  Sparkles, 
-  MapPin, 
-  Check, 
-  ArrowRight, 
-  Star,
-  Users,
-  Clock,
-  Shield,
-  Heart,
-  PartyPopper,
-  Crown,
-  Cake,
-  Gift,
-  Balloon,
-  Camera,
-  Music
-} from 'lucide-react';
+import { Tent, TreePine, Sparkles, MapPin, Check, ArrowRight, Star, Users, Clock, Shield, Heart, PartyPopper, Crown, Cake, Gift, Moon as Balloon, Camera, Music } from 'lucide-react';
 
 const services = [
   {
