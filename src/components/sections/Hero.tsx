@@ -6,33 +6,97 @@ import { Link } from 'react-router-dom';
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* REALISTIC NIGHT SKY BACKGROUND - Like the original site */}
+      {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
       <div className="absolute inset-0 z-0">
-        {/* Main night sky background with realistic colors */}
+        {/* Main night sky background with realistic colors and TONS of stars */}
         <div className="w-full h-full bg-lilac-night-sky"></div>
         
-        {/* Additional twinkling stars overlay for sparkle effect */}
-        <div className="absolute inset-0 opacity-80">
-          {[...Array(50)].map((_, i) => (
+        {/* MASSIVE SPARKLY STAR OVERLAY - 150+ animated twinkling stars! */}
+        <div className="absolute inset-0 opacity-90">
+          {[...Array(150)].map((_, i) => {
+            const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
+            const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
+                                 Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
+            
+            return (
+              <motion.div
+                key={i}
+                className={`absolute bg-white rounded-full ${animationType}`}
+                style={{
+                  width: size,
+                  height: size,
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(0.5px)',
+                  boxShadow: '0 0 6px rgba(255,255,255,0.8)',
+                }}
+                animate={{
+                  opacity: [0.2, 1, 0.2],
+                  scale: [0.5, 1.5, 0.5],
+                  rotate: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 6,
+                  repeat: Infinity,
+                  delay: Math.random() * 8,
+                  ease: "easeInOut"
+                }}
+              />
+            );
+          })}
+        </div>
+
+        {/* Extra sparkly shooting stars */}
+        <div className="absolute inset-0 opacity-60">
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              key={i}
+              key={`shooting-${i}`}
               className="absolute bg-white rounded-full"
               style={{
-                width: Math.random() > 0.7 ? '2px' : '1px',
-                height: Math.random() > 0.7 ? '2px' : '1px',
+                width: '4px',
+                height: '1px',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 50}%`,
+                filter: 'blur(1px)',
+                background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+              }}
+              animate={{
+                x: [0, 100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 10,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Magical sparkle dust effect */}
+        <div className="absolute inset-0 opacity-40">
+          {[...Array(80)].map((_, i) => (
+            <motion.div
+              key={`dust-${i}`}
+              className="absolute bg-white rounded-full"
+              style={{
+                width: '1px',
+                height: '1px',
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 filter: 'blur(0.5px)',
               }}
               animate={{
-                opacity: [0.3, 1, 0.3],
-                scale: [0.8, 1.2, 0.8],
+                opacity: [0, 0.8, 0],
+                scale: [0, 1, 0],
+                y: [0, -20, -40],
               }}
               transition={{
-                duration: 2 + Math.random() * 4,
+                duration: 4 + Math.random() * 3,
                 repeat: Infinity,
-                delay: Math.random() * 5,
-                ease: "easeInOut"
+                delay: Math.random() * 6,
+                ease: "easeOut"
               }}
             />
           ))}
