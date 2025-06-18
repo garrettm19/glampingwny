@@ -26,7 +26,8 @@ import {
   Coffee,
   Calendar,
   Upload,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Palette
 } from 'lucide-react';
 
 const adultServices = [
@@ -50,7 +51,7 @@ const adultServices = [
     title: "Anniversary Celebration",
     description: "Celebrate your special milestone with an unforgettable glamping experience designed for couples.",
     price: "From $425",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1519167758481-83f29c1fe8ea?ixlib=rb-4.0.3&w=400&q=80",
     features: [
       "Elegant anniversary setup",
       "Personalized decorations",
