@@ -29,7 +29,8 @@ import {
   Sun,
   Moon,
   Snowflake,
-  Leaf
+  Leaf,
+  ArrowRight
 } from 'lucide-react';
 
 // Comprehensive theme data with photos
