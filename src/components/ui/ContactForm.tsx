@@ -52,8 +52,8 @@ const ContactForm: React.FC = () => {
         <form onSubmit={handleSubmit} className="relative z-10">
           {/* Form Header */}
           <div className="text-center mb-8">
-            <div className="inline-block p-3 bg-emerald-100 rounded-full mb-4">
-              <Sparkles className="w-6 h-6 text-emerald-600" />
+            <div className="inline-block p-3 bg-lavender-100 rounded-full mb-4">
+              <Sparkles className="w-6 h-6 text-lavender-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               Let's Create Something Magical Together
@@ -78,7 +78,7 @@ const ContactForm: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-all"
                   placeholder="Enter your name"
                 />
               </div>
@@ -95,7 +95,7 @@ const ContactForm: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-all"
                   placeholder="your@email.com"
                 />
               </div>
@@ -114,7 +114,7 @@ const ContactForm: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-all"
                   placeholder="(716) 555-1234"
                 />
               </div>
@@ -129,7 +129,7 @@ const ContactForm: React.FC = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all"
+                  className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-all"
                 >
                   <option value="">Select a topic</option>
                   <option value="booking">Booking Question</option>
@@ -153,7 +153,7 @@ const ContactForm: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all resize-none"
+                className="w-full px-4 py-3 bg-white rounded-lg border border-gray-200 focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 transition-all resize-none"
                 placeholder="Tell us about your dream glamping experience..."
               />
             </div>
@@ -198,9 +198,9 @@ const ContactForm: React.FC = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-6"
           >
-            <CheckCircle className="w-8 h-8 text-emerald-600" />
+            <CheckCircle className="w-8 h-8 text-lavender-600" />
           </motion.div>
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Message Sent Successfully! 🎉
