@@ -1,346 +1,232 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Tent, Sparkles, Home, Clock, PartyPopper, Shield, Heart, Star, Calendar, Users, Camera, Utensils, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Tent, Sparkles, Users, Clock, Shield, Heart, Star, TreePine, Home, Palette } from 'lucide-react';
 
 const features = [
   {
     icon: Tent,
-    title: "Indoor & Outdoor Options",
-    description: "Year-round adventures for the whole family",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Available 365 days"
+    title: "Premium Tents",
+    description: "Luxury bell tents and cozy indoor setups with premium bedding and decor",
+    color: "from-emerald-500 to-teal-500",
+    delay: 0.1
   },
   {
     icon: Sparkles,
-    title: "Beautiful Decorations",
-    description: "Themed setups that create memorable experiences",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "25+ themes available"
+    title: "Themed Experiences",
+    description: "25+ magical themes from princess parties to outdoor adventures",
+    color: "from-purple-500 to-pink-500",
+    delay: 0.2
   },
   {
-    icon: Home,
-    title: "Comfortable Setup",
-    description: "Cozy and convenient for families",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "100% family comfort"
+    icon: Users,
+    title: "All Ages Welcome",
+    description: "Perfect for kids, teens, and adults - creating memories for the whole family",
+    color: "from-blue-500 to-cyan-500",
+    delay: 0.3
   },
   {
     icon: Clock,
-    title: "Easy Booking",
-    description: "Simple planning for busy parents",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Book in under 5 minutes"
-  },
-  {
-    icon: PartyPopper,
-    title: "Complete Setup",
-    description: "We handle everything so you can enjoy family time",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Zero stress for parents"
+    title: "Full Service",
+    description: "Complete setup, styling, and cleanup - you just enjoy the experience",
+    color: "from-orange-500 to-red-500",
+    delay: 0.4
   },
   {
     icon: Shield,
     title: "Safe & Clean",
-    description: "Family-safe equipment and sanitized supplies",
-    color: "bg-primary-100 text-primary-600",
-    shadowColor: "shadow-primary-200/50",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=400&q=80",
-    stats: "Family safety first"
+    description: "Professionally sanitized equipment and safety-first approach",
+    color: "from-green-500 to-emerald-500",
+    delay: 0.5
+  },
+  {
+    icon: Heart,
+    title: "Memory Making",
+    description: "Creating unforgettable moments that families treasure forever",
+    color: "from-pink-500 to-rose-500",
+    delay: 0.6
   }
 ];
 
-const services = [
-  "Birthday Parties",
-  "Family Celebrations", 
-  "Slumber Parties",
-  "Sweet Sixteens",
-  "Graduation Parties",
-  "Holiday Celebrations",
-  "Sibling Parties",
-  "Playdate Adventures",
-  "Anniversary Celebrations",
-  "Girls' Night Out",
-  "Date Night Experiences"
+const experiences = [
+  {
+    icon: Home,
+    title: "Indoor Glamping",
+    description: "Cozy teepee sleepovers perfect for any weather",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
+    price: "From $225"
+  },
+  {
+    icon: TreePine,
+    title: "Outdoor Adventures",
+    description: "Authentic bell tent experiences under the stars",
+    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
+    price: "From $500"
+  },
+  {
+    icon: Palette,
+    title: "Spa Experiences",
+    description: "Relaxing spa parties with professional treatments",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&w=400&q=80",
+    price: "From $325"
+  }
 ];
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
 
 const Features: React.FC = () => {
   return (
-    <section id="features" className="section bg-white relative overflow-hidden">
-      {/* Subtle background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[10%] w-3 h-3 bg-primary-400 rounded-full animate-pulse-glow" />
-        <div className="absolute top-[30%] right-[15%] w-2 h-2 bg-primary-300 rounded-full animate-sparkle animation-delay-700" />
-        <div className="absolute bottom-[20%] left-[20%] w-2 h-2 bg-primary-400 rounded-full animate-float" />
-        <div className="absolute bottom-[10%] right-[25%] w-3 h-3 bg-primary-300 rounded-full animate-pulse-glow animation-delay-700" />
+    <>
+      {/* Why Choose Us Section */}
+      <section className="section bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-nature-pattern opacity-30"></div>
         
-        {/* Elegant gradient orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-primary-200/20 to-primary-100/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary-100/20 to-primary-200/20 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <div className="inline-block p-3 bg-primary-100 rounded-full mb-6">
-              <Heart className="w-8 h-8 text-primary-600" />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Why Families Love Glamping WNY
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+              Why Families Choose
+              <span className="gradient-text block">Glamping WNY</span>
             </h2>
-            <p className="text-gray-700 max-w-3xl mx-auto mb-8 text-lg leading-relaxed">
-              We're here to make your family celebrations extra special! From cozy indoor sleepovers to outdoor adventures, we create safe, fun experiences that bring families together and create memories that last a lifetime.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We're not just about tents - we're about creating magical experiences 
+              that bring families together and create memories that last a lifetime.
             </p>
           </motion.div>
-        </div>
 
-        {/* Family-Focused Services Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-sm border border-primary-200 rounded-xl px-4 py-3 text-sm font-medium text-gray-800 hover:bg-primary-50 hover:border-primary-300 transition-all duration-300 group cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-            >
-              <span className="group-hover:text-primary-600 transition-all duration-300">
-                {service}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Family-Friendly Features Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.3 }
-              }}
-              className={`bg-white/95 backdrop-blur-sm border border-primary-200/50 shadow-lg hover:shadow-xl transition-all duration-500 group rounded-xl overflow-hidden`}
-            >
-              {/* Feature Image */}
-              <div className="h-48 overflow-hidden relative">
-                <img 
-                  src={feature.image} 
-                  alt={feature.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Stats overlay */}
-                <motion.div
-                  className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  {feature.stats}
-                </motion.div>
-              </div>
-              
-              {/* Feature Content */}
-              <div className="p-6">
-                <div className={`${feature.color} w-14 h-14 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="h-7 w-7" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-primary-600 transition-all duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Family Photo Gallery Section */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-block p-3 bg-primary-100 rounded-full mb-6">
-              <Camera className="w-8 h-8 text-primary-600" />
-            </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              See Happy Families in Action
-            </h2>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Real photos from real family celebrations. Every setup is unique and designed to create memorable moments for your loved ones.
-            </p>
-          </motion.div>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {[
-            "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=300&q=80",
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=300&q=80"
-          ].map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 group cursor-pointer border border-primary-200"
-              whileHover={{ scale: 1.02 }}
-            >
-              <img 
-                src={image} 
-                alt={`Happy family glamping experience ${index + 1}`}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* View Gallery CTA */}
-        <motion.div
-          className="text-center mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <Link
-            to="/gallery"
-            className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold group"
-          >
-            See More Happy Families
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </motion.div>
-
-        {/* Family-Friendly Policies Section */}
-        <div className="text-center mt-20 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-block p-3 bg-primary-100 rounded-full mb-6">
-              <Shield className="w-8 h-8 text-primary-600" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-8">
-              Important Family Guidelines
-            </h2>
-          </motion.div>
-        </div>
-        
-        <div className="bg-white/80 backdrop-blur-sm border border-primary-200 p-8 rounded-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: "Safety First",
-                description: "All equipment is family-safe and thoroughly cleaned. Adult supervision required at all times.",
-                color: "bg-primary-100 text-primary-600"
-              },
-              {
-                icon: Heart,
-                title: "Family-Friendly Food",
-                description: "Light snacks welcome! Clear beverages only to keep everything clean and safe.",
-                color: "bg-primary-100 text-primary-600"
-              },
-              {
-                icon: Star,
-                title: "Smoke-Free Environment",
-                description: "We maintain a completely smoke-free environment for the health and safety of all families.",
-                color: "bg-primary-100 text-primary-600"
-              },
-              {
-                icon: Users,
-                title: "Pet Guidelines",
-                description: "Well-behaved pets welcome with advance notice. Pet fee applies for safety and cleanliness.",
-                color: "bg-primary-100 text-primary-600"
-              }
-            ].map((policy, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: feature.delay }}
                 viewport={{ once: true }}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary-50/50 transition-colors duration-300"
+                className="group"
               >
-                <div className={`w-12 h-12 ${policy.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                  <policy.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
-                    {policy.title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {policy.description}
-                  </p>
+                <div className="glass-card p-8 h-full hover:shadow-large transition-all duration-300 group-hover:-translate-y-2">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Experience Types Section */}
+      <section className="section nature-gradient">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+              Choose Your Adventure
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              From cozy indoor experiences to outdoor adventures under the stars, 
+              we have the perfect setup for your celebration.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {experiences.map((experience, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="group cursor-pointer"
+              >
+                <div className="glass-card overflow-hidden hover:shadow-large transition-all duration-500 group-hover:-translate-y-3">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={experience.image}
+                      alt={experience.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <div className="flex items-center gap-2 mb-2">
+                        <experience.icon className="w-6 h-6" />
+                        <span className="font-semibold">{experience.title}</span>
+                      </div>
+                      <div className="text-2xl font-bold">{experience.price}</div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-gray-600 mb-4">{experience.description}</p>
+                    <div className="flex items-center text-emerald-600 font-semibold group-hover:text-emerald-700 transition-colors">
+                      <span>Learn More</span>
+                      <motion.div
+                        className="ml-2"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section bg-emerald-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern"></div>
+        
+        <div className="container-custom relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              Trusted by Families Across WNY
+            </h2>
+            <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
+              Join hundreds of families who have created magical memories with us
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: "200+", label: "Happy Families" },
+              { number: "25+", label: "Unique Themes" },
+              { number: "5.0", label: "Star Rating" },
+              { number: "3+", label: "Years Experience" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
+                <div className="text-emerald-100">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

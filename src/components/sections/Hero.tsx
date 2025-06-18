@@ -1,346 +1,157 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, ArrowRight, Heart, Tent, TreePine, Sparkles, Zap, Crown, Award } from 'lucide-react';
+import { ArrowRight, Star, MapPin, Calendar, Shield, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { trackBookNowClick } from '../../utils/analytics';
-import Logo from '../ui/Logo';
 
 const Hero: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
-  }, []);
-
-  const scrollToVirtualTour = useCallback(() => {
-    const virtualTourSection = document.getElementById('virtual-tour');
-    if (virtualTourSection) {
-      virtualTourSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
-
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Beautiful Glamping Background */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <motion.img
-          src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-          alt="Beautiful glamping tent setup"
+        <img 
+          src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          alt="Luxury glamping experience"
           className="w-full h-full object-cover"
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 10, ease: "easeOut" }}
         />
-        
-        {/* Perfect gradient overlay */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50"
-          initial={{ opacity: 0.8 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-        />
-        
-        {/* Subtle light effects */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 bg-gradient-to-b from-white/20 to-transparent"
-              style={{
-                height: '200%',
-                left: `${20 + i * 30}%`,
-                top: '-50%',
-                transform: 'rotate(15deg)',
-              }}
-              animate={{
-                opacity: [0, 0.3, 0],
-                scaleY: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: i * 1.5,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-emerald-800/70 to-teal-900/80"></div>
+        <div className="absolute inset-0 bg-hero-pattern"></div>
       </div>
 
-      {/* Minimal magical elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-        {[...Array(isMobile ? 4 : 8)].map((_, i) => {
-          const icons = [Tent, TreePine, Heart, Sparkles, Crown, Award, Zap];
-          const Icon = icons[i % icons.length];
-          const size = 24 + Math.random() * 12;
-          const duration = 20 + Math.random() * 15;
-          const delay = Math.random() * 8;
-          
-          return (
-            <motion.div
-              key={i}
-              className="absolute"
-              initial={{ 
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                opacity: 0,
-                scale: 0.5
-              }}
-              animate={{
-                x: [
-                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-                ],
-                y: [
-                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                  Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-                ],
-                opacity: [0, 0.15, 0.25, 0.15, 0],
-                scale: [0.5, 1, 1.2, 1, 0.5],
-                rotate: [0, 180, 360]
-              }}
-              transition={{
-                duration: duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: delay
-              }}
-            >
-              <Icon 
-                size={size} 
-                className="text-white/10 filter drop-shadow-lg" 
-              />
-            </motion.div>
-          );
-        })}
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.8, 0.3],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: "easeInOut"
+            }}
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${20 + (i % 2) * 60}%`,
+            }}
+          />
+        ))}
       </div>
 
       {/* Main Content */}
-      <div className="container-custom relative z-20 min-h-screen flex items-center justify-center">
-        <div className="max-w-6xl text-center">
-          {/* Premium Logo Badge */}
+      <div className="container-custom relative z-10 text-center text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl mx-auto"
+        >
+          {/* Trust Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-white/95 backdrop-blur-md rounded-full border border-white/50 mb-8 group hover:bg-white hover:scale-105 transition-all duration-500 shadow-2xl"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20"
           >
-            <Logo size="sm" />
-            <span className="text-neutral-800 text-sm font-semibold tracking-wide">
-              Your Go-to Glamping Experts in Western New York
-            </span>
-            <motion.div
-              className="w-2 h-2 bg-primary-500 rounded-full"
-              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              ))}
+            </div>
+            <span className="text-sm font-medium">Trusted by 200+ Families</span>
           </motion.div>
 
-          {/* Perfect-sized, Beautiful Title */}
-          <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-8 leading-tight text-white tracking-tight"
-            style={{
-              textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6)',
-              fontFeatureSettings: '"kern" 1, "liga" 1',
-              textRendering: 'optimizeLegibility',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale'
-            }}
-            initial={{ opacity: 0, y: 50 }}
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-shadow-lg"
           >
-            <motion.span 
-              className="block"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              Glamping
-            </motion.span>
-            <motion.span 
-              className="block bg-gradient-to-r from-primary-300 via-primary-200 to-secondary-300 bg-clip-text text-transparent"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
-              WNY
-            </motion.span>
+            Luxury Glamping
+            <span className="block text-emerald-300">Experiences</span>
           </motion.h1>
 
-          {/* Beautiful Subheadline */}
-          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl text-white font-display font-semibold mb-8 leading-relaxed tracking-tight max-w-5xl mx-auto"
-            style={{
-              textShadow: '0 2px 12px rgba(0,0,0,0.8)',
-              fontFeatureSettings: '"kern" 1',
-              letterSpacing: '-0.01em'
-            }}
+          {/* Subheadline */}
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed font-light"
           >
-            Creating Unforgettable
-            <motion.span 
-              className="text-primary-200 font-bold"
-              animate={{ 
-                textShadow: [
-                  '0 0 10px rgba(59, 130, 246, 0.5)',
-                  '0 0 20px rgba(59, 130, 246, 0.8)',
-                  '0 0 10px rgba(59, 130, 246, 0.5)'
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            > Experiences </motion.span>
-            for Every Celebration
-          </motion.h2>
-          
-          {/* Enhanced Value Proposition */}
-          <motion.p 
-            className="text-xl md:text-2xl text-white/95 mb-12 max-w-5xl mx-auto leading-relaxed font-sans"
-            style={{
-              textShadow: '0 2px 8px rgba(0,0,0,0.7)',
-              lineHeight: '1.6'
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            We take the stress out of party planning and turn your special occasion into a celebration to remember! 
-            <br className="hidden md:block" />
-            <motion.span 
-              className="text-primary-200 font-semibold"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              From cozy indoor sleepovers to outdoor glamping adventures
-            </motion.span> - we handle everything so you can relax and enjoy the moment.
+            Create unforgettable memories with premium outdoor adventures 
+            delivered to your backyard in Western New York
           </motion.p>
-          
-          {/* Clean CTA Buttons - NO SHIMMER BUG */}
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+
+          {/* CTA Buttons */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
-            <motion.div
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
+            <Link
+              to="/book-now"
+              className="btn btn-primary text-lg px-8 py-4 group"
             >
-              <Link
-                to="/book-now"
-                className="group relative inline-flex items-center justify-center px-10 py-5 bg-white text-primary-600 hover:bg-primary-50 font-bold text-xl rounded-xl transition-all duration-300 shadow-2xl hover:shadow-3xl"
-                onClick={() => trackBookNowClick()}
-              >
-                <span className="flex items-center gap-3">
-                  Book Your Experience
-                  <motion.div
-                    animate={{ rotate: [0, 15, -15, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 2 }}
-                  >
-                    <Heart className="w-6 h-6 text-pink-500" />
-                  </motion.div>
-                </span>
-              </Link>
-            </motion.div>
-            
-            <motion.button
-              onClick={scrollToVirtualTour}
-              className="group inline-flex items-center justify-center px-10 py-5 bg-white/15 backdrop-blur-md text-white font-bold text-xl rounded-xl border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all duration-500 shadow-xl hover:shadow-2xl"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
+              <span>Book Your Experience</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/gallery"
+              className="btn btn-ghost text-lg px-8 py-4"
             >
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
-                <ArrowRight className="w-6 h-6 mr-3" />
-              </motion.div>
-              <span className="font-display">Explore the Details</span>
-            </motion.button>
+              View Gallery
+            </Link>
           </motion.div>
 
-          {/* Enhanced Trust Indicators */}
+          {/* Trust Indicators */}
           <motion.div
-            className="flex flex-wrap items-center justify-center gap-8 text-white/90 text-base"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
           >
-            <motion.div 
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.4 + i * 0.1, type: "spring" }}
-                  >
-                    <Star className="w-5 h-5 text-yellow-300 fill-yellow-300 drop-shadow-lg" />
-                  </motion.div>
-                ))}
-              </div>
-              <span className="font-semibold font-display">Hundreds of Happy Clients</span>
-            </motion.div>
-            <div className="w-px h-6 bg-white/40" />
-            <motion.div 
-              className="font-semibold font-display"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-            >
-              All Ages Welcome
-            </motion.div>
-            <div className="w-px h-6 bg-white/40" />
-            <div className="font-semibold font-display">Professional Service</div>
-            <div className="w-px h-6 bg-white/40" />
-            <motion.div 
-              className="font-semibold font-display"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-            >
-              Stress-Free Planning
-            </motion.div>
+            {[
+              { icon: MapPin, text: "Buffalo Metro Area", subtext: "Free Delivery" },
+              { icon: Calendar, text: "Year-Round", subtext: "Indoor & Outdoor" },
+              { icon: Shield, text: "Fully Insured", subtext: "Professional Service" },
+              { icon: Award, text: "5-Star Rated", subtext: "200+ Reviews" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                className="text-center"
+              >
+                <item.icon className="w-8 h-8 mx-auto mb-2 text-emerald-300" />
+                <div className="text-sm font-semibold">{item.text}</div>
+                <div className="text-xs text-white/70">{item.subtext}</div>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
+        </motion.div>
       </div>
-      
-      {/* Enhanced Scroll Indicator */}
-      <motion.button
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 cursor-pointer z-20 group"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-        onClick={scrollToVirtualTour}
-        aria-label="Scroll down to see more"
-        whileHover={{ scale: 1.1 }}
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70"
       >
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-sm font-semibold opacity-80 group-hover:opacity-100 transition-opacity font-display">
-            Explore Our Services
-          </span>
-          <motion.div 
-            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center group-hover:border-white/70 transition-colors relative overflow-hidden"
-            whileHover={{ boxShadow: '0 0 20px rgba(255,255,255,0.3)' }}
-          >
-            <motion.div
-              className="w-1 h-3 bg-white/60 rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            />
-          </motion.div>
+        <div className="flex flex-col items-center animate-bounce-gentle">
+          <span className="text-sm mb-2">Discover More</span>
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+          </div>
         </div>
-      </motion.button>
+      </motion.div>
     </section>
   );
 };

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail, Instagram, Facebook, ChevronDown } from 'lucide-react';
-import Logo from '../ui/Logo';
+import { Menu, X, Phone, Mail, Tent } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { trackEvent } from '../../utils/analytics';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -22,31 +19,14 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     setIsMenuOpen(false);
-    setIsServicesOpen(false);
-    window.scrollTo(0, 0);
   }, [location]);
-
-  const handleNavClick = (linkName: string) => {
-    trackEvent('Navigation', 'nav_click', linkName);
-    window.scrollTo(0, 0);
-  };
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { 
-      name: 'Services', 
-      path: '/services',
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'All Services', path: '/services' },
-        { name: 'Kids Spa Party', path: '/kids-spa-party' },
-        { name: 'Indoor Glamping', path: '/services#indoor' },
-        { name: 'Outdoor Glamping', path: '/services#outdoor' }
-      ]
-    },
+    { name: 'Services', path: '/services' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'FAQ', path: '/faq' },
+    { name: 'Testimonials', path: '/testimonials' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -54,26 +34,38 @@ const Header: React.FC = () => {
     <motion.header 
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/98 backdrop-blur-xl shadow-lg border-b border-neutral-100 py-3' 
-          : 'bg-white/95 backdrop-blur-md shadow-md py-4'
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg py-4' 
+          : 'bg-transparent py-6'
       }`}
       role="banner"
     >
       <div className="container-custom flex justify-between items-center">
         {/* Logo */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+        <Link 
+          to="/" 
+          className="flex items-center space-x-3 group"
+          aria-label="Glamping WNY Home"
         >
-          <Link 
-            to="/" 
-            className="z-10 block"
-            aria-label="Glamping WNY Home"
-            onClick={() => handleNavClick('logo')}
-          >
-            <Logo isScrolled={true} />
-          </Link>
-        </motion.div>
+          <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+            isScrolled 
+              ? 'bg-emerald-600 text-white' 
+              : 'bg-white/20 text-white backdrop-blur-sm'
+          } group-hover:scale-110`}>
+            <Tent className="w-6 h-6" />
+          </div>
+          <div>
+            <div className={`font-serif text-2xl font-bold transition-colors ${
+              isScrolled ? 'text-gray-900' : 'text-white'
+            }`}>
+              Glamping WNY
+            </div>
+            <div className={`text-xs font-medium transition-colors ${
+              isScrolled ? 'text-gray-600' : 'text-white/80'
+            }`}>
+              LUXURY EXPERIENCES
+            </div>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav 
@@ -81,156 +73,51 @@ const Header: React.FC = () => {
           role="navigation"
           aria-label="Main navigation"
         >
-          {navLinks.map((link, index) => (
-            <motion.div
+          {navLinks.map((link) => (
+            <Link
               key={link.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="relative"
+              to={link.path}
+              className={`font-medium transition-all duration-300 hover:scale-105 ${
+                isScrolled 
+                  ? 'text-gray-700 hover:text-emerald-600' 
+                  : 'text-white hover:text-emerald-300'
+              } ${location.pathname === link.path ? 'text-emerald-600' : ''}`}
             >
-              {link.hasDropdown ? (
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
-                >
-                  <button
-                    className="relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group flex items-center gap-1 text-neutral-700 hover:text-primary-600"
-                  >
-                    <span className="relative z-10">{link.name}</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                    
-                    {/* Hover background effect */}
-                    <motion.div
-                      className="absolute inset-0 rounded-lg bg-primary-50"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileHover={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  <AnimatePresence>
-                    {isServicesOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-neutral-100 py-2 z-50"
-                      >
-                        {link.dropdownItems?.map((item, i) => (
-                          <Link
-                            key={i}
-                            to={item.path}
-                            onClick={() => handleNavClick(item.name.toLowerCase())}
-                            className="block px-4 py-2 text-neutral-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Link
-                  to={link.path}
-                  onClick={() => handleNavClick(link.name.toLowerCase())}
-                  className="relative px-4 py-2 font-medium transition-all duration-300 rounded-lg group text-neutral-700 hover:text-primary-600"
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  
-                  {/* Hover background effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-lg bg-primary-50"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileHover={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                  
-                  {/* Active indicator */}
-                  {location.pathname === link.path && (
-                    <motion.div
-                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-primary-500 rounded-full"
-                      layoutId="activeIndicator"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      style={{ x: '-50%' }}
-                    />
-                  )}
-                </Link>
-              )}
-            </motion.div>
+              {link.name}
+            </Link>
           ))}
-          
-          {/* Contact Info in Header */}
-          <div className="flex items-center space-x-6 ml-8 pl-8 border-l border-neutral-200">
-            <motion.a 
+        </nav>
+
+        {/* Contact Info & CTA */}
+        <div className="hidden lg:flex items-center space-x-6">
+          <div className={`flex items-center space-x-4 text-sm ${
+            isScrolled ? 'text-gray-600' : 'text-white/80'
+          }`}>
+            <a 
               href="tel:+17165551234"
-              className="flex items-center gap-2 transition-all duration-300 group text-neutral-700 hover:text-primary-600"
-              onClick={() => trackEvent('Contact', 'phone_click', 'header')}
-              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-2 hover:text-emerald-600 transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span className="font-medium">(716) 555-1234</span>
-            </motion.a>
-            
-            <div className="flex space-x-3">
-              <motion.a 
-                href="https://instagram.com/glampingwny" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-neutral-100 text-neutral-600 hover:bg-pink-100 hover:text-pink-600"
-                aria-label="Follow us on Instagram"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Instagram className="w-4 h-4" />
-              </motion.a>
-              <motion.a 
-                href="https://facebook.com/glampingwny" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 bg-neutral-100 text-neutral-600 hover:bg-blue-100 hover:text-blue-600"
-                aria-label="Follow us on Facebook"
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Facebook className="w-4 h-4" />
-              </motion.a>
-            </div>
+            </a>
           </div>
           
-          {/* CTA Button */}
-          <motion.div
-            className="ml-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <Link 
+            to="/book-now" 
+            className="btn btn-primary"
           >
-            <Link 
-              to="/book-now" 
-              className="relative inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-              onClick={() => handleNavClick('book_now')}
-              aria-label="Book Now"
-            >
-              <span className="relative z-10">Book Your Experience</span>
-            </Link>
-          </motion.div>
-        </nav>
+            Book Experience
+          </Link>
+        </div>
 
         {/* Mobile Menu Button */}
-        <motion.button
-          className="lg:hidden z-10 p-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 text-neutral-700"
+        <button
+          className={`lg:hidden p-2 rounded-lg transition-colors ${
+            isScrolled ? 'text-gray-900' : 'text-white'
+          }`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
         >
           <AnimatePresence mode="wait">
             {isMenuOpen ? (
@@ -255,7 +142,7 @@ const Header: React.FC = () => {
               </motion.div>
             )}
           </AnimatePresence>
-        </motion.button>
+        </button>
 
         {/* Mobile Navigation */}
         <AnimatePresence>
@@ -275,56 +162,55 @@ const Header: React.FC = () => {
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
                 className="absolute right-0 top-0 h-full w-80 bg-white shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
-                role="dialog"
-                aria-modal="true"
-                aria-label="Mobile menu"
               >
                 {/* Mobile Header */}
-                <div className="flex justify-between items-center p-6 border-b border-neutral-100">
-                  <Logo isScrolled={true} />
-                  <motion.button
+                <div className="flex justify-between items-center p-6 border-b border-gray-100">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
+                      <Tent className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-serif text-lg font-bold text-gray-900">Glamping WNY</div>
+                      <div className="text-xs text-gray-600">LUXURY EXPERIENCES</div>
+                    </div>
+                  </div>
+                  <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="p-2 text-neutral-800 hover:bg-neutral-100 rounded-xl transition-colors"
+                    className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
                     aria-label="Close menu"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     <X className="h-6 w-6" />
-                  </motion.button>
+                  </button>
                 </div>
 
                 {/* Mobile Contact Info */}
-                <div className="p-6 bg-gradient-to-br from-primary-50 to-primary-100 border-b border-neutral-100">
+                <div className="p-6 bg-emerald-50 border-b border-gray-100">
                   <div className="space-y-4">
-                    <motion.a 
+                    <a 
                       href="tel:+17165551234"
-                      className="flex items-center gap-3 text-neutral-800 font-medium hover:text-primary-600 transition-colors group"
-                      onClick={() => trackEvent('Contact', 'phone_click', 'mobile_menu')}
-                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-emerald-600 transition-colors"
                     >
-                      <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center group-hover:bg-primary-200 transition-colors">
-                        <Phone className="w-5 h-5 text-primary-600" />
+                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                        <Phone className="w-5 h-5 text-emerald-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Call Us</div>
-                        <div className="text-sm text-neutral-600">(716) 555-1234</div>
+                        <div className="text-sm text-gray-600">(716) 555-1234</div>
                       </div>
-                    </motion.a>
+                    </a>
                     
-                    <motion.a 
+                    <a 
                       href="mailto:info@glampingwny.com"
-                      className="flex items-center gap-3 text-neutral-800 font-medium hover:text-primary-600 transition-colors group"
-                      onClick={() => trackEvent('Contact', 'email_click', 'mobile_menu')}
-                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-emerald-600 transition-colors"
                     >
-                      <div className="w-12 h-12 bg-neutral-100 rounded-xl flex items-center justify-center group-hover:bg-neutral-200 transition-colors">
-                        <Mail className="w-5 h-5 text-neutral-600" />
+                      <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                        <Mail className="w-5 h-5 text-gray-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Email Us</div>
-                        <div className="text-sm text-neutral-600">info@glampingwny.com</div>
+                        <div className="text-sm text-gray-600">info@glampingwny.com</div>
                       </div>
-                    </motion.a>
+                    </a>
                   </div>
                 </div>
 
@@ -338,37 +224,12 @@ const Header: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                       >
-                        {link.hasDropdown ? (
-                          <div>
-                            <Link
-                              to={link.path}
-                              className="block px-4 py-3 text-neutral-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
-                              onClick={() => handleNavClick(link.name.toLowerCase())}
-                            >
-                              {link.name}
-                            </Link>
-                            <div className="ml-4 mt-2 space-y-1">
-                              {link.dropdownItems?.map((item, i) => (
-                                <Link
-                                  key={i}
-                                  to={item.path}
-                                  className="block px-4 py-2 text-neutral-600 hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-all duration-200"
-                                  onClick={() => handleNavClick(item.name.toLowerCase())}
-                                >
-                                  {item.name}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ) : (
-                          <Link
-                            to={link.path}
-                            className="block px-4 py-3 text-neutral-800 text-lg font-semibold hover:bg-primary-50 hover:text-primary-600 rounded-xl transition-all duration-200"
-                            onClick={() => handleNavClick(link.name.toLowerCase())}
-                          >
-                            {link.name}
-                          </Link>
-                        )}
+                        <Link
+                          to={link.path}
+                          className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-emerald-50 hover:text-emerald-600 rounded-xl transition-all duration-200"
+                        >
+                          {link.name}
+                        </Link>
                       </motion.div>
                     ))}
                   </div>
@@ -381,40 +242,11 @@ const Header: React.FC = () => {
                   >
                     <Link 
                       to="/book-now" 
-                      className="block w-full text-center bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-                      onClick={() => handleNavClick('book_now_mobile')}
+                      className="block w-full text-center bg-emerald-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       Book Your Experience
                     </Link>
                   </motion.div>
-                </div>
-
-                {/* Mobile Social Links */}
-                <div className="p-6 border-t border-neutral-100">
-                  <div className="flex justify-center space-x-4">
-                    <motion.a 
-                      href="https://instagram.com/glampingwny" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors"
-                      aria-label="Follow us on Instagram"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Instagram className="w-6 h-6" />
-                    </motion.a>
-                    <motion.a 
-                      href="https://facebook.com/glampingwny" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors"
-                      aria-label="Follow us on Facebook"
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Facebook className="w-6 h-6" />
-                    </motion.a>
-                  </div>
                 </div>
               </motion.div>
             </motion.div>
