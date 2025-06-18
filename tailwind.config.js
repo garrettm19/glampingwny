@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
-        quote: ['Crimson Text', 'serif'],
+        sans: ['DM Sans', 'Inter', 'sans-serif'],
+        serif: ['Poppins', 'DM Sans', 'sans-serif'],
+        quote: ['Poppins', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -22,21 +22,21 @@ export default {
           900: '#14532d',
           950: '#052e16',
         },
-        // True Lilac Purple Palette
+        // Main Lavender Purple Palette - Harmonized
         lavender: {
           50: '#faf7ff',
           100: '#f3edff',
           200: '#e9deff',
           300: '#d6c2ff',
           400: '#bc95ff',
-          500: '#a366ff',  // Main lilac purple
+          500: '#a366ff',  // Main lavender purple
           600: '#8b3dff',
           700: '#7c2d12',
           800: '#6b21a8',
           900: '#581c87',
           950: '#3b0764',
         },
-        // Complementary colors for the lilac theme
+        // Harmonized Sage Green - Complements lavender beautifully
         sage: {
           50: '#f6f7f6',
           100: '#e3e7e3',
@@ -50,6 +50,7 @@ export default {
           900: '#2d352d',
           950: '#171c17',
         },
+        // Harmonized Cream - Warm neutral that works with lavender
         cream: {
           50: '#fefcf3',
           100: '#fdf8e4',
@@ -63,6 +64,7 @@ export default {
           900: '#785c2a',
           950: '#443214',
         },
+        // Harmonized Slate - Professional neutral
         slate: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -76,6 +78,7 @@ export default {
           900: '#0f172a',
           950: '#020617',
         },
+        // Harmonized Teal - Fresh accent color
         teal: {
           50: '#f0fdfa',
           100: '#ccfbf1',
@@ -91,7 +94,7 @@ export default {
         },
       },
       backgroundImage: {
-        // SUPER SPARKLY NIGHT SKY - 100+ twinkling stars!
+        // SUPER SPARKLY NIGHT SKY - Harmonized with lavender theme
         'night-sky': `
           radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.9), transparent),
           radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.7), transparent),
@@ -151,7 +154,7 @@ export default {
             #8b8bbd 100%    /* Light dawn blue */
           )
         `,
-        // SUPER SPARKLY Lilac night sky variant - Even more stars!
+        // SUPER SPARKLY Lilac night sky variant - Harmonized
         'lilac-night-sky': `
           radial-gradient(1px 1px at 25px 35px, rgba(255,255,255,0.8), transparent),
           radial-gradient(1px 1px at 65px 75px, rgba(255,255,255,0.6), transparent),

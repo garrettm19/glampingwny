@@ -76,10 +76,10 @@ const Testimonials: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-6">
             What Families Are Saying
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto body-text">
             Real stories from real families who've experienced the magic of Glamping WNY
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ const Testimonials: React.FC = () => {
                   </div>
 
                   {/* Testimonial Text */}
-                  <blockquote className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto">
+                  <blockquote className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto body-text">
                     "{testimonials[currentIndex].text}"
                   </blockquote>
 
@@ -190,7 +190,7 @@ const Testimonials: React.FC = () => {
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-3xl font-bold text-lavender-600 mb-2">{stat.number}</div>
-              <div className="text-gray-600">{stat.label}</div>
+              <div className="text-gray-600 body-text">{stat.label}</div>
             </div>
           ))}
         </motion.div>

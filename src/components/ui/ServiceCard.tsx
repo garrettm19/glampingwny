@@ -50,7 +50,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           
           {/* Price Overlay */}
           <div className="absolute bottom-4 left-4 text-white">
-            <div className="text-sm opacity-80">{category}</div>
+            <div className="text-sm opacity-80 body-text">{category}</div>
             <div className="text-2xl font-bold">{price}</div>
           </div>
         </div>
@@ -58,18 +58,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         {/* Content */}
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
-          <p className="text-gray-600 mb-4 flex-grow">{description}</p>
+          <p className="text-gray-600 mb-4 flex-grow body-text">{description}</p>
           
           {/* Features */}
           <ul className="space-y-2 mb-6">
             {features.slice(0, 3).map((feature, index) => (
               <li key={index} className="flex items-start text-sm text-gray-700">
                 <span className="text-lavender-500 mr-2 font-bold">✓</span>
-                <span>{feature}</span>
+                <span className="body-text">{feature}</span>
               </li>
             ))}
             {features.length > 3 && (
-              <li className="text-sm text-gray-500 italic">
+              <li className="text-sm text-gray-500 italic body-text">
                 +{features.length - 3} more features
               </li>
             )}

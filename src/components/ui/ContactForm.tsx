@@ -58,7 +58,7 @@ const ContactForm: React.FC = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               Let's Create Something Magical Together
             </h3>
-            <p className="text-gray-600">
+            <p className="text-gray-600 body-text">
               Ready to plan your perfect glamping experience? We'd love to hear from you!
             </p>
           </div>
@@ -183,7 +183,7 @@ const ContactForm: React.FC = () => {
               )}
             </motion.button>
 
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-gray-600 body-text">
               We typically respond within 24 hours ⭐
             </p>
           </div>
@@ -205,7 +205,7 @@ const ContactForm: React.FC = () => {
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Message Sent Successfully! 🎉
           </h3>
-          <p className="text-gray-700 mb-6">
+          <p className="text-gray-700 mb-6 body-text">
             Thank you for reaching out! We'll get back to you within 24 hours with all the details for your perfect glamping experience.
           </p>
           <motion.button

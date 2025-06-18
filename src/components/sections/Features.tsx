@@ -86,11 +86,11 @@ const Features: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-6">
               Why Families Choose
               <span className="gradient-text block">Glamping WNY</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto body-text">
               We're not just about tents - we're about creating magical experiences 
               that bring families together and create memories that last a lifetime.
             </p>
@@ -111,7 +111,7 @@ const Features: React.FC = () => {
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                  <p className="text-gray-600 leading-relaxed body-text">{feature.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -129,10 +129,10 @@ const Features: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-6">
               Choose Your Adventure
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto body-text">
               From cozy indoor experiences to outdoor adventures under the stars, 
               we have the perfect setup for your celebration.
             </p>
@@ -165,7 +165,7 @@ const Features: React.FC = () => {
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-gray-600 mb-4">{experience.description}</p>
+                    <p className="text-gray-600 mb-4 body-text">{experience.description}</p>
                     <div className="flex items-center text-sage-600 font-semibold group-hover:text-sage-700 transition-colors">
                       <span>Learn More</span>
                       <motion.div
@@ -186,7 +186,7 @@ const Features: React.FC = () => {
 
       {/* Stats Section */}
       <section className="section magical-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-starry-night opacity-40"></div>
+        <div className="absolute inset-0 bg-night-sky opacity-40"></div>
         
         <div className="container-custom relative z-10">
           <motion.div
@@ -196,10 +196,10 @@ const Features: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-sans font-bold mb-6">
               Trusted by Families Across WNY
             </h2>
-            <p className="text-xl text-sage-100 max-w-3xl mx-auto">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto body-text">
               Join hundreds of families who have created magical memories with us
             </p>
           </motion.div>
@@ -220,7 +220,7 @@ const Features: React.FC = () => {
                 className="text-center"
               >
                 <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
-                <div className="text-sage-100">{stat.label}</div>
+                <div className="text-white/80 body-text">{stat.label}</div>
               </motion.div>
             ))}
           </div>
