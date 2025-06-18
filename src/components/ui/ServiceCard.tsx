@@ -32,7 +32,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         {/* Popular Badge */}
         {popular && (
           <div className="absolute top-4 right-4 z-10">
-            <div className="bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+            <div className="bg-lavender-600 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
               <Star className="w-3 h-3 fill-current" />
               Most Popular
             </div>
@@ -64,7 +64,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <ul className="space-y-2 mb-6">
             {features.slice(0, 3).map((feature, index) => (
               <li key={index} className="flex items-start text-sm text-gray-700">
-                <span className="text-emerald-500 mr-2 font-bold">✓</span>
+                <span className="text-lavender-500 mr-2 font-bold">✓</span>
                 <span>{feature}</span>
               </li>
             ))}

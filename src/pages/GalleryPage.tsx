@@ -62,31 +62,106 @@ const GalleryPage: React.FC = () => {
         </script>
       </Helmet>
 
-      {/* Hero Section - Clean Professional */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+      {/* Hero Section - Beautiful Lilac Night Sky */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
+        <div className="absolute inset-0 z-0">
+          {/* Main night sky background with realistic lilac colors and TONS of stars */}
+          <div className="w-full h-full bg-lilac-night-sky"></div>
+          
+          {/* MASSIVE SPARKLY STAR OVERLAY - 100+ animated twinkling stars! */}
+          <div className="absolute inset-0 opacity-90">
+            {[...Array(100)].map((_, i) => {
+              const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
+              const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
+                                   Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
+              
+              return (
+                <motion.div
+                  key={i}
+                  className={`absolute bg-white rounded-full ${animationType}`}
+                  style={{
+                    width: size,
+                    height: size,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    filter: 'blur(0.5px)',
+                    boxShadow: '0 0 6px rgba(255,255,255,0.8)',
+                  }}
+                  animate={{
+                    opacity: [0.2, 1, 0.2],
+                    scale: [0.5, 1.5, 0.5],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 6,
+                    repeat: Infinity,
+                    delay: Math.random() * 8,
+                    ease: "easeInOut"
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {/* Extra sparkly shooting stars */}
+          <div className="absolute inset-0 opacity-60">
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute bg-white rounded-full"
+                style={{
+                  width: '4px',
+                  height: '1px',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 50}%`,
+                  filter: 'blur(1px)',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+                }}
+                animate={{
+                  x: [0, 100],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 10,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Magical sparkle dust effect */}
+          <div className="absolute inset-0 opacity-40">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={`dust-${i}`}
+                className="absolute bg-white rounded-full"
+                style={{
+                  width: '1px',
+                  height: '1px',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(0.5px)',
+                }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  scale: [0, 1, 0],
+                  y: [0, -20, -40],
+                }}
+                transition={{
+                  duration: 4 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 6,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Subtle atmospheric glow */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
         </div>
         
         <div className="container-custom relative z-10">
@@ -138,7 +213,7 @@ const GalleryPage: React.FC = () => {
       </section>
       
       {/* CTA */}
-      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 text-white relative overflow-hidden">
+      <section className="section lilac-night-gradient text-white relative overflow-hidden">
         {/* Subtle decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(15)].map((_, i) => (

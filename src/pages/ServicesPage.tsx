@@ -82,16 +82,106 @@ const ServicesPage: React.FC = () => {
         <meta name="description" content="Discover our premium glamping services in Western New York. Indoor teepee sleepovers, outdoor bell tent adventures, and luxury spa experiences. Professional setup included." />
       </Helmet>
 
-      {/* Hero Section */}
+      {/* Hero Section - Beautiful Lilac Night Sky */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-            alt="Luxury glamping services"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-emerald-800/70 to-teal-900/80"></div>
-          <div className="absolute inset-0 bg-hero-pattern"></div>
+          {/* Main night sky background with realistic lilac colors and TONS of stars */}
+          <div className="w-full h-full bg-lilac-night-sky"></div>
+          
+          {/* MASSIVE SPARKLY STAR OVERLAY - 120+ animated twinkling stars! */}
+          <div className="absolute inset-0 opacity-90">
+            {[...Array(120)].map((_, i) => {
+              const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
+              const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
+                                   Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
+              
+              return (
+                <motion.div
+                  key={i}
+                  className={`absolute bg-white rounded-full ${animationType}`}
+                  style={{
+                    width: size,
+                    height: size,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    filter: 'blur(0.5px)',
+                    boxShadow: '0 0 6px rgba(255,255,255,0.8)',
+                  }}
+                  animate={{
+                    opacity: [0.2, 1, 0.2],
+                    scale: [0.5, 1.5, 0.5],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 6,
+                    repeat: Infinity,
+                    delay: Math.random() * 8,
+                    ease: "easeInOut"
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {/* Extra sparkly shooting stars */}
+          <div className="absolute inset-0 opacity-60">
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={`shooting-${i}`}
+                className="absolute bg-white rounded-full"
+                style={{
+                  width: '4px',
+                  height: '1px',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 50}%`,
+                  filter: 'blur(1px)',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
+                }}
+                animate={{
+                  x: [0, 100],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 10,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Magical sparkle dust effect */}
+          <div className="absolute inset-0 opacity-40">
+            {[...Array(60)].map((_, i) => (
+              <motion.div
+                key={`dust-${i}`}
+                className="absolute bg-white rounded-full"
+                style={{
+                  width: '1px',
+                  height: '1px',
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  filter: 'blur(0.5px)',
+                }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  scale: [0, 1, 0],
+                  y: [0, -20, -40],
+                }}
+                transition={{
+                  duration: 4 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 6,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Subtle atmospheric glow */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
         </div>
 
         <div className="container-custom relative z-10 text-center text-white pt-20">
@@ -102,7 +192,9 @@ const ServicesPage: React.FC = () => {
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight">
               Our Luxury
-              <span className="block text-emerald-300">Experiences</span>
+              <span className="block bg-gradient-to-r from-lavender-300 via-lavender-200 to-white bg-clip-text text-transparent">
+                Experiences
+              </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
               Choose from our carefully crafted glamping experiences, 
@@ -119,7 +211,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-emerald-50 border-b border-emerald-100">
+      <section className="py-6 bg-lavender-50 border-b border-lavender-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -128,10 +220,10 @@ const ServicesPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-emerald-600" />
-              <span className="font-semibold text-emerald-900">Proudly Serving the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-lavender-600" />
+              <span className="font-semibold text-lavender-900">Proudly Serving the Buffalo Metro Area</span>
             </div>
-            <p className="text-emerald-700">
+            <p className="text-lavender-700">
               <strong>FREE delivery within 20 miles of Hamburg, NY</strong> • 
               Extended delivery: 21-31 miles ($50) • 32-42 miles ($100)
             </p>
@@ -178,7 +270,7 @@ const ServicesPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-emerald-50 rounded-3xl p-8 md:p-12"
+            className="bg-lavender-50 rounded-3xl p-8 md:p-12"
           >
             <div className="text-center mb-12">
               <h3 className="text-3xl font-serif font-bold text-gray-900 mb-4">
@@ -205,8 +297,8 @@ const ServicesPage: React.FC = () => {
                   viewport={{ once: true }}
                   className="text-center"
                 >
-                  <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="w-8 h-8 text-emerald-600" />
+                  <div className="w-16 h-16 bg-lavender-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <feature.icon className="w-8 h-8 text-lavender-600" />
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">{feature.title}</h4>
                   <p className="text-gray-600 text-sm">{feature.description}</p>
@@ -247,10 +339,10 @@ const ServicesPage: React.FC = () => {
               >
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="font-bold text-gray-900">{addon.name}</h3>
-                  <span className="text-emerald-600 font-bold">{addon.price}</span>
+                  <span className="text-lavender-600 font-bold">{addon.price}</span>
                 </div>
                 <p className="text-gray-600 mb-4">{addon.description}</p>
-                <div className="flex items-center text-emerald-600 font-medium">
+                <div className="flex items-center text-lavender-600 font-medium">
                   <Check className="w-4 h-4 mr-2" />
                   <span>Available as add-on</span>
                 </div>
@@ -261,8 +353,8 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section hero-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-pattern"></div>
+      <section className="section lilac-night-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-night-sky opacity-70"></div>
         
         <div className="container-custom relative z-10">
           <motion.div 
@@ -275,7 +367,7 @@ const ServicesPage: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               Ready to Create Your Perfect Experience?
             </h2>
-            <p className="text-xl text-emerald-100 mb-10">
+            <p className="text-xl text-white/90 mb-10">
               Contact us today to check availability and start planning your magical glamping adventure.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
