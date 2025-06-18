@@ -47,7 +47,7 @@ const Header: React.FC = () => {
         >
           <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
             isScrolled 
-              ? 'bg-sage-600 text-white' 
+              ? 'bg-lavender-600 text-white' 
               : 'bg-white/20 text-white backdrop-blur-sm'
           } group-hover:scale-110`}>
             <Tent className="w-6 h-6" />
@@ -78,9 +78,9 @@ const Header: React.FC = () => {
               to={link.path}
               className={`font-medium transition-all duration-300 hover:scale-105 ${
                 isScrolled 
-                  ? 'text-gray-700 hover:text-sage-600' 
-                  : 'text-white hover:text-sage-300'
-              } ${location.pathname === link.path ? 'text-sage-600' : ''}`}
+                  ? 'text-gray-700 hover:text-lavender-600' 
+                  : 'text-white hover:text-lavender-300'
+              } ${location.pathname === link.path ? 'text-lavender-600' : ''}`}
             >
               {link.name}
             </Link>
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
           }`}>
             <a 
               href="tel:+17165551234"
-              className="flex items-center gap-2 hover:text-sage-600 transition-colors"
+              className="flex items-center gap-2 hover:text-lavender-600 transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span className="font-medium">(716) 555-1234</span>
@@ -165,7 +165,7 @@ const Header: React.FC = () => {
                 {/* Mobile Header */}
                 <div className="flex justify-between items-center p-6 border-b border-gray-100">
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-sage-600 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-lavender-600 rounded-lg flex items-center justify-center">
                       <Tent className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -183,14 +183,14 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Mobile Contact Info */}
-                <div className="p-6 bg-sage-50 border-b border-gray-100">
+                <div className="p-6 bg-lavender-50 border-b border-gray-100">
                   <div className="space-y-4">
                     <a 
                       href="tel:+17165551234"
-                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-sage-600 transition-colors"
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-lavender-600 transition-colors"
                     >
-                      <div className="w-10 h-10 bg-sage-100 rounded-lg flex items-center justify-center">
-                        <Phone className="w-5 h-5 text-sage-600" />
+                      <div className="w-10 h-10 bg-lavender-100 rounded-lg flex items-center justify-center">
+                        <Phone className="w-5 h-5 text-lavender-600" />
                       </div>
                       <div>
                         <div className="font-semibold">Call Us</div>
@@ -200,7 +200,7 @@ const Header: React.FC = () => {
                     
                     <a 
                       href="mailto:info@glampingwny.com"
-                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-sage-600 transition-colors"
+                      className="flex items-center gap-3 text-gray-800 font-medium hover:text-lavender-600 transition-colors"
                     >
                       <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                         <Mail className="w-5 h-5 text-gray-600" />
@@ -225,7 +225,7 @@ const Header: React.FC = () => {
                       >
                         <Link
                           to={link.path}
-                          className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-sage-50 hover:text-sage-600 rounded-xl transition-all duration-200"
+                          className="block px-4 py-3 text-gray-800 text-lg font-semibold hover:bg-lavender-50 hover:text-lavender-600 rounded-xl transition-all duration-200"
                         >
                           {link.name}
                         </Link>
@@ -241,7 +241,7 @@ const Header: React.FC = () => {
                   >
                     <Link 
                       to="/book-now" 
-                      className="block w-full text-center bg-sage-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="block w-full text-center bg-lavender-600 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       Book Your Experience
                     </Link>

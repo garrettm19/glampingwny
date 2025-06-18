@@ -21,21 +21,21 @@ export default {
           900: '#14532d',
           950: '#052e16',
         },
-        // Earthy Lilac Purple Palette
+        // True Lilac Purple Palette
         lavender: {
           50: '#faf7ff',
           100: '#f3edff',
           200: '#e9deff',
           300: '#d6c2ff',
           400: '#bc95ff',
-          500: '#a366ff',
+          500: '#a366ff',  // Main lilac purple
           600: '#8b3dff',
           700: '#7c2d12',
           800: '#6b21a8',
           900: '#581c87',
           950: '#3b0764',
         },
-        // Earthy Sage Green
+        // Complementary colors for the lilac theme
         sage: {
           50: '#f6f7f6',
           100: '#e3e7e3',
@@ -49,7 +49,6 @@ export default {
           900: '#2d352d',
           950: '#171c17',
         },
-        // Warm Cream
         cream: {
           50: '#fefcf3',
           100: '#fdf8e4',
@@ -63,7 +62,6 @@ export default {
           900: '#785c2a',
           950: '#443214',
         },
-        // Natural Slate
         slate: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -77,7 +75,6 @@ export default {
           900: '#0f172a',
           950: '#020617',
         },
-        // Earthy Teal
         teal: {
           50: '#f0fdfa',
           100: '#ccfbf1',
@@ -93,10 +90,21 @@ export default {
         },
       },
       backgroundImage: {
-        'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1.5\"/%3E%3Ccircle cx=\"10\" cy=\"10\" r=\"1\"/%3E%3Ccircle cx=\"50\" cy=\"20\" r=\"0.5\"/%3E%3Ccircle cx=\"20\" cy=\"50\" r=\"1\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-        'nature-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%235d735d\" fill-opacity=\"0.08\" fill-rule=\"evenodd\"%3E%3Cpath d=\"m0 40l40-40h-40v40zm40 0v-40h-40l40 40z\"/%3E%3C/g%3E%3C/svg%3E')",
-        'starry-night': "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.15\"%3E%3Cpolygon points=\"50,5 52,15 62,15 54,22 57,32 50,25 43,32 46,22 38,15 48,15\"/%3E%3Cpolygon points=\"20,20 21,25 26,25 22,28 24,33 20,30 16,33 18,28 14,25 19,25\"/%3E%3Cpolygon points=\"80,30 81,35 86,35 82,38 84,43 80,40 76,43 78,38 74,35 79,35\"/%3E%3Cpolygon points=\"30,70 31,75 36,75 32,78 34,83 30,80 26,83 28,78 24,75 29,75\"/%3E%3Cpolygon points=\"70,80 71,85 76,85 72,88 74,93 70,90 66,93 68,88 64,85 69,85\"/%3E%3C/g%3E%3C/svg%3E')",
-        'organic-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%235d735d\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm15 0c0-8.284-6.716-15-15-15s-15 6.716-15 15 6.716 15 15 15 15-6.716 15-15z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+        // Realistic sparkling night sky - no corny stars
+        'sparkling-night': `
+          radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(1px 1px at 200px 60px, #ffffff, transparent),
+          radial-gradient(1px 1px at 240px 90px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(2px 2px at 280px 20px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 320px 70px, #ffffff, transparent),
+          radial-gradient(1px 1px at 360px 40px, rgba(255,255,255,0.6), transparent),
+          linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #4338ca 75%, #4f46e5 100%)
+        `,
+        'nature-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%23a366ff\" fill-opacity=\"0.08\" fill-rule=\"evenodd\"%3E%3Cpath d=\"m0 40l40-40h-40v40zm40 0v-40h-40l40 40z\"/%3E%3C/g%3E%3C/svg%3E')",
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -105,8 +113,8 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-gentle': 'bounce-gentle 2s infinite',
-        'twinkle': 'twinkle 3s ease-in-out infinite',
-        'sway': 'sway 4s ease-in-out infinite',
+        'sparkle': 'sparkle 4s ease-in-out infinite',
+        'shimmer': 'shimmer 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -121,20 +129,20 @@ export default {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
-        twinkle: {
+        sparkle: {
           '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.2)' },
+          '50%': { opacity: '1', transform: 'scale(1.1)' },
         },
-        sway: {
-          '0%, 100%': { transform: 'translateX(0px) rotate(0deg)' },
-          '50%': { transform: 'translateX(5px) rotate(1deg)' },
+        shimmer: {
+          '0%, 100%': { opacity: '0.5' },
+          '50%': { opacity: '1' },
         },
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 30px -5px rgba(0, 0, 0, 0.05)',
         'large': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 50px -10px rgba(0, 0, 0, 0.1)',
-        'glow': '0 0 20px rgba(163, 102, 255, 0.2), 0 0 40px rgba(163, 102, 255, 0.1)',
+        'glow': '0 0 20px rgba(163, 102, 255, 0.3), 0 0 40px rgba(163, 102, 255, 0.1)',
         'purple': '0 10px 25px -5px rgba(163, 102, 255, 0.15), 0 20px 40px -10px rgba(163, 102, 255, 0.1)',
       },
     },
