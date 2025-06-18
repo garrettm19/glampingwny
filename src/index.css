@@ -56,12 +56,33 @@
     @apply text-transparent bg-clip-text bg-gradient-to-r from-lavender-600 to-lavender-400;
   }
 
+  /* Beautiful lilac purple gradient */
   .lilac-gradient {
     background: linear-gradient(135deg, #a366ff 0%, #bc95ff 25%, #d6c2ff 50%, #e9deff 75%, #f3edff 100%);
   }
 
+  /* Realistic night sky gradient - inspired by original site */
   .night-sky-gradient {
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #4338ca 75%, #4f46e5 100%);
+    background: linear-gradient(180deg, 
+      #0f0f23 0%,     /* Deep space blue */
+      #1a1a3a 20%,    /* Dark night blue */
+      #2d2d5f 40%,    /* Medium night blue */
+      #4a4a7c 60%,    /* Lighter night blue */
+      #6b6b9d 80%,    /* Dawn blue */
+      #8b8bbd 100%    /* Light dawn blue */
+    );
+  }
+
+  /* Lilac night sky gradient */
+  .lilac-night-gradient {
+    background: linear-gradient(180deg, 
+      #1a0d2e 0%,     /* Deep purple night */
+      #2d1b4e 20%,    /* Dark lilac night */
+      #4a2c7c 40%,    /* Medium lilac night */
+      #6b4a9d 60%,    /* Lighter lilac night */
+      #8b6bbd 80%,    /* Dawn lilac */
+      #a366ff 100%   /* Lilac purple */
+    );
   }
 }
 
@@ -92,6 +113,10 @@
 
   .animate-shimmer {
     animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
   }
 }
 
@@ -132,6 +157,17 @@
   }
   50% {
     opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 

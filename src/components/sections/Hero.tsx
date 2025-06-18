@@ -6,38 +6,40 @@ import { Link } from 'react-router-dom';
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Realistic Sparkling Night Sky Background */}
+      {/* REALISTIC NIGHT SKY BACKGROUND - Like the original site */}
       <div className="absolute inset-0 z-0">
-        {/* Base night sky with realistic sparkling effect */}
-        <div className="w-full h-full bg-sparkling-night"></div>
+        {/* Main night sky background with realistic colors */}
+        <div className="w-full h-full bg-lilac-night-sky"></div>
         
-        {/* Additional subtle sparkle overlay */}
-        <div className="absolute inset-0 opacity-60">
-          {[...Array(30)].map((_, i) => (
+        {/* Additional twinkling stars overlay for sparkle effect */}
+        <div className="absolute inset-0 opacity-80">
+          {[...Array(50)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              animate={{
-                opacity: [0.2, 0.8, 0.2],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 2 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 5,
-                ease: "easeInOut"
-              }}
+              className="absolute bg-white rounded-full"
               style={{
+                width: Math.random() > 0.7 ? '2px' : '1px',
+                height: Math.random() > 0.7 ? '2px' : '1px',
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 filter: 'blur(0.5px)',
+              }}
+              animate={{
+                opacity: [0.3, 1, 0.3],
+                scale: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut"
               }}
             />
           ))}
         </div>
 
-        {/* Subtle gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+        {/* Subtle atmospheric glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
       </div>
 
       {/* Main Content */}

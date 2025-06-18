@@ -208,8 +208,8 @@ const HomePage: React.FC = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="section night-sky-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-sparkling-night opacity-60"></div>
+      <section className="section lilac-night-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-night-sky opacity-70"></div>
         
         <div className="container-custom relative z-10">
           <motion.div 

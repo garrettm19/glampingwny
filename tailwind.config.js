@@ -90,19 +90,53 @@ export default {
         },
       },
       backgroundImage: {
-        // Realistic sparkling night sky - no corny stars
-        'sparkling-night': `
-          radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
-          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-          radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+        // REALISTIC NIGHT SKY - Deep space colors with authentic starfield
+        'night-sky': `
+          radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.8), transparent),
           radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-          radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.9), transparent),
-          radial-gradient(1px 1px at 200px 60px, #ffffff, transparent),
-          radial-gradient(1px 1px at 240px 90px, rgba(255,255,255,0.7), transparent),
-          radial-gradient(2px 2px at 280px 20px, rgba(255,255,255,0.8), transparent),
-          radial-gradient(1px 1px at 320px 70px, #ffffff, transparent),
-          radial-gradient(1px 1px at 360px 40px, rgba(255,255,255,0.6), transparent),
-          linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #4338ca 75%, #4f46e5 100%)
+          radial-gradient(1px 1px at 160px 30px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(1px 1px at 200px 60px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(1px 1px at 240px 90px, rgba(255,255,255,0.5), transparent),
+          radial-gradient(1px 1px at 280px 20px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 320px 70px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 360px 40px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(1px 1px at 400px 90px, rgba(255,255,255,0.5), transparent),
+          radial-gradient(1px 1px at 440px 50px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 480px 10px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 520px 80px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(1px 1px at 560px 30px, rgba(255,255,255,0.5), transparent),
+          radial-gradient(1px 1px at 600px 70px, rgba(255,255,255,0.8), transparent),
+          linear-gradient(180deg, 
+            #0f0f23 0%,     /* Deep space blue */
+            #1a1a3a 20%,    /* Dark night blue */
+            #2d2d5f 40%,    /* Medium night blue */
+            #4a4a7c 60%,    /* Lighter night blue */
+            #6b6b9d 80%,    /* Dawn blue */
+            #8b8bbd 100%    /* Light dawn blue */
+          )
+        `,
+        // Lilac night sky variant
+        'lilac-night-sky': `
+          radial-gradient(1px 1px at 25px 35px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 65px 75px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 95px 45px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(1px 1px at 135px 85px, rgba(255,255,255,0.5), transparent),
+          radial-gradient(1px 1px at 165px 35px, rgba(255,255,255,0.7), transparent),
+          radial-gradient(1px 1px at 205px 65px, rgba(255,255,255,0.8), transparent),
+          radial-gradient(1px 1px at 245px 95px, rgba(255,255,255,0.4), transparent),
+          radial-gradient(1px 1px at 285px 25px, rgba(255,255,255,0.9), transparent),
+          radial-gradient(1px 1px at 325px 75px, rgba(255,255,255,0.6), transparent),
+          radial-gradient(1px 1px at 365px 45px, rgba(255,255,255,0.7), transparent),
+          linear-gradient(180deg, 
+            #1a0d2e 0%,     /* Deep purple night */
+            #2d1b4e 20%,    /* Dark lilac night */
+            #4a2c7c 40%,    /* Medium lilac night */
+            #6b4a9d 60%,    /* Lighter lilac night */
+            #8b6bbd 80%,    /* Dawn lilac */
+            #a366ff 100%   /* Lilac purple */
+          )
         `,
         'nature-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"%23a366ff\" fill-opacity=\"0.08\" fill-rule=\"evenodd\"%3E%3Cpath d=\"m0 40l40-40h-40v40zm40 0v-40h-40l40 40z\"/%3E%3C/g%3E%3C/svg%3E')",
       },
@@ -115,6 +149,7 @@ export default {
         'bounce-gentle': 'bounce-gentle 2s infinite',
         'sparkle': 'sparkle 4s ease-in-out infinite',
         'shimmer': 'shimmer 3s ease-in-out infinite',
+        'twinkle': 'twinkle 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -136,6 +171,10 @@ export default {
         shimmer: {
           '0%, 100%': { opacity: '0.5' },
           '50%': { opacity: '1' },
+        },
+        twinkle: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(0.8)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' },
         },
       },
       boxShadow: {
