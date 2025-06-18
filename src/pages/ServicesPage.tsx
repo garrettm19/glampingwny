@@ -1,402 +1,125 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import ServiceCard from '../components/ui/ServiceCard';
-import ComparisonTable from '../components/ui/ComparisonTable';
-import ServiceAreaMap from '../components/ui/ServiceAreaMap';
-import { Check, Award, MapPin, Tent, Plus, Sparkles, ArrowRight, Users, Clock, Star, Sun, TreePine, Thermometer, Camera, Gamepad2, Sofa, Dog } from 'lucide-react';
-import { trackEvent } from '../utils/analytics';
+import { 
+  Tent, 
+  TreePine, 
+  Sparkles, 
+  MapPin, 
+  Check, 
+  ArrowRight, 
+  Star,
+  Users,
+  Clock,
+  Shield
+} from 'lucide-react';
 
-const basePackage = {
-  title: 'Indoor Glamping Base Package',
-  description: 'Perfect starting point for your magical celebration',
-  price: '$225.00',
-  duration: '1 Night',
-  image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80',
-  features: [
-    '1 Glamping Tent Setup',
-    'Memory Foam Mattress',
-    'Cozy Blanket and Linens',
-    'Custom Letter Board',
-    'Decorative Pillows',
-    'Breakfast Tray with Lantern',
-    'Magical Fairy Lights',
-    'Complete Setup and Cleanup',
-    'Your Choice of Theme'
-  ],
-  note: 'Each tent with bed is about 4ft wide x 7ft long'
-};
-
-const additionalTent = {
-  title: 'Additional Indoor Glamping Tent',
-  description: 'Add more tents to accommodate extra guests',
-  price: '$50.00',
-  duration: '1 Night',
-  image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80',
-  features: [
-    'Additional tent setup',
-    'Memory foam mattress',
-    'Matching theme decorations',
-    'Coordinated with base package',
-    'Same quality bedding',
-    'Integrated lighting',
-    'Professional arrangement'
-  ],
-  note: 'Each tent with bed is about 4ft wide x 7ft long'
-};
-
-const indoorAddons = [
+const services = [
   {
-    title: 'Balloon Garland Topper for Indoor Teepee Tent',
-    price: '$25.00',
-    description: 'Beautiful balloon garland to enhance your teepee setup',
-    icon: '🎈',
-    color: 'bg-pink-50 border-pink-200',
-    available: true
+    title: "Indoor Glamping Experience",
+    description: "Cozy teepee sleepovers perfect for any weather, featuring themed decorations and comfortable bedding.",
+    price: "From $225",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80",
+    features: [
+      "Weather-proof indoor setup",
+      "Themed decorations included",
+      "Comfortable memory foam bedding",
+      "Complete setup and cleanup",
+      "Perfect for year-round celebrations",
+      "Accommodates 2-8 guests"
+    ],
+    category: "Indoor Experience"
   },
   {
-    title: 'Luxe Lace Teepee + Balloons',
-    price: '$65.00',
-    description: 'Premium lace teepee with elegant balloon decorations',
-    icon: '✨',
-    color: 'bg-purple-50 border-purple-200',
-    available: true
+    title: "Outdoor Bell Tent Adventure",
+    description: "Authentic glamping under the stars with luxury bell tents and outdoor amenities.",
+    price: "From $500",
+    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80",
+    features: [
+      "Authentic 16ft or 23ft bell tents",
+      "Weather-resistant canvas",
+      "Outdoor lighting and ambiance",
+      "Stargazing experience",
+      "Professional outdoor setup",
+      "Accommodates 6-12 guests"
+    ],
+    popular: true,
+    category: "Outdoor Adventure"
   },
   {
-    title: 'Picnic Party Add-On',
-    price: '$200.00',
-    description: 'Complete picnic setup with decorations and seating',
-    icon: '🧺',
-    color: 'bg-green-50 border-green-200',
-    available: true
-  },
-  {
-    title: 'In-Home Theater',
-    price: '$35.00',
-    description: 'Movie experience with projector and screen setup',
-    icon: '🎬',
-    color: 'bg-blue-50 border-blue-200',
-    available: true
-  },
-  {
-    title: 'Instant Print Camera',
-    price: '$20.00',
-    description: 'Capture memories with instant photo printing',
-    icon: '📸',
-    color: 'bg-yellow-50 border-yellow-200',
-    available: true
-  },
-  {
-    title: "S'Mores Bar Station",
-    price: '$65.00',
-    description: 'Complete s\'mores station with treats and supplies',
-    icon: '🔥',
-    color: 'bg-orange-50 border-orange-200',
-    available: true
-  },
-  {
-    title: 'Spa Party Add-On',
-    price: '$250.00',
-    description: 'Complete spa experience with treatments and activities',
-    icon: '👑',
-    color: 'bg-pink-50 border-pink-200',
-    available: true
-  },
-  {
-    title: '"Giant" Jenga',
-    price: '$10.00',
-    description: 'Oversized Jenga game for family fun',
-    icon: '🎯',
-    color: 'bg-indigo-50 border-indigo-200',
-    available: true
-  },
-  {
-    title: '"Jumbo" Connect 4',
-    price: '$10.00',
-    description: 'Large-scale Connect 4 game for group entertainment',
-    icon: '🔴',
-    color: 'bg-red-50 border-red-200',
-    available: true
+    title: "Luxury Spa Experience",
+    description: "Relaxing spa parties with professional treatments and pampering activities for all ages.",
+    price: "From $325",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&w=400&q=80",
+    features: [
+      "Professional spa setup",
+      "Age-appropriate treatments",
+      "Relaxing ambiance",
+      "Spa-themed decorations",
+      "Pampering activities",
+      "Perfect for special occasions"
+    ],
+    category: "Spa Experience"
   }
 ];
 
-// Outdoor Glamping Packages
-const outdoorTents = [
-  {
-    title: '16 ft Bell Tent - fits up to 6 people',
-    price: '$500.00',
-    duration: '1 Night',
-    description: 'Perfect for small groups and intimate celebrations',
-    image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&w=400&q=80',
-    features: [
-      'Spacious 16ft bell tent',
-      'Accommodates up to 6 people',
-      'Weather-resistant canvas',
-      'Complete outdoor setup',
-      'Comfortable bedding for all',
-      'Ambient outdoor lighting',
-      'Professional installation',
-      'Full cleanup service'
-    ],
-    capacity: '6 people',
-    size: '16ft diameter'
-  },
-  {
-    title: '23 ft Bell Tent - fits 7 to 12 People',
-    price: '$700.00',
-    duration: '1 Night',
-    description: 'Ideal for larger groups and family gatherings',
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&w=400&q=80',
-    features: [
-      'Extra large 23ft bell tent',
-      'Accommodates 7-12 people',
-      'Premium weather protection',
-      'Spacious group layout',
-      'Enhanced comfort features',
-      'Professional outdoor lighting',
-      'Expert setup and breakdown',
-      'Complete service included'
-    ],
-    capacity: '7-12 people',
-    size: '23ft diameter',
-    popular: true
-  },
-  {
-    title: 'Day Dreamer Lounge Tent',
-    price: '$500.00',
-    duration: '1 Day',
-    description: 'Perfect for daytime events and relaxation',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&w=400&q=80',
-    features: [
-      'Comfortable day lounge setup',
-      'Perfect for daytime events',
-      'Relaxing outdoor atmosphere',
-      'Comfortable seating area',
-      'Shade and weather protection',
-      'Ideal for parties and gatherings',
-      'Professional day setup',
-      'Evening cleanup included'
-    ],
-    capacity: 'Day events',
-    size: 'Lounge configuration'
-  },
-  {
-    title: 'Canvas Tent Only',
-    price: '$300.00',
-    duration: '1 Night',
-    description: 'Basic tent rental for DIY enthusiasts',
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=400&q=80',
-    features: [
-      'Quality canvas tent only',
-      'Perfect for DIY setups',
-      'Weather-resistant material',
-      'Professional delivery',
-      'Basic setup assistance',
-      'Pickup service included',
-      'Flexible rental terms',
-      'Great value option'
-    ],
-    capacity: 'Varies',
-    size: 'Standard canvas'
-  }
-];
-
-// Outdoor Add-ons
-const outdoorAddons = [
-  {
-    title: 'Luxe Lace Teepee + Balloons',
-    price: '$65.00',
-    description: 'Premium lace teepee with elegant balloon decorations',
-    icon: Tent,
-    color: 'bg-purple-50 border-purple-200',
-    iconColor: 'text-purple-600',
-    available: true
-  },
-  {
-    title: 'Outdoor Bean Bag',
-    price: '$10.00',
-    description: 'Comfortable outdoor seating for relaxation',
-    icon: Sofa,
-    color: 'bg-blue-50 border-blue-200',
-    iconColor: 'text-blue-600',
-    available: true
-  },
-  {
-    title: 'Picnic Party Add-On',
-    price: '$200.00',
-    description: 'Complete outdoor picnic setup with decorations',
-    icon: TreePine,
-    color: 'bg-green-50 border-green-200',
-    iconColor: 'text-green-600',
-    available: true
-  },
-  {
-    title: 'In-Tent Theater Experience',
-    price: '$35.00',
-    description: 'Movie setup inside your tent with projector',
-    icon: Sun,
-    color: 'bg-yellow-50 border-yellow-200',
-    iconColor: 'text-yellow-600',
-    available: true
-  },
-  {
-    title: 'Movie Night Under the Stars',
-    price: '$150.00',
-    description: 'Complete outdoor movie experience under the night sky',
-    icon: Star,
-    color: 'bg-indigo-50 border-indigo-200',
-    iconColor: 'text-indigo-600',
-    available: true
-  },
-  {
-    title: 'Portable Air Conditioner',
-    price: '$50.00',
-    description: 'Stay cool during warm weather camping',
-    icon: Thermometer,
-    color: 'bg-cyan-50 border-cyan-200',
-    iconColor: 'text-cyan-600',
-    available: true
-  },
-  {
-    title: 'Instant Print Camera',
-    price: '$20.00',
-    description: 'Capture outdoor memories with instant photos',
-    icon: Camera,
-    color: 'bg-pink-50 border-pink-200',
-    iconColor: 'text-pink-600',
-    available: true
-  },
-  {
-    title: 'Additional Twin Bed',
-    price: '$25.00',
-    description: 'Extra comfortable sleeping space',
-    icon: Users,
-    color: 'bg-gray-50 border-gray-200',
-    iconColor: 'text-gray-600',
-    available: true
-  },
-  {
-    title: "S'Mores Bar Station",
-    price: '$65.00',
-    description: 'Classic outdoor s\'mores experience',
-    icon: Sparkles,
-    color: 'bg-orange-50 border-orange-200',
-    iconColor: 'text-orange-600',
-    available: true
-  },
-  {
-    title: 'Spa Party Add-On',
-    price: '$250.00',
-    description: 'Outdoor spa experience in nature',
-    icon: Star,
-    color: 'bg-purple-50 border-purple-200',
-    iconColor: 'text-purple-600',
-    available: true
-  },
-  {
-    title: 'Yard Games',
-    price: '$10.00',
-    description: 'Fun outdoor games for all ages',
-    icon: Gamepad2,
-    color: 'bg-green-50 border-green-200',
-    iconColor: 'text-green-600',
-    available: true
-  },
-  {
-    title: 'Lounger Sofa',
-    price: '$50.00',
-    description: 'Comfortable outdoor lounging furniture',
-    icon: Sofa,
-    color: 'bg-blue-50 border-blue-200',
-    iconColor: 'text-blue-600',
-    available: true
-  },
-  {
-    title: 'Bring Your Pet',
-    price: '$20.00',
-    description: 'Pet-friendly accommodations for your furry friends',
-    icon: Dog,
-    color: 'bg-yellow-50 border-yellow-200',
-    iconColor: 'text-yellow-600',
-    available: true
-  }
+const addOns = [
+  { name: "Movie Night Setup", price: "$35", description: "Projector and screen for outdoor movies" },
+  { name: "S'mores Station", price: "$65", description: "Complete s'mores setup with treats" },
+  { name: "Balloon Decorations", price: "$25", description: "Beautiful balloon arrangements" },
+  { name: "Extra Bedding", price: "$25", description: "Additional comfortable sleeping space" },
+  { name: "Spa Add-on", price: "$250", description: "Complete spa experience package" },
+  { name: "Photography Package", price: "$150", description: "Professional event photography" }
 ];
 
 const ServicesPage: React.FC = () => {
-  const handleAddonClick = (addonTitle: string) => {
-    trackEvent('Addon', 'addon_click', addonTitle);
-  };
-
-  const handlePackageClick = (packageName: string) => {
-    trackEvent('Package', 'package_click', packageName);
-  };
-
   return (
     <>
       <Helmet>
-        <title>Family Glamping Packages & Pricing | Buffalo Metro Area | Glamping WNY</title>
-        <meta 
-          name="description" 
-          content="Choose from our luxury family glamping packages in the Buffalo Metro Area. Indoor and outdoor options available. All-inclusive pricing with setup, decorations, and cleanup included. FREE delivery within 20 miles of Hamburg, NY." 
-        />
+        <title>Luxury Glamping Services | Indoor & Outdoor Experiences | Glamping WNY</title>
+        <meta name="description" content="Discover our premium glamping services in Western New York. Indoor teepee sleepovers, outdoor bell tent adventures, and luxury spa experiences. Professional setup included." />
       </Helmet>
 
-      {/* Hero Section - Clean Professional */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-lavender-500 to-lavender-600 relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            alt="Luxury glamping services"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-emerald-800/70 to-teal-900/80"></div>
+          <div className="absolute inset-0 bg-hero-pattern"></div>
         </div>
-        
-        <div className="container-custom relative z-10">
+
+        <div className="container-custom relative z-10 text-center text-white pt-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto text-center text-white"
+            transition={{ duration: 0.8 }}
           >
-            <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
-              <Tent className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Family Packages 🏕️</h1>
-            <p className="text-xl text-white/90 mb-8">
-              Choose from our carefully designed indoor and outdoor packages or customize your own magical family experience.
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight">
+              Our Luxury
+              <span className="block text-emerald-300">Experiences</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+              Choose from our carefully crafted glamping experiences, 
+              each designed to create unforgettable memories
             </p>
             
             {/* Service Area Highlight */}
-            <div className="inline-block bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-white" />
-                <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
-              </div>
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
+              <MapPin className="w-5 h-5" />
+              <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-teal-50 border-b border-teal-200">
+      <section className="py-6 bg-emerald-50 border-b border-emerald-100">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -405,734 +128,169 @@ const ServicesPage: React.FC = () => {
             className="text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <MapPin className="w-5 h-5 text-teal-600" />
-              <span className="font-bold text-teal-800">Proudly Servicing the Buffalo Metro Area</span>
+              <MapPin className="w-5 h-5 text-emerald-600" />
+              <span className="font-semibold text-emerald-900">Proudly Serving the Buffalo Metro Area</span>
             </div>
-            <p className="text-teal-700">
-              <strong>FREE delivery within 20 miles of Hamburg, NY (14075)</strong> • 
+            <p className="text-emerald-700">
+              <strong>FREE delivery within 20 miles of Hamburg, NY</strong> • 
               Extended delivery: 21-31 miles ($50) • 32-42 miles ($100)
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Comparison Table */}
+      {/* Main Services */}
       <section className="section bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Why Choose Glamping WNY?
-              </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                Compare your celebration options and see why families love our luxury glamping experience.
-              </p>
-            </motion.div>
-          </div>
-          
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="glass-card p-6 md:p-8"
+            className="text-center mb-16"
           >
-            <ComparisonTable />
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+              Our Signature Experiences
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Each experience is carefully designed and professionally executed 
+              to create magical memories that last a lifetime.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <ServiceCard {...service} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Why Choose Us */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="bg-emerald-50 rounded-3xl p-8 md:p-12"
+          >
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-serif font-bold text-gray-900 mb-4">
+                Why Families Choose Glamping WNY
+              </h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                We're not just about tents - we're about creating complete experiences 
+                that bring families together.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                { icon: Users, title: "All Ages Welcome", description: "Perfect for kids, teens, and adults" },
+                { icon: Clock, title: "Full Service", description: "Complete setup and cleanup included" },
+                { icon: Shield, title: "Safe & Clean", description: "Professionally sanitized equipment" },
+                { icon: Star, title: "5-Star Rated", description: "200+ happy families served" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <feature.icon className="w-8 h-8 text-emerald-600" />
+                  </div>
+                  <h4 className="font-bold text-gray-900 mb-2">{feature.title}</h4>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Indoor Glamping Section */}
-      <section id="indoor" className="section bg-lavender-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="inline-block p-3 bg-lavender-100 rounded-full mb-6">
-                <Tent className="w-6 h-6 text-lavender-600" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Indoor Family Glamping 🏠
-              </h2>
-              <p className="text-gray-700 max-w-3xl mx-auto text-lg">
-                Perfect for year-round celebrations! Transform your home into a magical family wonderland with our cozy indoor glamping experience.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Step 1: Base Package */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-                1
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Reserve Your Base Package
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Choose 1 Base Package per reservation & add extra tents in Step 3
-              </p>
-              <p className="text-sm text-gray-500 mt-2">
-                *Please note, each tent with bed is about 4ft wide x 7ft long
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="max-w-2xl mx-auto"
-            >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-lavender-200">
-                {/* Available Badge */}
-                <div className="bg-green-500 text-white px-4 py-2 text-sm font-bold">
-                  ✓ Available
-                </div>
-
-                {/* Package Image */}
-                <div className="h-48 relative overflow-hidden">
-                  <img 
-                    src={basePackage.image} 
-                    alt={basePackage.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  
-                  {/* Price Overlay */}
-                  <div className="absolute bottom-4 left-4">
-                    <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <span className="text-2xl font-bold text-gray-800">{basePackage.price}</span>
-                      <span className="text-sm text-gray-600 ml-2">{basePackage.duration}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Package Content */}
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-lavender-100 rounded-full flex items-center justify-center">
-                      <Tent className="w-6 h-6 text-lavender-600" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-800">{basePackage.title}</h4>
-                      <p className="text-gray-600">{basePackage.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-3 mb-8">
-                    {basePackage.features.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-lavender-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="text-sm text-gray-500 mb-6 italic">
-                    {basePackage.note}
-                  </p>
-
-                  {/* CTA Button */}
-                  <Link
-                    to="/book-now"
-                    onClick={() => handlePackageClick(basePackage.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Reserve Base Package
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Step 2: Additional Tents */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-                2
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Add Additional Tents (Optional)
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Perfect for larger groups or families with more guests
-              </p>
-              <p className="text-sm text-gray-500 mt-2">
-                *Please note, each tent with bed is about 4ft wide x 7ft long
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="max-w-2xl mx-auto"
-            >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 border-teal-200">
-                {/* Available Badge */}
-                <div className="bg-green-500 text-white px-4 py-2 text-sm font-bold">
-                  ✓ Available
-                </div>
-
-                {/* Package Image */}
-                <div className="h-48 relative overflow-hidden">
-                  <img 
-                    src={additionalTent.image} 
-                    alt={additionalTent.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  
-                  {/* Price Overlay */}
-                  <div className="absolute bottom-4 left-4">
-                    <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
-                      <span className="text-2xl font-bold text-gray-800">{additionalTent.price}</span>
-                      <span className="text-sm text-gray-600 ml-2">{additionalTent.duration}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Package Content */}
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center">
-                      <Plus className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-800">{additionalTent.title}</h4>
-                      <p className="text-gray-600">{additionalTent.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-3 mb-8">
-                    {additionalTent.features.map((feature, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-gray-700">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="text-sm text-gray-500 mb-6 italic">
-                    {additionalTent.note}
-                  </p>
-
-                  {/* CTA Button */}
-                  <Link
-                    to="/book-now"
-                    onClick={() => handlePackageClick(additionalTent.title)}
-                    className="block w-full text-center py-4 px-6 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl group"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Add Extra Tent
-                      <Plus className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Step 3: Indoor Add-ons */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-lavender-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-                3
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Personalize it with Fun Add-ons (Optional)
-              </h3>
-              <p className="text-gray-700 max-w-3xl mx-auto">
-                Make your indoor family glamping experience even more special with these magical enhancements.
-              </p>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {indoorAddons.map((addon, index) => (
-                <motion.div
-                  key={addon.title}
-                  className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${addon.color} relative`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  {/* Available Badge */}
-                  {addon.available && (
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                      ✓ Available
-                    </div>
-                  )}
-
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="text-3xl">{addon.icon}</div>
-                    <div className="text-right">
-                      <span className="text-xl font-bold text-gray-800">
-                        {addon.price}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h4 className="text-lg font-bold text-gray-800 mb-3 leading-tight">
-                    {addon.title}
-                  </h4>
-                  
-                  <p className="text-gray-700 mb-6 text-sm leading-relaxed">
-                    {addon.description}
-                  </p>
-
-                  <Link
-                    to="/book-now"
-                    onClick={() => handleAddonClick(addon.title)}
-                    className="block w-full text-center py-3 px-4 bg-gradient-to-r from-lavender-500 to-lavender-600 hover:from-lavender-600 hover:to-lavender-700 text-white font-semibold rounded-lg transition-all duration-300 group"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Add to Package
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Outdoor Glamping Section */}
-      <section id="outdoor" className="section bg-teal-50">
-        <div className="container-custom">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="inline-block p-3 bg-teal-100 rounded-full mb-6">
-                <TreePine className="w-6 h-6 text-teal-600" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Outdoor Family Glamping 🌲
-              </h2>
-              <p className="text-gray-700 max-w-3xl mx-auto text-lg">
-                Experience the magic of outdoor family glamping in your own backyard! 
-                <span className="font-semibold text-teal-600"> Available Spring/Summer 2025!</span>
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Step 1: Reserve Glamping Tent(s) */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-                1
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Reserve Glamping Tent(s)
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Choose from our selection of premium outdoor bell tents and day experiences
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {outdoorTents.map((tent, index) => (
-                <motion.div
-                  key={tent.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-2 ${
-                    tent.popular ? 'border-teal-300 ring-4 ring-teal-100' : 'border-gray-200'
-                  }`}
-                  whileHover={{ y: -5 }}
-                >
-                  {/* Popular Badge */}
-                  {tent.popular && (
-                    <div className="absolute top-4 right-4 z-10">
-                      <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                        <Star className="w-4 h-4 inline mr-1" />
-                        Most Popular
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Available Badge */}
-                  <div className="bg-green-500 text-white px-4 py-2 text-sm font-bold">
-                    ✓ Available
-                  </div>
-
-                  {/* Tent Image */}
-                  <div className="h-48 relative overflow-hidden">
-                    <img 
-                      src={tent.image} 
-                      alt={tent.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    
-                    {/* Price Overlay */}
-                    <div className="absolute bottom-4 left-4">
-                      <div className="bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full">
-                        <span className="text-2xl font-bold text-gray-800">{tent.price}</span>
-                        <span className="text-sm text-gray-600 ml-2">{tent.duration}</span>
-                      </div>
-                    </div>
-
-                    {/* Capacity Badge */}
-                    <div className="absolute top-4 left-4">
-                      <div className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-bold">
-                        {tent.capacity}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Tent Content */}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h4 className="text-lg font-bold text-gray-800 mb-1">{tent.title}</h4>
-                        <p className="text-gray-600 text-sm">{tent.description}</p>
-                      </div>
-                    </div>
-
-                    {/* Quick Info */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="text-center p-3 bg-teal-50 rounded-lg">
-                        <Users className="w-5 h-5 text-teal-600 mx-auto mb-1" />
-                        <div className="text-sm font-medium text-gray-800">{tent.capacity}</div>
-                      </div>
-                      <div className="text-center p-3 bg-teal-50 rounded-lg">
-                        <Tent className="w-5 h-5 text-teal-600 mx-auto mb-1" />
-                        <div className="text-sm font-medium text-gray-800">{tent.size}</div>
-                      </div>
-                    </div>
-
-                    {/* Features List */}
-                    <div className="space-y-2 mb-6">
-                      {tent.features.slice(0, 4).map((feature, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700 text-sm">{feature}</span>
-                        </div>
-                      ))}
-                      {tent.features.length > 4 && (
-                        <div className="text-sm text-gray-500 italic">
-                          +{tent.features.length - 4} more features included
-                        </div>
-                      )}
-                    </div>
-
-                    {/* CTA Button */}
-                    <Link
-                      to="/book-now"
-                      onClick={() => handlePackageClick(tent.title)}
-                      className={`block w-full text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 group ${
-                        tent.popular
-                          ? 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-xl'
-                          : 'bg-gray-100 hover:bg-teal-50 text-gray-800 hover:text-teal-600 border-2 border-gray-200 hover:border-teal-300'
-                      }`}
-                    >
-                      <span className="flex items-center justify-center gap-2">
-                        Reserve This Tent
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Step 2: Outdoor Add-ons */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <div className="inline-block bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-4">
-                2
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Customize Your Experience (Optional)
-              </h3>
-              <p className="text-gray-700 max-w-3xl mx-auto">
-                Enhance your outdoor adventure with these exciting add-ons designed for the great outdoors.
-              </p>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {outdoorAddons.map((addon, index) => (
-                <motion.div
-                  key={addon.title}
-                  className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${addon.color} relative`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  {/* Available Badge */}
-                  {addon.available && (
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                      ✓ Available
-                    </div>
-                  )}
-
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-12 h-12 ${addon.color.replace('border-', 'bg-').replace('50', '100')} rounded-full flex items-center justify-center`}>
-                      <addon.icon className={`w-6 h-6 ${addon.iconColor}`} />
-                    </div>
-                    <div className="text-right">
-                      <span className={`text-xl font-bold ${addon.iconColor}`}>
-                        {addon.price}
-                      </span>
-                    </div>
-                  </div>
-
-                  <h4 className="text-lg font-bold text-gray-800 mb-3 leading-tight">
-                    {addon.title}
-                  </h4>
-                  
-                  <p className="text-gray-700 mb-6 text-sm leading-relaxed">
-                    {addon.description}
-                  </p>
-
-                  <Link
-                    to="/book-now"
-                    onClick={() => handleAddonClick(addon.title)}
-                    className={`block w-full text-center py-3 px-4 rounded-lg font-semibold transition-all duration-300 group border-2 ${
-                      addon.color.replace('50', '200')
-                    } ${addon.iconColor.replace('text-', 'hover:bg-').replace('600', '50')} hover:border-opacity-100`}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Add to Package
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Space Requirements */}
-      <section className="section bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Space Requirements 📏
-              </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                Make sure you have enough space for your magical family experience!
-              </p>
-            </motion.div>
-          </div>
-          
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <motion.div
-                className="bg-lavender-50 border border-lavender-200 rounded-xl p-8"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Tent className="w-8 h-8 text-lavender-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    Indoor Family Tents
-                  </h3>
-                  <p className="text-gray-700 mb-4">
-                    Each family tent is approximately <strong>4ft wide x 7ft long</strong>. 
-                    We suggest leaving 1-2 feet of walkway space for safe family movement.
-                  </p>
-                  <div className="bg-white rounded-lg p-4 border border-lavender-200">
-                    <p className="text-sm text-gray-600">
-                      <strong>Example:</strong> For 4 tents, you'll need approximately 12ft x 16ft of space
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                className="bg-teal-50 border border-teal-200 rounded-xl p-8"
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <TreePine className="w-8 h-8 text-teal-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-4">
-                    Outdoor Family Bell Tents
-                  </h3>
-                  <ul className="text-gray-700 space-y-2 text-left">
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                      <span><strong>16ft Bell Tent:</strong> 20' x 20' grassy area for safe staking</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                      <span><strong>23ft Bell Tent:</strong> 26' x 26' grassy area for safe staking</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                      <span>Level ground preferred for comfort</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
-                      <span>Access for setup equipment needed</span>
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Service Area Map */}
+      {/* Add-Ons Section */}
       <section className="section bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                Our Service Area
-              </h2>
-              <p className="text-gray-700 max-w-2xl mx-auto">
-                We proudly serve families throughout the Buffalo Metro Area with convenient delivery options.
-              </p>
-            </motion.div>
-          </div>
-          
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <ServiceAreaMap />
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+              Enhance Your Experience
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Add these special touches to make your glamping experience even more magical
+            </p>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {addOns.map((addon, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="glass-card p-6 hover:shadow-large transition-all duration-300"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-bold text-gray-900">{addon.name}</h3>
+                  <span className="text-emerald-600 font-bold">{addon.price}</span>
+                </div>
+                <p className="text-gray-600 mb-4">{addon.description}</p>
+                <div className="flex items-center text-emerald-600 font-medium">
+                  <Check className="w-4 h-4 mr-2" />
+                  <span>Available as add-on</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section bg-gradient-to-br from-lavender-500 to-lavender-600 text-white relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.8, 0.3],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-            />
-          ))}
-        </div>
-
+      {/* CTA Section */}
+      <section className="section hero-gradient text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern"></div>
+        
         <div className="container-custom relative z-10">
           <motion.div 
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 20 }}
+            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Start Planning Your Family Adventure? 🎉
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              Ready to Create Your Perfect Experience?
             </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Contact us today to check availability and start creating the perfect family celebration experience.
+            <p className="text-xl text-emerald-100 mb-10">
+              Contact us today to check availability and start planning your magical glamping adventure.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 to="/book-now"
-                className="bg-white text-lavender-600 hover:bg-lavender-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-                onClick={() => trackEvent('CTA', 'book_now_click', 'services_page')}
+                className="btn btn-secondary text-lg px-8 py-4 group"
               >
-                Book Your Family Experience
+                <span>Book Your Experience</span>
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
-                to="/contact"
-                className="border-2 border-white text-white hover:bg-white/20 font-semibold py-4 px-8 rounded-xl transition-all duration-300"
-                onClick={() => trackEvent('CTA', 'contact_click', 'services_page')}
+                to="/contact" 
+                className="btn btn-ghost text-lg px-8 py-4"
               >
-                Ask a Question
+                Ask Questions
               </Link>
             </div>
           </motion.div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tent } from 'lucide-react';
 
 interface LogoProps {
   isScrolled?: boolean;
@@ -14,9 +15,9 @@ const Logo: React.FC<LogoProps> = ({
   size = 'md'
 }) => {
   const sizeClasses = {
-    sm: 'h-8',
-    md: 'h-10',
-    lg: 'h-12'
+    sm: 'w-8 h-8',
+    md: 'w-10 h-10',
+    lg: 'w-12 h-12'
   };
 
   const textSizeClasses = {
@@ -33,25 +34,33 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={`flex items-center ${className}`}>
-      <img 
-        src="/glamping-logo.png" 
-        alt="Glamping WNY Logo" 
-        className={`${sizeClasses[size]} w-auto mr-3 drop-shadow-sm`}
-      />
+      <div className={`${sizeClasses[size]} rounded-xl flex items-center justify-center mr-3 ${
+        footer 
+          ? 'bg-emerald-600 text-white' 
+          : isScrolled 
+            ? 'bg-emerald-600 text-white' 
+            : 'bg-white/20 text-white backdrop-blur-sm'
+      }`}>
+        <Tent className={`${size === 'sm' ? 'w-4 h-4' : size === 'lg' ? 'w-6 h-6' : 'w-5 h-5'}`} />
+      </div>
       <div className="flex flex-col">
-        <span className={`font-display ${textSizeClasses[size]} font-bold leading-none ${
+        <span className={`font-serif ${textSizeClasses[size]} font-bold leading-none ${
           footer 
-            ? 'text-neutral-800' 
-            : 'text-neutral-800'
+            ? 'text-white' 
+            : isScrolled 
+              ? 'text-gray-900' 
+              : 'text-white'
         }`}>
           Glamping WNY
         </span>
         <span className={`${subTextSizeClasses[size]} font-medium tracking-wider ${
           footer 
-            ? 'text-neutral-600' 
-            : 'text-neutral-600'
+            ? 'text-gray-300' 
+            : isScrolled 
+              ? 'text-gray-600' 
+              : 'text-white/80'
         }`}>
-          PREMIUM EXPERIENCES
+          LUXURY EXPERIENCES
         </span>
       </div>
     </div>
