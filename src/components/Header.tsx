@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Tent, Phone } from 'lucide-react';
+import { Menu, X, Tent, Phone, Star } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,9 +18,14 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Tent className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-900">Glamping WNY</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <Tent className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <span className="text-xl font-bold text-gray-900">Glamping WNY</span>
+              <div className="text-xs text-gray-600 font-medium">LUXURY EXPERIENCES</div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -29,7 +34,7 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-gray-700 hover:text-blue-600 transition-colors"
+                className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
               >
                 {link.name}
               </Link>
@@ -38,13 +43,19 @@ const Header: React.FC = () => {
 
           {/* Contact & CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href="tel:+17162007692" className="flex items-center text-sm text-gray-600">
-              <Phone className="h-4 w-4 mr-1" />
-              (716) 200-7692
-            </a>
+            <div className="flex items-center text-sm text-gray-600">
+              <div className="flex items-center mr-4">
+                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400 mr-1" />
+                <span className="font-medium">200+ Families</span>
+              </div>
+              <a href="tel:+17162007692" className="flex items-center hover:text-blue-600 transition-colors">
+                <Phone className="h-4 w-4 mr-1" />
+                (716) 200-7692
+              </a>
+            </div>
             <Link
               to="/contact"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-semibold"
             >
               Book Now
             </Link>
@@ -67,22 +78,26 @@ const Header: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="block py-2 text-gray-700 hover:text-blue-600"
+                  className="block py-2 text-gray-700 hover:text-blue-600 font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
               <div className="pt-4 border-t">
-                <a href="tel:+17162007692" className="block py-2 text-gray-600">
-                  (716) 200-7692
+                <div className="flex items-center text-sm text-gray-600 mb-3">
+                  <Star className="h-4 w-4 text-yellow-400 fill-yellow-400 mr-1" />
+                  <span>200+ Happy Families</span>
+                </div>
+                <a href="tel:+17162007692" className="block py-2 text-gray-600 font-medium">
+                  📞 (716) 200-7692
                 </a>
                 <Link
                   to="/contact"
-                  className="block bg-blue-600 text-white px-4 py-2 rounded-lg text-center mt-2"
+                  className="block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 rounded-lg text-center mt-3 font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Book Now
+                  Book Your Experience
                 </Link>
               </div>
             </div>

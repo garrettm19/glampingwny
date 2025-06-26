@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin, Heart, Quote } from 'lucide-react';
+import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin, Heart, Quote, Check, Tent, Home as HomeIcon, Sparkles } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -16,28 +16,37 @@ const Home: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const services = [
+  const packages = [
     {
       title: 'Indoor Glamping',
-      description: 'Cozy teepee sleepovers perfect for any weather',
+      subtitle: 'Teepee Sleepovers',
+      description: 'Weather-proof teepee tents set up in your home',
       price: 'From $225',
       image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
-      features: ['Weather-proof setup', 'Memory foam beds', 'Themed decorations', 'Ages 5+ welcome']
+      icon: HomeIcon,
+      features: ['Perfect for any weather', 'Memory foam beds', 'Themed decorations', 'Ages 5+ welcome'],
+      popular: true,
+      bestFor: 'Birthday parties, sleepovers'
     },
     {
       title: 'Outdoor Bell Tents',
-      description: 'Authentic glamping under the stars',
+      subtitle: 'Authentic Glamping',
+      description: 'Spacious weatherproof bell tents under the stars',
       price: 'From $500',
       image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=400&h=300&fit=crop',
+      icon: Tent,
       features: ['16ft & 23ft options', 'In-tent movie theater', 'Stargazing experience', 'Memory foam beds'],
-      popular: true
+      bestFor: 'Special occasions, romantic getaways'
     },
     {
       title: 'Spa Parties',
-      description: 'Relaxing spa experiences for all ages',
+      subtitle: 'Relaxation & Pampering',
+      description: 'Complete spa experience with all essentials',
       price: 'From $325',
       image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop',
-      features: ['Kid-safe treatments', 'Spa essentials included', 'Relaxing ambiance', 'DIY setup']
+      icon: Sparkles,
+      features: ['Kid-safe treatments', 'All spa essentials', 'Relaxing ambiance', 'Save $75 as add-on'],
+      bestFor: 'Birthday parties, girls nights'
     }
   ];
 
@@ -67,6 +76,11 @@ const Home: React.FC = () => {
       rating: 5,
       event: "Family Celebration"
     }
+  ];
+
+  const popularThemes = [
+    'Barbie\'s World', 'Taylor\'s Swifties', 'Buffalo Bills', 'Mermaid Magic', 
+    'Unicorn Dream', 'Princess Party', 'Pokémon', 'Harry Potter'
   ];
 
   return (
@@ -152,10 +166,10 @@ const Home: React.FC = () => {
             }`}
           >
             <Link
-              to="/contact"
+              to="/services"
               className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
             >
-              Book Your Experience
+              Choose Your Package
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
@@ -199,26 +213,33 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Package Selection Section */}
       <section className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Experiences
+              Choose Your Perfect Experience
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From cozy indoor teepee sleepovers to outdoor bell tent adventures, 
-              we create the perfect setting for your celebration
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Three amazing packages to choose from - each designed to create magical memories for your celebration
             </p>
+            
+            {/* Quick Comparison */}
+            <div className="inline-flex items-center bg-blue-50 rounded-full px-6 py-3 text-blue-800 font-medium">
+              <Check className="w-5 h-5 mr-2" />
+              All packages include setup, cleanup & themed decorations
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {packages.map((pkg, index) => (
               <div 
                 key={index} 
-                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative"
+                className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative ${
+                  pkg.popular ? 'ring-2 ring-blue-500 scale-105' : ''
+                }`}
               >
-                {service.popular && (
+                {pkg.popular && (
                   <div className="absolute top-4 right-4 z-10 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
                     <Star className="w-4 h-4 mr-1 fill-current" />
                     Most Popular
@@ -227,39 +248,75 @@ const Home: React.FC = () => {
 
                 <div className="relative overflow-hidden">
                   <img
-                    src={service.image}
-                    alt={service.title}
+                    src={pkg.image}
+                    alt={pkg.title}
                     className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-2xl font-bold">{service.price}</div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="flex items-center mb-2">
+                      <pkg.icon className="w-6 h-6 mr-2" />
+                      <span className="text-lg font-bold">{pkg.title}</span>
+                    </div>
+                    <p className="text-sm opacity-90">{pkg.subtitle}</p>
+                  </div>
+                  <div className="absolute bottom-4 right-4 text-white text-right">
+                    <div className="text-2xl font-bold">{pkg.price}</div>
                   </div>
                 </div>
                 
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <div className="mb-4">
+                    <p className="text-gray-600 mb-3">{pkg.description}</p>
+                    <div className="text-sm text-blue-600 font-medium">Best for: {pkg.bestFor}</div>
+                  </div>
                   
                   <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, i) => (
+                    {pkg.features.map((feature, i) => (
                       <li key={i} className="flex items-center text-sm text-gray-700">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                        <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                   
-                  <Link
-                    to="/services"
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold group"
-                  >
-                    Learn More 
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <div className="space-y-3">
+                    <Link
+                      to="/services"
+                      className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center group"
+                    >
+                      View Details & Pricing
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center justify-center"
+                    >
+                      Book This Package
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Popular Themes Preview */}
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Popular Themes Available</h3>
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {popularThemes.map((theme, index) => (
+                <div key={index} className="bg-blue-50 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                  {theme}
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/services"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
+            >
+              View All 25+ Themes
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -362,10 +419,10 @@ const Home: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/contact"
+              to="/services"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
             >
-              Book Your Experience
+              Choose Your Package
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <a
