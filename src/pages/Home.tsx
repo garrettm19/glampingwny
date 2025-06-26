@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin, Heart, Quote, Check, Tent, Home as HomeIcon, Sparkles } from 'lucide-react';
+import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin, Heart, Quote, Check, Tent, Home as HomeIcon, Sparkles, Calendar, Phone } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -176,12 +176,12 @@ const Home: React.FC = () => {
               href="tel:+17162007692"
               className="group border-2 border-white/50 text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm inline-flex items-center justify-center"
             >
-              <Play className="mr-2 h-5 w-5" />
+              <Phone className="mr-2 h-5 w-5" />
               Call (716) 200-7692
             </a>
           </div>
 
-          {/* Trust Indicators */}
+          {/* Trust Indicators - Symmetrical Grid */}
           <div 
             className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto transition-all duration-1000 delay-800 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -213,7 +213,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Package Selection Section */}
+      {/* Package Selection Section - Symmetrical Layout */}
       <section className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -231,11 +231,12 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Symmetrical 3-Column Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
             {packages.map((pkg, index) => (
               <div 
                 key={index} 
-                className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative ${
+                className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative h-full flex flex-col ${
                   pkg.popular ? 'ring-2 ring-blue-500 scale-105' : ''
                 }`}
               >
@@ -265,13 +266,13 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="p-8">
+                <div className="p-8 flex-grow flex flex-col">
                   <div className="mb-4">
                     <p className="text-gray-600 mb-3">{pkg.description}</p>
                     <div className="text-sm text-blue-600 font-medium">Best for: {pkg.bestFor}</div>
                   </div>
                   
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-6 flex-grow">
                     {pkg.features.map((feature, i) => (
                       <li key={i} className="flex items-center text-sm text-gray-700">
                         <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
@@ -280,7 +281,7 @@ const Home: React.FC = () => {
                     ))}
                   </ul>
                   
-                  <div className="space-y-3">
+                  <div className="space-y-3 mt-auto">
                     <Link
                       to="/services"
                       className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center group"
@@ -301,7 +302,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* Popular Themes Preview */}
-          <div className="mt-16 text-center">
+          <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Popular Themes Available</h3>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {popularThemes.map((theme, index) => (
@@ -321,7 +322,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Symmetrical 4-Column Grid */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -348,7 +349,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section - Symmetrical 3-Column Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -362,7 +363,7 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300 relative">
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300 relative h-full flex flex-col">
                 <Quote className="absolute top-4 right-4 w-8 h-8 text-blue-200" />
                 
                 <div className="flex mb-4">
@@ -371,11 +372,11 @@ const Home: React.FC = () => {
                   ))}
                 </div>
                 
-                <blockquote className="text-gray-700 mb-6 italic text-lg">
+                <blockquote className="text-gray-700 mb-6 italic text-lg flex-grow">
                   "{testimonial.quote}"
                 </blockquote>
                 
-                <div>
+                <div className="mt-auto">
                   <div className="font-semibold text-gray-900">{testimonial.author}</div>
                   <div className="text-sm text-blue-600">{testimonial.event}</div>
                 </div>
