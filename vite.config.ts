@@ -45,8 +45,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['framer-motion', 'react-intersection-observer', 'lenis'],
-          forms: ['react-hook-form', 'zod', '@hookform/resolvers']
+          ui: ['framer-motion', 'react-intersection-observer', 'lenis']
         }
       }
     },

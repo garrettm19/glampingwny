@@ -3,8 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Star, Quote, Filter, Search, Heart, Calendar, MapPin, ArrowRight } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
-import RevealAnimation from '../components/RevealAnimation';
-import MagneticButton from '../components/MagneticButton';
 import { Link } from 'react-router-dom';
 
 // Testimonial data from glampingwny.com
@@ -383,173 +381,180 @@ const Testimonials: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <RevealAnimation>
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 + i * 0.1 }}
-                  >
-                    <Star className="w-8 h-8 text-yellow-400 fill-yellow-400" />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              What Our Families Are Saying
-            </h1>
-            
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Read authentic reviews from {testimonials.length}+ happy families who've experienced 
-              the magic of Glamping WNY across Western New York.
-            </p>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white rounded-xl p-4 shadow-sm">
-                <div className="text-3xl font-bold text-blue-600">5.0</div>
-                <div className="text-sm text-gray-600">Average Rating</div>
-              </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm">
-                <div className="text-3xl font-bold text-blue-600">200+</div>
-                <div className="text-sm text-gray-600">Happy Families</div>
-              </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm">
-                <div className="text-3xl font-bold text-blue-600">100%</div>
-                <div className="text-sm text-gray-600">Satisfaction Rate</div>
-              </div>
-              <div className="bg-white rounded-xl p-4 shadow-sm">
-                <div className="text-3xl font-bold text-blue-600">3+</div>
-                <div className="text-sm text-gray-600">Years of Magic</div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <div className="flex justify-center mb-6">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 + i * 0.1 }}
+                >
+                  <Star className="w-8 h-8 text-yellow-400 fill-yellow-400" />
+                </motion.div>
+              ))}
             </div>
           </div>
-        </RevealAnimation>
+          
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            What Our Families Are Saying
+          </h1>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Read authentic reviews from {testimonials.length}+ happy families who've experienced 
+            the magic of Glamping WNY across Western New York.
+          </p>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <div className="text-3xl font-bold text-blue-600">5.0</div>
+              <div className="text-sm text-gray-600">Average Rating</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <div className="text-3xl font-bold text-blue-600">200+</div>
+              <div className="text-sm text-gray-600">Happy Families</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <div className="text-3xl font-bold text-blue-600">100%</div>
+              <div className="text-sm text-gray-600">Satisfaction Rate</div>
+            </div>
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <div className="text-3xl font-bold text-blue-600">3+</div>
+              <div className="text-sm text-gray-600">Years of Magic</div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Search and Filter */}
-        <RevealAnimation delay={0.2}>
-          <div className="bg-white rounded-xl shadow-sm p-6 mb-12">
-            <div className="flex flex-col md:flex-row gap-6">
-              {/* Search */}
-              <div className="flex-1">
-                <div className={`relative border-2 rounded-lg transition-all ${
-                  isSearchFocused ? 'border-blue-500' : 'border-gray-200'
-                }`}>
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search reviews by keyword..."
-                    className="block w-full pl-10 pr-3 py-3 border-0 focus:ring-0 focus:outline-none rounded-lg"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onFocus={() => setIsSearchFocused(true)}
-                    onBlur={() => setIsSearchFocused(false)}
-                  />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="bg-white rounded-xl shadow-sm p-6 mb-12"
+        >
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Search */}
+            <div className="flex-1">
+              <div className={`relative border-2 rounded-lg transition-all ${
+                isSearchFocused ? 'border-blue-500' : 'border-gray-200'
+              }`}>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
                 </div>
-              </div>
-              
-              {/* Category Filter */}
-              <div className="flex-1">
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Filter className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <select
-                    className="block w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0 focus:outline-none appearance-none bg-white"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                  >
-                    {categories.map(category => (
-                      <option key={category.id} value={category.id}>
-                        {category.name} ({category.count})
-                      </option>
-                    ))}
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                    </svg>
-                  </div>
-                </div>
+                <input
+                  type="text"
+                  placeholder="Search reviews by keyword..."
+                  className="block w-full pl-10 pr-3 py-3 border-0 focus:ring-0 focus:outline-none rounded-lg"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                />
               </div>
             </div>
             
-            {/* Results Count */}
-            <div className="mt-4 text-sm text-gray-600">
-              Showing {Math.min(visibleCount, filteredTestimonials.length)} of {filteredTestimonials.length} reviews
-              {searchQuery && <span> matching "<strong>{searchQuery}</strong>"</span>}
+            {/* Category Filter */}
+            <div className="flex-1">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Filter className="h-5 w-5 text-gray-400" />
+                </div>
+                <select
+                  className="block w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-0 focus:outline-none appearance-none bg-white"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                >
+                  {categories.map(category => (
+                    <option key={category.id} value={category.id}>
+                      {category.name} ({category.count})
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <svg className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
-        </RevealAnimation>
+          
+          {/* Results Count */}
+          <div className="mt-4 text-sm text-gray-600">
+            Showing {Math.min(visibleCount, filteredTestimonials.length)} of {filteredTestimonials.length} reviews
+            {searchQuery && <span> matching "<strong>{searchQuery}</strong>"</span>}
+          </div>
+        </motion.div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {filteredTestimonials.slice(0, visibleCount).map((testimonial, index) => (
-            <RevealAnimation key={testimonial.id} delay={0.1 * (index % 6)} direction="up">
-              <motion.div 
-                className="bg-white rounded-xl shadow-sm overflow-hidden h-full flex flex-col"
-                whileHover={{ y: -5, boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {/* Category Tag */}
-                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">{testimonial.category}</span>
-                    <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                      ))}
+            <motion.div
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
+              className="bg-white rounded-xl shadow-sm overflow-hidden h-full flex flex-col"
+              whileHover={{ y: -5, boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}
+            >
+              {/* Category Tag */}
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{testimonial.category}</span>
+                  <div className="flex">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="p-6 flex-grow flex flex-col">
+                {/* Quote */}
+                <div className="relative mb-6 flex-grow">
+                  <Quote className="absolute top-0 left-0 w-8 h-8 text-blue-100 -translate-x-2 -translate-y-2" />
+                  <blockquote className="text-gray-700 italic relative z-10 pl-2">
+                    {testimonial.quote.length > 200 
+                      ? `"${testimonial.quote.substring(0, 200)}..."`
+                      : `"${testimonial.quote}"`
+                    }
+                  </blockquote>
+                </div>
+                
+                {/* Author */}
+                <div className="flex items-center mt-auto pt-4 border-t border-gray-100">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.author}
+                    className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+                  />
+                  <div className="ml-4">
+                    <div className="font-semibold text-gray-900">{testimonial.author}</div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      <span>{new Date(testimonial.date).toLocaleDateString('en-US', { 
+                        month: 'short', 
+                        year: 'numeric' 
+                      })}</span>
                     </div>
                   </div>
                 </div>
                 
-                {/* Content */}
-                <div className="p-6 flex-grow flex flex-col">
-                  {/* Quote */}
-                  <div className="relative mb-6 flex-grow">
-                    <Quote className="absolute top-0 left-0 w-8 h-8 text-blue-100 -translate-x-2 -translate-y-2" />
-                    <blockquote className="text-gray-700 italic relative z-10 pl-2">
-                      {testimonial.quote.length > 200 
-                        ? `"${testimonial.quote.substring(0, 200)}..."`
-                        : `"${testimonial.quote}"`
-                      }
-                    </blockquote>
-                  </div>
-                  
-                  {/* Author */}
-                  <div className="flex items-center mt-auto pt-4 border-t border-gray-100">
-                    <img 
-                      src={testimonial.image} 
-                      alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
-                    />
-                    <div className="ml-4">
-                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{new Date(testimonial.date).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          year: 'numeric' 
-                        })}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Event Type */}
-                  <div className="mt-3 bg-blue-50 rounded-lg px-3 py-2 text-sm text-blue-700 flex items-center">
-                    <Heart className="w-4 h-4 mr-2" />
-                    {testimonial.event}
-                  </div>
+                {/* Event Type */}
+                <div className="mt-3 bg-blue-50 rounded-lg px-3 py-2 text-sm text-blue-700 flex items-center">
+                  <Heart className="w-4 h-4 mr-2" />
+                  {testimonial.event}
                 </div>
-              </motion.div>
-            </RevealAnimation>
+              </div>
+            </motion.div>
           ))}
         </div>
 
@@ -570,163 +575,194 @@ const Testimonials: React.FC = () => {
 
         {/* No Results */}
         {filteredTestimonials.length === 0 && (
-          <RevealAnimation>
-            <div className="text-center py-16 bg-white rounded-xl shadow-sm">
-              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="w-8 h-8 text-gray-400" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">No reviews found</h3>
-              <p className="text-gray-600 mb-6">
-                We couldn't find any reviews matching your search criteria.
-              </p>
-              <button 
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('all');
-                }}
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Clear Filters
-              </button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center py-16 bg-white rounded-xl shadow-sm"
+          >
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-gray-400" />
             </div>
-          </RevealAnimation>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">No reviews found</h3>
+            <p className="text-gray-600 mb-6">
+              We couldn't find any reviews matching your search criteria.
+            </p>
+            <button 
+              onClick={() => {
+                setSearchQuery('');
+                setSelectedCategory('all');
+              }}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Clear Filters
+            </button>
+          </motion.div>
         )}
 
-        {/* Share Your Experience */}
-        <RevealAnimation delay={0.3}>
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white mb-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-white" />
-              </div>
-              
-              <h2 className="text-3xl font-bold mb-4">
-                Share Your Experience With Us!
-              </h2>
-              
-              <p className="text-lg mb-8 opacity-90">
-                We at Glamping WNY recognize the importance of all feedback, regardless of whether it is positive or negative, 
-                as it allows us to evolve and better serve our future glampers.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <MagneticButton className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl">
-                  <a href="https://g.page/r/CYvXQVWWvbZsEAI/review" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
-                    </svg>
-                    Review on Google
-                  </a>
-                </MagneticButton>
-                
-                <MagneticButton className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold transition-all duration-300">
-                  <a href="https://www.facebook.com/glampingwny/reviews/" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                    Review on Facebook
-                  </a>
-                </MagneticButton>
-              </div>
-              
-              <p className="text-sm opacity-80">
-                Your feedback helps other families discover the joy of glamping and helps us improve our services.
-              </p>
-            </div>
-          </div>
-        </RevealAnimation>
-
         {/* Featured Testimonial */}
-        <RevealAnimation delay={0.4}>
-          <div className="bg-white rounded-xl shadow-sm p-8 mb-16">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="bg-white rounded-xl shadow-sm p-8 mb-16"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="flex justify-center mb-6">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                ))}
               </div>
-              
-              <blockquote className="text-center">
-                <p className="text-2xl font-medium text-gray-900 mb-8 italic relative">
-                  <Quote className="absolute -top-4 -left-4 w-10 h-10 text-blue-100" />
-                  "If I could give Holly and Glamping WNY 10 stars I totally would! I mean wow! This Tiny Mafia package is above and beyond. My son and his best buddy had the best time of their lives. Glamping WNY not only set everything up perfectly, but her details are everything! She has thought of everything. The set up was so fast and smooth I was blown away. I seriously cannot wait to do an adult Glamping night!"
-                </p>
-                
-                <footer className="flex flex-col items-center">
-                  <img 
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=100&q=80" 
-                    alt="Sam N."
-                    className="w-16 h-16 rounded-full object-cover border-4 border-blue-100 mb-4"
-                  />
-                  <div className="font-semibold text-gray-900 text-lg">Sam N.</div>
-                  <div className="text-blue-600">Kids Sleepover</div>
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-        </RevealAnimation>
-
-        {/* Service Area */}
-        <RevealAnimation delay={0.5}>
-          <div className="bg-blue-50 rounded-xl p-8 mb-16">
-            <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-blue-600 mr-3" />
-              <h2 className="text-2xl font-bold text-gray-900">Serving Western New York</h2>
             </div>
             
-            <p className="text-center text-gray-700 mb-6 max-w-3xl mx-auto">
-              We proudly serve families throughout the Buffalo Metro Area with FREE delivery within 20 miles of Hamburg, NY (14075).
+            <blockquote className="text-center">
+              <p className="text-2xl font-medium text-gray-900 mb-8 italic relative">
+                <Quote className="absolute -top-4 -left-4 w-10 h-10 text-blue-100" />
+                "If I could give Holly and Glamping WNY 10 stars I totally would! I mean wow! This Tiny Mafia package is above and beyond. My son and his best buddy had the best time of their lives. Glamping WNY not only set everything up perfectly, but her details are everything! She has thought of everything. The set up was so fast and smooth I was blown away. I seriously cannot wait to do an adult Glamping night!"
+              </p>
+              
+              <footer className="flex flex-col items-center">
+                <img 
+                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=100&q=80" 
+                  alt="Sam N."
+                  className="w-16 h-16 rounded-full object-cover border-4 border-blue-100 mb-4"
+                />
+                <div className="font-semibold text-gray-900 text-lg">Sam N.</div>
+                <div className="text-blue-600">Kids Sleepover</div>
+              </footer>
+            </blockquote>
+          </div>
+        </motion.div>
+
+        {/* Share Your Experience */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white mb-16"
+        >
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            
+            <h2 className="text-3xl font-bold mb-4">
+              Share Your Experience With Us!
+            </h2>
+            
+            <p className="text-lg mb-8 opacity-90">
+              We at Glamping WNY recognize the importance of all feedback, regardless of whether it is positive or negative, 
+              as it allows us to evolve and better serve our future glampers.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600 mb-2">FREE</div>
-                <div className="text-gray-700">Within 20 miles</div>
-              </div>
-              <div className="bg-white rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600 mb-2">$50</div>
-                <div className="text-gray-700">21-31 miles</div>
-              </div>
-              <div className="bg-white rounded-lg p-4 text-center">
-                <div className="text-2xl font-bold text-blue-600 mb-2">$100</div>
-                <div className="text-gray-700">32-42 miles</div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <a href="https://g.page/r/CYvXQVWWvbZsEAI/review" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
+                  </svg>
+                  Review on Google
+                </a>
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold transition-all duration-300"
+              >
+                <a href="https://www.facebook.com/glampingwny/reviews/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                  Review on Facebook
+                </a>
+              </motion.button>
+            </div>
+            
+            <p className="text-sm opacity-80">
+              Your feedback helps other families discover the joy of glamping and helps us improve our services.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Service Area */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="bg-blue-50 rounded-xl p-8 mb-16"
+        >
+          <div className="flex items-center justify-center mb-6">
+            <MapPin className="w-8 h-8 text-blue-600 mr-3" />
+            <h2 className="text-2xl font-bold text-gray-900">Serving Western New York</h2>
+          </div>
+          
+          <p className="text-center text-gray-700 mb-6 max-w-3xl mx-auto">
+            We proudly serve families throughout the Buffalo Metro Area with FREE delivery within 20 miles of Hamburg, NY (14075).
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="bg-white rounded-lg p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600 mb-2">FREE</div>
+              <div className="text-gray-700">Within 20 miles</div>
+            </div>
+            <div className="bg-white rounded-lg p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600 mb-2">$50</div>
+              <div className="text-gray-700">21-31 miles</div>
+            </div>
+            <div className="bg-white rounded-lg p-4 text-center">
+              <div className="text-2xl font-bold text-blue-600 mb-2">$100</div>
+              <div className="text-gray-700">32-42 miles</div>
             </div>
           </div>
-        </RevealAnimation>
+        </motion.div>
 
         {/* CTA */}
-        <RevealAnimation delay={0.6}>
-          <div className="text-center">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white">
-              <h2 className="text-3xl font-bold mb-6">
-                Ready to Create Your Own Magical Memories?
-              </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white">
+            <h2 className="text-3xl font-bold mb-6">
+              Ready to Create Your Own Magical Memories?
+            </h2>
+            
+            <p className="text-xl mb-8 max-w-3xl mx-auto">
+              Join the 200+ families who have experienced the magic of Glamping WNY. 
+              Book your perfect glamping adventure today!
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Link to="/contact" className="flex items-center">
+                  Book Your Experience
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </motion.button>
               
-              <p className="text-xl mb-8 max-w-3xl mx-auto">
-                Join the 200+ families who have experienced the magic of Glamping WNY. 
-                Book your perfect glamping adventure today!
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <MagneticButton className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg hover:shadow-xl">
-                  <Link to="/contact" className="flex items-center">
-                    Book Your Experience
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </MagneticButton>
-                
-                <MagneticButton className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold transition-all duration-300">
-                  <a href="tel:+17162007692" className="flex items-center">
-                    Call (716) 200-7692
-                  </a>
-                </MagneticButton>
-              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 px-8 py-4 rounded-xl font-bold transition-all duration-300"
+              >
+                <a href="tel:+17162007692" className="flex items-center">
+                  Call (716) 200-7692
+                </a>
+              </motion.button>
             </div>
           </div>
-        </RevealAnimation>
+        </motion.div>
       </div>
     </div>
   );
