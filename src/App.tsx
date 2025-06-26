@@ -8,6 +8,7 @@ import Services from './pages/Services';
 import Gallery from './pages/Gallery';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Testimonials from './pages/Testimonials';
 import ErrorBoundary from './components/ErrorBoundary';
 import Analytics from './components/Analytics';
 import CookieConsent from './components/CookieConsent';
@@ -35,6 +36,7 @@ function App() {
                 <Route path="gallery" element={<Gallery />} />
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
+                <Route path="testimonials" element={<Testimonials />} />
               </Route>
             </Routes>
             <CookieConsent />

@@ -1,30 +1,56 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Tent, Phone, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Experiences', path: '/services' },
     { name: 'Gallery', path: '/gallery' },
+    { name: 'Testimonials', path: '/testimonials' },
     { name: 'Our Story', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <Tent className="h-6 w-6 text-white" />
-            </div>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <motion.div 
+              className={`w-10 h-10 ${
+                isScrolled 
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600' 
+                  : 'bg-white/20 backdrop-blur-sm'
+              } rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+              whileHover={{ rotate: 5 }}
+            >
+              <Tent className={`h-6 w-6 ${isScrolled ? 'text-white' : 'text-white'}`} />
+            </motion.div>
             <div>
-              <span className="text-xl font-bold text-gray-900">Glamping WNY</span>
-              <div className="text-xs text-gray-600 font-medium">LUXURY EXPERIENCES</div>
+              <span className={`text-xl font-bold transition-colors ${
+                isScrolled ? 'text-gray-900' : 'text-white'
+              }`}>Glamping WNY</span>
+              <div className={`text-xs font-medium transition-colors ${
+                isScrolled ? 'text-gray-600' : 'text-white/80'
+              }`}>LUXURY EXPERIENCES</div>
             </div>
           </Link>
 
@@ -34,7 +60,11 @@ const Header: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                className={`font-medium transition-colors ${
+                  isScrolled 
+                    ? 'text-gray-700 hover:text-blue-600' 
+                    : 'text-white hover:text-white/80'
+                } ${location.pathname === link.path ? 'text-blue-600' : ''}`}
               >
                 {link.name}
               </Link>
@@ -43,19 +73,28 @@ const Header: React.FC = () => {
 
           {/* Contact & CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center text-sm text-gray-600">
+            <div className={`flex items-center text-sm ${
+              isScrolled ? 'text-gray-600' : 'text-white/90'
+            }`}>
               <div className="flex items-center mr-4">
-                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400 mr-1" />
+                <Star className={`h-4 w-4 ${isScrolled ? 'text-yellow-400 fill-yellow-400' : 'text-yellow-300 fill-yellow-300'} mr-1`} />
                 <span className="font-medium">200+ Families</span>
               </div>
-              <a href="tel:+17162007692" className="flex items-center hover:text-blue-600 transition-colors">
+              <a 
+                href="tel:+17162007692" 
+                className={`flex items-center hover:${isScrolled ? 'text-blue-600' : 'text-white'} transition-colors`}
+              >
                 <Phone className="h-4 w-4 mr-1" />
                 (716) 200-7692
               </a>
             </div>
             <Link
               to="/contact"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all font-semibold"
+              className={`${
+                isScrolled
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700'
+                  : 'bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20'
+              } px-6 py-2 rounded-lg transition-all duration-300 font-semibold`}
             >
               Book Now
             </Link>
@@ -66,25 +105,38 @@ const Header: React.FC = () => {
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMenuOpen ? (
+              <X className={`h-6 w-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
+            ) : (
+              <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
+            )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden py-4 mt-4 border-t border-gray-200"
+          >
             <div className="space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className="block py-2 text-gray-700 hover:text-blue-600 font-medium"
+                  className={`block py-2 font-medium ${
+                    location.pathname === link.path 
+                      ? 'text-blue-600' 
+                      : 'text-gray-700 hover:text-blue-600'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="pt-4 border-t">
+              <div className="pt-4 border-t border-gray-200">
                 <div className="flex items-center text-sm text-gray-600 mb-3">
                   <Star className="h-4 w-4 text-yellow-400 fill-yellow-400 mr-1" />
                   <span>200+ Happy Families</span>
@@ -101,7 +153,7 @@ const Header: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </header>
