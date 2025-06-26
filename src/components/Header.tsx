@@ -7,9 +7,9 @@ const Header: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
+    { name: 'Experiences', path: '/services' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'About', path: '/about' },
+    { name: 'Our Story', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -38,9 +38,9 @@ const Header: React.FC = () => {
 
           {/* Contact & CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <a href="tel:+17165551234" className="flex items-center text-sm text-gray-600">
+            <a href="tel:+17162007692" className="flex items-center text-sm text-gray-600">
               <Phone className="h-4 w-4 mr-1" />
-              (716) 555-1234
+              (716) 200-7692
             </a>
             <Link
               to="/contact"
@@ -74,8 +74,8 @@ const Header: React.FC = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t">
-                <a href="tel:+17165551234" className="block py-2 text-gray-600">
-                  (716) 555-1234
+                <a href="tel:+17162007692" className="block py-2 text-gray-600">
+                  (716) 200-7692
                 </a>
                 <Link
                   to="/contact"

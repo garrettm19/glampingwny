@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Play, Award, MapPin, Heart, Quote } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -21,44 +21,51 @@ const Home: React.FC = () => {
       title: 'Indoor Glamping',
       description: 'Cozy teepee sleepovers perfect for any weather',
       price: 'From $225',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
+      features: ['Weather-proof setup', 'Memory foam beds', 'Themed decorations', 'Ages 5+ welcome']
     },
     {
       title: 'Outdoor Bell Tents',
       description: 'Authentic glamping under the stars',
       price: 'From $500',
-      image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=400&h=300&fit=crop',
+      features: ['16ft & 23ft options', 'In-tent movie theater', 'Stargazing experience', 'Memory foam beds'],
+      popular: true
     },
     {
       title: 'Spa Parties',
       description: 'Relaxing spa experiences for all ages',
       price: 'From $325',
-      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop'
+      image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop',
+      features: ['Kid-safe treatments', 'Spa essentials included', 'Relaxing ambiance', 'DIY setup']
     }
   ];
 
   const features = [
-    { icon: Users, title: 'All Ages Welcome', description: 'Perfect for kids, teens, and adults' },
-    { icon: Shield, title: 'Safe & Clean', description: 'Professionally sanitized equipment' },
-    { icon: Clock, title: 'Full Service', description: 'Complete setup and cleanup included' },
-    { icon: Star, title: '200+ Happy Families', description: '5-star rated experiences' }
+    { icon: Users, title: '200+ Happy Families', description: 'Trusted by families across Western NY since 2021' },
+    { icon: Shield, title: 'Safe & Clean', description: 'Hypoallergenic cleaning & safety-checked equipment' },
+    { icon: Clock, title: 'Full Service', description: 'Complete setup by 4 PM, pickup after 10 AM' },
+    { icon: Star, title: '25+ Themes', description: 'From Princess parties to Buffalo Bills themes' }
   ];
 
   const testimonials = [
     {
-      quote: "Absolutely magical! The kids had the best time and everything was perfect.",
-      author: "Sarah Johnson",
-      rating: 5
+      quote: "Absolutely amazing... nailed the Barbie theme!",
+      author: "Rachel C.",
+      rating: 5,
+      event: "Bachelorette Party"
     },
     {
-      quote: "Professional service from start to finish. Highly recommend!",
-      author: "Mike Rodriguez", 
-      rating: 5
+      quote: "Two different themes for my nephews – very clean, kids loved it!",
+      author: "Rebecca B.",
+      rating: 5,
+      event: "Birthday Sleepover"
     },
     {
-      quote: "Made our daughter's birthday unforgettable. Thank you!",
-      author: "Amanda Smith",
-      rating: 5
+      quote: "Everything was perfect and detailed!",
+      author: "Jamie D.",
+      rating: 5,
+      event: "Family Celebration"
     }
   ];
 
@@ -110,7 +117,7 @@ const Home: React.FC = () => {
                 <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <span className="ml-2 text-sm font-medium">Trusted by 200+ Families</span>
+            <span className="ml-2 text-sm font-medium">Trusted by 200+ Families Since 2021</span>
           </div>
 
           {/* Main Headline */}
@@ -119,21 +126,23 @@ const Home: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <span className="block">Luxury</span>
+            <span className="block">Luxury Sleepovers &</span>
             <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Glamping
+              Bell Tent Glamping
             </span>
-            <span className="block">Experiences</span>
+            <span className="block text-3xl md:text-4xl lg:text-5xl font-light mt-4">
+              Straight to Your Doorstep
+            </span>
           </h1>
 
           {/* Subheadline */}
           <p 
-            className={`text-xl md:text-2xl lg:text-3xl mb-8 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-400 ${
+            className={`text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Create unforgettable memories with premium outdoor adventures 
-            delivered to your backyard in Western New York
+            Creating unforgettable glamping experiences for birthdays, celebrations, and magical family moments 
+            throughout Western New York
           </p>
 
           {/* CTA Buttons */}
@@ -149,13 +158,13 @@ const Home: React.FC = () => {
               Book Your Experience
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              to="/services"
+            <a
+              href="tel:+17162007692"
               className="group border-2 border-white/50 text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm inline-flex items-center justify-center"
             >
               <Play className="mr-2 h-5 w-5" />
-              View Services
-            </Link>
+              Call (716) 200-7692
+            </a>
           </div>
 
           {/* Trust Indicators */}
@@ -165,9 +174,9 @@ const Home: React.FC = () => {
             }`}
           >
             {[
-              { icon: MapPin, text: "Buffalo Metro", subtext: "Free Delivery" },
-              { icon: Award, text: "5-Star Rated", subtext: "200+ Reviews" },
-              { icon: Shield, text: "Fully Insured", subtext: "Professional Service" },
+              { icon: MapPin, text: "Western NY", subtext: "Free Delivery 20mi" },
+              { icon: Award, text: "200+ Families", subtext: "Since 2021" },
+              { icon: Shield, text: "Ages 5+", subtext: "Safe & Clean" },
               { icon: Clock, text: "24hr Response", subtext: "Quick Booking" }
             ].map((item, index) => (
               <div key={index} className="text-center">
@@ -190,15 +199,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Services Section with Scroll Animation */}
+      {/* Services Section */}
       <section className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Premium Services
+              Our Experiences
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From cozy indoor experiences to outdoor adventures under the stars, 
+              From cozy indoor teepee sleepovers to outdoor bell tent adventures, 
               we create the perfect setting for your celebration
             </p>
           </div>
@@ -207,8 +216,15 @@ const Home: React.FC = () => {
             {services.map((service, index) => (
               <div 
                 key={index} 
-                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 relative"
               >
+                {service.popular && (
+                  <div className="absolute top-4 right-4 z-10 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
+                    <Star className="w-4 h-4 mr-1 fill-current" />
+                    Most Popular
+                  </div>
+                )}
+
                 <div className="relative overflow-hidden">
                   <img
                     src={service.image}
@@ -220,9 +236,20 @@ const Home: React.FC = () => {
                     <div className="text-2xl font-bold">{service.price}</div>
                   </div>
                 </div>
+                
                 <div className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
                   <p className="text-gray-600 mb-6">{service.description}</p>
+                  
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-center text-sm text-gray-700">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  
                   <Link
                     to="/services"
                     className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold group"
@@ -242,10 +269,11 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose Glamping WNY
+              Why Families Choose Glamping WNY
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We're committed to creating magical experiences that exceed your expectations
+              Founded by Holly in 2021, we're committed to creating magical experiences 
+              that exceed your expectations
             </p>
           </div>
 
@@ -277,20 +305,35 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300">
+              <div key={index} className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300 relative">
+                <Quote className="absolute top-4 right-4 w-8 h-8 text-blue-200" />
+                
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
-                <blockquote className="text-gray-700 mb-6 italic">
+                
+                <blockquote className="text-gray-700 mb-6 italic text-lg">
                   "{testimonial.quote}"
                 </blockquote>
-                <div className="font-semibold text-gray-900">
-                  {testimonial.author}
+                
+                <div>
+                  <div className="font-semibold text-gray-900">{testimonial.author}</div>
+                  <div className="text-sm text-blue-600">{testimonial.event}</div>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              <Heart className="mr-2 h-5 w-5" />
+              See More Happy Families
+            </Link>
           </div>
         </div>
       </section>
@@ -314,23 +357,23 @@ const Home: React.FC = () => {
             Ready to Create Magical Memories?
           </h2>
           <p className="text-xl mb-10 leading-relaxed">
-            Join hundreds of families who have created unforgettable experiences with Glamping WNY. 
-            Your adventure awaits.
+            Join the 200+ families who have created unforgettable experiences with Holly and Joe. 
+            Your perfect glamping adventure awaits in Western New York.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/contact"
               className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
             >
-              Get Started Today
+              Book Your Experience
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-            <Link
-              to="/gallery"
+            <a
+              href="tel:+17162007692"
               className="border-2 border-white text-white px-10 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 inline-flex items-center justify-center"
             >
-              View Gallery
-            </Link>
+              Call (716) 200-7692
+            </a>
           </div>
         </div>
       </section>

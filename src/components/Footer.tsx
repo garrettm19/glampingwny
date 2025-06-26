@@ -13,7 +13,10 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold">Glamping WNY</span>
             </div>
             <p className="text-gray-300 mb-4">
-              Creating unforgettable glamping experiences in Western New York.
+              Bringing luxury sleepovers & bell tent glamping straight to your doorstep.
+            </p>
+            <p className="text-sm text-gray-400">
+              Founded in 2021 • Serving Western New York families
             </p>
           </div>
 
@@ -23,11 +26,11 @@ const Footer: React.FC = () => {
             <div className="space-y-2">
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2" />
-                <span>(716) 555-1234</span>
+                <span>(716) 200-7692</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@glampingwny.com</span>
+                <span>reservations@glampingwny.com</span>
               </div>
               <div className="flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
@@ -39,9 +42,16 @@ const Footer: React.FC = () => {
           {/* Service Area */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Service Area</h3>
-            <p className="text-gray-300">
-              Serving the Buffalo Metro Area with FREE delivery within 20 miles.
+            <p className="text-gray-300 mb-2">
+              Western New York • Buffalo Metro Area
             </p>
+            <p className="text-sm text-gray-400">
+              FREE delivery within 20 miles of Hamburg, NY
+            </p>
+            <div className="mt-4 text-sm">
+              <div>21-31 miles: $50</div>
+              <div>32-42 miles: $100</div>
+            </div>
           </div>
         </div>
 
