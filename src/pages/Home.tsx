@@ -12,7 +12,7 @@ import FloatingElements from '../components/FloatingElements';
 const Home: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollYProgress } = useScroll();
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
@@ -88,16 +88,28 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* Enhanced Hero Section with Parallax */}
-      <ParallaxSection
-        backgroundImage="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=1920&h=1080&fit=crop"
-        speed={0.5}
-        className="min-h-screen flex items-center justify-center"
-      >
+      {/* Enhanced Hero Section with Fixed Parallax */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Fixed Background with Parallax Effect */}
+        <div className="absolute inset-0 w-full h-full">
+          <motion.div
+            style={{ y: heroY }}
+            className="absolute inset-0 w-full h-[120%] -top-[10%] will-change-transform"
+          >
+            <div
+              className="w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url(https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=1920&h=1080&fit=crop)',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+          </motion.div>
+        </div>
+
         <FloatingElements count={30} />
         
         <motion.div 
-          style={{ y: heroY, opacity: heroOpacity }}
+          style={{ opacity: heroOpacity }}
           className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
         >
           {/* Trust Badge with Animation */}
@@ -222,7 +234,7 @@ const Home: React.FC = () => {
             <ChevronDown className="w-6 h-6" />
           </motion.div>
         </motion.div>
-      </ParallaxSection>
+      </section>
 
       {/* Package Selection Section with Reveal Animations */}
       <section className="py-20 bg-white relative overflow-hidden">

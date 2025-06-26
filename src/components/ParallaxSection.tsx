@@ -23,25 +23,28 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", `${speed * 100}%`]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", `${speed * 50}%`]);
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
       {backgroundImage && (
         <motion.div
           style={{ y }}
-          className="absolute inset-0 w-full h-[120%] -top-[10%]"
+          className="absolute inset-0 w-full h-[130%] -top-[15%] will-change-transform"
         >
           <div
-            className="w-full h-full bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{ 
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundAttachment: 'fixed'
+            }}
           />
           {overlay && (
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
           )}
         </motion.div>
       )}
-      <div className="relative z-10">
+      <div className="relative z-10 h-full">
         {children}
       </div>
     </div>
