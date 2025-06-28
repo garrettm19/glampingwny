@@ -98,34 +98,34 @@ const Home: React.FC = () => {
         
         <motion.div 
           style={{ opacity: heroOpacity }}
-          className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+          className="relative z-10 text-center text-white px-3 sm:px-4 lg:px-8 max-w-6xl mx-auto"
         >
           {/* Trust Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/20"
+            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 border border-white/20"
           >
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                <Star key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
               ))}
             </div>
-            <span className="ml-2 text-sm font-medium">Trusted by 200+ Families Since 2021</span>
+            <span className="ml-2 text-xs sm:text-sm font-medium">Trusted by 200+ Families Since 2021</span>
           </motion.div>
 
           {/* Main Headline */}
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             {['Luxury Sleepovers &', 'Bell Tent Glamping', 'Straight to Your Doorstep'].map((line, index) => (
               <motion.h1
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
-                className={`${index === 0 ? 'text-5xl md:text-7xl lg:text-8xl font-bold' : 
-                           index === 1 ? 'text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent' :
-                           'text-3xl md:text-4xl lg:text-5xl font-light mt-4'} block leading-tight`}
+                className={`${index === 0 ? 'text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold' : 
+                           index === 1 ? 'text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent' :
+                           'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mt-2 sm:mt-4'} block leading-tight`}
               >
                 {line}
               </motion.h1>
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1 }}
-            className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed font-light"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed font-light px-2"
           >
             Creating unforgettable glamping experiences for birthdays, celebrations, and magical family moments 
             throughout Western New York
@@ -148,21 +148,21 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4"
           >
             <Link
               to="/services"
-              className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
+              className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center text-sm sm:text-base"
             >
               Choose Your Package
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             
             <a
               href="tel:+17162007692"
-              className="group border-2 border-white/50 text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm inline-flex items-center justify-center"
+              className="group border-2 border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 backdrop-blur-sm inline-flex items-center justify-center text-sm sm:text-base"
             >
-              <Phone className="mr-2 h-5 w-5" />
+              <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               Call (716) 200-7692
             </a>
           </motion.div>
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto px-2"
           >
             {[
               { icon: MapPin, text: "Western NY", subtext: "Free Delivery 20mi" },
@@ -181,10 +181,10 @@ const Home: React.FC = () => {
               { icon: Clock, text: "24hr Response", subtext: "Quick Booking" }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-3 border border-white/20">
-                  <item.icon className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 border border-white/20">
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <div className="text-sm font-semibold">{item.text}</div>
+                <div className="text-xs sm:text-sm font-semibold">{item.text}</div>
                 <div className="text-xs opacity-80">{item.subtext}</div>
               </div>
             ))}
@@ -196,47 +196,47 @@ const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white"
         >
           <motion.div 
             className="flex flex-col items-center cursor-pointer"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-sm mb-2">Discover More</span>
-            <ChevronDown className="w-6 h-6" />
+            <span className="text-xs sm:text-sm mb-2">Discover More</span>
+            <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6" />
           </motion.div>
         </motion.div>
       </section>
 
       {/* Package Selection Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
               Choose Your Perfect Experience
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Three amazing packages to choose from - each designed to create magical memories for your celebration
             </p>
             
-            <div className="inline-flex items-center bg-blue-50 rounded-full px-6 py-3 text-blue-800 font-medium">
-              <Check className="w-5 h-5 mr-2" />
+            <div className="inline-flex items-center bg-blue-50 rounded-full px-4 sm:px-6 py-2 sm:py-3 text-blue-800 font-medium text-sm sm:text-base mx-2">
+              <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               All packages include setup, cleanup & themed decorations
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {packages.map((pkg, index) => (
               <div 
                 key={index}
-                className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative h-full flex flex-col ${
-                  pkg.popular ? 'ring-2 ring-blue-500 scale-105' : ''
+                className={`group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 relative h-full flex flex-col mx-2 sm:mx-0 ${
+                  pkg.popular ? 'ring-2 ring-blue-500 lg:scale-105' : ''
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute top-4 right-4 z-10 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
-                    <Star className="w-4 h-4 mr-1 fill-current" />
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10 bg-yellow-400 text-yellow-900 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold flex items-center">
+                    <Star className="w-3 h-3 sm:w-4 sm:h-4 mr-1 fill-current" />
                     Most Popular
                   </div>
                 )}
@@ -245,31 +245,31 @@ const Home: React.FC = () => {
                   <img
                     src={pkg.image}
                     alt={pkg.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center mb-2">
-                      <pkg.icon className="w-6 h-6 mr-2" />
-                      <span className="text-lg font-bold">{pkg.title}</span>
+                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
+                    <div className="flex items-center mb-1 sm:mb-2">
+                      <pkg.icon className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+                      <span className="text-base sm:text-lg font-bold">{pkg.title}</span>
                     </div>
-                    <p className="text-sm opacity-90">{pkg.subtitle}</p>
+                    <p className="text-xs sm:text-sm opacity-90">{pkg.subtitle}</p>
                   </div>
-                  <div className="absolute bottom-4 right-4 text-white text-right">
-                    <div className="text-2xl font-bold">{pkg.price}</div>
+                  <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 text-white text-right">
+                    <div className="text-xl sm:text-2xl font-bold">{pkg.price}</div>
                   </div>
                 </div>
                 
-                <div className="p-8 flex-grow flex flex-col">
+                <div className="p-4 sm:p-6 lg:p-8 flex-grow flex flex-col">
                   <div className="mb-4">
-                    <p className="text-gray-600 mb-3">{pkg.description}</p>
-                    <div className="text-sm text-blue-600 font-medium">Best for: {pkg.bestFor}</div>
+                    <p className="text-gray-600 mb-3 text-sm sm:text-base">{pkg.description}</p>
+                    <div className="text-xs sm:text-sm text-blue-600 font-medium">Best for: {pkg.bestFor}</div>
                   </div>
                   
                   <ul className="space-y-2 mb-6 flex-grow">
                     {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-sm text-gray-700">
-                        <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                      <li key={i} className="flex items-center text-xs sm:text-sm text-gray-700">
+                        <Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 sm:mr-3 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -278,14 +278,14 @@ const Home: React.FC = () => {
                   <div className="space-y-3 mt-auto">
                     <Link
                       to="/services"
-                      className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center group"
+                      className="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center group text-sm sm:text-base"
                     >
                       View Details & Pricing
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <Link
                       to="/contact"
-                      className="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center justify-center"
+                      className="w-full border-2 border-blue-600 text-blue-600 py-2 sm:py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center justify-center text-sm sm:text-base"
                     >
                       Book This Package
                     </Link>
@@ -296,13 +296,13 @@ const Home: React.FC = () => {
           </div>
 
           {/* Popular Themes */}
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Popular Themes Available</h3>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="text-center px-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Popular Themes Available</h3>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
               {popularThemes.map((theme, index) => (
                 <div 
                   key={index} 
-                  className="bg-blue-50 text-blue-800 px-4 py-2 rounded-full text-sm font-medium"
+                  className="bg-blue-50 text-blue-800 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium"
                 >
                   {theme}
                 </div>
@@ -310,36 +310,36 @@ const Home: React.FC = () => {
             </div>
             <Link
               to="/services"
-              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm sm:text-base"
             >
               View All 25+ Themes
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
               Why Families Choose Glamping WNY
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
               Founded by Holly in 2021, we're committed to creating magical experiences 
               that exceed your expectations
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <feature.icon className="h-10 w-10 text-white" />
+              <div key={index} className="text-center px-2">
+                <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                  <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{feature.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -347,49 +347,49 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
               What Families Say
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-600 px-4">
               Real reviews from real families who've experienced the magic
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow duration-300 relative h-full flex flex-col"
+                className="bg-gray-50 rounded-2xl p-4 sm:p-6 lg:p-8 hover:shadow-lg transition-shadow duration-300 relative h-full flex flex-col mx-2 sm:mx-0"
               >
-                <Quote className="absolute top-4 right-4 w-8 h-8 text-blue-200" />
+                <Quote className="absolute top-3 sm:top-4 right-3 sm:right-4 w-6 h-6 sm:w-8 sm:h-8 text-blue-200" />
                 
-                <div className="flex mb-4">
+                <div className="flex mb-3 sm:mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
                 
-                <blockquote className="text-gray-700 mb-6 italic text-lg flex-grow">
+                <blockquote className="text-gray-700 mb-4 sm:mb-6 italic text-base sm:text-lg flex-grow">
                   "{testimonial.quote}"
                 </blockquote>
                 
                 <div className="mt-auto">
-                  <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                  <div className="text-sm text-blue-600">{testimonial.event}</div>
+                  <div className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.author}</div>
+                  <div className="text-xs sm:text-sm text-blue-600">{testimonial.event}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <Link
               to="/testimonials"
-              className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-sm sm:text-base"
             >
-              <Heart className="mr-2 h-5 w-5" />
+              <Heart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               See More Happy Families
             </Link>
           </div>
@@ -397,26 +397,26 @@ const Home: React.FC = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 lg:px-8 text-center text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 px-2">
             Ready to Create Magical Memories?
           </h2>
-          <p className="text-xl mb-10 leading-relaxed">
+          <p className="text-lg sm:text-xl mb-8 sm:mb-10 leading-relaxed px-4">
             Join the 200+ families who have created unforgettable experiences with Holly and Joe. 
             Your perfect glamping adventure awaits in Western New York.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Link
               to="/services"
-              className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center"
+              className="bg-white text-blue-600 px-6 sm:px-10 py-3 sm:py-4 rounded-full font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl inline-flex items-center justify-center text-sm sm:text-base"
             >
               Choose Your Package
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Link>
             <a
               href="tel:+17162007692"
-              className="border-2 border-white text-white px-10 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 inline-flex items-center justify-center"
+              className="border-2 border-white text-white px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 inline-flex items-center justify-center text-sm sm:text-base"
             >
               Call (716) 200-7692
             </a>

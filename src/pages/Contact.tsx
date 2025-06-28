@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Clock, Star, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Clock, Star } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -49,11 +49,11 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         {/* Success Message */}
         {showSuccess && (
-          <div className="fixed top-4 right-4 z-50 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg">
+          <div className="fixed top-4 right-4 z-50 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg max-w-sm">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Star className="w-5 h-5 text-green-600" />
@@ -67,22 +67,22 @@ const Contact: React.FC = () => {
         )}
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
             Let's Create Magic Together
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Ready to plan your perfect glamping experience? Holly and Joe are here to help 
             make your celebration unforgettable.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Book Your Experience</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="px-2 sm:px-0">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Book Your Experience</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                     Your Name *
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
                   <input
                     id="name"
                     {...register('name')}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base ${
                       errors.name ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="Enter your name"
@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
                     id="email"
                     type="email"
                     {...register('email')}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     placeholder="your@email.com"
@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number
@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
                     id="phone"
                     type="tel"
                     {...register('phone')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                     placeholder="(716) 555-1234"
                   />
                 </div>
@@ -140,7 +140,7 @@ const Contact: React.FC = () => {
                   <select
                     id="eventType"
                     {...register('eventType')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   >
                     <option value="">Select event type</option>
                     <option value="birthday">Birthday Party</option>
@@ -155,7 +155,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="eventDate" className="block text-sm font-medium text-gray-700 mb-2">
                     Preferred Date
@@ -164,7 +164,7 @@ const Contact: React.FC = () => {
                     id="eventDate"
                     type="date"
                     {...register('eventDate')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   />
                 </div>
 
@@ -175,7 +175,7 @@ const Contact: React.FC = () => {
                   <select
                     id="guestCount"
                     {...register('guestCount')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   >
                     <option value="">Select guest count</option>
                     <option value="1-4">1-4 guests</option>
@@ -194,7 +194,7 @@ const Contact: React.FC = () => {
                   id="message"
                   {...register('message')}
                   rows={4}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base ${
                     errors.message ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Tell us about your celebration, preferred themes, special requests, or any questions you have..."
@@ -207,7 +207,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   <>
@@ -219,72 +219,74 @@ const Contact: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5 mr-2" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Send Message & Get Quote
                   </>
                 )}
               </button>
 
-              <p className="text-sm text-gray-600 text-center">
+              <p className="text-xs sm:text-sm text-gray-600 text-center">
                 We typically respond within 24 hours with availability and pricing
               </p>
             </form>
           </div>
 
           {/* Contact Info & Calendar */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 px-2 sm:px-0">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Get in Touch</h2>
               
-              <div className="space-y-6 mb-8">
+              <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <Phone className="w-6 h-6 text-blue-600" />
+                  <div className="bg-blue-100 p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0">
+                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Call or Text</h3>
-                    <p className="text-gray-600 text-lg">(716) 200-7692</p>
-                    <p className="text-sm text-gray-500">Available 7 days a week</p>
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Call or Text</h3>
+                    <p className="text-gray-600 text-base sm:text-lg">(716) 200-7692</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Available 7 days a week</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <Mail className="w-6 h-6 text-blue-600" />
+                  <div className="bg-blue-100 p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0">
+                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">reservations@glampingwny.com</p>
-                    <p className="text-sm text-gray-500">We respond within 24 hours</p>
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Email</h3>
+                    <p className="text-gray-600 text-sm sm:text-base break-all">reservations@glampingwny.com</p>
+                    <p className="text-xs sm:text-sm text-gray-500">We respond within 24 hours</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <MapPin className="w-6 h-6 text-blue-600" />
+                  <div className="bg-blue-100 p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0">
+                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Service Area</h3>
-                    <p className="text-gray-600">Western New York</p>
-                    <p className="text-sm text-gray-500">Based in Hamburg, NY 14075</p>
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Service Area</h3>
+                    <p className="text-gray-600 text-sm sm:text-base">Western New York</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Based in Hamburg, NY 14075</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <Clock className="w-6 h-6 text-blue-600" />
+                  <div className="bg-blue-100 p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0">
+                    <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Setup & Pickup</h3>
-                    <p className="text-gray-600">Setup by 4 PM</p>
-                    <p className="text-sm text-gray-500">Pickup after 10 AM next day</p>
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Setup & Pickup</h3>
+                    <p className="text-gray-600 text-sm sm:text-base">Setup by 4 PM</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Pickup after 10 AM next day</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Booking Calendar */}
-            <BookingCalendar />
+            {/* Booking Calendar - Hidden on small screens */}
+            <div className="hidden lg:block">
+              <BookingCalendar />
+            </div>
           </div>
         </div>
       </div>
