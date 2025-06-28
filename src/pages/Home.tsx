@@ -79,8 +79,8 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section - Fixed overlap and professional design */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24">
+      {/* Hero Section - Optimized to fit screen perfectly */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background with Parallax */}
         <div className="absolute inset-0 w-full h-full">
           <motion.div
@@ -101,7 +101,7 @@ const Home: React.FC = () => {
 
         {/* Floating Elements for Visual Interest */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute bg-white/10 rounded-full"
@@ -127,16 +127,16 @@ const Home: React.FC = () => {
         
         <motion.div 
           style={{ opacity: heroOpacity }}
-          className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+          className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto h-full flex flex-col justify-center"
         >
           {/* Premium Trust Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 30, scale: 0.8 }}
             animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center bg-white/15 backdrop-blur-md rounded-full px-4 sm:px-8 py-3 sm:py-4 mb-8 sm:mb-12 border border-white/30 shadow-lg"
+            className="inline-flex items-center bg-white/15 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 border border-white/30 shadow-lg mx-auto"
           >
-            <div className="flex items-center mr-4">
+            <div className="flex items-center mr-3">
               {[...Array(5)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -144,68 +144,68 @@ const Home: React.FC = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.5 + i * 0.1 }}
                 >
-                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-yellow-400" />
+                  <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
                 </motion.div>
               ))}
             </div>
             <div className="text-left">
               <div className="text-sm sm:text-base font-bold">200+ Happy Families</div>
-              <div className="text-xs sm:text-sm opacity-90">Trusted Since 2021</div>
+              <div className="text-xs opacity-90">Trusted Since 2021</div>
             </div>
           </motion.div>
 
-          {/* Main Headline - Professional Typography */}
-          <div className="mb-8 sm:mb-12">
+          {/* Main Headline - Compact but impactful */}
+          <div className="mb-6 sm:mb-8">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
-              className="space-y-2 sm:space-y-4"
+              className="space-y-2"
             >
-              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 <span className="block">Luxury</span>
                 <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Glamping
                 </span>
-                <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mt-2 sm:mt-4 opacity-90">
+                <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mt-2 opacity-90">
                   Delivered to Your Doorstep
                 </span>
               </h1>
             </motion.div>
           </div>
 
-          {/* Professional Subheadline */}
+          {/* Professional Subheadline - Compact */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mb-10 sm:mb-16"
+            className="mb-8 sm:mb-10"
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 max-w-5xl mx-auto leading-relaxed font-light">
+            <p className="text-lg sm:text-xl md:text-2xl mb-4 max-w-4xl mx-auto leading-relaxed font-light">
               Creating unforgettable experiences for birthdays, celebrations, and magical family moments throughout Western New York
             </p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm sm:text-base opacity-90">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm opacity-90">
               <div className="flex items-center">
-                <Shield className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Shield className="w-4 h-4 mr-2" />
                 <span>Ages 5+ Welcome</span>
               </div>
               <div className="flex items-center">
-                <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <Clock className="w-4 h-4 mr-2" />
                 <span>Full Service Setup</span>
               </div>
               <div className="flex items-center">
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <MapPin className="w-4 h-4 mr-2" />
                 <span>Western NY</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Premium CTA Buttons */}
+          {/* Premium CTA Buttons - Prominently displayed */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-16 sm:mb-24"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -213,10 +213,10 @@ const Home: React.FC = () => {
             >
               <Link
                 to="/services"
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl inline-flex items-center justify-center text-base sm:text-lg border border-white/20"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 sm:px-10 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl inline-flex items-center justify-center text-base sm:text-lg border border-white/20"
               >
                 Choose Your Package
-                <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
             
@@ -226,26 +226,26 @@ const Home: React.FC = () => {
             >
               <a
                 href="tel:+17162007692"
-                className="group bg-white/15 backdrop-blur-md text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:bg-white/25 transition-all duration-300 border-2 border-white/30 hover:border-white/50 inline-flex items-center justify-center text-base sm:text-lg shadow-xl"
+                className="group bg-white/15 backdrop-blur-md text-white px-8 sm:px-10 py-4 rounded-full font-bold hover:bg-white/25 transition-all duration-300 border-2 border-white/30 hover:border-white/50 inline-flex items-center justify-center text-base sm:text-lg shadow-xl"
               >
-                <Phone className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                <Phone className="mr-3 h-5 w-5" />
                 Call (716) 200-7692
               </a>
             </motion.div>
           </motion.div>
 
-          {/* Professional Trust Indicators */}
+          {/* Compact Trust Indicators */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto"
           >
             {[
-              { icon: Award, number: "200+", text: "Happy Families", subtext: "Since 2021" },
-              { icon: Star, number: "25+", text: "Themes Available", subtext: "Custom Options" },
-              { icon: Shield, number: "100%", text: "Safe & Clean", subtext: "Guaranteed" },
-              { icon: MapPin, number: "FREE", text: "Delivery", subtext: "Within 20 Miles" }
+              { icon: Award, number: "200+", text: "Happy Families" },
+              { icon: Star, number: "25+", text: "Themes Available" },
+              { icon: Shield, number: "100%", text: "Safe & Clean" },
+              { icon: MapPin, number: "FREE", text: "Delivery" }
             ].map((item, index) => (
               <motion.div 
                 key={index} 
@@ -255,12 +255,11 @@ const Home: React.FC = () => {
                 transition={{ delay: 1.6 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20 shadow-lg">
-                  <item.icon className="w-8 h-8 sm:w-10 sm:h-10" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-3 border border-white/20 shadow-lg">
+                  <item.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
-                <div className="text-xl sm:text-2xl font-bold mb-1">{item.number}</div>
-                <div className="text-sm sm:text-base font-semibold mb-1">{item.text}</div>
-                <div className="text-xs sm:text-sm opacity-80">{item.subtext}</div>
+                <div className="text-lg sm:text-xl font-bold mb-1">{item.number}</div>
+                <div className="text-sm font-semibold">{item.text}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -271,14 +270,14 @@ const Home: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5 }}
-          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 text-white"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white"
         >
           <motion.div 
             className="flex flex-col items-center cursor-pointer group"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-sm sm:text-base mb-3 opacity-80 group-hover:opacity-100 transition-opacity">Discover More</span>
+            <span className="text-sm mb-2 opacity-80 group-hover:opacity-100 transition-opacity">Discover More</span>
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <motion.div 
                 className="w-1 h-3 bg-white rounded-full mt-2"
