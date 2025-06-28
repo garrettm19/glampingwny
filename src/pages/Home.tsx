@@ -79,8 +79,8 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section - Optimized to fit screen perfectly */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Modern Responsive Design */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with Parallax */}
         <div className="absolute inset-0 w-full h-full">
           <motion.div
@@ -99,24 +99,24 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Floating Elements for Visual Interest */}
+        {/* Subtle Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute bg-white/10 rounded-full"
               style={{
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
+                width: `${Math.random() * 3 + 2}px`,
+                height: `${Math.random() * 3 + 2}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -20, 0],
-                opacity: [0.3, 0.8, 0.3],
+                y: [0, -15, 0],
+                opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: Math.random() * 2
@@ -125,162 +125,159 @@ const Home: React.FC = () => {
           ))}
         </div>
         
+        {/* Content Container - Responsive Grid Layout */}
         <motion.div 
           style={{ opacity: heroOpacity }}
-          className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto h-full flex flex-col justify-center"
+          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          {/* Premium Trust Badge */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30, scale: 0.8 }}
-            animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center bg-white/15 backdrop-blur-md rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 border border-white/30 shadow-lg mx-auto"
-          >
-            <div className="flex items-center mr-3">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 + i * 0.1 }}
-                >
-                  <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
-                </motion.div>
-              ))}
-            </div>
-            <div className="text-left">
-              <div className="text-sm sm:text-base font-bold">200+ Happy Families</div>
-              <div className="text-xs opacity-90">Trusted Since 2021</div>
-            </div>
-          </motion.div>
-
-          {/* Main Headline - Compact but impactful */}
-          <div className="mb-6 sm:mb-8">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="space-y-2"
-            >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="block">Luxury</span>
-                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Glamping
-                </span>
-                <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mt-2 opacity-90">
-                  Delivered to Your Doorstep
-                </span>
-              </h1>
-            </motion.div>
-          </div>
-
-          {/* Professional Subheadline - Compact */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mb-8 sm:mb-10"
-          >
-            <p className="text-lg sm:text-xl md:text-2xl mb-4 max-w-4xl mx-auto leading-relaxed font-light">
-              Creating unforgettable experiences for birthdays, celebrations, and magical family moments throughout Western New York
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm opacity-90">
-              <div className="flex items-center">
-                <Shield className="w-4 h-4 mr-2" />
-                <span>Ages 5+ Welcome</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-2" />
-                <span>Full Service Setup</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>Western NY</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Premium CTA Buttons - Prominently displayed */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/services"
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 sm:px-10 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl inline-flex items-center justify-center text-base sm:text-lg border border-white/20"
-              >
-                Choose Your Package
-                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-screen py-20">
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <a
-                href="tel:+17162007692"
-                className="group bg-white/15 backdrop-blur-md text-white px-8 sm:px-10 py-4 rounded-full font-bold hover:bg-white/25 transition-all duration-300 border-2 border-white/30 hover:border-white/50 inline-flex items-center justify-center text-base sm:text-lg shadow-xl"
-              >
-                <Phone className="mr-3 h-5 w-5" />
-                Call (716) 200-7692
-              </a>
-            </motion.div>
-          </motion.div>
-
-          {/* Compact Trust Indicators */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto"
-          >
-            {[
-              { icon: Award, number: "200+", text: "Happy Families" },
-              { icon: Star, number: "25+", text: "Themes Available" },
-              { icon: Shield, number: "100%", text: "Safe & Clean" },
-              { icon: MapPin, number: "FREE", text: "Delivery" }
-            ].map((item, index) => (
+            {/* Left Column - Main Content */}
+            <div className="lg:col-span-7 text-white space-y-6 lg:space-y-8">
+              
+              {/* Trust Badge */}
               <motion.div 
-                key={index} 
-                className="text-center"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.6 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20 shadow-lg"
               >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white/15 backdrop-blur-md rounded-2xl flex items-center justify-center mx-auto mb-3 border border-white/20 shadow-lg">
-                  <item.icon className="w-6 h-6 sm:w-8 sm:h-8" />
+                <div className="flex items-center mr-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                  ))}
                 </div>
-                <div className="text-lg sm:text-xl font-bold mb-1">{item.number}</div>
-                <div className="text-sm font-semibold">{item.text}</div>
+                <div className="text-sm">
+                  <span className="font-bold">200+ Happy Families</span>
+                  <span className="opacity-80 ml-2">• Since 2021</span>
+                </div>
               </motion.div>
-            ))}
-          </motion.div>
+
+              {/* Main Headline */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="space-y-2"
+              >
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                  <span className="block">Luxury</span>
+                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Glamping
+                  </span>
+                </h1>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-light opacity-90 leading-relaxed">
+                  Delivered to Your Doorstep
+                </p>
+              </motion.div>
+
+              {/* Subheadline */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="space-y-4"
+              >
+                <p className="text-lg sm:text-xl opacity-90 leading-relaxed max-w-2xl">
+                  Creating unforgettable experiences for birthdays, celebrations, and magical family moments throughout Western New York
+                </p>
+                
+                {/* Key Features */}
+                <div className="flex flex-wrap gap-4 text-sm opacity-80">
+                  <div className="flex items-center">
+                    <Shield className="w-4 h-4 mr-2" />
+                    <span>Ages 5+ Welcome</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-4 h-4 mr-2" />
+                    <span>Full Service</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    <span>Western NY</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                className="flex flex-col sm:flex-row gap-4 pt-4"
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link
+                    to="/services"
+                    className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center text-base border border-white/20"
+                  >
+                    Choose Your Package
+                    <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+                
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <a
+                    href="tel:+17162007692"
+                    className="group bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300 border-2 border-white/30 hover:border-white/50 inline-flex items-center justify-center text-base shadow-lg"
+                  >
+                    <Phone className="mr-3 h-5 w-5" />
+                    Call (716) 200-7692
+                  </a>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Trust Indicators */}
+            <div className="lg:col-span-5 lg:pl-8">
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 1.4 }}
+                className="grid grid-cols-2 gap-4 lg:gap-6"
+              >
+                {[
+                  { icon: Award, number: "200+", text: "Happy Families", color: "from-blue-500 to-blue-600" },
+                  { icon: Star, number: "25+", text: "Themes Available", color: "from-purple-500 to-purple-600" },
+                  { icon: Shield, number: "100%", text: "Safe & Clean", color: "from-green-500 to-green-600" },
+                  { icon: MapPin, number: "FREE", text: "Delivery", color: "from-pink-500 to-pink-600" }
+                ].map((item, index) => (
+                  <motion.div 
+                    key={index} 
+                    className="text-center"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.6 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg`}>
+                      <item.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-xl font-bold text-white mb-1">{item.number}</div>
+                    <div className="text-sm text-white/80 font-medium">{item.text}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Professional Scroll Indicator */}
+        {/* Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5 }}
-          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
         >
           <motion.div 
             className="flex flex-col items-center cursor-pointer group"
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-sm mb-2 opacity-80 group-hover:opacity-100 transition-opacity">Discover More</span>
-            <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <span className="text-sm mb-2 opacity-70 group-hover:opacity-100 transition-opacity">Discover More</span>
+            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
               <motion.div 
-                className="w-1 h-3 bg-white rounded-full mt-2"
+                className="w-1 h-3 bg-white/60 rounded-full mt-2"
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
