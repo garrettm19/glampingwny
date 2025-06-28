@@ -79,7 +79,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section - Centered Design with Custom Logo */}
+      {/* Hero Section - Centered Design without Logo */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with Parallax */}
         <div className="absolute inset-0 w-full h-full">
@@ -158,40 +158,21 @@ const Home: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Logo and Brand */}
+            {/* Brand Name - No Logo */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 1, delay: 0.4 }}
               className="flex flex-col items-center space-y-6"
             >
-              {/* Custom Logo */}
-              <div className="relative">
-                <motion.div
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.6, type: "spring", stiffness: 100 }}
-                  className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mx-auto mb-4"
-                >
-                  <img 
-                    src="/src/assets/ChatGPT Image Jun 28, 2025, 12_31_53 PM.png" 
-                    alt="Glamping WNY Logo" 
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                  />
-                </motion.div>
-                
-                {/* Glow effect behind logo */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl scale-150 -z-10"></div>
-              </div>
-
               {/* Brand Name */}
-              <div className="text-center space-y-2">
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-none tracking-tight">
+              <div className="text-center space-y-3">
+                <h1 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl font-bold leading-none tracking-tight">
                   <span className="block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
                     Glamping WNY
                   </span>
                 </h1>
-                <div className="text-lg sm:text-xl lg:text-2xl font-light opacity-90 tracking-wide">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-light opacity-90 tracking-wide">
                   LUXURY EXPERIENCES
                 </div>
               </div>
@@ -201,7 +182,7 @@ const Home: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center max-w-4xl"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight">
@@ -236,7 +217,7 @@ const Home: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.4 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4"
             >
               <motion.div
@@ -270,7 +251,7 @@ const Home: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.8 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
               className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-8 max-w-4xl"
             >
               {[
@@ -284,7 +265,7 @@ const Home: React.FC = () => {
                   className="text-center group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 2 + index * 0.1 }}
+                  transition={{ delay: 1.8 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <div className={`w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xl group-hover:shadow-2xl transition-all duration-300 border border-white/20`}>
@@ -303,7 +284,7 @@ const Home: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3 }}
+          transition={{ delay: 2.5 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
         >
           <motion.div 

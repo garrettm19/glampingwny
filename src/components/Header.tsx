@@ -35,7 +35,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
             <motion.div 
-              className="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 group-hover:scale-110"
+              className="w-12 h-12 sm:w-14 sm:h-14 transition-all duration-300 group-hover:scale-110"
               whileHover={{ rotate: 5 }}
             >
               <img 
