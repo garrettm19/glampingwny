@@ -3,7 +3,6 @@ import { Phone, Mail, MapPin, Send, Clock, Star, Heart } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useCommonNotifications } from '../components/NotificationSystem';
 import BookingCalendar from '../components/BookingCalendar';
 
 const formSchema = z.object({
@@ -20,7 +19,7 @@ type FormData = z.infer<typeof formSchema>;
 
 const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { showFormSubmitted } = useCommonNotifications();
+  const [showSuccess, setShowSuccess] = useState(false);
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(formSchema)
@@ -34,11 +33,14 @@ const Contact: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
       console.log('Form submitted:', data);
       
-      // Show success notification
-      showFormSubmitted();
+      // Show success message
+      setShowSuccess(true);
       
       // Reset form
       reset();
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setShowSuccess(false), 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
@@ -49,6 +51,21 @@ const Contact: React.FC = () => {
   return (
     <div className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Success Message */}
+        {showSuccess && (
+          <div className="fixed top-4 right-4 z-50 bg-green-50 border border-green-200 rounded-lg p-4 shadow-lg">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <Star className="w-5 h-5 text-green-600" />
+              </div>
+              <div className="ml-3">
+                <h4 className="text-sm font-semibold text-green-900">Message Sent!</h4>
+                <p className="text-sm text-green-700">Thank you for contacting us. We'll get back to you soon!</p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
