@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Star, Users, Shield, Clock, ChevronDown, Award, MapPin, Heart, Quote, Check, Tent, Home as HomeIcon, Sparkles, Phone } from 'lucide-react';
+import { ArrowRight, Star, Users, Shield, Clock, Award, MapPin, Heart, Quote, Check, Tent, Home as HomeIcon, Sparkles, Phone } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -79,7 +79,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {/* Hero Section - Modern Responsive Design */}
+      {/* Hero Section - Centered Design with Custom Logo */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background with Parallax */}
         <div className="absolute inset-0 w-full h-full">
@@ -94,29 +94,30 @@ const Home: React.FC = () => {
               }}
             />
             {/* Professional gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>
         </div>
 
         {/* Subtle Floating Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute bg-white/10 rounded-full"
               style={{
-                width: `${Math.random() * 3 + 2}px`,
-                height: `${Math.random() * 3 + 2}px`,
+                width: `${Math.random() * 4 + 2}px`,
+                height: `${Math.random() * 4 + 2}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -15, 0],
-                opacity: [0.2, 0.6, 0.2],
+                y: [0, -20, 0],
+                opacity: [0.2, 0.7, 0.2],
+                scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 4 + Math.random() * 2,
+                duration: 4 + Math.random() * 3,
                 repeat: Infinity,
                 ease: "easeInOut",
                 delay: Math.random() * 2
@@ -125,140 +126,176 @@ const Home: React.FC = () => {
           ))}
         </div>
         
-        {/* Content Container - Responsive Grid Layout */}
+        {/* Centered Content Container */}
         <motion.div 
           style={{ opacity: heroOpacity }}
-          className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-screen py-20">
+          <div className="flex flex-col items-center justify-center min-h-screen py-20 space-y-8">
             
-            {/* Left Column - Main Content */}
-            <div className="lg:col-span-7 text-white space-y-6 lg:space-y-8">
-              
-              {/* Trust Badge */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 border border-white/20 shadow-lg"
-              >
-                <div className="flex items-center mr-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-                <div className="text-sm">
-                  <span className="font-bold">200+ Happy Families</span>
-                  <span className="opacity-80 ml-2">• Since 2021</span>
-                </div>
-              </motion.div>
-
-              {/* Main Headline */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="space-y-2"
-              >
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                  <span className="block">Luxury</span>
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Glamping
-                  </span>
-                </h1>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-light opacity-90 leading-relaxed">
-                  Delivered to Your Doorstep
-                </p>
-              </motion.div>
-
-              {/* Subheadline */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="space-y-4"
-              >
-                <p className="text-lg sm:text-xl opacity-90 leading-relaxed max-w-2xl">
-                  Creating unforgettable experiences for birthdays, celebrations, and magical family moments throughout Western New York
-                </p>
-                
-                {/* Key Features */}
-                <div className="flex flex-wrap gap-4 text-sm opacity-80">
-                  <div className="flex items-center">
-                    <Shield className="w-4 h-4 mr-2" />
-                    <span>Ages 5+ Welcome</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-2" />
-                    <span>Full Service</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    <span>Western NY</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.2 }}
-                className="flex flex-col sm:flex-row gap-4 pt-4"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/services"
-                    className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center justify-center text-base border border-white/20"
-                  >
-                    Choose Your Package
-                    <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
-                
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <a
-                    href="tel:+17162007692"
-                    className="group bg-white/10 backdrop-blur-md text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300 border-2 border-white/30 hover:border-white/50 inline-flex items-center justify-center text-base shadow-lg"
-                  >
-                    <Phone className="mr-3 h-5 w-5" />
-                    Call (716) 200-7692
-                  </a>
-                </motion.div>
-              </motion.div>
-            </div>
-
-            {/* Right Column - Trust Indicators */}
-            <div className="lg:col-span-5 lg:pl-8">
-              <motion.div 
-                initial={{ opacity: 0, x: 30 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.4 }}
-                className="grid grid-cols-2 gap-4 lg:gap-6"
-              >
-                {[
-                  { icon: Award, number: "200+", text: "Happy Families", color: "from-blue-500 to-blue-600" },
-                  { icon: Star, number: "25+", text: "Themes Available", color: "from-purple-500 to-purple-600" },
-                  { icon: Shield, number: "100%", text: "Safe & Clean", color: "from-green-500 to-green-600" },
-                  { icon: MapPin, number: "FREE", text: "Delivery", color: "from-pink-500 to-pink-600" }
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="text-center"
-                    initial={{ opacity: 0, scale: 0.8 }}
+            {/* Trust Badge */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30, scale: 0.8 }}
+              animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="inline-flex items-center bg-white/15 backdrop-blur-md rounded-full px-6 py-3 border border-white/30 shadow-xl"
+            >
+              <div className="flex items-center mr-4">
+                {[...Array(5)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
+                    transition={{ delay: 0.5 + i * 0.1 }}
                   >
-                    <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg`}>
-                      <item.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <div className="text-xl font-bold text-white mb-1">{item.number}</div>
-                    <div className="text-sm text-white/80 font-medium">{item.text}</div>
+                    <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   </motion.div>
                 ))}
+              </div>
+              <div className="text-center">
+                <div className="text-sm font-bold">200+ Happy Families</div>
+                <div className="text-xs opacity-90">Trusted Since 2021</div>
+              </div>
+            </motion.div>
+
+            {/* Logo and Brand */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="flex flex-col items-center space-y-6"
+            >
+              {/* Custom Logo */}
+              <div className="relative">
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 1.2, delay: 0.6, type: "spring", stiffness: 100 }}
+                  className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mx-auto mb-4"
+                >
+                  <img 
+                    src="/src/assets/ChatGPT Image Jun 28, 2025, 12_31_53 PM.png" 
+                    alt="Glamping WNY Logo" 
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
+                </motion.div>
+                
+                {/* Glow effect behind logo */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl scale-150 -z-10"></div>
+              </div>
+
+              {/* Brand Name */}
+              <div className="text-center space-y-2">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold leading-none tracking-tight">
+                  <span className="block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                    Glamping WNY
+                  </span>
+                </h1>
+                <div className="text-lg sm:text-xl lg:text-2xl font-light opacity-90 tracking-wide">
+                  LUXURY EXPERIENCES
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Main Tagline */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="text-center max-w-4xl"
+            >
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 leading-tight">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Magical Memories
+                </span>
+                <span className="block text-white">Delivered to Your Doorstep</span>
+              </h2>
+              
+              <p className="text-lg sm:text-xl lg:text-2xl opacity-90 leading-relaxed mb-6">
+                Creating unforgettable experiences for birthdays, celebrations, and magical family moments throughout Western New York
+              </p>
+              
+              {/* Key Features */}
+              <div className="flex flex-wrap justify-center gap-6 text-sm sm:text-base opacity-80">
+                <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                  <Shield className="w-4 h-4 mr-2" />
+                  <span>Ages 5+ Welcome</span>
+                </div>
+                <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Full Service Setup</span>
+                </div>
+                <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  <span>Western NY</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.4 }}
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  to="/services"
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-2xl hover:shadow-3xl inline-flex items-center justify-center text-lg border border-white/20 backdrop-blur-sm"
+                >
+                  Choose Your Package
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </motion.div>
-            </div>
+              
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <a
+                  href="tel:+17162007692"
+                  className="group bg-white/15 backdrop-blur-md text-white px-10 py-4 rounded-full font-bold hover:bg-white/25 transition-all duration-300 border-2 border-white/40 hover:border-white/60 inline-flex items-center justify-center text-lg shadow-xl"
+                >
+                  <Phone className="mr-3 h-6 w-6" />
+                  Call (716) 200-7692
+                </a>
+              </motion.div>
+            </motion.div>
+
+            {/* Trust Indicators Grid */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1.8 }}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-8 max-w-4xl"
+            >
+              {[
+                { icon: Award, number: "200+", text: "Happy Families", subtext: "Since 2021", color: "from-blue-500 to-blue-600" },
+                { icon: Star, number: "25+", text: "Themes Available", subtext: "Custom Options", color: "from-purple-500 to-purple-600" },
+                { icon: Shield, number: "100%", text: "Safe & Clean", subtext: "Guaranteed", color: "from-green-500 to-green-600" },
+                { icon: MapPin, number: "FREE", text: "Delivery", subtext: "Within 20 Miles", color: "from-pink-500 to-pink-600" }
+              ].map((item, index) => (
+                <motion.div 
+                  key={index} 
+                  className="text-center group"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 2 + index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                >
+                  <div className={`w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-xl group-hover:shadow-2xl transition-all duration-300 border border-white/20`}>
+                    <item.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                  </div>
+                  <div className="text-xl lg:text-2xl font-bold mb-1">{item.number}</div>
+                  <div className="text-sm lg:text-base font-semibold mb-1">{item.text}</div>
+                  <div className="text-xs lg:text-sm opacity-80">{item.subtext}</div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 
@@ -266,15 +303,15 @@ const Home: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
+          transition={{ delay: 3 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
         >
           <motion.div 
             className="flex flex-col items-center cursor-pointer group"
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <span className="text-sm mb-2 opacity-70 group-hover:opacity-100 transition-opacity">Discover More</span>
+            <span className="text-sm mb-3 opacity-70 group-hover:opacity-100 transition-opacity">Discover More</span>
             <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
               <motion.div 
                 className="w-1 h-3 bg-white/60 rounded-full mt-2"

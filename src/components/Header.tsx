@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Tent, Phone, Star } from 'lucide-react';
+import { Menu, X, Phone, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header: React.FC = () => {
@@ -35,14 +35,14 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group">
             <motion.div 
-              className={`w-8 h-8 sm:w-10 sm:h-10 ${
-                isScrolled 
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600' 
-                  : 'bg-white/20 backdrop-blur-sm'
-              } rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110`}
+              className="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 group-hover:scale-110"
               whileHover={{ rotate: 5 }}
             >
-              <Tent className={`h-4 w-4 sm:h-6 sm:w-6 ${isScrolled ? 'text-white' : 'text-white'}`} />
+              <img 
+                src="/src/assets/ChatGPT Image Jun 28, 2025, 12_31_53 PM.png" 
+                alt="Glamping WNY Logo" 
+                className="w-full h-full object-contain drop-shadow-lg"
+              />
             </motion.div>
             <div>
               <span className={`text-lg sm:text-xl font-bold transition-colors ${
