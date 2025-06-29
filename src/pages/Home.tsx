@@ -548,8 +548,17 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-lavender-600 via-blush-500 to-sand-500 relative overflow-hidden">
+      {/* Final CTA Section - Beautiful Design with Glamping WNY Info */}
+      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{
+            backgroundImage: 'url("https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=1920&h=1080&fit=crop")',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-lavender-600 via-blush-500 to-sand-500" />
+
         {/* Soft Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -557,39 +566,122 @@ const Home: React.FC = () => {
           }} />
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white relative z-10">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+          {/* Main Content */}
           <motion.div
+            className="mb-8 sm:mb-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6 sm:mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-6 sm:mb-8 leading-tight">
               Ready to Create Magical Memories?
             </h2>
-            <p className="text-lg sm:text-xl mb-10 sm:mb-12 leading-relaxed opacity-90">
+            <p className="text-lg sm:text-xl mb-10 sm:mb-12 leading-relaxed opacity-90 max-w-3xl mx-auto">
               Join the 200+ families who have created unforgettable experiences with Holly and Joe. 
               Your perfect glamping adventure awaits in Western New York.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link
-                  to="/services"
-                  className="bg-white text-lavender-600 px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:bg-sand-50 transition-all duration-300 shadow-warm hover:shadow-lg inline-flex items-center justify-center text-base sm:text-lg"
-                >
-                  Choose Your Package
-                  <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6" />
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <a
-                  href="tel:+17162007692"
-                  className="border-2 border-white text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:bg-white hover:text-lavender-600 transition-all duration-300 inline-flex items-center justify-center text-base sm:text-lg"
-                >
-                  Call (716) 200-7692
-                </a>
-              </motion.div>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-10 sm:mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <motion.div whileHover={{ scale: 1.02, y: -3 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/services"
+                className="bg-white text-lavender-600 px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:bg-sand-50 transition-all duration-300 shadow-warm hover:shadow-lg inline-flex items-center justify-center text-base sm:text-lg"
+              >
+                Choose Your Package
+                <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6" />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02, y: -3 }} whileTap={{ scale: 0.98 }}>
+              <a
+                href="tel:+17162007692"
+                className="border-2 border-white text-white px-8 sm:px-12 py-4 sm:py-5 rounded-full font-bold hover:bg-white hover:text-lavender-600 transition-all duration-300 inline-flex items-center justify-center text-base sm:text-lg"
+              >
+                <Phone className="mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                Call (716) 200-7692
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact Info Grid */}
+          <motion.div
+            className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 mb-8 sm:mb-10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-5 sm:p-6 border-2 border-white/30 shadow-lg">
+              <Phone className="w-8 h-8 text-lavender-500 mx-auto mb-3" />
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Call Today</h3>
+              <p className="text-gray-800 font-semibold text-base">(716) 200-7692</p>
+              <p className="text-gray-600 text-sm mt-1">Available 7 days</p>
             </div>
+
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-5 sm:p-6 border-2 border-white/30 shadow-lg">
+              <MapPin className="w-8 h-8 text-blush-500 mx-auto mb-3" />
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Service Area</h3>
+              <p className="text-gray-800 font-semibold text-base">Western NY</p>
+              <p className="text-gray-600 text-sm mt-1">Free delivery within 20 miles</p>
+            </div>
+
+            <div className="bg-white/90 backdrop-blur-md rounded-2xl p-5 sm:p-6 border-2 border-white/30 shadow-lg sm:col-span-2 md:col-span-1">
+              <Clock className="w-8 h-8 text-sand-500 mx-auto mb-3" />
+              <h3 className="text-base font-semibold text-gray-900 mb-1">Quick Response</h3>
+              <p className="text-gray-800 font-semibold text-base">Same day quotes</p>
+              <p className="text-gray-600 text-sm mt-1">Fast booking available</p>
+            </div>
+          </motion.div>
+
+          {/* Business Credentials */}
+          <motion.div
+            className="flex flex-wrap justify-center items-center gap-4 text-white/90 font-semibold text-sm sm:text-base mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2">
+              <Star className="w-4 h-4 fill-yellow-300 text-yellow-300" />
+              <span>200+ Happy Families</span>
+            </div>
+            <div className="w-1 h-4 bg-white/40 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              <span>Licensed & Insured</span>
+            </div>
+            <div className="w-1 h-4 bg-white/40 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4" />
+              <span>Full Service Setup</span>
+            </div>
+            <div className="w-1 h-4 bg-white/40 hidden sm:block" />
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4" />
+              <span>FREE Delivery WNY</span>
+            </div>
+          </motion.div>
+
+          {/* Footer */}
+          <motion.div
+            className="pt-6 sm:pt-8 border-t-2 border-white/30"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-white/80 text-center text-sm sm:text-base">
+              © 2024 Glamping WNY - Creating magical memories throughout Western New York since 2021
+            </p>
           </motion.div>
         </div>
       </section>
