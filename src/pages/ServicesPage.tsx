@@ -166,7 +166,7 @@ const kidsThemes = [
   { name: "Superhero Adventure", icon: Star, color: "from-blue-400 to-red-400" },
   { name: "Spa Party", icon: Heart, color: "from-lavender-400 to-pink-400", popular: true },
   { name: "Video Game Night", icon: Music, color: "from-green-400 to-blue-400" },
-  { name: "Taylor Swift Swifties", icon: Music, color: "from-purple-400 to-gold-400", popular: true }
+  { name: "Taylor Swift Swifties", icon: Music, color: "from-purple-400 to-yellow-400", popular: true }
 ];
 
 const adultThemes = [
@@ -174,7 +174,7 @@ const adultThemes = [
   { name: "Wine & Dine", icon: Wine, color: "from-purple-400 to-red-400", popular: true },
   { name: "Wellness Retreat", icon: Sparkles, color: "from-green-400 to-blue-400" },
   { name: "Corporate Event", icon: Coffee, color: "from-blue-400 to-gray-400" },
-  { name: "Anniversary", icon: Calendar, color: "from-gold-400 to-red-400", popular: true },
+  { name: "Anniversary", icon: Calendar, color: "from-yellow-400 to-red-400", popular: true },
   { name: "Girls Night Out", icon: Star, color: "from-pink-400 to-purple-400" }
 ];
 
@@ -188,103 +188,56 @@ const ServicesPage: React.FC = () => {
         <meta name="description" content="Discover our premium glamping services in Western New York. Separate experiences for adults and kids - romantic dates, corporate retreats, princess parties, and more!" />
       </Helmet>
 
-      {/* Hero Section - Beautiful Lilac Night Sky */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
+      {/* Hero Section */}
+      <section className="page-content pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-lilac-night-sky"></div>
+          <div className="w-full h-full lilac-night-gradient"></div>
           
-          <div className="absolute inset-0 opacity-90">
-            {[...Array(120)].map((_, i) => {
-              const size = Math.random() > 0.8 ? '3px' : Math.random() > 0.6 ? '2px' : '1px';
-              const animationType = Math.random() > 0.7 ? 'animate-twinkle-fast' : 
-                                   Math.random() > 0.4 ? 'animate-twinkle' : 'animate-twinkle-slow';
-              
-              return (
-                <motion.div
-                  key={i}
-                  className={`absolute bg-white rounded-full ${animationType}`}
-                  style={{
-                    width: size,
-                    height: size,
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    filter: 'blur(0.5px)',
-                    boxShadow: '0 0 6px rgba(255,255,255,0.8)',
-                  }}
-                  animate={{
-                    opacity: [0.2, 1, 0.2],
-                    scale: [0.5, 1.5, 0.5],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 2 + Math.random() * 6,
-                    repeat: Infinity,
-                    delay: Math.random() * 8,
-                    ease: "easeInOut"
-                  }}
-                />
-              );
-            })}
-          </div>
-
+          {/* Simple star field */}
           <div className="absolute inset-0 opacity-60">
-            {[...Array(15)].map((_, i) => (
-              <motion.div
-                key={`shooting-${i}`}
-                className="absolute bg-white rounded-full"
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle w-0.5 h-0.5"
                 style={{
-                  width: '4px',
-                  height: '1px',
                   left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 50}%`,
-                  filter: 'blur(1px)',
-                  background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)',
-                }}
-                animate={{
-                  x: [0, 100],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 10,
-                  ease: "easeOut"
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
                 }}
               />
             ))}
           </div>
-
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
         </div>
 
-        <div className="container-custom relative z-10 text-center text-white pt-20">
+        <div className="container-custom relative z-10 pt-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight text-center text-white">
               Our Luxury
               <span className="block bg-gradient-to-r from-lavender-300 via-lavender-200 to-white bg-clip-text text-transparent">
                 Experiences
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto text-center">
               Tailored experiences for every age and occasion - from romantic getaways to magical kids' parties
             </p>
             
             {/* Service Area Highlight */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
-              <MapPin className="w-5 h-5" />
-              <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/20">
+                <MapPin className="w-5 h-5" />
+                <span className="font-medium">Serving Buffalo Metro • FREE delivery within 20 miles</span>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Service Area Banner */}
-      <section className="py-6 bg-lavender-50 border-b border-lavender-200">
+      <section className="py-8 bg-lavender-50 border-b border-lavender-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -305,7 +258,7 @@ const ServicesPage: React.FC = () => {
       </section>
 
       {/* Tab Navigation */}
-      <section className="py-12 bg-white border-b border-gray-200 sticky top-0 z-40">
+      <section className="py-12 bg-white border-b border-gray-200 sticky top-16 z-40">
         <div className="container-custom">
           <div className="flex justify-center">
             <div className="bg-gray-100 rounded-full p-2 flex">
@@ -354,7 +307,7 @@ const ServicesPage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
-                  className="text-center mb-16"
+                  className="text-center subsection-margin"
                 >
                   <div className="inline-block p-4 bg-gradient-to-r from-red-100 to-purple-100 rounded-full mb-6">
                     <Wine className="w-8 h-8 text-purple-600" />
@@ -367,43 +320,8 @@ const ServicesPage: React.FC = () => {
                   </p>
                 </motion.div>
 
-                {/* Image Upload Placeholders for Adult Services */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="mb-16"
-                >
-                  <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
-                    📸 Add Your Adult Experience Photos
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {['Romantic Setups', 'Spa Experiences', 'Corporate Events', 'Anniversary Celebrations'].map((category, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-lavender-400 hover:bg-lavender-50 transition-all duration-300 cursor-pointer group"
-                      >
-                        <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-lavender-200 transition-colors">
-                          <ImageIcon className="w-8 h-8 text-gray-400 group-hover:text-lavender-600" />
-                        </div>
-                        <h4 className="font-semibold text-gray-700 mb-2">{category}</h4>
-                        <p className="text-sm text-gray-500 mb-3">Upload photos of your {category.toLowerCase()}</p>
-                        <div className="flex items-center justify-center gap-2 text-lavender-600 font-medium">
-                          <Upload className="w-4 h-4" />
-                          <span className="text-sm">Add Photos</span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Adult Services Grid - Now shows all 4 services including Anniversary */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                {/* Adult Services Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 section-margin">
                   {adultServices.map((service, index) => (
                     <motion.div
                       key={index}
@@ -423,7 +341,7 @@ const ServicesPage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   viewport={{ once: true }}
-                  className="mb-16"
+                  className="subsection-margin"
                 >
                   <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
                     Popular Adult Themes 🌹
@@ -496,45 +414,14 @@ const ServicesPage: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             {/* Kids Services Section */}
-            <section className="section bg-gradient-to-br from-pink-50 via-purple-50 to-lavender-50 relative overflow-hidden">
-              {/* Fun background pattern */}
-              <div className="absolute inset-0 opacity-20">
-                {[...Array(30)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      rotate: [0, 360],
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 8 + Math.random() * 4,
-                      repeat: Infinity,
-                      delay: Math.random() * 5,
-                    }}
-                  >
-                    <div className={`w-4 h-4 ${
-                      i % 4 === 0 ? 'text-pink-300' :
-                      i % 4 === 1 ? 'text-purple-300' :
-                      i % 4 === 2 ? 'text-lavender-300' : 'text-yellow-300'
-                    }`}>
-                      {i % 4 === 0 ? '⭐' : i % 4 === 1 ? '🎈' : i % 4 === 2 ? '🎉' : '✨'}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="container-custom relative z-10">
+            <section className="section bg-gradient-to-br from-pink-50 via-purple-50 to-lavender-50">
+              <div className="container-custom">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
-                  className="text-center mb-16"
+                  className="text-center subsection-margin"
                 >
                   <div className="inline-block p-4 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full mb-6">
                     <Cake className="w-8 h-8 text-purple-600" />
@@ -567,43 +454,8 @@ const ServicesPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                {/* Image Upload Placeholders for Kids Services */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="mb-16"
-                >
-                  <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
-                    📸 Add Your Kids' Party Photos
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {['Princess Parties', 'Superhero Adventures', 'Spa Parties', 'Gaming Setups'].map((category, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="bg-white border-2 border-dashed border-pink-300 rounded-xl p-6 text-center hover:border-purple-400 hover:bg-purple-50 transition-all duration-300 cursor-pointer group"
-                      >
-                        <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
-                          <ImageIcon className="w-8 h-8 text-pink-400 group-hover:text-purple-600" />
-                        </div>
-                        <h4 className="font-semibold text-gray-700 mb-2">{category}</h4>
-                        <p className="text-sm text-gray-500 mb-3">Upload photos of your {category.toLowerCase()}</p>
-                        <div className="flex items-center justify-center gap-2 text-purple-600 font-medium">
-                          <Upload className="w-4 h-4" />
-                          <span className="text-sm">Add Photos</span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-
                 {/* Kids Services Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 section-margin">
                   {kidsServices.map((service, index) => (
                     <motion.div
                       key={index}
@@ -623,7 +475,7 @@ const ServicesPage: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   viewport={{ once: true }}
-                  className="mb-16"
+                  className="subsection-margin"
                 >
                   <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
                     Most Popular Kids' Themes 👑
@@ -698,7 +550,7 @@ const ServicesPage: React.FC = () => {
             viewport={{ once: true }}
             className="bg-lavender-50 rounded-3xl p-8 md:p-12"
           >
-            <div className="text-center mb-12">
+            <div className="text-center subsection-margin">
               <h3 className="text-3xl font-serif font-bold text-gray-900 mb-4">
                 Why Families Choose Glamping WNY
               </h3>
@@ -737,7 +589,20 @@ const ServicesPage: React.FC = () => {
 
       {/* Final CTA Section */}
       <section className="section lilac-night-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-night-sky opacity-70"></div>
+        {/* Simple star field */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-twinkle w-0.5 h-0.5"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
         
         <div className="container-custom relative z-10">
           <motion.div 

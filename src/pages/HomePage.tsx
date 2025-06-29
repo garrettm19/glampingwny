@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       <Hero />
       
       {/* Service Area Banner */}
-      <section className="py-6 bg-lavender-50 border-b border-lavender-200">
+      <section className="py-8 bg-lavender-50 border-b border-lavender-200">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -40,16 +40,14 @@ const HomePage: React.FC = () => {
       <Features />
       
       {/* Services Preview */}
-      <section className="section bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-nature-pattern opacity-20"></div>
-        
-        <div className="container-custom relative z-10">
+      <section className="section bg-white relative">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center subsection-margin"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
               Our Signature Experiences
@@ -60,7 +58,7 @@ const HomePage: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 section-margin">
             {[
               {
                 icon: Tent,
@@ -142,7 +140,7 @@ const HomePage: React.FC = () => {
                       to="/services"
                       className={`w-full btn bg-gradient-to-r ${service.color} text-white hover:shadow-lg`}
                     >
-                      <span>Learn More</span>
+                      <span>Learn More & Book</span>
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -209,7 +207,20 @@ const HomePage: React.FC = () => {
       
       {/* Final CTA */}
       <section className="section lilac-night-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-night-sky opacity-70"></div>
+        {/* Simple star field */}
+        <div className="absolute inset-0 opacity-30">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-twinkle w-0.5 h-0.5"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
         
         <div className="container-custom relative z-10">
           <motion.div 

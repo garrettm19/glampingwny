@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Users, Heart, Shield, Star, Quote, Sparkles, Clock, Camera, Home, Sparkle, Calendar, Award, Rocket, Video, Palette, Phone, Mail, MapPin, Tent, Dog, Book, Sun, Coffee } from 'lucide-react';
 import TestimonialWidget from '../components/ui/TestimonialWidget';
-import SparklyBackground from '../components/ui/SparklyBackground';
 
 const AboutPage: React.FC = () => {
   return (
@@ -16,22 +15,28 @@ const AboutPage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Beautiful Lilac Night Sky */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
+      {/* Hero Section */}
+      <section className="page-content pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Main night sky background with realistic lilac colors and TONS of stars */}
-          <div className="w-full h-full bg-lilac-night-sky"></div>
+          <div className="w-full h-full lilac-night-gradient"></div>
           
-          {/* Sparkly Background Component */}
-          <SparklyBackground 
-            density="heavy" 
-            showShootingStars={true} 
-            showSparkles={true}
-          />
+          {/* Simple star field */}
+          <div className="absolute inset-0 opacity-60">
+            {[...Array(40)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-twinkle w-0.5 h-0.5"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
         
-        <div className="container-custom relative z-10">
+        <div className="container-custom relative z-10 pt-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -41,7 +46,7 @@ const AboutPage: React.FC = () => {
             <div className="inline-block p-3 bg-white/20 rounded-full mb-6">
               <Heart className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
               Our Family Story
             </h1>
             <p className="text-xl text-white/90 leading-relaxed body-text">
@@ -52,7 +57,7 @@ const AboutPage: React.FC = () => {
       </section>
       
       {/* Founder's Story */}
-      <section className="section bg-white relative overflow-hidden">
+      <section className="section bg-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <motion.div
@@ -147,13 +152,10 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Family Values Section */}
-      <section className="section bg-lavender-50 relative overflow-hidden">
-        {/* Subtle sparkly background */}
-        <SparklyBackground density="light" showShootingStars={false} showSparkles={true} className="opacity-20" />
-        
-        <div className="container-custom relative z-10">
+      <section className="section bg-lavender-50">
+        <div className="container-custom">
           {/* Clean Header */}
-          <div className="text-center mb-16">
+          <div className="text-center subsection-margin">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -216,7 +218,7 @@ const AboutPage: React.FC = () => {
       <section className="section bg-white">
         <div className="container-custom">
           {/* Clean Header */}
-          <div className="text-center mb-16">
+          <div className="text-center subsection-margin">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -249,8 +251,8 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section bg-white relative overflow-hidden">
-        <div className="container-custom relative z-10">
+      <section className="section bg-white">
+        <div className="container-custom">
           <motion.div 
             className="max-w-4xl mx-auto text-center bg-gradient-to-br from-lavender-50 to-lavender-100 rounded-3xl p-12 border border-lavender-200"
             initial={{ opacity: 0, y: 20 }}

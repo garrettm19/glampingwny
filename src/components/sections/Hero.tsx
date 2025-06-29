@@ -2,26 +2,34 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, MapPin, Calendar, Shield, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SparklyBackground from '../ui/SparklyBackground';
 
 const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* SUPER SPARKLY NIGHT SKY BACKGROUND */}
+      {/* Simple gradient background with subtle stars */}
       <div className="absolute inset-0 z-0">
-        {/* Main night sky background with realistic colors and TONS of stars */}
-        <div className="w-full h-full bg-lilac-night-sky"></div>
+        <div className="w-full h-full lilac-night-gradient"></div>
         
-        {/* Sparkly Background Component */}
-        <SparklyBackground 
-          density="heavy" 
-          showShootingStars={true} 
-          showSparkles={true}
-        />
+        {/* Simple star field without parallax */}
+        <div className="absolute inset-0 opacity-60">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className={`absolute bg-white rounded-full animate-twinkle ${
+                Math.random() > 0.7 ? 'w-1 h-1' : 'w-0.5 h-0.5'
+              }`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Main Content */}
-      <div className="container-custom relative z-10 text-center text-white">
+      <div className="container-custom relative z-10 text-center text-white page-content">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,7 +56,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-shadow-lg"
+            className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight text-shadow-lg"
           >
             Luxury Glamping
             <span className="block bg-gradient-to-r from-lavender-300 via-lavender-200 to-white bg-clip-text text-transparent">
@@ -61,7 +69,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl lg:text-3xl mb-8 text-white/90 max-w-4xl mx-auto leading-relaxed font-light body-text"
+            className="text-xl md:text-2xl lg:text-3xl mb-12 text-white/90 max-w-4xl mx-auto leading-relaxed font-light body-text"
           >
             Create unforgettable memories with premium outdoor adventures 
             delivered to your backyard in Western New York
@@ -80,12 +88,6 @@ const Hero: React.FC = () => {
             >
               <span className="relative z-10">Book Your Experience</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform relative z-10" />
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
             </Link>
             <Link
               to="/gallery"

@@ -81,6 +81,19 @@
     @apply py-16 md:py-24;
   }
 
+  .section-sm {
+    @apply py-12 md:py-16;
+  }
+
+  .section-lg {
+    @apply py-20 md:py-32;
+  }
+
+  /* Proper spacing for fixed headers */
+  .page-content {
+    @apply pt-20 md:pt-24;
+  }
+
   .glass-card {
     @apply bg-white/95 backdrop-blur-sm border border-white/20 shadow-xl rounded-2xl;
   }
@@ -106,7 +119,7 @@
     background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 25%, #5eead4 50%, #99f6e4 75%, #ccfbf1 100%);
   }
 
-  /* Realistic night sky gradient - harmonized with lavender theme */
+  /* Simple night sky gradient without parallax */
   .night-sky-gradient {
     background: linear-gradient(180deg, 
       #0f0f23 0%,     /* Deep space blue */
@@ -118,7 +131,7 @@
     );
   }
 
-  /* Harmonized lilac night sky gradient */
+  /* Simple lilac night sky gradient */
   .lilac-night-gradient {
     background: linear-gradient(180deg, 
       #1a0d2e 0%,     /* Deep purple night */
@@ -130,7 +143,7 @@
     );
   }
 
-  /* Harmonized magical gradient */
+  /* Simple magical gradient */
   .magical-gradient {
     background: linear-gradient(135deg, 
       #a366ff 0%,     /* Main lavender */
@@ -150,6 +163,24 @@
       #c7d0c7 75%,    /* Medium sage */
       #a3b2a3 100%    /* Darker sage */
     );
+  }
+
+  /* Content spacing utilities */
+  .content-spacing {
+    @apply space-y-8 md:space-y-12;
+  }
+
+  .text-spacing {
+    @apply space-y-4 md:space-y-6;
+  }
+
+  /* Proper margins for sections */
+  .section-margin {
+    @apply mb-16 md:mb-24;
+  }
+
+  .subsection-margin {
+    @apply mb-12 md:mb-16;
   }
 }
 
@@ -174,14 +205,7 @@
     animation: bounce-gentle 2s infinite;
   }
 
-  .animate-sparkle {
-    animation: sparkle 4s ease-in-out infinite;
-  }
-
-  .animate-shimmer {
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
+  /* Simple star animations without complex parallax */
   .animate-twinkle {
     animation: twinkle 3s ease-in-out infinite;
   }
@@ -192,14 +216,6 @@
 
   .animate-twinkle-slow {
     animation: twinkle 5s ease-in-out infinite;
-  }
-
-  .animate-shooting-star {
-    animation: shooting-star 4s ease-out infinite;
-  }
-
-  .animate-sparkle-dust {
-    animation: sparkle-dust 6s ease-in-out infinite;
   }
 }
 
@@ -223,26 +239,6 @@
   }
 }
 
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-@keyframes shimmer {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 @keyframes twinkle {
   0%, 100% {
     opacity: 0.4;
@@ -251,38 +247,6 @@
   50% {
     opacity: 1;
     transform: scale(1.2);
-  }
-}
-
-@keyframes shooting-star {
-  0% {
-    transform: translateX(-100px) translateY(-100px);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100px) translateY(100px);
-    opacity: 0;
-  }
-}
-
-@keyframes sparkle-dust {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-20px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-40px) scale(0);
   }
 }
 
