@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -20,6 +21,45 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a',
           950: '#172554',
+        },
+        lavender: {
+          50: '#faf7ff',
+          100: '#f3edff',
+          200: '#e9ddff',
+          300: '#d7c1ff',
+          400: '#be9bff',
+          500: '#a370f7',
+          600: '#8b4de8',
+          700: '#7c3aed',
+          800: '#6b21a8',
+          900: '#581c87',
+          950: '#3b0764',
+        },
+        sand: {
+          50: '#fefdfb',
+          100: '#fef9f3',
+          200: '#fdf2e9',
+          300: '#fae8d4',
+          400: '#f6d8b8',
+          500: '#f0c294',
+          600: '#e8a870',
+          700: '#d18b47',
+          800: '#b8723a',
+          900: '#9a5e32',
+          950: '#543018',
+        },
+        blush: {
+          50: '#fef7f7',
+          100: '#feecec',
+          200: '#fdd8d8',
+          300: '#fcb8b8',
+          400: '#f98b8b',
+          500: '#f26363',
+          600: '#de4444',
+          700: '#bb2f2f',
+          800: '#9b2c2c',
+          900: '#822a2a',
+          950: '#461212',
         },
       },
       animation: {
@@ -67,6 +107,8 @@ export default {
       boxShadow: {
         'glow': '0 0 15px rgba(59, 130, 246, 0.5)',
         'glow-lg': '0 0 30px rgba(59, 130, 246, 0.7)',
+        'soft': '0 4px 20px rgba(0, 0, 0, 0.08)',
+        'warm': '0 8px 32px rgba(240, 194, 148, 0.3)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
